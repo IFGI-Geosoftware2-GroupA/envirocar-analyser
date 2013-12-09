@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>enviro-analyser</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Marius Runde" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<!--<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />-->
+		
+		<!-- Google Maps API v3.14 -->
+		<script type="text/javascript">
+			// initialize the map
+			function initialize() {
+				var mapOptions = {
+					center: new google.maps.LatLng(51.9635, 7.613433),
+					zoom: 12
+				};
+				var map = new google.maps.Map(document.getElementById("map"),
+				mapOptions);
+			}
+			
+			// load the map when the rest of the window has been loaded
+			function loadScript() {
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = 'https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&' +
+					'callback=initialize';
+				document.body.appendChild(script);
+			}
+		</script>
+		
+		<!-- jQuery 2.0.3 -->
+		<script src="lib/jquery-2.0.3.min.js"></script>
+		
+		<!-- Chart.js -->
+		<script src="lib/Chart.min.js"></script>
+		<script type="text/javascript">
+			function initChart() {
+				//Get the context of the canvas element we want to select
+				var ctx = $("#chart").get(0).getContext("2d");
+				
+				var data = {
+					labels: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli"],
+					datasets: [
+						{
+							fillColor: "rgba(220,220,220,0.5)",
+							strokeColor: "rgba(220,220,220,1)",
+							pointColor: "rgba(220,220,220,1)",
+							pointStrokeColor: "#fff",
+							data: [65, 59, 90, 81, 56, 55, 40]
+						},
+						{
+							fillColor: "rgba(151,187,205,0.5)",
+							strokeColor: "rgba(151,187,205,1)",
+							pointColor: "rgba(151,187,205,1)",
+							pointStrokeColor: "#fff",
+							data: [28, 48, 40, 19, 96, 27, 100]
+						}
+					]
+				}
+				
+				var myNewChart = new Chart(ctx).Line(data);
+			}
+		</script>
+	</head>
+
+	<body onload="loadScript();initChart();">
+		<div>
+			<header>
+				<h1>enviro-analyser</h1>
+			</header>
+			<p>
+				Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten
+			</p>
+			<hr />
+			<div id="map" style="height: 600px; width: 600px;">
+				<!-- the map will be displayed here -->
+			</div>
+			<canvas id="chart" height="400" width="400">
+				<!-- the chart will be displayed here -->
+			</canvas>
+			<hr />
+			<footer>
+				<p>
+					&copy; 2013 Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde und Thiemo Gärtner
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
