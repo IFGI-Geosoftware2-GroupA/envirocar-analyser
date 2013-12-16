@@ -8,25 +8,67 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 		<title>enviro-analyser</title>
-		<meta name="description" content="" />
+		<meta name="description" content="Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten" />
 		<meta name="author" content="Marius Runde" />
 
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 
-		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<!--<link rel="shortcut icon" href="/favicon.ico" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />-->
+		<!-- Stylesheet, Favicon and Apple-Touch-Icon -->
+		<link rel="stylesheet" href="design/style.css" />
+		<link rel="shortcut icon" href="design/favicon.ico" />
+		<link rel="apple-touch-icon" href="design/apple-touch-icon.png" />
 		
 		<!-- Google Maps API v3.14 -->
 		<script type="text/javascript">
 			// initialize the map
 			function initialize() {
 				var mapOptions = {
-					center: new google.maps.LatLng(51.9635, 7.613433),
-					zoom: 12
+					center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia
+					mapTypeControl: true,
+					mapTypeControlOptions: {
+						style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+					},
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					scaleControl: true,
+					streetViewControl: false,
+					zoom: 9,
+					zoomControl: true,
+					zoomControlOptions: {
+						style: google.maps.ZoomControlStyle.DEFAULT
+					}
 				};
-				var map = new google.maps.Map(document.getElementById("map"),
-				mapOptions);
+				var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+				
+				// Bounds for North-Rhine-Westphalia
+				var nrwBounds = new google.maps.LatLngBounds(
+					new google.maps.LatLng(50.3, 5.8), // south west 
+					new google.maps.LatLng(52.6, 9.5) // north east
+				);
+				
+				// Listen for the dragend event
+				google.maps.event.addListener(map, 'dragend', function() {
+					// Is the map still in our bounding box of North-Rhine-Westphalia?
+					if (nrwBounds.contains(map.getCenter())) {
+						// YES
+						return;
+					} else {
+						// NO
+						var c = map.getCenter(),
+						x = c.lng(),
+						y = c.lat(),
+						maxX = nrwBounds.getNorthEast().lng(),
+						maxY = nrwBounds.getNorthEast().lat(),
+						minX = nrwBounds.getSouthWest().lng(),
+						minY = nrwBounds.getSouthWest().lat();
+						
+						if (x < minX) x = minX;
+						if (x > maxX) x = maxX;
+						if (y < minY) y = minY;
+						if (y > maxY) y = maxY;
+						
+						map.setCenter(new google.maps.LatLng(y, x));
+					}
+				});
 			}
 			
 			// load the map when the rest of the window has been loaded
@@ -83,12 +125,20 @@
 				Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten
 			</p>
 			<hr />
-			<div id="map" style="height: 600px; width: 600px;">
-				<!-- the map will be displayed here -->
-			</div>
-			<canvas id="chart" height="400" width="400">
-				<!-- the chart will be displayed here -->
-			</canvas>
+			<table>
+				<tr>
+					<td>
+						<div id="map">
+							<!-- the map will be displayed here -->
+						</div>
+					</td>
+					<td>
+						<canvas id="chart" height="400" width="600">
+							<!-- the chart will be displayed here -->
+						</canvas>
+					</td>
+				</tr>
+			</table>
 			<hr />
 			<footer>
 				<p>
