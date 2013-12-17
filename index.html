@@ -22,7 +22,7 @@
 		<script src="js/envirocar-analyser.js"></script>
 		
 		<!-- Google Maps API v3.14 -->
-		<script src="js/createMap.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true"></script>
 		
 		<!-- jQuery 2.0.3 -->
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
@@ -32,7 +32,7 @@
 		<script src="js/createChart.js"></script>
 	</head>
 
-	<body onload="loadScript();initChart();">
+	<body onload="initMap();initChart();">
 		<div>
 			<header>
 				<h1>enviro-analyser</h1>
@@ -47,6 +47,13 @@
 						<div id="map">
 							<!-- the map will be displayed here -->
 						</div>
+						<script>
+							$(document).ready(function() {
+								//showSimpleExample();
+								var q = new Query();
+								q.getMeasurements("examples/simpleExample.json");
+							});
+						</script>
 					</td>
 					<td>
 						<canvas id="chart" height="400" width="600">
