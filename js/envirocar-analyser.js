@@ -60,17 +60,25 @@ function initMap() {
 // ------------------------
 // Constructor with limits
 function Phenomenon(name, unit, lowerLimit, upperLimit) {
-	this.name		= name;
-	this.unit		= unit;
-	this.lowerLimit	= lowerLimit;
-	this.upperLimit	= upperLimit;
+	try {
+		this.name		= new String(name);
+		this.unit		= new String(unit);
+		this.lowerLimit	= new Number(lowerLimit);
+		this.upperLimit	= new Number(upperLimit);
+	} catch(e) {
+		alert(e.message);
+	}
 }
 // Constructor without limits (e.g. GPS Accuracy; limits will be set to -1)
 function Phenomenon(name, unit) {
-	this.name		= name;
-	this.unit		= unit;
-	this.lowerLimit	= -1;
-	this.upperLimit	= -1;
+	try {
+		this.name		= new String(name);
+		this.unit		= new String(unit);
+		this.lowerLimit	= -1;
+		this.upperLimit	= -1;
+	} catch(e) {
+		alert(e.message);
+	}
 }
 
 // Setting the variables
@@ -96,6 +104,30 @@ Phenomenon.prototype.toString = function() {
 		return "(Phenomenon:" + this.name + ", Unit:" + this.unit + ")";
 	} else {
 		return "(Phenomenon:" + this.name + ", Unit:" + this.unit + ", LowerLimit:" + this.lowerLimit + ", UpperLimit:" + this.upperLimit + ")";
+	}
+}
+
+/**
+ * Phenomenon equals method
+ * Return values:
+ * -1: otherPhenomenon is not an object of the class Phenomenon
+ *  0: the name and the unit of the otherPhenomenon differ from the source object
+ *  1: the name and the unit of the otherPhenomenon are the same but the limits differ
+ *  2: both objects are equal
+ */
+Phenomenon.prototype.equals = function(otherPhenomenon) {
+	try {
+		if (this.name.localeCompare(otherPhenomenon.getName()) == 0 && this.unit.localeCompare(otherPhenomenon.getUnit()) == 0) {
+			if (this.lowerLimit == otherPhenomenon.getLowerLimit() && this.upperLimit == otherPhenomenon.getUpperLimit()) {
+				return 2;
+			} else {
+				return 1;
+			}
+		} else {
+			return 0;
+		}
+	} catch(e) {
+		return -1;
 	}
 }
 // -------------------------------
@@ -135,11 +167,15 @@ defaultPhenomenons.push(new Phenomenon("Short-Term Fuel Trim 1", "%", 0, 0));
 // -------------------------
 // Constructor
 function Measurement(id, point, timestamp, phenomenons, values) {
-	this.id				= id;
-	this.point			= point;
-	this.timestamp		= timestamp;
-	this.phenomenons	= phenomenons;
-	this.values			= values;
+	try {
+		this.id				= new String(id);
+		this.point			= point;
+		this.timestamp		= new Date(timestamp);
+		this.phenomenons	= phenomenons;
+		this.values			= values;
+	} catch(e) {
+		alert(e.message);
+	}
 }
 
 // Setting the variables
@@ -169,6 +205,50 @@ Measurement.prototype.toString = function() {
 		measurement = measurement + ", Phenomenon_" + i + ":" + this.phenomenons[i].toString() + ", Value_" + i + ":" + this.values[i];
 	};
 	return measurement + ")"; 
+}
+
+/**
+ * Phenomenon equals method
+ * Return values:
+ * -1: otherMeasurement is not an object of the class Measurement
+ *  0: the id of the otherMeasurement differs from the source object
+ *  1: the id of both objects is the same but the point and/or the timestamp differ from the source object
+ *  2: the id, point and timestamp of both objects are the same but at least one phenomenon's value of the otherMeasurement seems to differ from the source object
+ *  3: the id, point, timestamp and phenomenons of both objects are the same but at least one values' value of the otherMeasurement seems to differ from the source object
+ *  4: both objects are equal
+ */
+Measurement.prototype.equals = function(otherMeasurement) {
+	try {
+		if (this.id.localeCompare(otherMeasurement.getId()) == 0) {
+			if (this.point.toString().localeCompare(otherMeasurement.getPoint().toString()) == 0 && this.timestamp.toString().localeCompare(otherMeasurement.getTimestamp().toString()) == 0) {
+				if (this.phenomenons.length != otherMeasurement.getPhenomenons().length) {
+					return 2;
+				} else {
+					for (var i=0; i < this.phenomenons.length; i++) {
+						if (this.phenomenons[i].equals(otherMeasurement.getPhenomenons()[i]) <= 0) {
+							return 2;
+						}
+					};
+				}
+				if (this.values.length != otherMeasurement.getValues().length) {
+					return 3;
+				} else {
+					for (var i=0; i < this.values.length; i++) {
+						if (this.values[i] != otherMeasurement.getValues()[i]) {
+							return 3;
+						}
+					};
+				}
+				return 4;
+			} else {
+				return 1;
+			}
+		} else {
+			return 0;
+		}
+	} catch(e) {
+		return -1;
+	}
 }
 
 // Get all phenomenons of a measurement that are in the limit interval
@@ -213,11 +293,11 @@ Measurement.prototype.outOfLimitInterval = function() {
 // Constructor
 function Filter(parameters, track, startTime, endTime, vehicleManufacturer, fuelType) {
 	this.parameters				= parameters;
-	this.track					= track;
-	this.startTime				= startTime;
-	this.endTime				= endTime;
-	this.vehicleManufacturer	= vehicleManufacturer;
-	this.fuelType				= fuelType;
+	this.track					= new String(track);
+	this.startTime				= new Date(startTime);
+	this.endTime				= new Date(endTime);
+	this.vehicleManufacturer	= new String(vehicleManufacturer);
+	this.fuelType				= new String(fuelType);
 }
 
 // Setting the variables
