@@ -1,14 +1,15 @@
 /**
  * @author Marius Runde
  */
-// Variables for the map and the markers
+// Variables for the map, markers and markers bounds
 var map;
 var markers = [];
+var markersBounds = new google.maps.LatLngBounds();
 
 // Initialize the map
 function initMap() {
 	var mapOptions = {
-		center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia
+		// center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia
 		mapTypeControl: true,
 		mapTypeControlOptions: {
 			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -16,7 +17,6 @@ function initMap() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		scaleControl: true,
 		streetViewControl: false,
-		zoom: 9,
 		zoomControl: true,
 		zoomControlOptions: {
 			style: google.maps.ZoomControlStyle.DEFAULT
@@ -29,6 +29,17 @@ function initMap() {
 		new google.maps.LatLng(50.3, 5.8), // south west 
 		new google.maps.LatLng(52.6, 9.5) // north east
 	);
+	map.fitBounds(nrwBounds);
+	
+	var rectangle = new google.maps.Rectangle({
+		bounds: nrwBounds,
+		clickable: false,
+		fillOpacity: 0,
+		map: map,
+		strokeColor: '#FF0000',
+		strokeOpacity: 0.5,
+		strokeWeight: 5
+	});
 	
 	// Listen for the dragend event
 	google.maps.event.addListener(map, 'dragend', function() {
@@ -69,7 +80,9 @@ function showMarkers(query) {
 			  		position: measurements[i].getPoint(),
 			  		map: map
 				}));
+				markersBounds.extend(measurements[i].getPoint());
 			};
+			map.fitBounds(markersBounds);
 		}, 500);
 	} catch(e) {
 		alert(e.message);
