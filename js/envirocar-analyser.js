@@ -1,10 +1,11 @@
 /**
  * @author Marius Runde
  */
+// Variables for the map and the markers
 var map;
 var markers = [];
 
-// initialize the map
+// Initialize the map
 function initMap() {
 	var mapOptions = {
 		center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia
@@ -53,6 +54,26 @@ function initMap() {
 			map.setCenter(new google.maps.LatLng(y, x));
 		}
 	});
+}
+
+/**
+ * Show measurements as markers on the map
+ * The measurements must be collected within 1000ms
+ */
+function showMarkers(query) {
+	try {
+		var measurements = query.getMeasurements();
+		setTimeout(function() {
+			for (var i=0; i < measurements.length; i++) {
+				markers.push(new google.maps.Marker({
+			  		position: measurements[i].getPoint(),
+			  		map: map
+				}));
+			};
+		}, 500);
+	} catch(e) {
+		alert(e.message);
+	}
 }
 
 // ------------------------
@@ -220,7 +241,7 @@ Measurement.prototype.toString = function() {
 Measurement.prototype.equals = function(otherMeasurement) {
 	try {
 		if (this.id.localeCompare(otherMeasurement.getId()) == 0) {
-			if (this.point.toString().localeCompare(otherMeasurement.getPoint().toString()) == 0 && this.timestamp.toString().localeCompare(otherMeasurement.getTimestamp().toString()) == 0) {
+			if (this.point.equals(otherMeasurement.getPoint()) && this.timestamp.toString().localeCompare(otherMeasurement.getTimestamp().toString()) == 0) {
 				if (this.phenomenons.length != otherMeasurement.getPhenomenons().length) {
 					return 2;
 				} else {
@@ -330,24 +351,38 @@ Filter.prototype.setFuelType			= function(fuelType)			{ this.fuelType = fuelType
 // --- Query class ---
 // -------------------
 // Constructor without filter
-
+function Query(url) {
+	try {
+		this.url	= new String(url);
+		this.filter	= null;
+	} catch(e) {
+		alert("Could not create Query. This is the error message: " + e.message);
+	}
+}
 // Constructor with filter
-function Query(filter) {
-	this.filter	= filter;
+function Query(url, filter) {
+	try {
+		this.url	= new String(url);
+		this.filter	= filter;
+	} catch(e) {
+		alert("Could not create Query. This is the error message: " + e.message);
+	}
 }
 
 // Setting the variables
 Query.prototype.filter;
 
 // Get the measurements from an URL and parse the JSON file into a Measurement array
-Query.prototype.getMeasurements = function(url) {
-	var result = [],
-	tempId,
+Query.prototype.getMeasurements = function() {
+	var result = [];
+	typeof result === Measurement;
+	var tempId,
 	tempPoint,
 	tempTimestamp,
 	tempPhenomenons = [],
 	tempValues = [];
-	$.getJSON(url, function(json) {
+	
+	$.getJSON(this.url, function(json) {
 		$.each(json, function(index, data) {
 			$.each(data, function(arrayIndex, arrayElement) {
 				$.each(arrayElement, function(key, value) {

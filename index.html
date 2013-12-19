@@ -47,11 +47,11 @@
 						<div id="map">
 							<!-- the map will be displayed here -->
 						</div>
-						<script>
+						<script type="text/javascript">
+							// display the simple example
 							$(document).ready(function() {
-								//showSimpleExample();
-								var q = new Query();
-								q.getMeasurements("examples/simpleExample.json");
+								var q = new Query("examples/simpleExample.json");
+								showMarkers(q);
 							});
 						</script>
 					</td>
