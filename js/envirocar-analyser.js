@@ -67,6 +67,7 @@ function initMap() {
 	});
 }
 
+
 /**
  * Show measurements as markers on the map
  * The measurements must be collected within 1000ms
@@ -76,17 +77,50 @@ function showMarkers(query) {
 		var measurements = query.getMeasurements();
 		setTimeout(function() {
 			for (var i=0; i < measurements.length; i++) {
-				markers.push(new google.maps.Marker({
+				var marker = new google.maps.Marker({
 			  		position: measurements[i].getPoint(),
 			  		map: map
-				}));
+			  		
+				});
+				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
+				//Call function to create infoWindows
+				buildInfoWindow(marker,map,measurements[i]);
 			};
 			map.fitBounds(markersBounds);
 		}, 500);
 	} catch(e) {
 		alert(e.message);
 	}
+}
+
+/**
+ * Show InfoWindows on map 
+ * Creates InfoWindows for every marker on 
+ * map and in measurement and adds event Listener 
+ */
+function buildInfoWindow(marker,map,measurements){
+   
+   //Setting the content of the Infowindow
+    var contentString = '<div id="content">'+
+                        '<div id="siteNotice">'+
+                        '</div>'+
+                            '<h4 id="firstHeading" class="firstHeading">'+"ID:" +measurements.id+ '</h4>'+
+                            '<div id="bodyContent">' +
+                            "Timestamp:"+measurements.timestamp +
+                             measurements.values[0] +
+                        '</div>';
+		// Declaring InfoWindow
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 140
+        
+    });
+    	// Adding Listener
+        google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+        console.log(marker);
+    });
 }
 
 // ------------------------
