@@ -7,7 +7,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title>enviro-analyser</title>
+		<title>envirocar-analyser</title>
 		<meta name="description" content="Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten" />
 		<meta name="author" content="Marius Runde" />
 
@@ -35,7 +35,7 @@
 	<body onload="initMap();initChart();">
 		<div>
 			<header>
-				<h1>enviro-analyser</h1>
+				<h1>envirocar-analyser</h1>
 			</header>
 			<p>
 				Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten
@@ -44,6 +44,17 @@
 			<table>
 				<tr>
 					<td>
+						<div id="panel">
+							<input id="geocoding_address" type="text" value="">
+							<input id="geocoding_search" type="button" value="Suchen" onclick="codeAddress()">
+						</div>
+						<script type="text/javascript">
+							$('#geocoding_address').keyup(function(event) {
+								if(event.keyCode == 13){
+									$('#geocoding_search').click();
+								}
+							});
+						</script>
 						<input id="search-input" class="controls" type="text" placeholder="Search for cities">
 						<div id="map">
 							<!-- the map will be displayed here -->
@@ -51,7 +62,7 @@
 						<script type="text/javascript">
 							// display the simple example
 							$(document).ready(function() {
-								var q = new Query("examples/simpleExample.json");
+								var q = new Query('https://envirocar.org/api/stable/measurements');
 								showMarkers(q);
 							});
 						</script>

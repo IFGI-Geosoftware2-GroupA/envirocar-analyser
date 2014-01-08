@@ -1,12 +1,16 @@
 /**
- * @author Marius Runde, Daniel Sawatzky
+ * @author Marius Runde, Daniel Sawatzky, Thiemo Gaertner
  */
 // Variables for the map, markers and markers bounds
-var map;
-var markers = [];
-var markersBounds = new google.maps.LatLngBounds();
+var map,
+nrwBounds,
+markers = [],
+markersBounds = new google.maps.LatLngBounds(),
+geocoder = new google.maps.Geocoder();
 
-// Initialize the map
+/**
+ * Initialize the map
+ */
 function initMap() {
 	var mapOptions = {
 		// center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia
@@ -15,6 +19,7 @@ function initMap() {
 			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
 		},
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		minZoom: 8,
 		scaleControl: true,
 		streetViewControl: false,
 		zoomControl: true,
@@ -25,30 +30,41 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	
 	// Bounds for North-Rhine-Westphalia
-	var nrwBounds = new google.maps.LatLngBounds(
+	nrwBounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(50.3, 5.8), // south west 
 		new google.maps.LatLng(52.6, 9.5) // north east
 	);
 	map.fitBounds(nrwBounds);
 	
-	var rectangle = new google.maps.Rectangle({
-		bounds: nrwBounds,
+	// Grey out the rest of the world
+	var nrwBoundaries = [
+		new google.maps.LatLng(50.3, 9.5),
+		new google.maps.LatLng(50.3, 5.8),
+		new google.maps.LatLng(52.6, 5.8), 
+		new google.maps.LatLng(52.6, 9.5)
+	];
+	var everythingElse = [
+		new google.maps.LatLng(-90, 90),
+		new google.maps.LatLng(90, 90),
+		new google.maps.LatLng(90, -90),
+		new google.maps.LatLng(-90, -90)
+	];
+	var greyOutPolygon = new google.maps.Polygon({
 		clickable: false,
-		fillOpacity: 0,
-		map: map,
-		strokeColor: '#FF0000',
-		strokeOpacity: 0.5,
-		strokeWeight: 5
+		paths: [nrwBoundaries, everythingElse],
+		strokeColor: 'grey',
+		strokeOpacity: 0.85,
+		strokeWeight: 2,
+		fillColor: 'grey',
+		fillOpacity: 0.7
 	});
+	greyOutPolygon.setMap(map);
 	
 	// Create the search box and link it to the UI element.
-	var input = /** @type {HTMLInputElement} */(
-		document.getElementById('search-input'));
-	  	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-	var searchBox = new google.maps.places.SearchBox(
-		/** @type {HTMLInputElement} */(input));
-		
+	var input = /** @type {HTMLInputElement} */(document.getElementById('search-input'));
+	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+	
+	var searchBox = new google.maps.places.SearchBox(/** @type {HTMLInputElement} */(input));
 	
 	// Listen for the dragend event
 	google.maps.event.addListener(map, 'dragend', function() {
@@ -76,36 +92,51 @@ function initMap() {
 	});
 	
 	// Listen for the event fired when the user selects an item from the
-	// pick list. Retrieve the matching places for that item.
-  	google.maps.event.addListener(searchBox, 'places_changed', function() {
-    var places = searchBox.getPlaces();
-
-    // For each place, get the icon, place name, and location.
-    var bounds = new google.maps.LatLngBounds();
-    for (var i = 0, place; place = places[i]; i++) {
-      var image = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
-
-      bounds.extend(place.geometry.location);
-    }
-	    map.fitBounds(bounds);
+ 	// pick list. Retrieve the matching places for that item.
+ 	google.maps.event.addListener(searchBox, 'places_changed', function() {
+		var places = searchBox.getPlaces();
+		
+		// For each place, get the icon, place name, and location.
+		var bounds = new google.maps.LatLngBounds();
+		for (var i = 0, place; place = places[i]; i++) {
+			var image = {
+				url: place.icon,
+				size: new google.maps.Size(71, 71),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(17, 34),
+				scaledSize: new google.maps.Size(25, 25)
+			};
+			bounds.extend(place.geometry.location);
+		}
+		map.fitBounds(bounds);
 		map.setZoom(14);
-  	});
-  	
-	// Bias the SearchBox results towards places that are within the bounds of the
-	// current map's viewport.
-	google.maps.event.addListener(map, 'bounds_changed', function() {
-		var bounds = map.getBounds();
-	    searchBox.setBounds(bounds);
 	});
-  
+ 	
+	// Bias the SearchBox results towards places that are within the bounds of the
+ 	// current map's viewport.
+ 	google.maps.event.addListener(map, 'bounds_changed', function() {
+		var bounds = map.getBounds();
+		searchBox.setBounds(bounds);
+	});
 }
 
+/**
+ * Geocoding an address
+ */
+function codeAddress() {
+	var address = document.getElementById('geocoding_address').value;
+	geocoder.geocode( { 'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			if (nrwBounds.contains(results[0].geometry.location)) {
+				map.setCenter(results[0].geometry.location);
+			} else {
+				alert('Die gesuchte Stadt liegt nicht im erfassten Anwendungsgebiet.');
+			}
+		} else {
+			alert('Die Suche war nicht erfolgreich.');
+		}
+	});
+}
 
 /**
  * Show measurements as markers on the map
@@ -119,11 +150,11 @@ function showMarkers(query) {
 				var marker = new google.maps.Marker({
 			  		position: measurements[i].getPoint(),
 			  		map: map
-			  		
 				});
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
-				//Call function to create infoWindows
+				
+				// Call function to create infoWindow
 				buildInfoWindow(marker,map,measurements[i]);
 			};
 			map.fitBounds(markersBounds);
@@ -138,28 +169,26 @@ function showMarkers(query) {
  * Creates InfoWindows for every marker on 
  * map and in measurement and adds event Listener 
  */
-function buildInfoWindow(marker,map,measurements){
-   
-   //Setting the content of the Infowindow
-    var contentString = '<div id="content">'+
-                        '<div id="siteNotice">'+
-                        '</div>'+
-                            '<h4 id="firstHeading" class="firstHeading">'+"ID:" +measurements.id+ '</h4>'+
-                            '<div id="bodyContent">' +
-                            "Timestamp:"+measurements.timestamp +
-                             measurements.values[0] +
-                        '</div>';
-		// Declaring InfoWindow
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth: 140
-        
-    });
-    	// Adding Listener
-        google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map,marker);
-        console.log(marker);
-    });
+function buildInfoWindow(marker,map,measurements){   
+	//Setting the content of the Infowindow
+	var contentString = '<div id="content">' +
+							'<div id="siteNotice">' +
+							'</div>' +
+							'<h4 id="firstHeading" class="firstHeading">'+"ID:" + measurements.id + '</h4>' +
+							'<div id="bodyContent">' +
+							"Timestamp:" + measurements.timestamp +
+							measurements.values[0] +
+							'</div>';
+	// Declaring InfoWindow
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString,
+		maxWidth: 140
+	});
+	// Adding Listener
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.open(map,marker);
+		console.log(marker);
+	});
 }
 
 // ------------------------
@@ -195,14 +224,14 @@ Phenomenon.prototype.upperLimit;
 Phenomenon.prototype.lowerLimit;
 
 // --- Getter and setter ---
-Phenomenon.prototype.getName		= function()			{ return this.name; }
-Phenomenon.prototype.setName		= function(name)		{ this.name = name; }
-Phenomenon.prototype.getUnit		= function()			{ return this.unit; }
-Phenomenon.prototype.setUnit		= function(unit)		{ this.unit = unit; }
-Phenomenon.prototype.getLowerLimit	= function()			{ return this.lowerLimit; }
-Phenomenon.prototype.setLowerLimit	= function(lowerLimit)	{ this.lowerLimit = lowerLimit; }
-Phenomenon.prototype.getUpperLimit	= function()			{ return this.upperLimit; }
-Phenomenon.prototype.setUpperLimit	= function(upperLimit)	{ this.upperLimit = upperLimit; }
+Phenomenon.prototype.getName		= function()			{ return this.name; };
+Phenomenon.prototype.setName		= function(name)		{ this.name = name; };
+Phenomenon.prototype.getUnit		= function()			{ return this.unit; };
+Phenomenon.prototype.setUnit		= function(unit)		{ this.unit = unit; };
+Phenomenon.prototype.getLowerLimit	= function()			{ return this.lowerLimit; };
+Phenomenon.prototype.setLowerLimit	= function(lowerLimit)	{ this.lowerLimit = lowerLimit; };
+Phenomenon.prototype.getUpperLimit	= function()			{ return this.upperLimit; };
+Phenomenon.prototype.setUpperLimit	= function(upperLimit)	{ this.upperLimit = upperLimit; };
 // --- End of getter and setter ---
 
 // Phenomenon to string
@@ -212,7 +241,7 @@ Phenomenon.prototype.toString = function() {
 	} else {
 		return "(Phenomenon:" + this.name + ", Unit:" + this.unit + ", LowerLimit:" + this.lowerLimit + ", UpperLimit:" + this.upperLimit + ")";
 	}
-}
+};
 
 /**
  * Phenomenon equals method
@@ -236,7 +265,7 @@ Phenomenon.prototype.equals = function(otherPhenomenon) {
 	} catch(e) {
 		return -1;
 	}
-}
+};
 // -------------------------------
 // --- End of Phenomenon class ---
 // -------------------------------
@@ -269,6 +298,155 @@ defaultPhenomenons.push(new Phenomenon("O2 Lambda Voltage", "V", 0, 0));
 defaultPhenomenons.push(new Phenomenon("O2 Lambda Voltage ER", "ratio", 0, 0));
 defaultPhenomenons.push(new Phenomenon("Short-Term Fuel Trim 1", "%", 0, 0));
 
+// --------------------
+// --- Sensor class ---
+// --------------------
+// Constructor
+function Sensor(type, id, model, fuelType, manufacturer, constructionYear) {
+	try {
+		// TODO Only allow cars as sensors? Are there any differences to motorbikes etc.?
+		if (type.equals("car")) {
+			// TODO Only allow 'gasoline' and 'diesel' as fuel types?
+			if (fuelType.equals("gasoline") || fuelType.equals("diesel")) {
+				this.id					= new String(id);
+				this.model				= new String(model);
+				this.fuelType			= new String(fuelType);
+				this.manufacturer		= new String(manufacturer);
+				this.constructionYear	= new Number(constructionYear);
+			} else {
+				alert("Could not create Sensor. Fuel type " + fuelType + " is not accepted.");
+			}
+		} else {
+			alert("Could not create Sensor. Sensor is not of type 'car'.");
+		}
+	} catch(e) {
+		alert("Could not create Sensor. This is the error message: " + e.message);
+	}
+}
+
+// Setting the variables
+Sensor.prototype.id;
+Sensor.prototype.model;
+Sensor.prototype.fuelType;
+Sensor.prototype.manufacturer;
+Sensor.prototype.constructionYear;
+
+// --- Getter ---
+Sensor.prototype.getId					= function() { return this.id; };
+Sensor.prototype.getModel				= function() { return this.model; };
+Sensor.prototype.getFuelType			= function() { return this.fuelType; };
+Sensor.prototype.getManufacturer		= function() { return this.manufacturer; };
+Sensor.prototype.getConstructionYear	= function() { return this.constructionYear; };
+// --- End of getter ---
+
+// --- Setter ---
+Sensor.prototype.setId = function(id) {
+	try {
+		this.id = new String(id);
+	} catch(e) {
+		alert("Could not change id. This is the error message: " + e.message);
+	}
+};
+Sensor.prototype.setModel = function(model) {
+	try {
+		this.model = new String(model);
+	} catch(e) {
+		alert("Could not change model. This is the error message: " + e.message);
+	}
+};
+Sensor.prototype.setFuelType = function(fuelType) {
+	try {
+		// TODO Only allow 'gasoline' and 'diesel' as fuel types?
+		if (fuelType.equals("gasoline") || fuelType.equals("diesel")) {
+			this.fuelType = new String(fuelType);
+		} else {
+			alert("Could not change fuel type. Fuel type " + fuelType + " is not accepted.");
+		}
+	} catch(e) {
+		alert("Could not change fuel type. This is the error message: " + e.message);
+	}
+};
+Sensor.prototype.setManufacturer = function(manufacturer) {
+	try {
+		this.manufacturer = new String(manufacturer);
+	} catch(e) {
+		alert("Could not change manufacturer. This is the error message: " + e.message);
+	}
+};
+Sensor.prototype.setConstructionYear = function(constructionYear) {
+	try {
+		this.constructionYear = new Number(constructionYear);
+	} catch(e) {
+		alert("Could not change construction year. This is the error message: " + e.message);
+	}
+};
+// --- End of setter ---
+
+/**
+ * Parse a JSON object into a Sensor object
+ */
+Sensor.prototype.parseJSON = function(json) {
+	var s;
+	typeof s === Sensor;
+	
+	var tempId,
+	tempModel,
+	tempFuelType,
+	tempManufacturer,
+	tempConstructionYear;
+	
+	try {
+		$.each(json, function(index, data) {
+			var isCar = false;
+			$.each(data, function(key, value) {
+				// TODO Only allow cars?
+				if (key == "type" && value == "car") {
+					isCar = true;
+				}
+				if (key == "properties" && isCar) {
+					$.each(value, function(propKey, propValue) {
+						if (propKey == "id") {
+							tempId = new String(propValue);
+						}
+						
+						if (propKey == "model") {
+							tempModel = new String(propValue);
+						}
+						
+						if (propKey == "fuelType") {
+							// TODO Only allow 'gasoline' and 'diesel' as fuel types?
+							if (fuelType.equals("gasoline") || fuelType.equals("diesel")) {
+								tempFuelType = new String(propValue);
+							} else {
+								alert("Could not parse JSON object into a Sensor object. Fuel type " + fuelType + " is not accepted.");
+								return;
+							}
+						}
+						
+						if (propKey == "manufacturer") {
+							tempManufacturer = new String(propValue);
+						}
+						
+						if (propKey == "constructionYear") {
+							tempConstructionYear = new Number(propValue);
+						}
+					});
+					
+					s = new Sensor("car", tempId, tempModel, tempFuelType, tempManufacturer, tempConstructionYear);
+				}
+			});
+		});
+	} catch(e) {
+		alert("Could not parse JSON object into a Sensor object. This is the error message: " + e.message);
+		return;
+	}
+	
+	return s;
+};
+// ---------------------------
+// --- End of Sensor class ---
+// ---------------------------
+
 // -------------------------
 // --- Measurement class ---
 // -------------------------
@@ -281,7 +459,7 @@ function Measurement(id, point, timestamp, phenomenons, values) {
 		this.phenomenons	= phenomenons;
 		this.values			= values;
 	} catch(e) {
-		alert(e.message);
+		alert("Could not create Measurement. This is the error message: " + e.message);
 	}
 }
 
@@ -292,18 +470,51 @@ Measurement.prototype.timestamp;
 Measurement.prototype.phenomenons;
 Measurement.prototype.values;
 
-// --- Getter and setter ---
-Measurement.prototype.getId 			= function()			{ return this.id; }
-Measurement.prototype.setId 			= function(id)			{ this.id = id; }
-Measurement.prototype.getPoint 			= function()			{ return this.point; }
-Measurement.prototype.setPoint 			= function(point)		{ this.point = point; }
-Measurement.prototype.getTimestamp 		= function()			{ return this.timestamp; }
-Measurement.prototype.setTimestamp 		= function(timestamp)	{ this.timestamp = timestamp; }
-Measurement.prototype.getPhenomenons	= function()			{ return this.phenomenons; }
-Measurement.prototype.setPhenomenons	= function(phenomenons)	{ this.phenomenons = phenomenons; }
-Measurement.prototype.getValues			= function()			{ return this.values; }
-Measurement.prototype.setValues			= function(values)		{ this.values = values; }
-// --- End of getter and setter ---
+// --- Getter ---
+Measurement.prototype.getId 			= function() { return this.id; };
+Measurement.prototype.getPoint 			= function() { return this.point; };
+Measurement.prototype.getTimestamp 		= function() { return this.timestamp; };
+Measurement.prototype.getPhenomenons	= function() { return this.phenomenons; };
+Measurement.prototype.getValues			= function() { return this.values; };
+// --- End of getter ---
+
+// --- Setter ---
+Measurement.prototype.setId	= function(id) {
+	try {
+		this.id = new String(id);
+	} catch(e) {
+		alert("Could not change id. This is the error message: " + e.message);
+	}
+};
+Measurement.prototype.setPoint = function(point) {
+	try {
+		this.point = point;
+	} catch(e) {
+		alert("Could not change point. This is the error message: " + e.message);
+	}
+};
+Measurement.prototype.setTimestamp = function(timestamp) {
+	try {
+		this.timestamp = new Date(timestamp);
+	} catch(e) {
+		alert("Could not change timestamp. This is the error message: " + e.message);
+	}
+};
+Measurement.prototype.setPhenomenons = function(phenomenons) {
+	try {
+		this.phenomenons = phenomenons;
+	} catch(e) {
+		alert("Could not change phenomenons. This is the error message: " + e.message);
+	}
+};
+Measurement.prototype.setValues = function(values) {
+	try {
+		this.values = values;
+	} catch(e) {
+		alert("Could not change values. This is the error message: " + e.message);
+	}
+};
+// --- End of setter ---
 
 // Measurement to string
 Measurement.prototype.toString = function() {
@@ -312,10 +523,10 @@ Measurement.prototype.toString = function() {
 		measurement = measurement + ", Phenomenon_" + i + ":" + this.phenomenons[i].toString() + ", Value_" + i + ":" + this.values[i];
 	};
 	return measurement + ")"; 
-}
+};
 
 /**
- * Phenomenon equals method
+ * Measurement equals method
  * Return values:
  * -1: otherMeasurement is not an object of the class Measurement
  *  0: the id of the otherMeasurement differs from the source object
@@ -356,9 +567,11 @@ Measurement.prototype.equals = function(otherMeasurement) {
 	} catch(e) {
 		return -1;
 	}
-}
+};
 
-// Get all phenomenons of a measurement that are in the limit interval
+/**
+ * Get all phenomenons of a measurement that are in the limit interval
+ */
 Measurement.prototype.inLimitInterval = function() {
 	var result = [],
 	j = 0;
@@ -369,10 +582,14 @@ Measurement.prototype.inLimitInterval = function() {
 		}
 	}
 	return result;
-}
+};
 
-// Get all phenomenons of a measurement that are out of the limit interval
-// true: more than upper limit, false: less than lower limit
+/**
+ * Get all phenomenons of a measurement that are out of the limit interval
+ * Return values in 2nd dimension of the returned array:
+ * true: value is higher than upper limit
+ * false: value is less than lower limit
+ */
 Measurement.prototype.outOfLimitInterval = function() {
 	var result = [],
 	j = 0;
@@ -389,7 +606,7 @@ Measurement.prototype.outOfLimitInterval = function() {
 		return result;
 	}
 	return result;
-}
+};
 // --------------------------------
 // --- End of Measurement class ---
 // --------------------------------
@@ -398,13 +615,13 @@ Measurement.prototype.outOfLimitInterval = function() {
 // --- Filter class ---
 // --------------------
 // Constructor
-function Filter(parameters, track, startTime, endTime, vehicleManufacturer, fuelType) {
-	this.parameters				= parameters;
-	this.track					= new String(track);
-	this.startTime				= new Date(startTime);
-	this.endTime				= new Date(endTime);
-	this.vehicleManufacturer	= new String(vehicleManufacturer);
-	this.fuelType				= new String(fuelType);
+function Filter(parameters, track, startTime, endTime, manufacturer, fuelType) {
+	this.parameters		= parameters;
+	this.track			= new String(track);
+	this.startTime		= new Date(startTime);
+	this.endTime		= new Date(endTime);
+	this.manufacturer	= new String(manufacturer);
+	this.fuelType		= new String(fuelType);
 }
 
 // Setting the variables
@@ -412,23 +629,67 @@ Filter.prototype.parameters;
 Filter.prototype.track;
 Filter.prototype.startTime;
 Filter.prototype.endTime;
-Filter.prototype.vehicleManufacturer;
+Filter.prototype.manufacturer;
 Filter.prototype.fuelType;
 
-// --- Getter and setter ---
-Filter.prototype.getParameters			= function()					{ return this.parameters; }
-Filter.prototype.setParameters			= function(parameters)			{ this.parameters = parameters; }
-Filter.prototype.getTrack				= function()					{ return this.track; }
-Filter.prototype.setTrack				= function(track)				{ this.track = track; }
-Filter.prototype.getStartTime			= function()					{ return this.startTime; }
-Filter.prototype.setStartTime			= function(startTime)			{ this.startTime = startTime; }
-Filter.prototype.getEndTime				= function()					{ return this.endTime; }
-Filter.prototype.setEndTime				= function(endTime)				{ this.endTime = endTime; }
-Filter.prototype.getVehicleManufacturer	= function()					{ return this.vehicleManufacturer; }
-Filter.prototype.setVehicleManufacturer	= function(vehicleManufacturer)	{ this.vehicleManufacturer = vehicleManufacturer; }
-Filter.prototype.getFuelType			= function()					{ return this.fuelType; }
-Filter.prototype.setFuelType			= function(fuelType)			{ this.fuelType = fuelType; }
-// --- End of getter and setter ---
+// --- Getter ---
+Filter.prototype.getParameters		= function() { return this.parameters; };
+Filter.prototype.getTrack			= function() { return this.track; };
+Filter.prototype.getStartTime		= function() { return this.startTime; };
+Filter.prototype.getEndTime			= function() { return this.endTime; };
+Filter.prototype.getFuelType		= function() { return this.fuelType; };
+Filter.prototype.getmanufacturer	= function() { return this.manufacturer; };
+// --- End of getter ---
+
+// --- Setter ---
+Filter.prototype.setParameters = function(parameters) {
+	try {
+		this.parameters = parameters;
+	} catch(e) {
+		alert("Could not change parameters. This is the error message: " + e.message);
+	}
+};
+Filter.prototype.setTrack = function(track) {
+	try {
+		this.track = new String(track);
+	} catch(e) {
+		alert("Could not change track. This is the error message: " + e.message);
+	}
+};
+Filter.prototype.setStartTime = function(startTime) {
+	try {
+		this.startTime = new Date(startTime);
+	} catch(e) {
+		alert("Could not change start time. This is the error message: " + e.message);
+	}
+};
+Filter.prototype.setEndTime = function(endTime) {
+	try {
+		this.endTime = new Date(endTime);
+	} catch(e) {
+		alert("Could not change end time. This is the error message: " + e.message);
+	}
+};
+Filter.prototype.setmanufacturer = function(manufacturer) {
+	try {
+		this.manufacturer = new String(manufacturer);
+	} catch(e) {
+		alert("Could not change manufacturer. This is the error message: " + e.message);
+	}
+};
+Filter.prototype.setFuelType = function(fuelType) {
+	try {
+		// TODO Only allow 'gasoline' and 'diesel' as fuel types?
+		if (fuelType.equals("gasoline") || fuelType.equals("diesel")) {
+			this.fuelType = new String(fuelType);
+		} else {
+			alert("Could not change fuel type. Fuel type " + fuelType + " is not accepted.");
+		}
+	} catch(e) {
+		alert("Could not change fuel type. This is the error message: " + e.message);
+	}
+};
+// --- End of setter ---
 // ---------------------------
 // --- End of Filter class ---
 // ---------------------------
@@ -456,6 +717,7 @@ function Query(url, filter) {
 }
 
 // Setting the variables
+Query.prototype.url;
 Query.prototype.filter;
 
 // Get the measurements from an URL and parse the JSON file into a Measurement array
@@ -479,10 +741,6 @@ Query.prototype.getMeasurements = function() {
 								var lat = geomValue[1];
 								var lng = geomValue[0];
 								tempPoint = new google.maps.LatLng(lat, lng);
-								/*markers.push(new google.maps.Marker({
-									position: tempPoint,
-									map: map
-								}));*/ // TODO must be deleted lateron, only for testing purposes
 							}
 						});
 					}
@@ -523,7 +781,21 @@ Query.prototype.getMeasurements = function() {
 		});
 	});
 	return result;
-}
+};
+
+/**
+ * Get the sensors (the cars) from an URL and parse the JSON file into a Sensor array
+ */
+Query.prototype.getSensors = function() {
+	var result = [];
+	typeof result === Sensor;
+	
+	$.getJSON(this.url, function(json) {
+		$.each(json, function(index, data) {
+			result.push(new Sensor.parseJSON(data));
+		});
+	});
+};
 // --------------------------
 // --- End of Query class ---
 // --------------------------

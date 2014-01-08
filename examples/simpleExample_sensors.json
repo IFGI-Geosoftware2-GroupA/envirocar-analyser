@@ -1,0 +1,955 @@
+{
+	"sensors": [
+		{
+			"type": "car",
+			"properties": {
+				"id": "51c96afce4b0fd063432096f",
+				"model": "R 1200 GS ADV",
+				"fuelType": "gasoline",
+				"manufacturer": "BMW",
+				"constructionYear": 2012
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51c96d7ae4b0fd0634320bbd",
+				"model": "Picanto",
+				"fuelType": "gasoline",
+				"manufacturer": "KIA ",
+				"constructionYear": 2005
+			}
+		}, {
+			"type": "FeatureCollection",
+			"properties": {
+				"id": "51c97293e4b0fd0634321399",
+				"sensor": "51c96d7ae4b0fd0634320bbd"
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51c97f0ee4b05956bbffcef8",
+				"model": "Z4",
+				"fuelType": "gasoline",
+				"manufacturer": "BMW",
+				"constructionYear": 2001
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51c9a6dfe4b0fe5a04ea676e",
+				"model": "Golf",
+				"fuelType": "gasoline",
+				"manufacturer": "Volkswagen",
+				"constructionYear": 2005
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51c9b583e4b0fe5a04eab3d0",
+				"model": "Leon",
+				"fuelType": "gasoline",
+				"manufacturer": "Seat",
+				"constructionYear": 2011
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ca83e5e4b0a34fb6c5ab34",
+				"model": "Astra",
+				"fuelType": "gasoline",
+				"manufacturer": "Opel",
+				"constructionYear": 1996
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51cac874e4b0a34fb6c5ce94",
+				"model": "Polo",
+				"fuelType": "diesel",
+				"manufacturer": "VW",
+				"constructionYear": 2013
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51cae501e4b0a34fb6c5d97b",
+				"model": "Zafira_A_1.6_CNG",
+				"fuelType": "gasoline",
+				"manufacturer": "Opel",
+				"constructionYear": 2003
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51cdb01ae4b0f76308194c4a",
+				"model": "525d",
+				"fuelType": "diesel",
+				"manufacturer": "BMW",
+				"constructionYear": 2012
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ced553e4b0f76308197664",
+				"model": "Scenic",
+				"fuelType": "gasoline",
+				"manufacturer": "Renault",
+				"constructionYear": 2005
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51d18889e4b043815e294d94",
+				"model": "prius (hybrid)",
+				"fuelType": "diesel",
+				"manufacturer": "toyota",
+				"constructionYear": 2012
+			}
+		}, {
+			"type": "FeatureCollection",
+			"properties": {
+				"id": "51d188eee4b043815e294d97",
+				"sensor": "51d18889e4b043815e294d94"
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51d2aa61e4b01e0d50d06e9b",
+				"model": "Clio",
+				"fuelType": "gasoline",
+				"manufacturer": "Renault",
+				"constructionYear": 2003
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51d92f0be4b0798b041eecbb",
+				"model": "Sorento",
+				"fuelType": "gasoline",
+				"manufacturer": "Kia",
+				"constructionYear": 2010
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51dc1d38e4b0a504afb796c1",
+				"model": "a4",
+				"fuelType": "diesel",
+				"manufacturer": "audi",
+				"constructionYear": 2004
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51e317b3e4b0feb05dbf364f",
+				"model": "",
+				"fuelType": "gasoline",
+				"manufacturer": "GMC",
+				"constructionYear": 2012
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51e3fa5ae4b0feb05dbf4168",
+				"model": "Prius III",
+				"fuelType": "gasoline",
+				"manufacturer": "Toyota",
+				"constructionYear": 2012
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ea6c08e4b058cd3d3a7792",
+				"model": "Octavia",
+				"fuelType": "diesel",
+				"manufacturer": "Skoda",
+				"constructionYear": 2008
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ee1d5de4b058cd3d4ba6e2",
+				"model": "roomster",
+				"fuelType": "gasoline",
+				"manufacturer": "skoda",
+				"constructionYear": 2010
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ee30aae4b058cd3d4bc379",
+				"model": "Ceed",
+				"fuelType": "diesel",
+				"manufacturer": "Kia",
+				"constructionYear": 2007
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ee5e9ce4b058cd3d4bd2e2",
+				"model": "",
+				"fuelType": "gasoline",
+				"manufacturer": "X-Wing",
+				"constructionYear": 20
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51eff086e4b058cd3d5b2303",
+				"model": "R230",
+				"fuelType": "gasoline",
+				"manufacturer": "Mercedes Benz",
+				"constructionYear": 2003
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51eff0a2e4b058cd3d5b231b",
+				"model": "Fiesta",
+				"fuelType": "diesel",
+				"manufacturer": "Ford",
+				"constructionYear": 2009
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ffab4fe4b058cd3d654006",
+				"model": "X-Wing",
+				"fuelType": "gasoline",
+				"manufacturer": "Rebellion",
+				"constructionYear": 2000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "51ffab4fe4b058cd3d654007",
+				"model": "X-Wing",
+				"fuelType": "gasoline",
+				"manufacturer": "Rebellion",
+				"constructionYear": 2000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5205e6e0e4b058cd3d65c68e",
+				"model": "astra",
+				"fuelType": "diesel",
+				"manufacturer": "opel",
+				"constructionYear": 2011
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52067b04e4b058cd3d65ccb8",
+				"model": "C1",
+				"fuelType": "gasoline",
+				"manufacturer": "citroen",
+				"constructionYear": 2012
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "520d4415e4b058cd3d6ca916",
+				"model": "Corsa D ",
+				"fuelType": "diesel",
+				"manufacturer": "Opel",
+				"constructionYear": 2007
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "522755fce4b00a043c455132",
+				"model": "Boxster S",
+				"fuelType": "gasoline",
+				"manufacturer": "Porsche",
+				"constructionYear": 2013
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52284e5de4b00a043c455f35",
+				"model": "test",
+				"fuelType": "gasoline",
+				"manufacturer": "test",
+				"constructionYear": 2001
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5238430ce4b060b8865ac441",
+				"model": "Y-Wing",
+				"fuelType": "gasoline",
+				"manufacturer": "Rebel Aliance",
+				"constructionYear": 1978
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523957b7e4b060b8865af963",
+				"model": "A6",
+				"fuelType": "diesel",
+				"manufacturer": "Audi",
+				"constructionYear": 2013
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5239707be4b060b8865b04c2",
+				"model": "test2",
+				"fuelType": "gasoline",
+				"manufacturer": "test",
+				"constructionYear": 1970
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5239bc53e4b060b8865b179f",
+				"model": "911 Turbo",
+				"fuelType": "gasoline",
+				"manufacturer": "Porsche",
+				"constructionYear": 2000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5239bd0be4b060b8865b17c3",
+				"model": "Windstar",
+				"fuelType": "gasoline",
+				"manufacturer": "Ford",
+				"constructionYear": 2000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5239bd90e4b060b8865b17e8",
+				"model": "C-Max",
+				"fuelType": "gasoline",
+				"manufacturer": "Ford",
+				"constructionYear": 2008
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5239be2be4b060b8865b180e",
+				"model": "New Beetle",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2007
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5239befce4b060b8865b1835",
+				"model": "Transporter",
+				"fuelType": "diesel",
+				"manufacturer": "VW",
+				"constructionYear": 2001
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5239bf57e4b060b8865b1836",
+				"model": "Cougar",
+				"fuelType": "gasoline",
+				"manufacturer": "Ford",
+				"constructionYear": 2006
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523be1e2e4b060b8865c3c16",
+				"model": "bmw",
+				"fuelType": "gasoline",
+				"manufacturer": "",
+				"constructionYear": 2012
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523bf854e4b060b8865c3e03",
+				"model": "yaris",
+				"fuelType": "gasoline",
+				"manufacturer": "toyota",
+				"constructionYear": 2006,
+				"engineDisplacement": 1298
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523c2b10e4b060b8865c84b8",
+				"model": "Oktavia ",
+				"fuelType": "diesel",
+				"manufacturer": "Skoda",
+				"constructionYear": 2005
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523c3212e4b060b8865c84e4",
+				"model": "Multivan",
+				"fuelType": "diesel",
+				"manufacturer": "VW",
+				"constructionYear": 2011,
+				"engineDisplacement": 1968
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523c68cde4b060b8865cb43a",
+				"model": "c1",
+				"fuelType": "gasoline",
+				"manufacturer": "Citroen",
+				"constructionYear": 2011,
+				"engineDisplacement": 998
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523c72d1e4b060b8865cf1d4",
+				"model": "525",
+				"fuelType": "diesel",
+				"manufacturer": "BMW",
+				"constructionYear": 2012,
+				"engineDisplacement": 1995
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "523c7338e4b060b8865cf231",
+				"model": "525",
+				"fuelType": "diesel",
+				"manufacturer": "BMW",
+				"constructionYear": 2012,
+				"engineDisplacement": 1995
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52430807e4b0d7bdddd710d3",
+				"model": "Up",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2012,
+				"engineDisplacement": 999
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52455cf3e4b0d7bdddd723ba",
+				"model": "B",
+				"fuelType": "gasoline",
+				"manufacturer": "M",
+				"constructionYear": 1970,
+				"engineDisplacement": 2000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52456deee4b0d7bdddd72a46",
+				"model": "Avenger",
+				"fuelType": "gasoline",
+				"manufacturer": "Talbot",
+				"constructionYear": 2000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "524ec7b7e4b04f4d08ef3b36",
+				"model": "Freelancer",
+				"fuelType": "gasoline",
+				"manufacturer": "MISC",
+				"constructionYear": 2000,
+				"engineDisplacement": 2435
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5252d114e4b04f4d08f204a5",
+				"model": "rouge",
+				"fuelType": "gasoline",
+				"manufacturer": "Xwing",
+				"constructionYear": 7552259,
+				"engineDisplacement": 123
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5253b1c4e4b054f027ce2dc2",
+				"model": "Outlander 2",
+				"fuelType": "diesel",
+				"manufacturer": "Mitsubishi",
+				"constructionYear": 2007
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5253ea07e4b054f027ce390f",
+				"model": "Zafira_1.6_CNG",
+				"fuelType": "gasoline",
+				"manufacturer": "Opel",
+				"constructionYear": 2003,
+				"engineDisplacement": 1600
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52551922e4b000fe057a06e7",
+				"model": "Octavia",
+				"fuelType": "diesel",
+				"manufacturer": "Skoda",
+				"constructionYear": 2008,
+				"engineDisplacement": 1195
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5255432be4b000fe057a1966",
+				"model": "V40 D2",
+				"fuelType": "diesel",
+				"manufacturer": "Volvo",
+				"constructionYear": 2013,
+				"engineDisplacement": 1560
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52556c98e4b000fe057a8899",
+				"model": "DS5 Hybrid",
+				"fuelType": "diesel",
+				"manufacturer": "Citroen",
+				"constructionYear": 2012,
+				"engineDisplacement": 1998
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525576b1e4b000fe057abceb",
+				"model": "touran",
+				"fuelType": "diesel",
+				"manufacturer": "vw",
+				"constructionYear": 2013,
+				"engineDisplacement": 1700
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5256385de4b000fe057ac7c0",
+				"model": "1",
+				"fuelType": "gasoline",
+				"manufacturer": "BMW",
+				"constructionYear": 2008,
+				"engineDisplacement": 1600
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525642efe4b000fe057ac9de",
+				"model": "R230",
+				"fuelType": "gasoline",
+				"manufacturer": "MB",
+				"constructionYear": 2000,
+				"engineDisplacement": 5000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52564328e4b000fe057acc32",
+				"model": "Touran",
+				"fuelType": "diesel",
+				"manufacturer": "VW",
+				"constructionYear": 2013,
+				"engineDisplacement": 1598
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52584ce2e4b000fe057cba53",
+				"model": "corsa d",
+				"fuelType": "diesel",
+				"manufacturer": "opel",
+				"constructionYear": 2006,
+				"engineDisplacement": 1686
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52584d2ee4b000fe057cba92",
+				"model": "corsa d",
+				"fuelType": "gasoline",
+				"manufacturer": "opel",
+				"constructionYear": 2006,
+				"engineDisplacement": 1689
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5259524ce4b000fe057d2b3e",
+				"model": "Fiesta",
+				"fuelType": "diesel",
+				"manufacturer": "Ford",
+				"constructionYear": 2009,
+				"engineDisplacement": 1600
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525ad07de4b000fe057d3bd5",
+				"model": "R230",
+				"fuelType": "gasoline",
+				"manufacturer": "MB",
+				"constructionYear": 2000,
+				"engineDisplacement": 5000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525e30a9e4b000fe057e6c86",
+				"model": "Clio",
+				"fuelType": "gasoline",
+				"manufacturer": "Renault",
+				"constructionYear": 2003,
+				"engineDisplacement": 1149
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525eab3ce4b000fe057f084d",
+				"model": "Cee'd",
+				"fuelType": "diesel",
+				"manufacturer": "Kia",
+				"constructionYear": 2010,
+				"engineDisplacement": 1600
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525eb0d9e4b000fe057f1690",
+				"model": "IS250C",
+				"fuelType": "gasoline",
+				"manufacturer": "Lexus",
+				"constructionYear": 2009,
+				"engineDisplacement": 2500
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525fa25ce4b000fe057fdd60",
+				"model": "Boxster S",
+				"fuelType": "gasoline",
+				"manufacturer": "Porsche",
+				"constructionYear": 2013,
+				"engineDisplacement": 3436
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "525fa95be4b000fe057fdeba",
+				"model": "IS250X",
+				"fuelType": "gasoline",
+				"manufacturer": "Lexus",
+				"constructionYear": 2013,
+				"engineDisplacement": 2500
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52692401e4b0d22bedaec6ef",
+				"model": "ppop",
+				"fuelType": "gasoline",
+				"manufacturer": "wertasui",
+				"constructionYear": 212,
+				"engineDisplacement": 888
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52692466e4b0d22bedaec738",
+				"model": "komnbv",
+				"fuelType": "gasoline",
+				"manufacturer": "uuhtz",
+				"constructionYear": 335577,
+				"engineDisplacement": 159
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5262294fe4b000fe058053e2",
+				"model": "Polo",
+				"fuelType": "diesel",
+				"manufacturer": "VW",
+				"constructionYear": 2011,
+				"engineDisplacement": 1199
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52662669e4b000fe0580912a",
+				"model": "Stilo",
+				"fuelType": "diesel",
+				"manufacturer": "Fiat",
+				"constructionYear": 2005,
+				"engineDisplacement": 10
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52662f29e4b000fe058092db",
+				"model": "Stilo",
+				"fuelType": "diesel",
+				"manufacturer": "Fiat",
+				"constructionYear": 2005,
+				"engineDisplacement": 1596
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5268b7a8e4b000fe058134fd",
+				"model": "Fabia",
+				"fuelType": "gasoline",
+				"manufacturer": "Skoda",
+				"constructionYear": 2008,
+				"engineDisplacement": 1200
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52692d71e4b00d71b6ded884",
+				"model": "jdfjhfjf",
+				"fuelType": "gasoline",
+				"manufacturer": "jdjssjQWRTZUUI",
+				"constructionYear": 2000,
+				"engineDisplacement": 852
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "526932b5e4b00d71b6dee49e",
+				"model": "dersch",
+				"fuelType": "gasoline",
+				"manufacturer": "hurz",
+				"constructionYear": 2000,
+				"engineDisplacement": 2222
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "526a6392e4b000fe0581c727",
+				"model": "Multivan",
+				"fuelType": "diesel",
+				"manufacturer": "VW",
+				"constructionYear": 2800,
+				"engineDisplacement": 2000
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "526a6418e4b000fe0581c775",
+				"model": "Multivan",
+				"fuelType": "diesel",
+				"manufacturer": "VW",
+				"constructionYear": 2008,
+				"engineDisplacement": 2461
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "526a8ad4e4b000fe0581c8fc",
+				"model": "Berlingo",
+				"fuelType": "diesel",
+				"manufacturer": "Citroen",
+				"constructionYear": 2012,
+				"engineDisplacement": 1600
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "526d5f07e4b000fe05820d89",
+				"model": "Golf V",
+				"fuelType": "gasoline",
+				"manufacturer": "Volkswagen",
+				"constructionYear": 2005,
+				"engineDisplacement": 1600
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5273d437e4b000fe0582e58e",
+				"model": "C4",
+				"fuelType": "gasoline",
+				"manufacturer": "Citroen",
+				"constructionYear": 2005,
+				"engineDisplacement": 1400
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "527bf4b6e4b08cecc597ea7e",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1400
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "527f7413e4b08cecc598fa77",
+				"model": "TT",
+				"fuelType": "gasoline",
+				"manufacturer": "Audi",
+				"constructionYear": 2006,
+				"engineDisplacement": 1998
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52806eb8e4b08cecc598fc15",
+				"model": "5",
+				"fuelType": "diesel",
+				"manufacturer": "Mazda",
+				"constructionYear": 2012,
+				"engineDisplacement": 1600
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5280c53fe4b08cecc599d96c",
+				"model": "Octavia Kombi",
+				"fuelType": "diesel",
+				"manufacturer": "Skoda",
+				"constructionYear": 2005,
+				"engineDisplacement": 1896
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5281ba4ce4b08cecc59a6e5d",
+				"model": "up!",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2012,
+				"engineDisplacement": 998
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52821b13e4b08cecc59c0a9d",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1400
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5283a291e4b08cecc5a1bc1f",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1390
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "5285d0c4e4b08cecc5a26390",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1390
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "528b5cace4b08cecc5a67a63",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1390
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "528b92ede4b08cecc5a6a17f",
+				"model": "Golf",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2013,
+				"engineDisplacement": 1390
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "528e5520e4b0a727145fce38",
+				"model": "Spark",
+				"fuelType": "gasoline",
+				"manufacturer": "Chevrolet",
+				"constructionYear": 2013,
+				"engineDisplacement": 995
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "528f1a0ee4b0ca505ba92b1e",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1390
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52930afee4b0ca505bac0077",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1390
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52943e31e4b0ca505baec329",
+				"model": "Leon",
+				"fuelType": "gasoline",
+				"manufacturer": "Seat",
+				"constructionYear": 2011,
+				"engineDisplacement": 1200
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52a1db88e4b0593ccdf18c0a",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1390
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52a2c763e4b0593ccdf2456c",
+				"model": "Golf",
+				"fuelType": "diesel",
+				"manufacturer": "Volkswagen",
+				"constructionYear": 2008,
+				"engineDisplacement": 1900
+			}
+		}, {
+			"type": "car",
+			"properties": {
+				"id": "52a819d4e4b0593ccdf93701",
+				"model": "Tiguan",
+				"fuelType": "gasoline",
+				"manufacturer": "VW",
+				"constructionYear": 2000,
+				"engineDisplacement": 1390
+			}
+		}
+	]
+}
