@@ -5,14 +5,98 @@
 // --- Methods for the table ---
 // -----------------------------
 // Initialize the table
+function createTable() {
+    node = document.getElementById("table");
+    node.appendChild(initTable());
+    }
+
 function initTable() {
 	try {
 		var query = new Query('examples/simpleExample.json');
 		var measurements = query.getMeasurements();
-		setTimeout(function() {
-			alert(measurements[0].getId());
-		}, 500);
-	} catch(e) {
+		
+		var myTable     = document.createElement("table");
+		var mytablebody = document.createElement("tbody");
+	
+	setTimeout(function() {
+				
+	for (var i=0; i < measurements.length; i++) {
+					
+//Creating the Headrow of the Table
+		if (i == 0)	{
+			
+			headrow = document.createElement("tr");
+			
+			headcell1 = document.createElement("th");
+			headcell2 = document.createElement("th");
+			headcell3 = document.createElement("th");
+			headcell4 = document.createElement("th");
+			headcell5 = document.createElement("th");
+			
+			
+			headtext1 = document.createTextNode("ID");
+			headtext2 = document.createTextNode("Verbrauch");
+			headtext3 = document.createTextNode("CO2");
+			headtext4 = document.createTextNode("Geschwindigkeit");
+			headtext5 = document.createTextNode("Luftmasse");
+			
+			headcell1.appendChild(headtext1);
+			headcell2.appendChild(headtext2);
+			headcell3.appendChild(headtext3);
+			headcell4.appendChild(headtext4);
+			headcell5.appendChild(headtext5);
+			
+			headrow.appendChild(headcell1);
+			headrow.appendChild(headcell2);
+			headrow.appendChild(headcell3);
+			headrow.appendChild(headcell4);
+			headrow.appendChild(headcell5);			
+			
+			mytablebody.appendChild(headrow);
+		}
+
+//Creating the rest of the Table
+		
+		currentRow = document.createElement("tr");
+		
+		currentCell0 = document.createElement("td");
+		//currentCell[j] = document.createElement("td");	
+		currentCell1 = document.createElement("td");
+		currentCell2 = document.createElement("td");
+		currentCell3 = document.createElement("td");
+		currentCell4 = document.createElement("td");
+
+		currentText0 = document.createTextNode(measurements[i].getId());
+		//currentText[j] = document.createTextNode(measurements[j].getPhenomenons()[j]+ " Value: " + measurements[i].getValues()[j]);
+		currentText1 = document.createTextNode(measurements[i].getPhenomenons()[0]+ " Value: " + measurements[i].getValues()[0]);
+		currentText2 = document.createTextNode(measurements[i].getPhenomenons()[1]+ " Value: " + measurements[i].getValues()[1]);
+		currentText3 = document.createTextNode(measurements[i].getPhenomenons()[2]+ " Value: " + measurements[i].getValues()[2]);
+		currentText4 = document.createTextNode(measurements[i].getPhenomenons()[3]+ " Value: " + measurements[i].getValues()[3]);
+		
+		currentCell0.appendChild(currentText0);
+		//currentCell[j].appendChild(currentText[j]);
+		currentCell1.appendChild(currentText1);
+		currentCell2.appendChild(currentText2);
+		currentCell3.appendChild(currentText3);
+		currentCell4.appendChild(currentText4);
+
+		currentRow.appendChild(currentCell0);
+		//currentRow.appendChild(currentCell[j]);
+		currentRow.appendChild(currentCell1);
+		currentRow.appendChild(currentCell2);
+		currentRow.appendChild(currentCell3);
+		currentRow.appendChild(currentCell4);
+	
+	mytablebody.appendChild(currentRow);
+
+}
+
+}, 500);
+	myTable.appendChild(mytablebody);
+	myTable.setAttribute("border",1);
+	
+	return myTable;
+} catch(e) {
 		alert(e.message);
 	}
 }
