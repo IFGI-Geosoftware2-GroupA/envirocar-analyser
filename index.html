@@ -36,7 +36,7 @@
 		<script src="js/boundaries.js"></script>
 	</head>
 
-	<body onload="initMap();initTable();">
+	<body onload="initMap();createTable();">
 		<div>
 			<header>
 				<h1>envirocar-analyser</h1>
@@ -56,6 +56,11 @@
 					showMarkers(q);
 				});
 			</script>
+			<div id="table">
+				<script type="text/javascript">
+				createTable();
+				</script>
+			</div>
 			<hr />
 			<footer>
 				<p>
