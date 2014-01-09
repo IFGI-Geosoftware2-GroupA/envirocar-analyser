@@ -40,18 +40,6 @@ function initMap() {
 	map.fitBounds(nrwBounds);
 	
 	// Grey out the rest of the world
-	var nrwBoundaries = [
-		new google.maps.LatLng(50.3, 9.5),
-		new google.maps.LatLng(50.3, 5.8),
-		new google.maps.LatLng(52.6, 5.8), 
-		new google.maps.LatLng(52.6, 9.5)
-	];
-	var everythingElse = [
-		new google.maps.LatLng(-90, 90),
-		new google.maps.LatLng(90, 90),
-		new google.maps.LatLng(90, -90),
-		new google.maps.LatLng(-90, -90)
-	];
 	var greyOutPolygon = new google.maps.Polygon({
 		clickable: false,
 		paths: [nrwBoundaries, everythingElse],
