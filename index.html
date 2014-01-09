@@ -24,15 +24,11 @@
 		<!-- jQuery 2.0.3 -->
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 		
-		<!-- Chart.js -->
-		<script src="lib/Chart.min.js"></script>
-		<script src="js/createChart.js"></script>
-		
 		<!-- envirocar-analyser.js -->
 		<script src="js/envirocar-analyser.js"></script>
 	</head>
 
-	<body onload="initMap();initChart();">
+	<body onload="initMap();initTable();">
 		<div>
 			<header>
 				<h1>envirocar-analyser</h1>
@@ -41,39 +37,28 @@
 				Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten
 			</p>
 			<hr />
-			<table>
-				<tr>
-					<td>
-						<div id="panel">
-							<input id="geocoding_address" type="text" value="">
-							<input id="geocoding_search" type="button" value="Suchen" onclick="codeAddress()">
-						</div>
-						<script type="text/javascript">
-							$('#geocoding_address').keyup(function(event) {
-								if(event.keyCode == 13){
-									$('#geocoding_search').click();
-								}
-							});
-						</script>
-						<input id="search-input" class="controls" type="text" placeholder="Search for cities">
-						<div id="map">
-							<!-- the map will be displayed here -->
-						</div>
-						<script type="text/javascript">
-							// display the simple example
-							$(document).ready(function() {
-								var q = new Query('https://envirocar.org/api/stable/measurements');
-								showMarkers(q);
-							});
-						</script>
-					</td>
-					<td>
-						<canvas id="chart" height="400" width="600">
-							<!-- the chart will be displayed here -->
-						</canvas>
-					</td>
-				</tr>
-			</table>
+			<div id="panel">
+				<input id="geocoding_address" type="text" value="">
+				<input id="geocoding_search" type="button" value="Suchen" onclick="codeAddress()">
+			</div>
+			<script type="text/javascript">
+				$('#geocoding_address').keyup(function(event) {
+					if(event.keyCode == 13){
+						$('#geocoding_search').click();
+					}
+				});
+			</script>
+			<input id="search-input" class="controls" type="text" placeholder="Search for cities">
+			<div id="map">
+				<!-- the map will be displayed here -->
+			</div>
+			<script type="text/javascript">
+				// display the simple example
+				$(document).ready(function() {
+					var q = new Query('https://envirocar.org/api/stable/measurements');
+					showMarkers(q);
+				});
+			</script>
 			<hr />
 			<footer>
 				<p>

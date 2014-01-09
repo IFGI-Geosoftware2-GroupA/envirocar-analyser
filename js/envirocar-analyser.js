@@ -1,6 +1,9 @@
 /**
  * @author Marius Runde, Daniel Sawatzky, Thiemo Gaertner
  */
+// ---------------------------
+// --- Methods for the map ---
+// ---------------------------
 // Variables for the map, markers and markers bounds
 var map,
 nrwBounds,
@@ -190,6 +193,36 @@ function buildInfoWindow(marker,map,measurements){
 		console.log(marker);
 	});
 }
+// ----------------------------------
+// --- End of methods for the map ---
+// ----------------------------------
+
+// -----------------------------
+// --- Methods for the chart ---
+// -----------------------------
+
+// ------------------------------------
+// --- End of methods for the chart ---
+// ------------------------------------
+
+// -----------------------------
+// --- Methods for the table ---
+// -----------------------------
+// Initialize the table
+function initTable() {
+	try {
+		var query = new Query('examples/simpleExample.json');
+		var measurements = query.getMeasurements();
+		setTimeout(function() {
+			alert(measurements[0].getId());
+		}, 500);
+	} catch(e) {
+		alert(e.message);
+	}
+}
+// ------------------------------------
+// --- End of methods for the table ---
+// ------------------------------------
 
 // ------------------------
 // --- Phenomenon class ---

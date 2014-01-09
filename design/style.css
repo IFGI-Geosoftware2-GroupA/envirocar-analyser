@@ -3,8 +3,8 @@ body {
 }
 
 #map {
-	height: 600px;
-	width: 600px;
+	height: 640px;
+	width: 100%;
 }
 
 /* Search control and input
