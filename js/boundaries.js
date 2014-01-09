@@ -1207,6 +1207,8 @@ var nrwBoundaries = [
 	new google.maps.LatLng(50.35619479483569, 6.365547180175781),
 	new google.maps.LatLng(50.33976362634933, 6.39404296875)
 ];
+// Also offer the boundaries of NRW as a polygon
+var nrwPolygon = new google.maps.Polygon({paths: nrwBoundaries});
 // 'Rest of the world'
 var everythingElse = [
 	new google.maps.LatLng(-90, 90),

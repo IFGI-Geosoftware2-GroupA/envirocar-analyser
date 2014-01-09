@@ -19,7 +19,7 @@
 		<link rel="apple-touch-icon" href="design/apple-touch-icon.png" />
 		
 		<!-- Google Maps API v3.14 -->
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&libraries=places"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&libraries=geometry,places"></script>
 		
 		<!-- jQuery 2.0.3 -->
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
@@ -45,18 +45,7 @@
 				Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten
 			</p>
 			<hr />
-			<div id="panel">
-				<input id="geocoding_address" type="text" value="">
-				<input id="geocoding_search" type="button" value="Suchen" onclick="codeAddress()">
-			</div>
-			<script type="text/javascript">
-				$('#geocoding_address').keyup(function(event) {
-					if(event.keyCode == 13){
-						$('#geocoding_search').click();
-					}
-				});
-			</script>
-			<input id="search-input" class="controls" type="text" placeholder="Search for cities">
+			<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
 			<div id="map">
 				<!-- the map will be displayed here -->
 			</div>

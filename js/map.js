@@ -32,7 +32,7 @@ function initMap() {
 	};
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	
-	// Bounds for North-Rhine-Westphalia
+	// Bounds for North-Rhine-Westphalia (NRW)
 	nrwBounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(50.3, 5.8), // south west 
 		new google.maps.LatLng(52.6, 9.5) // north east
@@ -83,49 +83,23 @@ function initMap() {
 	});
 	
 	// Listen for the event fired when the user selects an item from the
- 	// pick list. Retrieve the matching places for that item.
- 	google.maps.event.addListener(searchBox, 'places_changed', function() {
+	// pick list. Retrieve the matching places for that item.
+	google.maps.event.addListener(searchBox, 'places_changed', function() {
 		var places = searchBox.getPlaces();
-		
-		// For each place, get the icon, place name, and location.
-		var bounds = new google.maps.LatLngBounds();
-		for (var i = 0, place; place = places[i]; i++) {
-			var image = {
-				url: place.icon,
-				size: new google.maps.Size(71, 71),
-				origin: new google.maps.Point(0, 0),
-				anchor: new google.maps.Point(17, 34),
-				scaledSize: new google.maps.Size(25, 25)
-			};
-			bounds.extend(place.geometry.location);
+		if (google.maps.geometry.poly.containsLocation(places[0].geometry.location, nrwPolygon)) {
+			var bounds = new google.maps.LatLngBounds();
+			map.setCenter(places[0].geometry.location);
+			map.setZoom(14);
+		} else {
+			alert('Der gesuchte Ort liegt nicht im erfassten Anwendungsgebiet.');
 		}
-		map.fitBounds(bounds);
-		map.setZoom(14);
 	});
- 	
+	
 	// Bias the SearchBox results towards places that are within the bounds of the
- 	// current map's viewport.
- 	google.maps.event.addListener(map, 'bounds_changed', function() {
+	// current map's viewport.
+	google.maps.event.addListener(map, 'bounds_changed', function() {
 		var bounds = map.getBounds();
 		searchBox.setBounds(bounds);
-	});
-}
-
-/**
- * Geocoding an address
- */
-function codeAddress() {
-	var address = document.getElementById('geocoding_address').value;
-	geocoder.geocode( { 'address': address}, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-			if (nrwBounds.contains(results[0].geometry.location)) {
-				map.setCenter(results[0].geometry.location);
-			} else {
-				alert('Die gesuchte Stadt liegt nicht im erfassten Anwendungsgebiet.');
-			}
-		} else {
-			alert('Die Suche war nicht erfolgreich.');
-		}
 	});
 }
 
