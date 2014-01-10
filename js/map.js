@@ -165,38 +165,30 @@ function refreshMarkers(zoom) {
  * Creates InfoWindows for every marker on 
  * map and in measurement and adds event Listener 
  */
-function buildInfoWindow(marker, map, measurements) {   
-	//Setting the content of the Infowindow
-	var contentString = '<div id="content">' +
-							'<div id="siteNotice">' +
-							'</div>' +
-							'<h4 id="firstHeading" class="firstHeading">ID:' + measurements.id + '</h4>' +
-							'<div id="bodyContent">' +
-							"Timestamp:" + measurements.timestamp +
-							measurements.values[0] +
-							'</div>';
-	
-	// Declaring InfoWindow
-	var infoWindow = new google.maps.InfoWindow({
-		content: contentString,
-		maxWidth: 140
-	});
-	
-	// ------------------------------------
-	// --- Listeners for the InfoWindow ---
-	// ------------------------------------
-	// Open the InfoWindow when a marker is clicked
-	google.maps.event.addListener(marker, 'click', function() {
-		infoWindow.open(map,marker);
-		console.log(marker);
-	});
-	// Close the InfoWindow when the user clicks into the map
-	google.maps.event.addListener(map, 'click', function() {
-		infoWindow.close();
-	});
-	// -------------------------------------------
-	// --- End of listeners for the InfoWindow ---
-	// -------------------------------------------
+function buildInfoWindow(marker,map,measurements){   
+	// Setting Content of Infowindow
+	var content = '<div style="text-align: center; font-size:14px;">'+
+						'<center><b>'+"ID: "+ measurements.id +
+						'</br> '+ measurements.timestamp +'</b></br>' +
+						measurements.getPhenomenons()[0]+ " Value: " + measurements.getValues()[0]+ " " + '</br>'+
+						measurements.getPhenomenons()[1]+ " Value: " + measurements.getValues()[1]+ " " + '</br>'+
+						measurements.getPhenomenons()[2]+ " Value: " + measurements.getValues()[2]+ " " + '</br>'+
+						measurements.getPhenomenons()[3]+ " Value: " + measurements.getValues()[3]+ " " + '</br>'+
+					'</center>'+
+				'</div>';
+        // ------------------------------------
+        // --- Listener for the InfoWindow ---
+        // ------------------------------------
+        // Open the InfoWindow when a marker is clicked and
+        // closes if user "clicks" into map
+        // Function to close infowindow is implemented in smartinfowindow.js
+		google.maps.event.addListener(marker, 'click', function(e) {
+		//Create a Smart Info Window with options
+			new SmartInfoWindow({position: marker.getPosition(),map: map,content: content});
+		});
+		 // -----------------------------------------
+        // --- End of Listener for the InfoWindow ---
+        // ------------------------------------------
 }
 // ----------------------------------
 // --- End of methods for the map ---
