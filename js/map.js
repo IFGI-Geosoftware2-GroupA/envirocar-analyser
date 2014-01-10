@@ -121,7 +121,8 @@ function showMarkers(query) {
 		setTimeout(function() {
 			for (var i=0; i < measurements.length; i++) {
 				var marker = new google.maps.Marker({
-			  		position: measurements[i].getPoint()
+					position: measurements[i].getPoint(),
+					icon: 'img/circle.png'
 				});
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
