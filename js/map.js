@@ -8,6 +8,9 @@
 var map,
 nrwBounds,
 markers = [],
+mc,
+mcUsedBefore = true,
+maxZoomLevelForClusterer = 12,
 markersBounds = new google.maps.LatLngBounds(),
 geocoder = new google.maps.Geocoder();
 
@@ -82,6 +85,11 @@ function initMap() {
 		}
 	});
 	
+	// Listen for the zoom_changed event to refresh the markers
+	google.maps.event.addListener(map, 'zoom_changed', function() {
+		refreshMarkers(map.getZoom());
+	});
+	
 	// Listen for the event fired when the user selects an item from the
 	// pick list. Retrieve the matching places for that item.
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
@@ -105,7 +113,7 @@ function initMap() {
 
 /**
  * Show measurements as markers on the map
- * The measurements must be collected within 1000ms
+ * The measurements must be collected within 500ms
  */
 function showMarkers(query) {
 	try {
@@ -113,8 +121,7 @@ function showMarkers(query) {
 		setTimeout(function() {
 			for (var i=0; i < measurements.length; i++) {
 				var marker = new google.maps.Marker({
-			  		position: measurements[i].getPoint(),
-			  		map: map
+			  		position: measurements[i].getPoint()
 				});
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
@@ -122,10 +129,33 @@ function showMarkers(query) {
 				// Call function to create infoWindow
 				buildInfoWindow(marker,map,measurements[i]);
 			};
+			var mcOptions = {gridSize: 50, maxZoom: maxZoomLevelForClusterer};
+			mc = new MarkerClusterer(map, markers, mcOptions);
 			map.fitBounds(markersBounds);
 		}, 500);
 	} catch(e) {
 		alert(e.message);
+	}
+}
+
+/**
+ * Refresh the markers on the map depending on the current zoom level:
+ * Display markers on map for zoom levels higher than maxZoomLevelForClusterer, otherwise display them via MarkerClusterer
+ */
+function refreshMarkers(zoom) {
+	// Create a MarkerClusterer to display the measurements
+	if (zoom > maxZoomLevelForClusterer && mcUsedBefore == false) {
+		for (var i=0; i < markers.length; i++) {
+			markers[i].setMap(null);
+		};
+		mcUsedBefore = true;
+	}
+	// Display the measurements directly via markers on the map
+	if (zoom <= maxZoomLevelForClusterer && mcUsedBefore == true) {
+		for (var i=0; i < markers.length; i++) {
+			markers[i].setMap(map);
+		};
+		mcUsedBefore = false;
 	}
 }
 
