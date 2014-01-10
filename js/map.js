@@ -164,26 +164,38 @@ function refreshMarkers(zoom) {
  * Creates InfoWindows for every marker on 
  * map and in measurement and adds event Listener 
  */
-function buildInfoWindow(marker,map,measurements){   
+function buildInfoWindow(marker, map, measurements) {   
 	//Setting the content of the Infowindow
 	var contentString = '<div id="content">' +
 							'<div id="siteNotice">' +
 							'</div>' +
-							'<h4 id="firstHeading" class="firstHeading">'+"ID:" + measurements.id + '</h4>' +
+							'<h4 id="firstHeading" class="firstHeading">ID:' + measurements.id + '</h4>' +
 							'<div id="bodyContent">' +
 							"Timestamp:" + measurements.timestamp +
 							measurements.values[0] +
 							'</div>';
+	
 	// Declaring InfoWindow
-	var infowindow = new google.maps.InfoWindow({
+	var infoWindow = new google.maps.InfoWindow({
 		content: contentString,
 		maxWidth: 140
 	});
-	// Adding Listener
+	
+	// ------------------------------------
+	// --- Listeners for the InfoWindow ---
+	// ------------------------------------
+	// Open the InfoWindow when a marker is clicked
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.open(map,marker);
+		infoWindow.open(map,marker);
 		console.log(marker);
 	});
+	// Close the InfoWindow when the user clicks into the map
+	google.maps.event.addListener(map, 'click', function() {
+		infoWindow.close();
+	});
+	// -------------------------------------------
+	// --- End of listeners for the InfoWindow ---
+	// -------------------------------------------
 }
 // ----------------------------------
 // --- End of methods for the map ---
