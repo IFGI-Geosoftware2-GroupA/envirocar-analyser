@@ -5,7 +5,7 @@
 // --- Methods for the chart ---
 // -----------------------------
 
-
+//simple setup for initial test graph
 $(function () {
         $('#chart').highcharts({
             title: {
