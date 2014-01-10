@@ -119,7 +119,7 @@ function showMarkers(query) {
 	try {
 		var measurements = query.getMeasurements();
 		setTimeout(function() {
-			for (var i=0; i < measurements.length; i++) {
+			for (var i=0, j=0, k=1,l=2,m=3; i < measurements.length; i++,j=j+4,k=k+4,l=l+4,m=m+4) {
 				var marker = new google.maps.Marker({
 					position: measurements[i].getPoint(),
 					icon: 'img/circle.png'
@@ -127,8 +127,20 @@ function showMarkers(query) {
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
 				
-				// Call function to create infoWindow
-				buildInfoWindow(marker,map,measurements[i]);
+				// Variables for Infowindow
+					// Create Variables for values 
+					var val1 = measurements[i].values[j];
+					var val2 = measurements[i].values[k];
+					var val3 = measurements[i].values[l];
+					var val4 = measurements[i].values[m];
+					// Create Variables for Phenomenons
+					var phen1 = measurements[i].phenomenons[j];
+					var phen2 = measurements[i].phenomenons[k];
+					var phen3 = measurements[i].phenomenons[l];
+					var phen4 = measurements[i].phenomenons[m];
+				// Create InfoWindow with the specific Pheonomenons and values to avoid 
+				// arrangement problems of arrays and parsing
+				buildInfoWindow(marker,map,measurements[i],val1,val2,val3,val4,phen1,phen2,phen3,phen4);
 			};
 			var mcOptions = {gridSize: 50, maxZoom: maxZoomLevelForClusterer};
 			mc = new MarkerClusterer(map, markers, mcOptions);
@@ -165,15 +177,16 @@ function refreshMarkers(zoom) {
  * Creates InfoWindows for every marker on 
  * map and in measurement and adds event Listener 
  */
-function buildInfoWindow(marker,map,measurements){   
+function buildInfoWindow(marker,map,measurements,val1,val2,val3,val4,phen1,phen2,phen3,phen4){   
 	// Setting Content of Infowindow
 	var content = '<div style="text-align: center; font-size:14px;">'+
 						'<center><b>'+"ID: "+ measurements.id +
 						'</br> '+ measurements.timestamp +'</b></br>' +
-						measurements.getPhenomenons()[0]+ " Value: " + measurements.getValues()[0]+ " " + '</br>'+
-						measurements.getPhenomenons()[1]+ " Value: " + measurements.getValues()[1]+ " " + '</br>'+
-						measurements.getPhenomenons()[2]+ " Value: " + measurements.getValues()[2]+ " " + '</br>'+
-						measurements.getPhenomenons()[3]+ " Value: " + measurements.getValues()[3]+ " " + '</br>'+
+						phen1+ " Value: " + val1+ " " + '</br>'+
+						phen2+ " Value: " + val2+ " " + '</br>'+
+						phen3+ " Value: " + val3+ " " + '</br>'+
+						phen4+ " Value: " + val4+ " " + '</br>'+
+						
 					'</center>'+
 				'</div>';
         // ------------------------------------
