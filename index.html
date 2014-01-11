@@ -9,14 +9,21 @@
 
 		<title>envirocar-analyser</title>
 		<meta name="description" content="Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten" />
-		<meta name="author" content="Marius Runde" />
+		<meta name="author" content="Marius Runde, Jens Balmert, Daniel Sawatzky" />
 
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 
 		<!-- Stylesheet, Favicon and Apple-Touch-Icon -->
 		<link rel="stylesheet" href="design/style.css" />
-		<link rel="shortcut icon" href="design/favicon.ico" />
+		<link rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="apple-touch-icon" href="design/apple-touch-icon.png" />
+		
+		<!-- Fonts and Flags -->
+		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<link href="design/flags.css" rel="stylesheet">
+		
+		<!-- Functions for Website Interactivity -->
+		<script src="js/interactivity.js"></script> 
 		
 		<!-- Google Maps API v3.14 -->
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&libraries=geometry,places"></script>
@@ -44,40 +51,98 @@
 		
 		<!-- SmartInfoWindow -->
 		<script src="js/smartinfowindow.js"></script> 
+		
+		
 	</head>
 
 	<body onload="initMap();createTable();">
+		
 		<div>
 			<header>
-				<h1>envirocar-analyser</h1>
+				<div id="nav-bar">
+					<div id="container">
+						<table>
+							<colgroup>
+							   <col width="200">
+							   <col width="400">
+							   <col width="100">
+							   <col width="100">
+							   <col width="100">
+							   <col width="50">
+							</colgroup>
+							<tr>
+								<td>
+									<div id="logo-container">
+									  <img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png">
+									</div>
+								</td>
+								<td></td>
+								<td></td>
+								<td>
+									<div id="reload-button">
+											<a href="#"><img src="./img/refresh.png"  height="48px" width="48px"></img></a>
+									</div>
+								</td>
+								<td>
+									<div class="onoffswitch" >
+										<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onClick="changeMode()">
+										<label class="onoffswitch-label" for="myonoffswitch">
+											<div class="onoffswitch-inner"></div>
+											<div class="onoffswitch-switch"></div>
+										</label>
+									</div>
+								</td>
+								<td>
+									<div id="help-button">
+										<a href="#"><img src="./img/help.png" height="48px" width="48px"></img></a>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</header>
-			<p>
-				Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten
-			</p>
-			<hr />
-			<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
-			<div id="map">
-				<!-- the map will be displayed here -->
+
+			<div id="content">
+		
+				<div id="map-container">
+				
+					<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
+					<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
+					<div id="map">
+						<!-- the map will be displayed here -->
+					</div>
+					<i class="map-top"></i>
+					<i class="map-bottom"></i>
+					
+					<script type="text/javascript">
+						// display the simple example
+						$(document).ready(function() {
+							var q = new Query('https://envirocar.org/api/stable/measurements');
+							showMarkers(q);
+						});
+					</script>
+					
+					
+					<div id="table">
+						<script type="text/javascript">
+							createTable();
+						</script>
+					</div>
+					
+					<div id="chart"></div>
+				
+				</div>
 			</div>
-			<script type="text/javascript">
-				// display the simple example
-				$(document).ready(function() {
-					var q = new Query('https://envirocar.org/api/stable/measurements');
-					showMarkers(q);
-				});
-			</script>
-			<div id="table">
-				<script type="text/javascript">
-				createTable();
-				</script>
-			</div>
-			<div id="chart" style="width:100%; height:400px;"></div>
-			<hr />
+			
+			<div class="footer">
 			<footer>
 				<p>
-					&copy; 2013 Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde und Thiemo Gärtner
+					<img src="./img/blank.png" onClick="changeLanguage('en')" class="flag flag-gb" alt="English"> &middot;
+					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
 				</p>
 			</footer>
+			</div>
 		</div>
 	</body>
 </html>

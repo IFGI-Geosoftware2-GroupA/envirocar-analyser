@@ -1,14 +1,107 @@
+/**
+* Stylesheet for enviroCar analyser
+*
+* @author 		Daniel Sawatzky
+* @link 		http://giv-geosoft2a.uni-muenster.de/
+* @copyright 	Copyright 2014, Daniel Sawatzky, ifgi Muenster
+* @version 		1.0
+*/
+
+
+/* 
+* @section 		Some default/basic code for the website to get started
+* 
+*/
+
+html {
+    font-family: sans-serif; 
+}
+
 body {
 	width: 100%;
+	background-color: #fff !important;
+    margin: 0;
+    padding: 0;
 }
+
+/*
+* @section 		Color styling for everything
+* 
+*/
+
+/* enviroCar colors for fonts and backgrounds */
+
+#blue { color: #1D83C3; }
+#bblue { background-color: #1D83C3; color: white;}
+#green { color: #92C049; }
+#bgreen { background-color: #92C049; }
+
+/* 
+* @section 		enviroCar related styling like toolbar, map, charts and tables
+* 
+*/
+
+
+#logo-container {
+		
+	width:100px;
+	
+}
+
+/* Map */
+
+#map-container {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+#map-container i {
+	position: absolute;
+	display: block;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+}
+
+.map-top { top: -5px; left: 0; right: 0; height: 5px; }
+/*.map-right { right: -5px; top: 0; bottom: 0; width: 5px; } */
+.map-bottom { bottom: -5px; left: 0; right: 0; height: 5px; }
+/*.map-left { left: -5px; top: 0; bottom: 0; width: 5px; } */
+
 
 #map {
-	height: 640px;
-	width: 100%;
+	position: relative;
+	height: 630px;
 }
 
+#table {
+	
+	display: none;
+	position: relative;
+	width:100%; 
+	height:400px;
+	overflow:scroll;
+}
+
+/* chart */
+
+#chart {
+	display: none;
+	position: relative;
+	width:100%; 
+	height:400px;"
+}
+
+
+#help-button {
+border: none;
+}
+
+#refresh-button {
+border: none;
+}
+
+
 /* Search control and input
- * @author Daniel Sawatzky
  * @see https://developers.google.com/maps/documentation/javascript/examples/places-searchbox?hl=de
  * */
 
@@ -56,3 +149,239 @@ body {
 	font-size: 13px;
 	font-weight: 300;
 }
+
+#search-button {
+	background-color: #4285f4;
+	padding: 0 11px 0 13px;
+	position: relative;
+	width: 50px;
+	background-image: url(../img/search.png);
+	background-repeat: no-repeat; 
+	background-position: 10px 2px; 
+	text-overflow: ellipsis;
+}
+
+#search-button:focus {
+	border-color: #4d90fe;
+	margin-left: -1px;
+	padding-left: 14px;  /* Regular padding-left + 1. */
+	width: 51px;
+}
+
+
+/* 
+* @section 		Styling for components like buttons, forms, labels, tables, etc.
+*
+*/
+
+/* Flip switch */
+
+.onoffswitch {
+    position: relative; width: 116px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+	z-index: 2;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFFF; border-radius: 50px;
+}
+.onoffswitch-inner {
+    width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    float: left; width: 50%; height: 41px; padding: 0; line-height: 41px;
+    font-size: 25px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "AN";
+    padding-left: 14px;
+    background-color: #EEEEEE; color: #1D83C3;
+	text-align: left;
+}
+.onoffswitch-inner:after {
+    content: "AUS";
+    padding-right: 14px;
+    background-color: #EEEEEE; color: #92C049;
+    text-align: right;
+}
+.onoffswitch-switch {
+    width: 38px; margin: 1.5px;
+    background: #92C049;
+    border: 2px solid #FFFFFF; border-radius: 50px;
+    position: absolute; top: 0; bottom: 0; right: 71px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+    background-color: #1D83C3; 
+}
+
+
+/* 
+* @section 		Styling for layout sections like the header, nav, main body, and footer.
+* 
+*/
+
+header {
+    text-align: center;
+	
+}
+
+.body-header {
+    margin:0 0 4em 0;
+}
+
+/*
+* Navigation (Tool)Bar in Header
+*/
+
+#nav-bar {
+    padding: 0.5em 0 0.5em 0;
+    position: relative;
+    background: #fff;
+	
+}
+
+#nav-bar .container {
+    position: relative;
+    z-index: 2;
+}
+
+#nav-bar:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	box-shadow: 2px 2px 2px #888888;
+	border-bottom: 1px solid #888888;
+	/*background: url(./img/) repeat center center;  */
+    opacity: .6;
+}
+
+#nav-bar table {
+	width: 100%;
+	border: none;
+
+}
+
+#nav-bar td {
+	border: none;
+}
+
+#nav-bar h1 {
+    margin: .9em 0 .5em 0;
+    letter-spacing: 8px;
+}
+
+#nav-bar p {
+    font-weight: 700;
+}
+
+
+
+/*
+*	Footer
+*/
+
+footer {
+    padding: 0.2em 0 0em 0;
+    height: 20px;
+	box-shadow: 0px -7px 7px -7px #888888;
+	border-top: 1px solid #888888;
+	margin: 0px auto;
+	text-align: center;
+}
+
+
+
+
+/* MICRO CLEARFIX */
+.cf:before, .cf:after { content: ""; display: table; }
+.cf:after { clear: both; }
+.cf { *zoom: 1; }
+
+/* PRINT STYLES
+* Inlined to avoid required HTTP connection: h5bp.com/r
+*/
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+
