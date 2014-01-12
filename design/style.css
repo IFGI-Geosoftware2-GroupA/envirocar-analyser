@@ -45,6 +45,7 @@ body {
 #logo-container {
 		
 	width:100px;
+	
 }
 
 /* Map */
@@ -71,6 +72,8 @@ body {
 	position: relative;
 	height: 630px;
 }
+
+/* table */
 
 #table {
 	
