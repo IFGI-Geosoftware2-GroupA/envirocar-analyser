@@ -446,7 +446,7 @@ function Filter(fo) {
 Filter.prototype.bbox;
 
 // Create an URL readable String from the Filter
-Filter.prototype.createUrl = function() {
+Filter.prototype.createUrlValue = function() {
 	var url = "";
 	
 	// Spatial filter (bounding box)
@@ -468,15 +468,43 @@ Filter.prototype.createUrl = function() {
 // -------------------------
 // --- Boundingbox class ---
 // -------------------------
-// Constructor
+/*
+ * Constructor with four points
+ * If the points are different than from South-West to North-East
+ * they will be swapped automatically
+ */
 function Boundingbox(minX, minY, maxX, maxY) {
 	try {
 		this.minX = new Number(minX);
 		this.minY = new Number(minY);
 		this.maxX = new Number(maxX);
 		this.maxY = new Number(maxY);
+		
+		// Swap the points if necessary
+		if (this.minX > this.maxX) {
+			var tempX = this.minX;
+			this.minX = this.maxX;
+			this.maxX = tempX;
+		}
+		if (this.minY > this.maxY) {
+			var tempY = this.minY;
+			this.minY = this.maxY;
+			this.maxY = tempY;
+		}
 	} catch(e) {
-		alert("Could not create Boundingbox. This is the error message: " + e.message);
+		alert("Could not create Boundingbox out of four points. This is the error message: " + e.message);
+	}
+}
+
+// Constructor with google.maps.LatLngBounds
+function Boundingbox(latLngBounds) {
+	try {
+		this.minX = latLngBounds.getSouthWest().lat();
+		this.minY = latLngBounds.getSouthWest().lng();
+		this.maxX = latLngBounds.getNorthEast().lat();
+		this.maxY = latLngBounds.getNorthEast().lng();
+	} catch(e) {
+		alert("Could not create Boundingbox out of LatLngBounds. This is the error message: " + e.message);
 	}
 }
 
@@ -487,7 +515,7 @@ Boundingbox.prototype.maxX;
 Boundingbox.prototype.maxY;
 
 // Boundingbox to String
-Boundingbox.prototype.toString = function() {
+Boundingbox.prototype.toUrlValue = function() {
 	return this.minX + "," + this.minY + "," + this.maxX + "," + this.maxY;
 };
 // --------------------------------
