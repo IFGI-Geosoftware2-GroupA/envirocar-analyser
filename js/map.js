@@ -14,6 +14,9 @@ maxZoomLevelForClusterer = 12,
 markersBounds = new google.maps.LatLngBounds(),
 geocoder = new google.maps.Geocoder();
 
+// Variables for the Streetsegment Highlighting
+var path = new google.maps.MVCArray();
+ var  service = new google.maps.DirectionsService(), poly;
 /**
  * Initialize the map
  */
@@ -35,6 +38,7 @@ function initMap() {
 	};
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	
+	 
 	// Bounds for North-Rhine-Westphalia (NRW)
 	nrwBounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(50.3, 5.8), // south west 
@@ -109,6 +113,15 @@ function initMap() {
 		var bounds = map.getBounds();
 		searchBox.setBounds(bounds);
 	});
+	
+
+	 // Create the DIV to hold the control and call the HomeControl() constructor
+	 // passing in this DIV.
+	 var streetControlDiv = document.createElement('div');
+	 var homeControl = new collectStreets(streetControlDiv, map);
+	
+	 streetControlDiv.index = 1;
+	 map.controls[google.maps.ControlPosition.TOP_RIGHT].push(streetControlDiv);
 }
 
 /**
@@ -202,6 +215,61 @@ function buildInfoWindow(marker,map,measurements,val1,val2,val3,val4,phen1,phen2
 		 // -----------------------------------------
         // --- End of Listener for the InfoWindow ---
         // ------------------------------------------
+}
+
+/**
+ * Create a control Element on Map for adding Streetsegment Collection
+ * Not Ready only for testing... 
+ */
+function collectStreets(controlDiv, map) {
+
+  // Set CSS styles for the DIV containing the control
+  // Setting padding to 5 px will offset the control
+  // from the edge of the map.
+  controlDiv.style.padding = '5px';
+
+  // Set CSS for the control border.
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = 'white';
+  controlUI.style.borderStyle = 'solid';
+  controlUI.style.borderWidth = '2px';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Click to collect Streetsegments';
+  controlDiv.appendChild(controlUI);
+
+  // Set CSS for the control interior.
+  var controlText = document.createElement('div');
+  controlText.style.fontFamily = 'Arial,sans-serif';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+  controlText.innerHTML = '<strong>Collect Streetsegments click two times into map for testing...</strong>';
+  controlUI.appendChild(controlText);
+
+  // Setup the click event listeners: For Adding L
+  google.maps.event.addDomListener(controlUI, 'click', function() {
+    google.maps.event.addListener(map, "click", function(evt) {
+    poly = new google.maps.Polyline({ map: map });
+    if (path.getLength() === 0) {
+      path.push(evt.latLng);
+      poly.setPath(path);
+    } else {
+      service.route({
+        origin: path.getAt(path.getLength() - 1),
+        destination: evt.latLng,
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
+      }, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          for (var i = 0, len = result.routes[0].overview_path.length;
+              i < len; i++) {
+            path.push(result.routes[0].overview_path[i]);
+          }
+        }
+      });
+    }
+  });
+  });
 }
 // ----------------------------------
 // --- End of methods for the map ---
