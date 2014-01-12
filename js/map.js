@@ -246,7 +246,7 @@ function collectStreets(controlDiv, map) {
   controlText.innerHTML = '<strong>Collect Streetsegments click two times into map for testing...</strong>';
   controlUI.appendChild(controlText);
 
-  // Setup the click event listeners: For Adding L
+  // Setup the click event listeners: For Adding Listener to enable streetsegment selection
   google.maps.event.addDomListener(controlUI, 'click', function() {
     google.maps.event.addListener(map, "click", function(evt) {
     poly = new google.maps.Polyline({ map: map });
