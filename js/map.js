@@ -19,7 +19,6 @@ geocoder = new google.maps.Geocoder();
  */
 function initMap() {
 	var mapOptions = {
-		// center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia
 		mapTypeControl: true,
 		mapTypeControlOptions: {
 			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
