@@ -437,7 +437,7 @@ function Filter(fo) {
 	// this.parameters		= parameters;
 	// this.track			= new String(track);
 	// this.startTime		= new Date(startTime);
-	// this.endTime		= new Date(endTime);
+	// this.endTime			= new Date(endTime);
 	// this.manufacturer	= new String(manufacturer);
 	// this.fuelType		= new String(fuelType);
 }
@@ -451,7 +451,7 @@ Filter.prototype.createUrl = function() {
 	
 	// Spatial filter (bounding box)
 	if (this.bbox != null) {
-		url += this.bbox.minX + "," + this.bbox.minY + "," + this.bbox.maxX + "," + this.bbox.maxY;
+		url += this.bbox.toString();
 	}
 	
 	// If the URL contains information put a question mark at the beginning
@@ -485,8 +485,13 @@ Boundingbox.prototype.minX;
 Boundingbox.prototype.minY;
 Boundingbox.prototype.maxX;
 Boundingbox.prototype.maxY;
+
+// Boundingbox to String
+Boundingbox.prototype.toString = function() {
+	return this.minX + "," + this.minY + "," + this.maxX + "," + this.maxY;
+};
 // --------------------------------
-// --- End of boundingbox class ---
+// --- End of Boundingbox class ---
 // --------------------------------
 
 // -------------------
