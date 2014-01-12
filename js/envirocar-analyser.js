@@ -451,7 +451,7 @@ Filter.prototype.createUrlValue = function() {
 	
 	// Spatial filter (bounding box)
 	if (this.bbox != null) {
-		url += this.bbox.toString();
+		url += this.bbox.toUrlValue();
 	}
 	
 	// If the URL contains information put a question mark at the beginning
