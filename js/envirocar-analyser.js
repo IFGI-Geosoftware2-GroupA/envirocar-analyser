@@ -424,85 +424,70 @@ Measurement.prototype.outOfLimitInterval = function() {
 // --------------------
 // --- Filter class ---
 // --------------------
-// Constructor
-function Filter(parameters, track, startTime, endTime, manufacturer, fuelType) {
-	this.parameters		= parameters;
-	this.track			= new String(track);
-	this.startTime		= new Date(startTime);
-	this.endTime		= new Date(endTime);
-	this.manufacturer	= new String(manufacturer);
-	this.fuelType		= new String(fuelType);
+// Constructor with filter options as JSON object
+function Filter(fo) {
+	try {
+		// Spatial filter
+		if (fo.bbox != null) {
+			this.bbox = new Boundingbox(fo.bbox.minX, fo.bbox.minY, fo.bbox.maxX, fo.bbox.maxY);
+		}
+	} catch(e) {
+		alert("Could not create Filter. This is the error message: " + e.message);
+	}
+	// this.parameters		= parameters;
+	// this.track			= new String(track);
+	// this.startTime		= new Date(startTime);
+	// this.endTime		= new Date(endTime);
+	// this.manufacturer	= new String(manufacturer);
+	// this.fuelType		= new String(fuelType);
 }
 
 // Setting the variables
-Filter.prototype.parameters;
-Filter.prototype.track;
-Filter.prototype.startTime;
-Filter.prototype.endTime;
-Filter.prototype.manufacturer;
-Filter.prototype.fuelType;
+Filter.prototype.bbox;
 
-// --- Getter ---
-Filter.prototype.getParameters		= function() { return this.parameters; };
-Filter.prototype.getTrack			= function() { return this.track; };
-Filter.prototype.getStartTime		= function() { return this.startTime; };
-Filter.prototype.getEndTime			= function() { return this.endTime; };
-Filter.prototype.getFuelType		= function() { return this.fuelType; };
-Filter.prototype.getmanufacturer	= function() { return this.manufacturer; };
-// --- End of getter ---
-
-// --- Setter ---
-Filter.prototype.setParameters = function(parameters) {
-	try {
-		this.parameters = parameters;
-	} catch(e) {
-		alert("Could not change parameters. This is the error message: " + e.message);
+// Create an URL readable String from the Filter
+Filter.prototype.createUrl = function() {
+	var url = "";
+	
+	// Spatial filter (bounding box)
+	if (this.bbox != null) {
+		url += this.bbox.minX + "," + this.bbox.minY + "," + this.bbox.maxX + "," + this.bbox.maxY;
+	}
+	
+	// If the URL contains information put a question mark at the beginning
+	if (url == "") {
+		return url;
+	} else {
+		return "?" + url;
 	}
 };
-Filter.prototype.setTrack = function(track) {
-	try {
-		this.track = new String(track);
-	} catch(e) {
-		alert("Could not change track. This is the error message: " + e.message);
-	}
-};
-Filter.prototype.setStartTime = function(startTime) {
-	try {
-		this.startTime = new Date(startTime);
-	} catch(e) {
-		alert("Could not change start time. This is the error message: " + e.message);
-	}
-};
-Filter.prototype.setEndTime = function(endTime) {
-	try {
-		this.endTime = new Date(endTime);
-	} catch(e) {
-		alert("Could not change end time. This is the error message: " + e.message);
-	}
-};
-Filter.prototype.setmanufacturer = function(manufacturer) {
-	try {
-		this.manufacturer = new String(manufacturer);
-	} catch(e) {
-		alert("Could not change manufacturer. This is the error message: " + e.message);
-	}
-};
-Filter.prototype.setFuelType = function(fuelType) {
-	try {
-		// TODO Only allow 'gasoline' and 'diesel' as fuel types?
-		if (fuelType.equals("gasoline") || fuelType.equals("diesel")) {
-			this.fuelType = new String(fuelType);
-		} else {
-			alert("Could not change fuel type. Fuel type " + fuelType + " is not accepted.");
-		}
-	} catch(e) {
-		alert("Could not change fuel type. This is the error message: " + e.message);
-	}
-};
-// --- End of setter ---
 // ---------------------------
 // --- End of Filter class ---
 // ---------------------------
+
+// -------------------------
+// --- Boundingbox class ---
+// -------------------------
+// Constructor
+function Boundingbox(minX, minY, maxX, maxY) {
+	try {
+		this.minX = new Number(minX);
+		this.minY = new Number(minY);
+		this.maxX = new Number(maxX);
+		this.maxY = new Number(maxY);
+	} catch(e) {
+		alert("Could not create Boundingbox. This is the error message: " + e.message);
+	}
+}
+
+// Setting the variables
+Boundingbox.prototype.minX;
+Boundingbox.prototype.minY;
+Boundingbox.prototype.maxX;
+Boundingbox.prototype.maxY;
+// --------------------------------
+// --- End of boundingbox class ---
+// --------------------------------
 
 // -------------------
 // --- Query class ---
