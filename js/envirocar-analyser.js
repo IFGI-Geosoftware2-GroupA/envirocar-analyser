@@ -424,7 +424,7 @@ Measurement.prototype.outOfLimitInterval = function() {
 // --------------------
 // --- Filter class ---
 // --------------------
-// Constructor with filter options as JSON object
+// Constructor with filter options
 function Filter(fo) {
 	try {
 		// Spatial filter
