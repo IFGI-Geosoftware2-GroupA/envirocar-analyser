@@ -17,7 +17,6 @@ function LineChart() {
 // trackId has to be passed as parameter
 // VDOP,PDOP and GDOP are not visible in default
 LineChart.prototype.createChartFromTrack = function(trackId){
-	alert('Hello');
 	$.getJSON('https://envirocar.org/api/stable/tracks/' + trackId, function(json) {
     	// get Track Data
 		var features = json.features;
