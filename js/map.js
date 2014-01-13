@@ -11,8 +11,7 @@ markers = [],
 mc,
 mcUsedBefore = true,
 maxZoomLevelForClusterer = 12,
-markersBounds = new google.maps.LatLngBounds(),
-geocoder = new google.maps.Geocoder();
+markersBounds = new google.maps.LatLngBounds();
 
 // Variables for the Streetsegment Highlighting
 var path = new google.maps.MVCArray();
