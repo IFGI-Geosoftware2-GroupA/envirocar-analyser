@@ -13,17 +13,22 @@
 * 
 */
 
-html {
-    font-family: sans-serif; 
-}
-
-body {
+html, body {
 	width: 100%;
+	height:100%;
 	background-color: #fff !important;
     margin: 0;
     padding: 0;
+    font-family: sans-serif; 
 }
 
+#body-container{
+	
+	min-height:100%;
+	position:relative;
+	/*overflow: hidden;*/
+	
+}
 /*
 * @section 		Color styling for everything
 * 
@@ -45,27 +50,31 @@ body {
 #logo-container {
 		
 	width:100px;
-	
+
+}
+
+a img{
+	border: none;
 }
 
 /* Map */
 
 #map-container {
-	position: relative;
+	position: absolute;
 	width: 100%;
-	overflow: hidden;
+	top: 110px;
 }
 
 #map-container i {
 	position: absolute;
 	display: block;
-	box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
 }
 
 .map-top { top: -5px; left: 0; right: 0; height: 5px; }
-/*.map-right { right: -5px; top: 0; bottom: 0; width: 5px; } */
+.map-right { right: -5px; top: 0; bottom: 0; width: 5px; } 
 .map-bottom { bottom: -5px; left: 0; right: 0; height: 5px; }
-/*.map-left { left: -5px; top: 0; bottom: 0; width: 5px; } */
+.map-left { left: -5px; top: 0; bottom: 0; width: 5px; } 
 
 
 #map {
@@ -235,7 +244,9 @@ border: none;
 */
 
 header {
-    text-align: center;
+	position: fixed;
+	z-index: 10;
+	width: 100%;
 	
 }
 
@@ -248,14 +259,14 @@ header {
 */
 
 #nav-bar {
-    padding: 0.5em 0 0.5em 0;
     position: relative;
     background: #fff;
-	
+    height: 90px;
+	padding:10px;
 }
 
 #nav-bar .container {
-    position: relative;
+    
     z-index: 2;
 }
 
@@ -292,28 +303,42 @@ header {
     font-weight: 700;
 }
 
-
+#calendar {
+	height: 80px;
+	width: 80%;
+	border: 1px solid #888888;
+}
 
 /*
 *	Footer
 */
 
 footer {
-    padding: 0.2em 0 0em 0;
-    height: 20px;
-	box-shadow: 0px -7px 7px -7px #888888;
-	border-top: 1px solid #888888;
-	margin: 0px auto;
+    height: 50px;
+	z-index: 10;
+	bottom: 0;
+	position:fixed;
+	width:100%;
+}
+
+#footer-container {
 	text-align: center;
 }
 
+/* Clear fix for div positioning */
 
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix {
+	*zoom: 1;
+}
 
-
-/* MICRO CLEARFIX */
-.cf:before, .cf:after { content: ""; display: table; }
-.cf:after { clear: both; }
-.cf { *zoom: 1; }
 
 /* PRINT STYLES
 * Inlined to avoid required HTTP connection: h5bp.com/r

@@ -55,10 +55,10 @@
 	</head>
 
 	<body onload="initMap();">
-		<div>
+		<div id="body-container">
 			<header>
 				<div id="nav-bar">
-					<div id="container">
+					<div class="container">
 						<table>
 							<colgroup>
 							   <col width="200">
@@ -71,15 +71,21 @@
 							<tr>
 								<td>
 									<div id="logo-container">
-									  <img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png">
+									  <a href="index.html"><img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png"/></a>
 									</div>
 								</td>
-								<td></td>
-								<td></td>
 								<td>
-									<div id="reload-button">
-											<a href="#"><img src="./img/refresh.png"  height="48px" width="48px"></img></a>
+									<div id="calendar">
+									
 									</div>
+									
+								</td>
+								<td>
+									
+									
+								</td>
+								<td>
+								
 								</td>
 								<td>
 									<div class="onoffswitch" >
@@ -100,17 +106,22 @@
 					</div>
 				</div>
 			</header>
+			
+			
 
-			<div id="content">
+			<div id="content" class="clearfix">
 		
-				<div id="map-container">
+				<div id="map-container" class="left">
 				
 					<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
 					<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
+					<i class="map-top"></i>
+					
+					
 					<div id="map">
 						<!-- the map will be displayed here -->
 					</div>
-					<i class="map-top"></i>
+					
 					<i class="map-bottom"></i>
 					
 					<script type="text/javascript">
@@ -122,13 +133,13 @@
 					</script>
 					
 					
-					<div id="table">
+					<div id="table" class="right">
 						<script type="text/javascript">
 							createTable();
 						</script>
 					</div>
 					
-					<div id="chart">
+					<div id="chart" class="right">
 						<script type="text/javascript">
 							var lineChart = new LineChart();
 							lineChart.createChartFromTrack('52d048a4e4b0f9afbdeaec0e');
@@ -138,14 +149,16 @@
 				</div>
 			</div>
 			
-			<div class="footer">
+	
 			<footer>
-				<p>
-					<img src="./img/blank.png" onClick="changeLanguage('en')" class="flag flag-gb" alt="English"> &middot;
-					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
-				</p>
+				<div id="footer-container">
+					<p>
+						<img src="./img/blank.png" onClick="changeLanguage('en')" class="flag flag-gb" alt="English"> &middot;
+						2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
+					</p>
+				</div>
 			</footer>
-			</div>
+			
 		</div>
 	</body>
 </html>
