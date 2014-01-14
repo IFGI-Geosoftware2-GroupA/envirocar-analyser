@@ -287,7 +287,7 @@ function enableStreetmode(){
 		        origin: path.getAt(path.getLength() - 1),
 		        destination: evt.latLng,
 		        //Using TravelMode Walking to avoid oneway problem
-		        travelMode: google.maps.DirectionsTravelMode.WALKING
+		        travelMode: google.maps.DirectionsTravelMode.DRIVING
 		  }, function(result, status) {
 		        if (status == google.maps.DirectionsStatus.OK) {
 		          for (var i = 0, len = result.routes[0].overview_path.length;
