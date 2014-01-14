@@ -12,10 +12,14 @@ mc,
 mcUsedBefore = true,
 maxZoomLevelForClusterer = 12,
 markersBounds = new google.maps.LatLngBounds();
+// Variables for collecting Streetsegments
+var path = new google.maps.MVCArray(),
+service = new google.maps.DirectionsService(),
+poly,
+// Variable to hold the status of streetmode
+streetmode = false,
+streetlistener;
 
-// Variables for the Streetsegment Highlighting
-var path = new google.maps.MVCArray();
- var  service = new google.maps.DirectionsService(), poly;
 /**
  * Initialize the map
  */
@@ -35,8 +39,7 @@ function initMap() {
 		}
 	};
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
-	
-	 
+		 
 	// Bounds for North-Rhine-Westphalia (NRW)
 	nrwBounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(50.3, 5.8), // south west 
@@ -113,13 +116,17 @@ function initMap() {
 	});
 	
 
-	 // Create the DIV to hold the control and call the HomeControl() constructor
+	 // Create the DIV to hold the streetmode control and call the collectStreets() constructor
 	 // passing in this DIV.
 	 var streetControlDiv = document.createElement('div');
-	 var homeControl = new collectStreets(streetControlDiv, map);
+	 var streetcontrol = new collectStreets(streetControlDiv, map);
 	
 	 streetControlDiv.index = 1;
 	 map.controls[google.maps.ControlPosition.TOP_RIGHT].push(streetControlDiv);
+	 
+	 
+	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
+	 poly = new google.maps.Polyline({ map: map, editable: true});
 }
 
 /**
@@ -216,8 +223,8 @@ function buildInfoWindow(marker,map,measurements,val1,val2,val3,val4,phen1,phen2
 }
 
 /**
- * Create a control Element on Map for adding Streetsegment Collection
- * Not Ready only for testing... 
+ * Create a control Element on Map for enabling Streetsegment Collection
+ * 
  */
 function collectStreets(controlDiv, map) {
 
@@ -242,33 +249,76 @@ function collectStreets(controlDiv, map) {
   controlText.style.fontSize = '12px';
   controlText.style.paddingLeft = '4px';
   controlText.style.paddingRight = '4px';
-  controlText.innerHTML = '<strong>Collect Streetsegments click two times into map for testing...</strong>';
+  controlText.innerHTML = '<strong>Collect Streetsegments on/off </strong>';
   controlUI.appendChild(controlText);
-
-  // Setup the click event listeners: For Adding Listener to enable streetsegment selection
+  
+  // Handles events if button is 'clicked'
   google.maps.event.addDomListener(controlUI, 'click', function() {
-    google.maps.event.addListener(map, "click", function(evt) {
-    poly = new google.maps.Polyline({ map: map });
-    if (path.getLength() === 0) {
-      path.push(evt.latLng);
-      poly.setPath(path);
-    } else {
-      service.route({
-        origin: path.getAt(path.getLength() - 1),
-        destination: evt.latLng,
-        travelMode: google.maps.DirectionsTravelMode.DRIVING
-      }, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          for (var i = 0, len = result.routes[0].overview_path.length;
-              i < len; i++) {
-            path.push(result.routes[0].overview_path[i]);
-          }
-        }
-      });
-    }
-  });
+    
+  		if(streetmode==false){ 
+  			// Call enableStreetmode() function
+  			enableStreetmode();
+  		}else if(streetmode==true){
+  			// Call disableStreetmode() function for clearing the overlay and removing Listener
+  			disableStreetmode();
+  		}
   });
 }
+
+/**
+ * Function to enable the Streetmode.
+ * Adds Listener, sets the map overlay and switches cursor to 'crosshair'
+ */
+function enableStreetmode(){
+	// Streetmode on
+  	streetmode=true;
+  	// Set Crosshair as cursor
+  	map.setOptions({draggableCursor:'crosshair'});
+  	// Set Polyline to Map necessary for reactivating streetmode
+  	poly.setPath(path);
+  	poly.setMap(map);
+  	// Setup the click event listeners: For Adding Listener to enable streetsegment selection
+    streetlistener = google.maps.event.addListener(map, 'click', function(evt) {
+	  if (path.getLength() === 0) {
+	      path.push(evt.latLng);
+	      poly.setPath(path);
+	    } else {
+	      service.route({
+		        origin: path.getAt(path.getLength() - 1),
+		        destination: evt.latLng,
+		        //Using TravelMode Walking to avoid oneway problem
+		        travelMode: google.maps.DirectionsTravelMode.WALKING
+		  }, function(result, status) {
+		        if (status == google.maps.DirectionsStatus.OK) {
+		          for (var i = 0, len = result.routes[0].overview_path.length;
+		              i < len; i++) {
+		            path.push(result.routes[0].overview_path[i]);
+		          }
+		        }
+		      }
+	      );
+	     }	  	
+  	}); 
+}
+/**
+ * Function to disable the Streetmode and export the collected Data.
+ * Removes Listener, clears the map overlay and switches cursor back to 'hand'
+ */
+function disableStreetmode(){
+ 	// Set Streetmode to false
+ 	streetmode=false;
+ 	// removing Listener
+ 	google.maps.event.removeListener(streetlistener);
+ 	// removing polylines on mapoverlay
+ 	poly.setMap(null);
+ 	// TODO Export Polyline to JSON
+ 	
+ 	// Clear MVCArray
+ 	path = new google.maps.MVCArray();
+ 	// Deactivate Crosshair
+ 	map.setOptions({draggableCursor:null});
+}
+
 // ----------------------------------
 // --- End of methods for the map ---
 // ----------------------------------
