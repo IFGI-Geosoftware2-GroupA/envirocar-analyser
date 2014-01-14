@@ -75,31 +75,31 @@ SmartInfoWindow.prototype.draw = function() {
       this.width_ = 280;
       this.height_ = 351;
       image = 'infobox_above.gif';
-      this.offsetX_ = -(this.width_ / 2 - 17);
-      this.offsetY_ = -(this.height_ + 12);
+      this.offsetX_ = -(this.width_ / 2 - 10);
+      this.offsetY_ = -(this.height_ + 8);
       break;
     case SmartInfoWindow.Align.BELOW:
       this.width_ = 280;
       this.height_ = 351;
       image = 'infobox_below.gif';
-      this.offsetX_ = -(this.width_ / 2 - 17);
-      this.offsetY_ = -15;
+      this.offsetX_ = -(this.width_ / 2 - 10);
+      this.offsetY_ = -10;
       paddingTop = 20;
       break;
     case SmartInfoWindow.Align.LEFT:
       this.width_ = 307;
       this.height_ = 326;
       image = 'infobox_left.gif';
-      this.offsetX_ = -(this.width_) + 10;
-      this.offsetY_ = -(this.height_ / 2 + 33);
+      this.offsetX_ = -(this.width_) + 4;
+      this.offsetY_ = -(this.height_ / 2 + 28);
       widthLess = 20;
       break;
     case SmartInfoWindow.Align.RIGHT:
       image = 'infobox_right.gif';
       this.width_ = 307;
       this.height_ = 326;
-      this.offsetX_ = 6;
-      this.offsetY_ = -(this.height_ / 2 + 33);
+      this.offsetX_ = -3;
+      this.offsetY_ = -(this.height_ / 2 + 28);
       paddingLeft = 20;
       widthLess = 20;
       break;
