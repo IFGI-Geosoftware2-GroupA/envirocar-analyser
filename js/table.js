@@ -66,20 +66,28 @@ function initTable() {
 		currentCell3 = document.createElement("td");
 		currentCell4 = document.createElement("td");
 
+		//ID-Column
 		currentText0 = document.createTextNode(measurements[i].getId());
 		//currentText[j] = document.createTextNode(measurements[j].getPhenomenons()[j]+ " Value: " + measurements[i].getValues()[j]);
-		currentText1 = document.createTextNode(measurements[i].getPhenomenons()[0]+ " Value: " + measurements[i].getValues()[0]);
-		currentText2 = document.createTextNode(measurements[i].getPhenomenons()[1]+ " Value: " + measurements[i].getValues()[1]);
-		currentText3 = document.createTextNode(measurements[i].getPhenomenons()[2]+ " Value: " + measurements[i].getValues()[2]);
-		currentText4 = document.createTextNode(measurements[i].getPhenomenons()[3]+ " Value: " + measurements[i].getValues()[3]);
+		//Consumption-Column
+		currentText1 = measurements[i].getPhenomenons()[0]+ " Value: " + measurements[i].getValues()[0];
+		currentFragment1 = document.createTextNode(currentText1.substring(41,43) + " " + currentText1.substring(30,33));
+		//CO2-Column
+		currentText2 = measurements[i].getPhenomenons()[1]+ " Value: " + measurements[i].getValues()[1];
+		currentFragment2 = document.createTextNode(currentText2.substring(34,35) + " " + currentText2.substring(22,25));
+		//Speed-Column
+		currentText3 = measurements[i].getPhenomenons()[2]+ " Value: " + measurements[i].getValues()[2];
+		currentFragment3 = document.createTextNode(currentText3.substring(37,38) + " " + currentText3.substring(24,28));
+		//MAF-Column
+		currentText4 = measurements[i].getPhenomenons()[3]+ " Value: " + measurements[i].getValues()[3];
+		currentFragment4 = document.createTextNode(currentText4.substring(33,36) + " " + currentText4.substring(22,25));
 		
 		currentCell0.appendChild(currentText0);
 		//currentCell[j].appendChild(currentText[j]);
-		currentCell1.appendChild(currentText1);
-		currentCell2.appendChild(currentText2);
-		currentCell3.appendChild(currentText3);
-		currentCell4.appendChild(currentText4);
-
+		currentCell1.appendChild(currentFragment1);
+		currentCell2.appendChild(currentFragment2);
+		currentCell3.appendChild(currentFragment3);
+		currentCell4.appendChild(currentFragment4);
 		currentRow.appendChild(currentCell0);
 		//currentRow.appendChild(currentCell[j]);
 		currentRow.appendChild(currentCell1);
