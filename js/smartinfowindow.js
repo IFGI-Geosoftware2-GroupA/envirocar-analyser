@@ -178,7 +178,8 @@ SmartInfoWindow.prototype.createElement = function() {
     // Append to body, to avoid bug with Webkit browsers
     // attempting CSS transforms on IFRAME or SWF objects
     // and rendering badly.
-    document.body.appendChild(div);
+    var mapDiv = document.getElementById("map");
+	mapDiv.appendChild(div);
   } else if (div.parentNode != panes.floatPane) {
     // The panes have changed.  Move the div.
     div.parentNode.removeChild(div);
@@ -191,7 +192,7 @@ SmartInfoWindow.prototype.createElement = function() {
 SmartInfoWindow.mouseFilter = function(e) {
   e.returnValue = 'true';
   e['handled'] = true;
-}
+};
 
 /**
  * Closes infowindow
@@ -304,7 +305,7 @@ SmartInfoWindow.prototype.getPanValue = function(alignment) {
  */
 SmartInfoWindow.toRad = function(num) {
     return num * Math.PI / 180;
-}
+};
 
 /**
  * Calculates distance between two coordinates.
@@ -326,4 +327,4 @@ SmartInfoWindow.distHaversine = function(lat1, lon1, lat2, lon2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c;
   return d;
-}
+};
