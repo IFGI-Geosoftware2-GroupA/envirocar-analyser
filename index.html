@@ -17,7 +17,6 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css">
 		
 		<!-- Fonts and Flags -->
 		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
@@ -65,29 +64,45 @@
 					<div id="container">
 						<table>
 							<colgroup>
-							   <col width="200">
+							   <col width="150">
+							   <col width="600">
 							   <col width="400">
-							   <col width="100">
-							   <col width="100">
-							   <col width="100">
+							   <col width="200">
 							   <col width="50">
 							</colgroup>
 							<tr>
 								<td>
 									<div id="logo-container">
-									  <img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png">
+									  <a href="./index.html" title="Homepage"><img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png"></a>
+									  <label for="logo" id="logo-label">Exploration und Visualisierung</label>
 									</div>
 								</td>
 								<td>
-									<div id="calendar">   
-				                    	<label for="from">From</label>
-				                     	<input type="text" id="calendar-from" name="from">
-				                     	<label for="to">to</label>
-				                     	<input type="text" id="calendar-to" name="to">
+									<div id="calendar">
+										<table>
+											<tr>
+												<td></td>
+												<td>
+													<label for="from">Start-Datum</label>
+												</td>
+						                 		<td>
+													<input type="text" id="from" name="from">
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td>
+													<label for="to">End-Datum</label>
+												</td>
+						                 		<td>
+													<input type="text" id="to" name="to">
+												</td>
+											</tr>		
+				                     	</table>
 				                    </div>
 									
 								</td>
-								<td></td>
+								
 								<td>
 								
 								</td>
@@ -103,7 +118,7 @@
 								</td>
 								<td>
 									<div id="help-button">
-										<a href="#"><img src="./img/help.png" height="48px" width="48px"></img></a>
+										<a href="#" title="Hilfe"><img src="./img/help.png" height="48px" width="48px"></a>
 									</div>
 								</td>
 							</tr>
@@ -118,12 +133,11 @@
 					
 						<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
 						<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
-						<i class="map-top"></i>
+						
 						<div id="map">
 							<!-- the map will be displayed here -->
 						</div>
-						<i class="map-bottom"></i>
-						
+					
 						<script type="text/javascript">
 							// display the simple example
 							$(document).ready(function() {
@@ -131,6 +145,9 @@
 								showMarkers(q);
 							});
 						</script>
+						
+						<i class="map-top"></i>
+						<i class="map-bottom"></i>
 					</div>
 						
 						<div class="right">
@@ -151,14 +168,16 @@
 				</div>
 			</div>
 			
-			<div class="footer">
+			
 			<footer>
-				<p>
-					<img src="./img/blank.png" onClick="changeLanguage('en')" class="flag flag-gb" alt="English"> &middot;
-					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
-				</p>
+				<div class="footer">
+					<p>
+						<img src="./img/blank.png" onClick="changeLanguage('en')" class="flag flag-gb" alt="English"> &middot;
+						2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
+					</p>
+				</div>
 			</footer>
-			</div>
+	
 		</div>
 	</body>
 </html>
