@@ -14,13 +14,16 @@
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 
 		<!-- Stylesheet, Favicon and Apple-Touch-Icon -->
-		<link rel="stylesheet" href="design/style.css" />
+		<link rel="stylesheet" href="css/style.css" />
 		<link rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="apple-touch-icon" href="design/apple-touch-icon.png" />
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css">
 		
 		<!-- Fonts and Flags -->
 		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-		<link href="design/flags.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link href="css/flags.css" rel="stylesheet">
 		
 		<!-- Functions for Website Interactivity -->
 		<script src="js/interactivity.js"></script> 
@@ -31,8 +34,9 @@
 		<!-- MarkerClusterer -->
 		<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
 		
-		<!-- jQuery 2.0.3 -->
+		<!-- jQuery 2.0.3 and jQuery UI 1.10.3 -->
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		
 		<!-- Highcharts 3.0 -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -56,7 +60,7 @@
 	</head>
 
 	<body onload="initMap();">
-		<div>
+		<div class="body-container">
 			<header>
 				<div id="nav-bar">
 					<div id="container">
@@ -75,14 +79,21 @@
 									  <img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png">
 									</div>
 								</td>
-								<td></td>
+								<td>
+									<div id="calendar">   
+				                    	<label for="from">From</label>
+				                     	<input type="text" id="calendar-from" name="from">
+				                     	<label for="to">to</label>
+				                     	<input type="text" id="calendar-to" name="to">
+				                    </div>
+									
+								</td>
 								<td></td>
 								<td>
-									<div id="reload-button">
-											<a href="#"><img src="./img/refresh.png"  height="48px" width="48px"></img></a>
-									</div>
+								
 								</td>
 								<td>
+									<label for="analysis-mode">Analyse Modus</label>
 									<div class="onoffswitch" >
 										<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onClick="changeMode()">
 										<label class="onoffswitch-label" for="myonoffswitch">
@@ -103,39 +114,41 @@
 			</header>
 
 			<div id="content">
-		
-				<div id="map-container">
-				
-					<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
-					<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
-					<div id="map">
-						<!-- the map will be displayed here -->
-					</div>
-					<i class="map-top"></i>
-					<i class="map-bottom"></i>
+				<div class="clearfix">
+					<div id="map-container" class="left">
 					
-					<script type="text/javascript">
-						// display the simple example
-						$(document).ready(function() {
-							var q = new Query('https://envirocar.org/api/stable/measurements');
-							showMarkers(q);
-						});
-					</script>
-					
-					
-					<div id="table">
+						<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
+						<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
+						<i class="map-top"></i>
+						<div id="map">
+							<!-- the map will be displayed here -->
+						</div>
+						<i class="map-bottom"></i>
+						
 						<script type="text/javascript">
-							createTable();
+							// display the simple example
+							$(document).ready(function() {
+								var q = new Query('https://envirocar.org/api/stable/measurements');
+								showMarkers(q);
+							});
 						</script>
 					</div>
+						
+						<div class="right">
+							<div id="table" class="top">
+								<script type="text/javascript">
+									createTable();
+								</script>
+							</div>
+							
+							<div id="chart" class="bottom">
+								<script type="text/javascript">
+									var lineChart = new LineChart();
+									lineChart.createChartFromTrack('52d048a4e4b0f9afbdeaec0e');
+								</script>						
+							</div>
+						</div>
 					
-					<div id="chart">
-						<script type="text/javascript">
-							var lineChart = new LineChart();
-							lineChart.createChartFromTrack('52d048a4e4b0f9afbdeaec0e');
-						</script>						
-					</div>
-				
 				</div>
 			</div>
 			

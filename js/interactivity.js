@@ -1,5 +1,5 @@
 /**
- * @author Daniel Sawatzky
+ * @author Daniel Sawatzky, Marius Runde
  */
  
 // Function to change between normal and analysis mode
@@ -18,7 +18,7 @@ function changeMode() {
 			document.getElementById('table').style.display = "none";
 			document.getElementById('nav-bar').style.background = "#fff";
 			document.getElementById('logo').src = "img/enviroCarLogo_transparent.png";
-			initMap();
+			resizeMap();
 			document.getElementById('search-input').style.display = "block";
 			
 			
@@ -29,10 +29,9 @@ function changeMode() {
 			document.getElementById('map').style.width = "770px";
 			document.getElementById('chart').style.display = "block";
 			document.getElementById('table').style.display = "block";
-			createTable();
 			document.getElementById('nav-bar').style.background = "#1D83C3";
 			document.getElementById('logo').src = "img/enviroCarLogo_trans_white.png";
-			initMap();
+			resizeMap();
 			document.getElementById('search-input').style.display = "block";
 			
 			
