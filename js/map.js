@@ -164,18 +164,73 @@ function showMarkers(query) {
 				
 				// Variables for Infowindow
 					// Create Variables for values 
-					var val1 = measurements[i].values[j];
-					var val2 = measurements[i].values[k];
-					var val3 = measurements[i].values[l];
-					var val4 = measurements[i].values[m];
+					if(measurements[i].getValues()[j]!=undefined){
+						var val1 = measurements[i].getValues()[j];
+					}
+					else{
+						var val1 = "Kein Wert";
+					}
+						if(measurements[i].getValues()[k]!=undefined){
+						var val2 = measurements[i].getValues()[k];
+					}
+					else{
+						var val2 = "Kein Wert";
+					}
+						if(measurements[i].getValues()[l]!=undefined){
+						var val3 = measurements[i].getValues()[l];
+					}
+					else{
+						var val3 = "Kein Wert";
+					}
+						if(measurements[i].getValues()[m]!=undefined){
+						var val4 = measurements[i].getValues()[m];
+					}
+					else{
+						var val4 = "Kein Wert";
+					}
+					//var val1 = measurements[i].getValues()[j];
+					//var val2 = measurements[i].getValues()[k];
+					//var val3 = measurements[i].getValues()[l];
+					//var val4 = measurements[i].getValues()[m];
+					
+					
 					// Create Variables for Phenomenons
-					var phen1 = measurements[i].phenomenons[j];
-					var phen2 = measurements[i].phenomenons[k];
-					var phen3 = measurements[i].phenomenons[l];
-					var phen4 = measurements[i].phenomenons[m];
+					if(measurements[i].getPhenomenons()[j]!=undefined){
+						var phen1 = measurements[i].getPhenomenons()[j].name+" ("+measurements[i].getPhenomenons()[j].unit+") ";
+					}
+					else{
+						var phen1 = "Kein Wert";
+					}
+					if(measurements[i].getPhenomenons()[k]!=undefined){
+						var phen2 = measurements[i].getPhenomenons()[k].name+" ("+measurements[i].getPhenomenons()[k].unit+") ";
+					}
+					else{
+						var phen2 = "Kein Wert";
+					}
+					if(measurements[i].getPhenomenons()[l]!=undefined){
+						var phen3 = measurements[i].getPhenomenons()[l].name+" ("+measurements[i].getPhenomenons()[l].unit+") ";
+					}
+					else{
+						var phen3 = "Kein Wert";
+					}
+					if(measurements[i].getPhenomenons()[m]!=undefined){
+						var phen4 = measurements[i].getPhenomenons()[m].name+" ("+measurements[i].getPhenomenons()[m].unit+") ";
+					}
+					else{
+						var phen4 = "Kein Wert";
+					}
+					
+					
+					//var phen1 = measurements[i].getPhenomenons()[j];
+					//var phen2 = measurements[i].getPhenomenons()[k];
+					//var phen3 = measurements[i].getPhenomenons()[l];
+					//var phen4 = measurements[i].getPhenomenons()[m];
 				// Create InfoWindow with the specific Pheonomenons and values to avoid 
 				// arrangement problems of arrays and parsing
-				buildInfoWindow(marker,map,measurements[i],val1,val2,val3,val4,phen1,phen2,phen3,phen4);
+				if(measurements[i]!=undefined){
+					buildInfoWindow(marker,map,measurements[i],val1,val2,val3,val4,phen1,phen2,phen3,phen4);
+				}
+				
 			};
 			var mcOptions = {gridSize: 50, maxZoom: maxZoomLevelForClusterer};
 			mc = new MarkerClusterer(map, markers, mcOptions);
@@ -217,14 +272,16 @@ function refreshMarkers(zoom) {
  */
 function buildInfoWindow(marker,map,measurements,val1,val2,val3,val4,phen1,phen2,phen3,phen4){   
 	// Setting Content of Infowindow
+	
 	var content = '<div style="text-align: center; font-size:14px;">'+
 						'<center><b>'+"ID: "+ measurements.id +
 						'</br> '+ measurements.timestamp +'</b></br>' +
-						phen1+ " Value: " + val1+ " " + '</br>'+
-						phen2+ " Value: " + val2+ " " + '</br>'+
-						phen3+ " Value: " + val3+ " " + '</br>'+
-						phen4+ " Value: " + val4+ " " + '</br>'+
-						
+						phen1+ " : " + val1+ " " + '</br>'+
+						phen2+ " : " + val2+ " " + '</br>'+
+						phen3+ " : " + val3+ " " + '</br>'+
+						phen4+ " : " + val4+ " " + '</br>'+
+						//console.log(val1);
+						//console.log(val1);
 					'</center>'+
 				'</div>';
         // ------------------------------------
