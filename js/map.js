@@ -115,7 +115,6 @@ function initMap() {
 		searchBox.setBounds(bounds);
 	});
 	
-
 	 // Create the DIV to hold the streetmode control and call the collectStreets() constructor
 	 // passing in this DIV.
 	 var streetControlDiv = document.createElement('div');
@@ -127,6 +126,16 @@ function initMap() {
 	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
 	 poly = new google.maps.Polyline({ map: map, editable: true});
+}
+
+/*
+ * Called when the map is resized
+ * Bounds will be changed to contain all markers in the viewport
+ */
+function resizeMap() {
+	google.maps.event.trigger(map, 'resize');
+	map.setCenter(new google.maps.LatLng(51.478333, 7.555)); // center of North-Rhine-Westphalia)
+	map.fitBounds(markersBounds);
 }
 
 /**
