@@ -46,7 +46,7 @@ html, body {
  
 .bottom{
    height:50%;
-   top: 1em;
+
 }
 /*
 * @section 		Color styling for everything
@@ -67,9 +67,8 @@ html, body {
 
 
 #logo-container {
-		
-	width:100px;
-	
+	font-size: 0.85em; 
+	text-align: center;
 }
 
 a img{
@@ -81,7 +80,7 @@ a img{
 #map-container {
 	position: absolute;
     width: 100%;
-    top: 110px;
+	overflow: hidden;
 }
 
 #map-container i {
@@ -90,15 +89,15 @@ a img{
 	box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
 }
 
-.map-top { top: -5px; left: 0; right: 0; height: 5px; }
-.map-right { right: -5px; top: 0; bottom: 0; width: 5px; } 
-.map-bottom { bottom: -5px; left: 0; right: 0; height: 5px; z-index:10;}
-.map-left { left: -5px; top: 0; bottom: 0; width: 5px; } 
+.map-top { top: -5px; left: 0; right: 0; height: 5px; z-index: 10;}
+/*.map-right { right: -5px; top: 0; bottom: 0; width: 5px; } */
+.map-bottom { bottom: -5px; left: 0; right: 0; height: 5px; z-index: 10;}
+/*.map-left { left: -5px; top: 0; bottom: 0; width: 5px; } */
 
 
 #map {
 	position: relative;
-	height: 630px;
+	height: 638px;
 }
 
 /* table */
@@ -127,12 +126,11 @@ a img{
 	
 }
 
- #calendar {
-    height: 80px;
-    width: 80%;
+#calendar {
     border: none;
     z-index: 4;
-    padding: 2px;
+    padding: 0;
+   	width: 60%;
 }
 
 #help-button {
@@ -276,8 +274,8 @@ border: none;
 */
 
 header {
-    text-align: center;
-	
+    text-align: auto;
+	border-bottom: 1px solid #888888;
 }
 
 .body-header {
@@ -289,30 +287,19 @@ header {
 */
 
 #nav-bar {
-    padding: 0.5em 0 0.5em 0;
+    padding: 0.5em 0.5em 0.5em 0.5em;
     position: relative;
     background: #fff;
+        
 	
 }
 
 #nav-bar .container {
     position: relative;
     z-index: 2;
+
 }
 
-#nav-bar:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-	box-shadow: 2px 2px 2px #888888;
-	border-bottom: 1px solid #888888;
-	/*background: url(./img/) repeat center center;  */
-    opacity: .6;
-}
 
 #nav-bar table {
 	width: 100%;
@@ -345,9 +332,11 @@ footer {
     width:100%;
 	text-align: center;
 	background: #fff;
+	font-size: 0.95em; 
+	border-top: 1px solid #888888;
 }
 
-#footer-container {
+.footer-container {
     text-align: center;
 } 
 
