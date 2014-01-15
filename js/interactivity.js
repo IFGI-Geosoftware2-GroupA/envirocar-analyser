@@ -29,6 +29,7 @@ function changeMode() {
 			document.getElementById('map').style.width = "770px";
 			document.getElementById('chart').style.display = "block";
 			document.getElementById('table').style.display = "block";
+			createTable();
 			document.getElementById('nav-bar').style.background = "#1D83C3";
 			document.getElementById('logo').src = "img/enviroCarLogo_trans_white.png";
 			initMap();
