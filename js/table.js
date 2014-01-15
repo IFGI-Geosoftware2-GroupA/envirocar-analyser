@@ -114,38 +114,38 @@ function initTable() {
 function refreshTable() {
 
 	if(document.checkbox.id.checked == true) {
-      	$('td:nth-child(1),th:nth-child(1)').show();
+      	$('#table td:nth-child(1), #table th:nth-child(1)').show();
 	}
 	else {
-		$('td:nth-child(1),th:nth-child(1)').hide();
+		$('#table td:nth-child(1),#table th:nth-child(1)').hide();
 	}
 	
 	if(document.checkbox.verbrauch.checked == true) {
-      	$('td:nth-child(2),th:nth-child(2)').show();
+      	$('#table td:nth-child(2),#table th:nth-child(2)').show();
 	}
 	else {
-		$('td:nth-child(2),th:nth-child(2)').hide();
+		$('#table td:nth-child(2),#table th:nth-child(2)').hide();
 	}
 	
 	if(document.checkbox.co2.checked == true) {
-       	$('td:nth-child(3),th:nth-child(3)').show();
+       	$('#table td:nth-child(3),#table th:nth-child(3)').show();
 	}
 	else {
-		$('td:nth-child(3),th:nth-child(3)').hide();
+		$('#table td:nth-child(3),#table th:nth-child(3)').hide();
 	}
 	
 	if(document.checkbox.geschwindigkeit.checked == true) {
-       	$('td:nth-child(4),th:nth-child(4)').show();
+       	$('#table td:nth-child(4),#table th:nth-child(4)').show();
 	}
 	else {
-		$('td:nth-child(4),th:nth-child(4)').hide();
+		$('#table td:nth-child(4),#table th:nth-child(4)').hide();
 	}
 	
 	if(document.checkbox.luftmasse.checked == true) {
-       	$('td:nth-child(5),th:nth-child(5)').show();
+       	$('#table td:nth-child(5),#table th:nth-child(5)').show();
 	}
 	else {
-		$('td:nth-child(5),th:nth-child(5)').hide();	
+		$('#table td:nth-child(5),#table th:nth-child(5)').hide();	
 	}
 	
 }
