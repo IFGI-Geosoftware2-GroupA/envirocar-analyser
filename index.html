@@ -14,12 +14,16 @@
 		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
 
 		<!-- Stylesheet, Favicon and Apple-Touch-Icon -->
-		<link rel="stylesheet" href="design/style.css" />
+		<link rel="stylesheet" href="css/style.css" />
 		<link rel="shortcut icon" href="img/favicon.ico" />
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css">
+		
 		
 		<!-- Fonts and Flags -->
 		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-		<link href="design/flags.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link href="css/flags.css" rel="stylesheet">
 		
 		<!-- Functions for Website Interactivity -->
 		<script src="js/interactivity.js"></script> 
@@ -32,6 +36,7 @@
 		
 		<!-- jQuery 2.0.3 -->
 		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 		
 		<!-- Highcharts 3.0 -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -76,7 +81,10 @@
 								</td>
 								<td>
 									<div id="calendar">
-									
+										<label for="from">From</label>
+										<input type="text" id="calendar-from" name="from">
+										<label for="to">to</label>
+										<input type="text" id="calendar-to" name="to">
 									</div>
 									
 								</td>
@@ -88,6 +96,7 @@
 								
 								</td>
 								<td>
+									<label for="analysis-mode">Analyse Modus</label>
 									<div class="onoffswitch" >
 										<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onClick="changeMode()">
 										<label class="onoffswitch-label" for="myonoffswitch">
@@ -106,46 +115,52 @@
 					</div>
 				</div>
 			</header>
-			
-			
 
-			<div id="content" class="clearfix">
-		
-				<div id="map-container" class="left">
+
+			<div id="content" >
 				
-					<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
-					<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
-					<i class="map-top"></i>
-					
-					
-					<div id="map">
-						<!-- the map will be displayed here -->
-					</div>
-					
-					<i class="map-bottom"></i>
-					
-					<script type="text/javascript">
-						// display the simple example
-						$(document).ready(function() {
-							var q = new Query('https://envirocar.org/api/stable/measurements');
-							showMarkers(q);
-						});
-					</script>
-					
-					
-					<div id="table" class="right">
+				<div class="clearfix">
+					<div id="map-container" class="left">
+				
+						<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
+						<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
+						<i class="map-top"></i>
+						
+						
+						<div id="map">
+							<!-- the map will be displayed here -->
+						</div>
+						
+						<i class="map-bottom"></i>
+						
 						<script type="text/javascript">
-							createTable();
+							// display the simple example
+							$(document).ready(function() {
+								var q = new Query('https://envirocar.org/api/stable/measurements');
+								showMarkers(q);
+							});
 						</script>
+					
 					</div>
 					
-					<div id="chart" class="right">
-						<script type="text/javascript">
-							var lineChart = new LineChart();
-							lineChart.createChartFromTrack('52d048a4e4b0f9afbdeaec0e');
-						</script>						
+					<div class="right">
+						
+						<div id="table" class="top">
+							<script type="text/javascript">
+								createTable();
+							</script>
+						</div>
+						
+						<div id="chart" class="bottom">	    	
+							<script type="text/javascript">
+								var lineChart = new LineChart();
+								lineChart.createChartFromTrack('52d048a4e4b0f9afbdeaec0e');
+							</script>						
+						</div>
+
 					</div>
-				
+					
+			
 				</div>
 			</div>
 			
