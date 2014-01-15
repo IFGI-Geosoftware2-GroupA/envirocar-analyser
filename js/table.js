@@ -108,6 +108,18 @@ function initTable() {
 		alert(e.message);
 	}
 }
+
+
+function refreshTable() {
+
+	
+	if(document.tcheckbox.verbrauch.checked == false) {
+		alert("1");
+		document.getElementById("mytablebody").deleteRow();
+		//myTable.refresh();
+	}
+	
+}
 // ------------------------------------
 // --- End of methods for the table ---
 // ------------------------------------
