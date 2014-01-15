@@ -25,6 +25,7 @@ streetlistener;
  */
 function initMap() {
 	var mapOptions = {
+		center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia)
 		mapTypeControl: true,
 		mapTypeControlOptions: {
 			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
@@ -123,9 +124,8 @@ function initMap() {
 	 streetControlDiv.index = 1;
 	 map.controls[google.maps.ControlPosition.TOP_RIGHT].push(streetControlDiv);
 	 
-	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
-	 poly = new google.maps.Polyline({ map: map, editable: true});
+	 poly = new google.maps.Polyline({map: map, editable: true});
 }
 
 /*
@@ -134,8 +134,11 @@ function initMap() {
  */
 function resizeMap() {
 	google.maps.event.trigger(map, 'resize');
-	map.setCenter(new google.maps.LatLng(51.478333, 7.555)); // center of North-Rhine-Westphalia)
-	map.fitBounds(markersBounds);
+	if (markers.length > 0) {
+		map.fitBounds(markersBounds);
+	} else {
+		map.setCenter(new google.maps.LatLng(51.478333, 7.555)); // center of North-Rhine-Westphalia))
+	}
 }
 
 /**
@@ -171,7 +174,10 @@ function showMarkers(query) {
 			};
 			var mcOptions = {gridSize: 50, maxZoom: maxZoomLevelForClusterer};
 			mc = new MarkerClusterer(map, markers, mcOptions);
-			map.fitBounds(markersBounds);
+			// Only change the bounds when measurements have been collected
+			if (measurements.length > 0) {
+				map.fitBounds(markersBounds);
+			}
 		}, 500);
 	} catch(e) {
 		alert(e.message);
