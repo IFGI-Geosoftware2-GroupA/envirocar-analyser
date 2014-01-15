@@ -18,8 +18,11 @@ service = new google.maps.DirectionsService(),
 poly,
 // Variable to hold the status of streetmode
 streetmode = false,
-streetlistener;
+alerted = false,
+streetlistener,
+removepointlistener;
 var polyexport = new google.maps.MVCArray();
+
 /**
  * Initialize the map
  */
@@ -271,8 +274,14 @@ function collectStreets(controlDiv, map) {
   
   // Handles events if button is 'clicked'
   google.maps.event.addDomListener(controlUI, 'click', function() {
-    
+  	
+  		// Alert the user one time
+  		if(alerted==false){
+  			alert("remove the last points with 'rightclick' somewhere in the map not at a point!");
+  			alerted =true;
+  		}
   		if(streetmode==false){ 
+  			 
   			// Call enableStreetmode() function
   			enableStreetmode();
   		}else if(streetmode==true){
@@ -281,7 +290,6 @@ function collectStreets(controlDiv, map) {
   		}
   });
 }
-
 /**
  * Function to enable the Streetmode.
  * Adds Listener, sets the map overlay and switches cursor to 'crosshair'
@@ -323,6 +331,23 @@ function enableStreetmode(){
 	      );
 	     }	  	
   	}); 
+  	// Setup the click event listener to remove last vertices on 'rightclick'
+  	removepointlistener = google.maps.event.addListener(map, 'rightclick', function(){
+  	
+  	//	for (var i=0; i<path.length;i++){
+  	//		if(evt.latLng==path.getAt(i).latLng){
+  	//			path.removeAt(i);
+  	//			polyexport.removeAt(i);
+  	//			poly.setPath(path);
+  	//		}
+  	//		else{return;}
+  	//	}
+  	
+  	// Removes the last point of the polyline and sets the path again
+  		path.removeAt(path.getLength()-1);
+  		polyexport.removeAt(polyexport.getLength()-1);
+  		poly.setPath(path);
+  	});
 }
 /**
  * Function to disable the Streetmode and export the collected Data.
@@ -333,6 +358,7 @@ function disableStreetmode(){
  	streetmode=false;
  	// removing Listener
  	google.maps.event.removeListener(streetlistener);
+ 	google.maps.event.removeListener(removepointlistener);
  	// removing polylines on mapoverlay
  	poly.setVisible(false);
  	// Clear MVCArray
