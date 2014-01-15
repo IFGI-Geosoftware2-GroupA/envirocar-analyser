@@ -206,6 +206,135 @@ LineChart.prototype.createChartFromTrack = function() {
 // - End of LineChart class -
 // --------------------------
 
+// --------------------------
+// ---- BarChart class ------
+// --------------------------
+
+// Constructor
+function BarChart() {
+	// default line chart options for time related data
+	this.options = {
+		chart : {
+			renderTo : 'chart',
+			type : 'bar',
+			zoomType : 'xy'
+		},
+		title : {
+			x : -20
+		},
+		subtitle : {
+			x : -20,
+			y : 30
+		},
+		xAxis : {
+		},
+		yAxis : {
+		},
+		legend : {
+			layout : 'vertical',
+			align : 'right',
+			verticalAlign : 'middle',
+			borderWidth : 0
+		}
+	};
+	this.chart = new Highcharts.Chart(this.options);
+}
+
+// Setting the variables
+BarChart.prototype.chart;
+BarChart.prototype.options;
+
+// --- Getter and setter ---
+BarChart.prototype.getChart = function() {
+	return this.chart;
+};
+BarChart.prototype.setChart = function(chart) {
+	this.chart = chart;
+};
+BarChart.prototype.setOptions = function(options) {
+	this.options = options;
+};
+BarChart.prototype.getOptions = function() {
+	return this.options;
+};
+
+
+// returns all the series of the chart as array
+BarChart.prototype.getAllSeries = function() {
+	return this.chart.series;
+};
+
+// returns the current options of the Chart Object
+BarChart.prototype.getChartOptions = function(){
+	return this.chart.options;
+};
+
+// returns the series with the name given
+BarChart.prototype.getSeries = function(name) {
+	return this.chart.series[name];
+};
+
+// renders the chart to the chart div
+BarChart.prototype.initChart = function() {
+	$(function() {
+		this.chart;
+	});
+};
+
+// redraws the chart - only necessary if data has been added!
+BarChart.prototype.redraw = function() {
+	this.chart.redraw();
+};
+
+// removes the chart while saving the latest chart options
+BarChart.prototype.remove = function() {
+	this.setOptions(this.getChartOptions());
+	this.chart.destroy();
+};
+
+// set the categories of the axes
+// axis = x or y, categories as array
+BarChart.prototype.setAxisCategories = function(axis, categories) {
+	if (axis == 'x') {
+		this.chart.xAxis[0].setCategories(categories);
+	} else if (axis == 'y') {
+		this.chart.yAxis[0].setCategories(categories);
+	}
+};
+
+
+// set Title of the axes
+// axis = x or y
+BarChart.prototype.setAxisTitle = function(axis, title) {
+	if (axis == 'x') {
+		this.chart.xAxis[0].setTitle({
+			text : title
+		});
+	} else if (axis == 'y') {
+		this.chart.yAxis[0].setTitle({
+			text : title
+		});
+	}
+};
+
+// set Subtitle of the Chart
+BarChart.prototype.setSubtitle = function(subtitle) {
+	this.chart.setTitle(null, {
+		text : subtitle
+	});
+};
+
+// set Title of the Chart
+BarChart.prototype.setTitle = function(title) {
+	this.chart.setTitle({
+		text : title
+	});
+};
+
+// --------------------------
+// -- End of BarChart class -
+// --------------------------
+
 // ------------------------------------
 // --- End of methods for the chart ---
 // ------------------------------------
