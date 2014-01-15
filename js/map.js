@@ -127,7 +127,7 @@ function initMap() {
 	 
 	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
-	 poly = new google.maps.Polyline({ map: map, editable: true});
+	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true});
 }
 
 /*
@@ -293,7 +293,7 @@ function enableStreetmode(){
   	map.setOptions({draggableCursor:'crosshair'});
   	// Set Polyline to Map necessary for reactivating streetmode
   	poly.setPath(path);
-  	poly.setMap(map);
+  	poly.setVisible(true);
   	// Setup the click event listeners: For Adding Listener to enable streetsegment selection
     streetlistener = google.maps.event.addListener(map, 'click', function(evt) {
 	  if (path.getLength() === 0) {
@@ -327,7 +327,7 @@ function disableStreetmode(){
  	// removing Listener
  	google.maps.event.removeListener(streetlistener);
  	// removing polylines on mapoverlay
- 	poly.setMap(null);
+ 	poly.setVisible(false);
  	// TODO Export Polyline to JSON
  	
  	// Clear MVCArray
