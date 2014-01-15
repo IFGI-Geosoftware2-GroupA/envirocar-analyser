@@ -19,7 +19,7 @@ poly,
 // Variable to hold the status of streetmode
 streetmode = false,
 streetlistener;
-
+var polyexport = new google.maps.MVCArray();
 /**
  * Initialize the map
  */
@@ -291,6 +291,10 @@ function enableStreetmode(){
   	streetmode=true;
   	// Set Crosshair as cursor
   	map.setOptions({draggableCursor:'crosshair'});
+  	// Clear the Exportarray if it is not empty
+  	if(polyexport.getLength()!=0){
+  		polyexport.clear();
+  	}
   	// Set Polyline to Map necessary for reactivating streetmode
   	poly.setPath(path);
   	poly.setVisible(true);
@@ -298,6 +302,8 @@ function enableStreetmode(){
     streetlistener = google.maps.event.addListener(map, 'click', function(evt) {
 	  if (path.getLength() === 0) {
 	      path.push(evt.latLng);
+	     // Holds the Content in an extra array to export data till user starts a new selection
+	      polyexport.push(evt.latLng);
 	      poly.setPath(path);
 	    } else {
 	      service.route({
@@ -310,6 +316,7 @@ function enableStreetmode(){
 		          for (var i = 0, len = result.routes[0].overview_path.length;
 		              i < len; i++) {
 		            path.push(result.routes[0].overview_path[i]);
+		            polyexport.push(result.routes[0].overview_path[i]);
 		          }
 		        }
 		      }
@@ -328,14 +335,43 @@ function disableStreetmode(){
  	google.maps.event.removeListener(streetlistener);
  	// removing polylines on mapoverlay
  	poly.setVisible(false);
- 	// TODO Export Polyline to JSON
- 	
  	// Clear MVCArray
  	path = new google.maps.MVCArray();
  	// Deactivate Crosshair
  	map.setOptions({draggableCursor:null});
 }
-
+/**
+ * Function for exporting a Polyline Lat_Lng Element 
+ * from User Selection of Streetsegments
+ * @Return: the underlying Lat_Lng Element at i
+ */
+function getPolylineAt(i){
+	if(i>polyexport.getLength()){
+		throw "Element not in range";
+	}
+	else if(i<0){
+		throw "No negative Elements";
+	}
+	else if(polyexport.getLength()==0){
+		throw "No Segments have been selected";
+	}
+	else{
+		return polyexport.getAt(i);
+	}
+}
+/**
+ * Function for exporting the whole Polyline representing
+ * the user selected streets
+ * @Returns the underlying Lat_Lng Array of the Polyline
+ */
+function getPolyline(){
+	if(polyexport.getLength()==0){
+		throw "No Segments have been selected";
+	}
+	else{
+		return polyexport.getArray();
+	}
+}
 // ----------------------------------
 // --- End of methods for the map ---
 // ----------------------------------
