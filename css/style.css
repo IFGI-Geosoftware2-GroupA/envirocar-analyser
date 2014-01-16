@@ -22,13 +22,19 @@ html, body {
     font-family: 'Roboto', sans-serif;
 }
 
-#body-container{
+#body-container {
     
     min-height:100%;
     position:relative;
     /*overflow: hidden;*/
     
-  }
+}
+
+#content {
+	
+}
+/* classes for clearfix and floating of divs */
+
 .left{
    float: left;
    width:50%;
@@ -38,16 +44,127 @@ html, body {
    float: right;
    width:50%;
 }
- 
+
 .top{
-   top:5px;
+   top: 100px;
    height:50%;
 }
  
 .bottom{
    height:50%;
+   top: 50%;
+}
+
+
+/* 
+* @section 		Styling for layout sections like the header and footer.
+* 
+*/
+
+header {
+    text-align: auto;
+	border-bottom: 1px solid #888888;
+	position: fixed;
+	width: 100%;
+	height: 100px;
+	z-index: 20;
+}
+
+.body-header {
+    margin:0 0 4em 0;
+}
+
+/*
+* Navigation (Tool)Bar in Header
+*/
+
+#nav-bar {
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    position: relative;
+    background: #fff;
+    border-bottom: 1px solid #888888;
+	
+}
+
+#nav-bar .container {
+    position: relative;
+    z-index: 2;
 
 }
+
+
+#nav-bar table {
+	width: 100%;
+	border: none;
+
+}
+
+#nav-bar td {
+	border: none;
+}
+
+#nav-bar h1 {
+    margin: .9em 0 .5em 0;
+    letter-spacing: 8px;
+}
+
+#nav-bar p {
+    font-weight: 700;
+}
+
+#trackSelection {
+	display: none;
+	
+}
+
+#analysis-interpolation {
+	display: none;
+}
+
+#analysis-mode-interpolation-label {
+	color: #fff;
+}
+
+progress {  
+    background-color:  #fff;  
+    color: #92C049; 
+    border: 0;  
+    height: 18px;  
+    border-radius: 9px;  
+    display: none;
+}  
+
+progress::-moz-progress-bar {  
+    background-color: #92C049;  
+    border: 0;  
+    height: 18px;  
+    border-radius: 9px;  
+    
+}  
+/*
+*	Footer
+*/
+
+footer {
+    bottom: 0;
+    position:fixed;
+    width:100%;
+	text-align: center;
+	background: #fff;
+	font-size: 0.95em; 
+	border-top: 1px solid #888888;
+	z-index: 20;
+}
+
+.footer {
+	height: 20px;
+	padding: 0.4em;
+}
+.footer-container {
+    text-align: center;
+} 
+
+
 /*
 * @section 		Color styling for everything
 * 
@@ -60,8 +177,9 @@ html, body {
 #green { color: #92C049; }
 #bgreen { background-color: #92C049; }
 
+
 /* 
-* @section 		enviroCar related styling like toolbar, map, charts and tables
+* @section 		enviroCar related styling and positioning like toolbar, map, charts and tables
 * 
 */
 
@@ -81,12 +199,13 @@ a img{
 	position: absolute;
     width: 100%;
 	overflow: hidden;
+	top: 106px;
 }
 
 #map-container i {
 	position: absolute;
 	display: block;
-	box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
 }
 
 .map-top { top: -5px; left: 0; right: 0; height: 5px; z-index: 10;}
@@ -97,7 +216,7 @@ a img{
 
 #map {
 	position: relative;
-	height: 638px;
+	height: 659px;
 }
 
 /* table */
@@ -105,9 +224,17 @@ a img{
 #table {
 	
 	display: none;
-	position: relative;
-	height:250px;
+	position: absolute;
 	overflow:scroll;
+	margin: 5px;
+	padding: 25px;
+
+}
+
+#data-table {
+	
+	float: right;
+
 }
 
 /* tabs and charts */
@@ -121,7 +248,7 @@ a img{
 
 #chart {
 	display: none;
-	position: relative;
+	position: absolute;
 	width:49%; 
 	
 }
@@ -130,7 +257,13 @@ a img{
     border: none;
     z-index: 4;
     padding: 0;
-   	width: 60%;
+   	width: 100%;
+   	float: left;
+}
+
+#timerange-btn {
+	float: right;
+	
 }
 
 #help-button {
@@ -268,78 +401,87 @@ border: none;
 }
 
 
-/* 
-* @section 		Styling for layout sections like the header, nav, main body, and footer.
-* 
-*/
+/* Button animation */
 
-header {
-    text-align: auto;
-	border-bottom: 1px solid #888888;
-}
-
-.body-header {
-    margin:0 0 4em 0;
-}
-
-/*
-* Navigation (Tool)Bar in Header
-*/
-
-#nav-bar {
-    padding: 0.5em 0.5em 0.5em 0.5em;
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
     position: relative;
-    background: #fff;
-        
-	
-}
-
-#nav-bar .container {
-    position: relative;
-    z-index: 2;
-
-}
-
-
-#nav-bar table {
-	width: 100%;
-	border: none;
-
-}
-
-#nav-bar td {
-	border: none;
-}
-
-#nav-bar h1 {
-    margin: .9em 0 .5em 0;
-    letter-spacing: 8px;
-}
-
-#nav-bar p {
-    font-weight: 700;
-}
-
-
-
-/*
-*	Footer
-*/
-
-footer {
-    bottom: 0;
-    position:fixed;
-    width:100%;
-	text-align: center;
-	background: #fff;
-	font-size: 0.95em; 
-	border-top: 1px solid #888888;
-}
-
-.footer-container {
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -100px;
+    width: 200px;
+    height: 50px;
     text-align: center;
-} 
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
 
+.button_base:hover {
+    cursor: pointer;
+}
+
+/* ### ### ### 03 */
+.b03_skewed_slide_in {
+    overflow: hidden;
+    border: #fff solid 1px;
+}
+
+.b03_skewed_slide_in div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 10px;
+}
+
+.b03_skewed_slide_in div:nth-child(1) {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.b03_skewed_slide_in div:nth-child(2) {
+    background-color: #92C049;
+    width: 230px;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: translate(-250px, 0px) skewX(-30deg);
+    -webkit-transform: translate(-250px, 0px) skewX(-30deg);
+    -moz-transform: translate(-250px, 0px) skewX(-30deg);
+}
+
+.b03_skewed_slide_in div:nth-child(3) {
+    color: #ffffff;
+    left: -200px;
+    transition: left 0.2s ease;
+    -webkit-transition: left 0.2s ease;
+    -moz-transition: left 0.2s ease;
+}
+
+.b03_skewed_slide_in:hover div:nth-child(2) {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transform: translate(-15px, 0px) skewX(-30deg);
+    -webkit-transform: translate(-15px, 0px) skewX(-30deg);
+    -moz-transform: translate(-15px, 0px) skewX(-30deg);
+}
+
+.b03_skewed_slide_in:hover div:nth-child(3) {
+    left: 0px;
+    transition: left 0.30000000000000004s ease;
+    -webkit-transition: left 0.30000000000000004s ease;
+    -moz-transition: left 0.30000000000000004s ease;
+}
 
 /* Clear fix for div positioning */
 

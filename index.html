@@ -74,8 +74,9 @@
 						<table>
 							<colgroup>
 							   <col width="150">
+							   <col width="50">
 							   <col width="600">
-							   <col width="400">
+							   <col width="500">
 							   <col width="200">
 							   <col width="50">
 							</colgroup>
@@ -86,37 +87,81 @@
 									  <label for="logo" id="logo-label">Exploration und Visualisierung</label>
 									</div>
 								</td>
+								<td></td>
 								<td>
 									<div id="calendar">
 										<table>
 											<tr>
-												<td></td>
+												
 												<td>
-													<label for="from">Start-Datum</label>
+													<label for="from">Beginn: </label>
 												</td>
 						                 		<td>
-													<input type="text" id="from" name="from">
+													<!--<input type="text" id="from" name="from">-->
+													<input type="date" name="start-date">
 												</td>
+												<td>
+												
+													<input type="time" name="start_time">
+												</td>
+												
 											</tr>
 											<tr>
-												<td></td>
+												
 												<td>
-													<label for="to">End-Datum</label>
+													<label for="to">Ende: </label>
 												</td>
 						                 		<td>
-													<input type="text" id="to" name="to">
+													<!--<input type="text" id="to" name="to">-->
+													<input type="date" name="end-date">
 												</td>
-											</tr>		
+												<td>
+													<input type="time" name="end_time">
+												</td>
+												<td>
+													 	<div id="timerange-btn" class="button_base b03_skewed_slide_in">
+												        <div>Zeitraum auswählen</div>
+												        <div></div>
+														<div>Tracks anzeigen</div>
+													</div>
+												</td>
+											</tr>
+											
 				                     	</table>
+				                    
+				                    </div>
+				                    <div id ="trackSelection">
+				                    	
+				                    	<form action="">
+											<select name="tracks">
+												<option value="51c97d05e4b0fe5a04e9e735">Track 1</option>
+												<option value="51c980c8e4b05956bbffceff">Track 2</option>
+												<option value="51c97d05e4b0fe5a04e9e737">Track 3</option>
+												<option value="51c980c8e4b05956bbffcf01">Track 4</option>
+											</select>
+										</form>
+										
+									    <div class="button_base b03_skewed_slide_in">
+									        <div>Track auswählen</div>
+									        <div></div>
+									        <div>Track anzeigen</div>
+									    </div>
+										
+										
 				                    </div>
 									
 								</td>
 								
 								<td>
-								
+									
+									<div id="analysis-interpolation">
+										<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>
+										<input id="interpolation-btn" type="image" src="img/run_interpolation.png"  onclick='interpolate();' width="48" height="48" />
+									</div>
+									<progress id="progressbar" value="0" max="100"></progress>
 								</td>
 								<td>
-									<label for="analysis-mode">Analyse Modus</label>
+									<label id="analysis-mode-label" for="analysis-mode">Analyse Modus</label>
 									<div class="onoffswitch" >
 										<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onClick="changeMode()">
 										<label class="onoffswitch-label" for="myonoffswitch">
@@ -158,33 +203,33 @@
 						<i class="map-top"></i>
 						<i class="map-bottom"></i>
 					</div>
-						
-						<div class="right">
-							<div id="table" class="top">
-								 <form name="checkbox">
-					                 <p>Kreuzen Sie die gewünschten Measurements an:</p>
-					                   <p>
-					                     <input type="checkbox" name="id" checked> ID
-					                     <input type="checkbox" name="verbrauch" checked> Verbrauch
-					                     <input type="checkbox" name="co2" checked> CO2
-					                     <input type="checkbox" name="geschwindigkeit" checked> Geschwindigkeit
-					                     <input type="checkbox" name="luftmasse"checked> Luftmasse
-					                     <input id="btnHide" type="button" onclick="refreshTable();" value="Aktualisieren">
-					                   </p>
-				                 </form>
-								<script type="text/javascript">
-									createTable();
-								</script>
-							</div>
-							
-							<div id="chart" class="bottom">
-								<script type="text/javascript">
-									var lineChart = new LineChart();
-									lineChart.initChart();
-									lineChart.createChartFromTrack();
-								</script>						
-							</div>
+				
+					<div class="right">
+						<div id="table" class="top">
+							 <form name="checkbox">
+				                 <p>Kreuzen Sie die gewünschten Measurements an:</p>
+				                   <p>
+				                     <input type="checkbox" name="id" checked> ID
+				                     <input type="checkbox" name="verbrauch" checked> Verbrauch
+				                     <input type="checkbox" name="co2" checked> CO2
+				                     <input type="checkbox" name="geschwindigkeit" checked> Geschwindigkeit
+				                     <input type="checkbox" name="luftmasse"checked> Luftmasse
+				                     <input id="btnHide" type="button" onclick="refreshTable();" value="Aktualisieren">
+				                   </p>
+			                 </form>
+							<script type="text/javascript">
+								createTable();
+							</script>
 						</div>
+						
+						<div id="chart" class="bottom">
+							<script type="text/javascript">
+								var lineChart = new LineChart();
+								lineChart.initChart();
+								lineChart.createChartFromTrack();
+							</script>						
+						</div>
+					</div>
 					
 				</div>
 			</div>
@@ -192,10 +237,10 @@
 			
 			<footer>
 				<div class="footer">
-					<p>
+					
 						<img src="./img/blank.png" onClick="changeLanguage('en')" class="flag flag-gb" alt="English"> &middot;
 						2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
-					</p>
+					
 				</div>
 			</footer>
 	
