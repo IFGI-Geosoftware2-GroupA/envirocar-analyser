@@ -178,7 +178,7 @@ LineChart.prototype.createChartFromTrack = function() {
 	var gpsAltitude = new Array();
 	var gpsPDOP = new Array();
 	// insert values to array, time is saved as UTC time
-	for ( i = 0; i < features.length; i++) {
+	for ( i = 0; i < features.length; i+=10) {
 		var time = features[i].properties.time;
 		var d = new Date(time);
 		var utc = Date.UTC(d.getYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds());
