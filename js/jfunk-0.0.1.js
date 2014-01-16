@@ -106,7 +106,7 @@ var jFunk=function(sch,obj) {
                         }
                     spcspl[si]+=" "+spcspl.splice(si+1,cls-si-1).join(" ");
                     }
-                }
+               };
             }
 
         for(var si=0; si<spcspl.length; si++) {
@@ -127,12 +127,12 @@ var jFunk=function(sch,obj) {
             else { return this.results[idx]; }
             }
         };
-    }
+   };
 jFunk.init=function(prm) {
     for(pi in prm) {
         jFunk.sub[pi]=prm[pi];
         }
-    }
+   };
 jFunk.sub={
     propertyPound:"id",
     propertyDot:"class",
@@ -210,7 +210,7 @@ jFunk.sub={
             }
         return arr;
         }
-    }
+   };
 
 
 var jF=jFunk;
