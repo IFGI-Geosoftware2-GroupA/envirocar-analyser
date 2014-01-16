@@ -100,7 +100,7 @@ function initTable() {
 
 }
 
-}, 500);
+}, 1000);
 	myTable.appendChild(mytablebody);
 	myTable.setAttribute("border",1);
 	
