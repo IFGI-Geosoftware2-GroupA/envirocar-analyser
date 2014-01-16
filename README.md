@@ -12,13 +12,13 @@ Die Daten stammen aus dem [enviroCar-Projekt](https://envirocar.org/)
 :copyright: 2013 
 
 Entwickler:
- * Jens Balmert
- * Thiemo Gärtner
- * Mario Gerdes
- * Jan-Philipp Heine
- * Marius Runde
- * Daniel Sawatzky
- * Axel Virnich
+ * Jens Balmert (@Jens13579)
+ * Thiemo Gärtner (@querstrebe)
+ * Mario Gerdes (@MarioGerdes)
+ * Jan-Philipp Heine (@jphwwu)
+ * Marius Runde (@mrunde)
+ * Daniel Sawatzky (@dsawatzky)
+ * Axel Virnich (@avi92)
 
 
 
