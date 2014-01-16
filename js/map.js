@@ -16,13 +16,12 @@ markersBounds = new google.maps.LatLngBounds();
 var path = new google.maps.MVCArray(),
 service = new google.maps.DirectionsService(),
 poly,
-// Variable to hold the status of streetmode
 streetmode = false,
 alerted = false,
 streetlistener,
 removepointlistener;
 var polyexport = new google.maps.MVCArray();
-// var removepoints = [];
+var removepoints = [];
 
 /**
  * Initialize the map
@@ -131,7 +130,7 @@ function initMap() {
 	 
 	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
-	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true});
+	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true,strokeColor: "#CC33FF"});
 }
 
 /*
@@ -220,12 +219,12 @@ function showMarkers(query) {
 					 else{
 						var phen4 = "Kein Wert";
 					 }
-					
-					
+										
 					// var phen1 = measurements[i].getPhenomenons()[j];
 					// var phen2 = measurements[i].getPhenomenons()[k];
 					// var phen3 = measurements[i].getPhenomenons()[l];
 					// var phen4 = measurements[i].getPhenomenons()[m];
+					
 				// Create InfoWindow with the specific Pheonomenons and values to avoid 
 				// arrangement problems of arrays and parsing
 				if(measurements[i]!=undefined){
@@ -364,12 +363,15 @@ function enableStreetmode(){
   	poly.setVisible(true);
   	// Setup the click event listeners: For Adding Listener to enable streetsegment selection
     streetlistener = google.maps.event.addListener(map, 'click', function(evt) {
-	  if (path.getLength() === 0) {
+		// store actual length of array for adding a 'click' history
+		// needed for removing the selection
+		removepoints.push(path.length);
+    	if (path.getLength() == 0) {
 	      path.push(evt.latLng);
 	     // Holds the Content in an extra array to export data till user starts a new selection
 	      polyexport.push(evt.latLng);
 	      poly.setPath(path);
-	    } else {
+	    } else {	
 	      service.route({
 		        origin: path.getAt(path.getLength() - 1),
 		        destination: evt.latLng,
@@ -381,30 +383,30 @@ function enableStreetmode(){
 		              i < len; i++) {
 		            path.push(result.routes[0].overview_path[i]);
 		            polyexport.push(result.routes[0].overview_path[i]);
-		     //       removepoints.push(path.getLength());
 		          }
 		        }
 		      }
 	      );
 	     }	  	
   	}); 
-  	// Setup the click event listener to remove last vertices on 'rightclick'
+  	// Setup the click event listener to undo user Selection
   	removepointlistener = google.maps.event.addListener(map, 'rightclick', function(){
-  	
-  	//	for (var i=0; i<path.length;i++){
-  	//		if(evt.latLng==path.getAt(i).latLng){
-  	//			path.removeAt(i);
-  	//			polyexport.removeAt(i);
-  	//			poly.setPath(path);
-  	//		}
-  	//		else{return;}
-  	//	}
-  	
-  	// Removes the last point of the polyline and sets the path again
-  	//	path.getLength()-removepoints[removepoints.getLength()-1];
-  		path.removeAt(path.getLength()-1);
-  		polyexport.removeAt(polyexport.getLength()-1);
-  		poly.setPath(path);
+		if (path.length>0){
+			// Removes the last 'click' action made by user
+	  		while(path.length != removepoints[removepoints.length-1]){
+	  		path.pop(path[path.length-1]);
+	  		polyexport.pop(polyexport[polyexport.length-1]);
+	  		}
+	  		// set the path again
+	  		poly.setPath(path);
+	  		// Delete the last Element to step further back in history of clicks
+	  		if(removepoints.length!=0){
+	  			removepoints.pop(removepoints[removepoints.length-1]);
+	  		}
+	  	}
+	  	else{
+	  		alert("No Point to remove! Use leftclick to set a point!");
+	  	}	
   	});
 }
 /**
@@ -423,6 +425,8 @@ function disableStreetmode(){
  	path = new google.maps.MVCArray();
  	// Deactivate Crosshair
  	map.setOptions({draggableCursor:null});
+ 	// Clear the history array for a later selection
+ 	removepoints=[]; 	
 }
 /**
  * Function for exporting a Polyline Lat_Lng Element 
