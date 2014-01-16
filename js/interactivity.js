@@ -54,7 +54,7 @@ function changeMode() {
  * jQuery-Function to select a time range 
  * additonal: datepicker in german language
  */
-
+/*
 $(function() {
 	$( "#calendar-from" ).datepicker({
 		defaultDate: "+1w",
@@ -131,3 +131,4 @@ $(document).ready(function(){
         	loading();
     });
  });  
+*/
