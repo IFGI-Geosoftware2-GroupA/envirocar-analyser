@@ -22,6 +22,7 @@ alerted = false,
 streetlistener,
 removepointlistener;
 var polyexport = new google.maps.MVCArray();
+// var removepoints = [];
 
 /**
  * Initialize the map
@@ -188,49 +189,49 @@ function showMarkers(query) {
 					else{
 						var val4 = "Kein Wert";
 					}
-					//var val1 = measurements[i].getValues()[j];
-					//var val2 = measurements[i].getValues()[k];
-					//var val3 = measurements[i].getValues()[l];
-					//var val4 = measurements[i].getValues()[m];
+					// var val1 = measurements[i].getValues()[j];
+					// var val2 = measurements[i].getValues()[k];
+					// var val3 = measurements[i].getValues()[l];
+					// var val4 = measurements[i].getValues()[m];
 					
 					
 					// Create Variables for Phenomenons
-					if(measurements[i].getPhenomenons()[j]!=undefined){
-						var phen1 = measurements[i].getPhenomenons()[j].name+" ("+measurements[i].getPhenomenons()[j].unit+") ";
-					}
-					else{
+					 if(measurements[i].getPhenomenons()[j]!=undefined){
+						var phen1 = measurements[i].getPhenomenons()[j].name+" ("+measurements[i].getPhenomenons()[j].unit+")";
+					 }
+					 else{
 						var phen1 = "Kein Wert";
-					}
-					if(measurements[i].getPhenomenons()[k]!=undefined){
-						var phen2 = measurements[i].getPhenomenons()[k].name+" ("+measurements[i].getPhenomenons()[k].unit+") ";
-					}
-					else{
+					 }
+					 if(measurements[i].getPhenomenons()[k]!=undefined){
+					 	var phen2 = measurements[i].getPhenomenons()[k].name+" ("+measurements[i].getPhenomenons()[k].unit+")";
+					 }
+				 	 else{
 						var phen2 = "Kein Wert";
-					}
-					if(measurements[i].getPhenomenons()[l]!=undefined){
-						var phen3 = measurements[i].getPhenomenons()[l].name+" ("+measurements[i].getPhenomenons()[l].unit+") ";
-					}
-					else{
-						var phen3 = "Kein Wert";
-					}
-					if(measurements[i].getPhenomenons()[m]!=undefined){
-						var phen4 = measurements[i].getPhenomenons()[m].name+" ("+measurements[i].getPhenomenons()[m].unit+") ";
-					}
-					else{
+					 }
+					 if(measurements[i].getPhenomenons()[l]!=undefined){
+					 	var phen3 = measurements[i].getPhenomenons()[l].name+" ("+measurements[i].getPhenomenons()[l].unit+")";
+					 }
+					 else{
+						 var phen3 = "Kein Wert";
+					 }
+					 if(measurements[i].getPhenomenons()[m]!=undefined){
+					 	var phen4 = measurements[i].getPhenomenons()[m].name+" ("+measurements[i].getPhenomenons()[m].unit+")";
+					 }
+					 else{
 						var phen4 = "Kein Wert";
-					}
+					 }
 					
 					
-					//var phen1 = measurements[i].getPhenomenons()[j];
-					//var phen2 = measurements[i].getPhenomenons()[k];
-					//var phen3 = measurements[i].getPhenomenons()[l];
-					//var phen4 = measurements[i].getPhenomenons()[m];
+					// var phen1 = measurements[i].getPhenomenons()[j];
+					// var phen2 = measurements[i].getPhenomenons()[k];
+					// var phen3 = measurements[i].getPhenomenons()[l];
+					// var phen4 = measurements[i].getPhenomenons()[m];
 				// Create InfoWindow with the specific Pheonomenons and values to avoid 
 				// arrangement problems of arrays and parsing
 				if(measurements[i]!=undefined){
 					buildInfoWindow(marker,map,measurements[i],val1,val2,val3,val4,phen1,phen2,phen3,phen4);
 				}
-				
+				// buildInfoWindow(marker,map,measurements[i],val1,val2,val3,val4,phen1,phen2,phen3,phen4);
 			};
 			var mcOptions = {gridSize: 50, maxZoom: maxZoomLevelForClusterer};
 			mc = new MarkerClusterer(map, markers, mcOptions);
@@ -279,9 +280,7 @@ function buildInfoWindow(marker,map,measurements,val1,val2,val3,val4,phen1,phen2
 						phen1+ " : " + val1+ " " + '</br>'+
 						phen2+ " : " + val2+ " " + '</br>'+
 						phen3+ " : " + val3+ " " + '</br>'+
-						phen4+ " : " + val4+ " " + '</br>'+
-						//console.log(val1);
-						//console.log(val1);
+						phen4+ " : " + val4+ " " + '</br>'+	
 					'</center>'+
 				'</div>';
         // ------------------------------------
@@ -382,6 +381,7 @@ function enableStreetmode(){
 		              i < len; i++) {
 		            path.push(result.routes[0].overview_path[i]);
 		            polyexport.push(result.routes[0].overview_path[i]);
+		     //       removepoints.push(path.getLength());
 		          }
 		        }
 		      }
@@ -401,6 +401,7 @@ function enableStreetmode(){
   	//	}
   	
   	// Removes the last point of the polyline and sets the path again
+  	//	path.getLength()-removepoints[removepoints.getLength()-1];
   		path.removeAt(path.getLength()-1);
   		polyexport.removeAt(polyexport.getLength()-1);
   		poly.setPath(path);
