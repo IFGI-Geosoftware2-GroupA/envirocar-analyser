@@ -19,11 +19,6 @@ function initTable() {
 		var myTable     = document.createElement("table");
 		var mytablebody = document.createElement("tbody");
 		
-		var pattconsumption = /Consumption/;
-		var pattco2 = /CO2/;
-		var pattspeed = /Speed/;
-		var pattmaf = /MAF/;
-		
 		consumption = new Array();
 		co2 = new Array();
 		speed = new Array();
@@ -31,34 +26,35 @@ function initTable() {
 
 	
 	setTimeout(function() {
+		alert(measurements[10].getPhenomenons()[2].unit + " " + measurements[10].getValues()[2]);
 		
 		for (i=0; i< measurements.length; i++){
-			for (j=0; j<4; j++){
+			for (j=0, k=0, l=1,m=2,n=3; j<4; j++,k=k+4,l=l+4,m=m+4,n=n+4){
 				
-				if (pattconsumption.test(measurements[i].getPhenomenons()[j]) == true){
+				if (measurements[i].getPhenomenons()[j].name == "Consumption"){
 					//alert("Consumption");
-					consumption[i].push(measurements[i].getPhenomenons()[j]);		
+					consumption.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[k]);		
 				}
-			
-				if (pattco2.test(measurements[i].getPhenomenons()[j]) == true){
+				else
+				if (measurements[i].getPhenomenons()[j].name == "CO2"){
 					//alert("co2");
-					co2[i].push(measurements[i].getPhenomenons()[j]);	
+					co2.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[l]);	
 				}
-			
-				if (pattspeed.test(measurements[i].getPhenomenons()[j]) == true){
+				else
+				if (measurements[i].getPhenomenons()[j].name == "Speed"){
 					//alert("speed");
-					speed[i].push(measurements[i].getPhenomenons()[j]);		
+					speed.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[m]);		
 				}
-			
-				if (pattmaf.test(measurements[i].getPhenomenons()[j]) == true){
+				else
+				if (measurements[i].getPhenomenons()[j].name == "MAF"){
 					//alert("maf");
-					maf[i].push(measurements[i].getPhenomenons()[j]);		
+					maf.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[n]);		
 				}
 			}
 		}
 		
 				
-	for (var i=0, j=0, k=1,l=2,m=3; i < measurements.length; i++,j=j+4,k=k+4,l=l+4,m=m+4) {
+	for (var i=0/*, j=0, k=1,l=2,m=3*/; i < measurements.length; i++/*,j=j+4,k=k+4,l=l+4,m=m+4*/) {
 					
 //Creating the Headrow of the Table
 		if (i == 0)	{
@@ -106,23 +102,23 @@ function initTable() {
 		//ID-Column
 		currentText0 = document.createTextNode(measurements[i].getId());
 		//Consumption-Column
-		currentText1 = consumption[i] + " Value: " + measurements[i].getValues()[j];
-		currentFragment1 = document.createTextNode(currentText1.substring(41,43) + " " + currentText1.substring(30,33));
+		currentText1 = document.createTextNode(consumption[i]); // + " Value: " + measurements[i].getValues()[j]);
+		//currentFragment1 = document.createTextNode(currentText1.substring(41,43) + " " + currentText1.substring(30,33));
 		//CO2-Column
-		currentText2 = co2[i] + " Value: " + measurements[i].getValues()[k];
-		currentFragment2 = document.createTextNode(currentText2.substring(34,35) + " " + currentText2.substring(22,25));
+		currentText2 = document.createTextNode(co2[i]); // + " Value: " + measurements[i].getValues()[k]);
+		//currentFragment2 = document.createTextNode(currentText2.substring(34,35) + " " + currentText2.substring(22,25));
 		//Speed-Column
-		currentText3 = speed[i] + " Value: " + measurements[i].getValues()[l];
-		currentFragment3 = document.createTextNode(currentText3.substring(37,38) + " " + currentText3.substring(24,28));
+		currentText3 = document.createTextNode(speed[i]); // + " Value: " + measurements[i].getValues()[l]);
+		//currentFragment3 = document.createTextNode(currentText3.substring(37,38) + " " + currentText3.substring(24,28));
 		//MAF-Column
-		currentText4 = maf[i] + " Value: " + measurements[i].getValues()[m];
-		currentFragment4 = document.createTextNode(currentText4.substring(33,36) + " " + currentText4.substring(22,25));
+		currentText4 = document.createTextNode(maf[i]); // + " Value: " + measurements[i].getValues()[m]);
+		//currentFragment4 = document.createTextNode(currentText4.substring(33,36) + " " + currentText4.substring(22,25));
 		
 		currentCell0.appendChild(currentText0);
-		currentCell1.appendChild(currentFragment1);
-		currentCell2.appendChild(currentFragment2);
-		currentCell3.appendChild(currentFragment3);
-		currentCell4.appendChild(currentFragment4);
+		currentCell1.appendChild(currentText1);
+		currentCell2.appendChild(currentText2);
+		currentCell3.appendChild(currentText3);
+		currentCell4.appendChild(currentText4);
 		
 		currentRow.appendChild(currentCell0);
 		currentRow.appendChild(currentCell1);
