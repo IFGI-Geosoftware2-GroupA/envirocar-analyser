@@ -154,90 +154,75 @@ function showMarkers(query) {
 	try {
 		var measurements = query.getMeasurements();
 		setTimeout(function() {
-			for (var i=0, j=0, k=1,l=2,m=3; i < measurements.length; i++,j=j+4,k=k+4,l=l+4,m=m+4) {
+			for (var i = 0, j = 0, k = 1, l = 2, m = 3; i < measurements.length; i++, j = j + 4, k = k + 4, l = l + 4, m = m + 4) {
 				var marker = new google.maps.Marker({
-					position: measurements[i].getPoint(),
-					icon: 'img/circle.png'
+					position : measurements[i].getPoint(),
+					icon : 'img/circle.png'
 				});
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
-				
+
 				// Variables for Infowindow
-					// Create Variables for values 
-					if(measurements[i].getValues()[j]!=undefined){
-						var val1 = measurements[i].getValues()[j];
-					}
-					else{
-						var val1 = "Kein Wert";
-					}
-						if(measurements[i].getValues()[k]!=undefined){
-						var val2 = measurements[i].getValues()[k];
-					}
-					else{
-						var val2 = "Kein Wert";
-					}
-						if(measurements[i].getValues()[l]!=undefined){
-						var val3 = measurements[i].getValues()[l];
-					}
-					else{
-						var val3 = "Kein Wert";
-					}
-						if(measurements[i].getValues()[m]!=undefined){
-						var val4 = measurements[i].getValues()[m];
-					}
-					else{
-						var val4 = "Kein Wert";
-					}
-					// var val1 = measurements[i].getValues()[j];
-					// var val2 = measurements[i].getValues()[k];
-					// var val3 = measurements[i].getValues()[l];
-					// var val4 = measurements[i].getValues()[m];
-					
-					
-					// Create Variables for Phenomenons
-					 if(measurements[i].getPhenomenons()[j]!=undefined){
-						var phen1 = measurements[i].getPhenomenons()[j].name+" ("+measurements[i].getPhenomenons()[j].unit+")";
-					 }
-					 else{
-						var phen1 = "Kein Wert";
-					 }
-					 if(measurements[i].getPhenomenons()[k]!=undefined){
-					 	var phen2 = measurements[i].getPhenomenons()[k].name+" ("+measurements[i].getPhenomenons()[k].unit+")";
-					 }
-				 	 else{
-						var phen2 = "Kein Wert";
-					 }
-					 if(measurements[i].getPhenomenons()[l]!=undefined){
-					 	var phen3 = measurements[i].getPhenomenons()[l].name+" ("+measurements[i].getPhenomenons()[l].unit+")";
-					 }
-					 else{
-						 var phen3 = "Kein Wert";
-					 }
-					 if(measurements[i].getPhenomenons()[m]!=undefined){
-					 	var phen4 = measurements[i].getPhenomenons()[m].name+" ("+measurements[i].getPhenomenons()[m].unit+")";
-					 }
-					 else{
-						var phen4 = "Kein Wert";
-					 }
-										
-					// var phen1 = measurements[i].getPhenomenons()[j];
-					// var phen2 = measurements[i].getPhenomenons()[k];
-					// var phen3 = measurements[i].getPhenomenons()[l];
-					// var phen4 = measurements[i].getPhenomenons()[m];
-					
-				// Create InfoWindow with the specific Pheonomenons and values to avoid 
-				// arrangement problems of arrays and parsing
-				if(measurements[i]!=undefined){
-					buildInfoWindow(marker,map,measurements[i],val1,val2,val3,val4,phen1,phen2,phen3,phen4);
+				// Create Variables for values
+				if (measurements[i].getValues()[j] != undefined) {
+					var val1 = measurements[i].getValues()[j];
+				} else {
+					var val1 = "Kein Wert";
 				}
-				// buildInfoWindow(marker,map,measurements[i],val1,val2,val3,val4,phen1,phen2,phen3,phen4);
+				if (measurements[i].getValues()[k] != undefined) {
+					var val2 = measurements[i].getValues()[k];
+				} else {
+					var val2 = "Kein Wert";
+				}
+				if (measurements[i].getValues()[l] != undefined) {
+					var val3 = measurements[i].getValues()[l];
+				} else {
+					var val3 = "Kein Wert";
+				}
+				if (measurements[i].getValues()[m] != undefined) {
+					var val4 = measurements[i].getValues()[m];
+				} else {
+					var val4 = "Kein Wert";
+				}
+
+				// Create Variables for Phenomenons
+				if (measurements[i].getPhenomenons()[j] != undefined) {
+					var phen1 = measurements[i].getPhenomenons()[j].name + " (" + measurements[i].getPhenomenons()[j].unit + ")";
+				} else {
+					var phen1 = "Kein Wert";
+				}
+				if (measurements[i].getPhenomenons()[k] != undefined) {
+					var phen2 = measurements[i].getPhenomenons()[k].name + " (" + measurements[i].getPhenomenons()[k].unit + ")";
+				} else {
+					var phen2 = "Kein Wert";
+				}
+				if (measurements[i].getPhenomenons()[l] != undefined) {
+					var phen3 = measurements[i].getPhenomenons()[l].name + " (" + measurements[i].getPhenomenons()[l].unit + ")";
+				} else {
+					var phen3 = "Kein Wert";
+				}
+				if (measurements[i].getPhenomenons()[m] != undefined) {
+					var phen4 = measurements[i].getPhenomenons()[m].name + " (" + measurements[i].getPhenomenons()[m].unit + ")";
+				} else {
+					var phen4 = "Kein Wert";
+				}
+
+				// Create InfoWindow with the specific Pheonomenons and values to avoid
+				// arrangement problems of arrays and parsing
+				if (measurements[i] != undefined) {
+					buildInfoWindow(marker, map, measurements[i], val1, val2, val3, val4, phen1, phen2, phen3, phen4);
+				}
+			}
+
+			var mcOptions = {
+				gridSize : 50,
+				maxZoom : maxZoomLevelForClusterer
 			};
-			var mcOptions = {gridSize: 50, maxZoom: maxZoomLevelForClusterer};
 			mc = new MarkerClusterer(map, markers, mcOptions);
 			// Only change the bounds when measurements have been collected
- 		    if (measurements.length > 0) {
- 		   		map.fitBounds(markersBounds);
- 		    }
+			if (measurements.length > 0) {
+				map.fitBounds(markersBounds);
+			}
 		}, 500);
 	} catch(e) {
 		alert(e.message);
