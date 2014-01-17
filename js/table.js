@@ -26,34 +26,33 @@ function initTable() {
 
 	
 	setTimeout(function() {
-		alert(measurements[10].getPhenomenons()[2].unit + " " + measurements[10].getValues()[2]);
+		//alert(measurements[4].phenomenons[0] + measurements[4].phenomenons[1] + measurements[4].phenomenons[2]);
 		
-		for (i=0; i< measurements.length; i++){
-			for (j=0, k=0, l=1,m=2,n=3; j<4; j++,k=k+4,l=l+4,m=m+4,n=n+4){
+		for (i=0, k=0 /*, k=0, l=1,m=2,n=3*/; i< measurements.length; i++, k=k+4/*, k=k+4,l=l+4,m=m+4,n=n+4*/){
+			for (j=k; j< k+4; j++){
 				
 				if (measurements[i].getPhenomenons()[j].name == "Consumption"){
 					//alert("Consumption");
-					consumption.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[k]);		
+					consumption.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);		
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "CO2"){
 					//alert("co2");
-					co2.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[l]);	
+					co2.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);	
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "Speed"){
 					//alert("speed");
-					speed.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[m]);		
+					speed.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);		
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "MAF"){
 					//alert("maf");
-					maf.push(measurements[i].getPhenomenons()[j].unit + measurements[i].getValues()[n]);		
+					maf.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);		
 				}
 			}
 		}
-		
-				
+			
 	for (var i=0/*, j=0, k=1,l=2,m=3*/; i < measurements.length; i++/*,j=j+4,k=k+4,l=l+4,m=m+4*/) {
 					
 //Creating the Headrow of the Table
