@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="https://raw.github.com/jonthornton/jquery-timepicker/master/jquery.timepicker.css" />
 		
 		<!-- Fonts and Flags -->
 		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
@@ -29,9 +30,10 @@
 		<!-- MarkerClusterer -->
 		<script src="js/lib/markerclusterer_compiled.js"></script>
 		
-		<!-- jQuery 2.0.3, jQuery UI 1.10.3 and jQuery.floatThead -->
+		<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker and jQuery.floatThead -->
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
 		<script src="js/lib/jquery-ui.min.js"></script>
+		<script src="js/lib/jquery.timepicker.min.js"></script>
 		<script src="js/lib/jquery.floatThead.min.js"></script>
 		
 		<!-- Highcharts 3.0 -->
@@ -97,11 +99,10 @@
 													<label for="from">Beginn: </label>
 												</td>
 						                 		<td>
-													<!--<input type="text" id="from" name="from">-->
-													<input type="date" name="start-date">
+													<input type="text" id="date_from" size="10">
 												</td>
 												<td>
-													<input type="time" name="start_time">
+													<input type="text" id="time_from" size="5">
 												</td>
 											</tr>
 											<tr>
@@ -109,11 +110,10 @@
 													<label for="to">Ende: </label>
 												</td>
 						                 		<td>
-													<!--<input type="text" id="to" name="to">-->
-													<input type="date" name="end-date">
+													<input type="text" id="date_to" size="10">
 												</td>
 												<td>
-													<input type="time" name="end_time">
+													<input type="text" id="time_to" size="5">
 												</td>
 												<td>
 													 	<div id="timerange-btn" class="button_base b03_skewed_slide_in">
@@ -144,7 +144,7 @@
 								<td>
 									<div id="analysis-interpolation">
 										<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>
-										<input id="interpolation-btn" type="image" src="img/run_interpolation.png" width="48" height="48" />
+										<input id="interpolation-btn" type="image" onclick="interpolate()" src="img/run_interpolation.png" width="48" height="48" />
 									</div>
 									<progress id="progressbar" value="0" max="100"></progress>
 								</td>
@@ -173,7 +173,6 @@
 				<div class="clearfix">
 					<div id="map-container" class="left">
 						<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
-						<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
 						
 						<div id="map">
 							<!-- the map will be displayed here -->
