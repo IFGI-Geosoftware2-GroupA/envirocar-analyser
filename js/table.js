@@ -18,10 +18,47 @@ function initTable() {
 		
 		var myTable     = document.createElement("table");
 		var mytablebody = document.createElement("tbody");
+		
+		var pattconsumption = /Consumption/;
+		var pattco2 = /CO2/;
+		var pattspeed = /Speed/;
+		var pattmaf = /MAF/;
+		
+		consumption = new Array();
+		co2 = new Array();
+		speed = new Array();
+		maf = new Array();
+
 	
 	setTimeout(function() {
+		
+		for (i=0; i< measurements.length; i++){
+			for (j=0; j<4; j++){
 				
-	for (var i=0; i < measurements.length; i++) {
+				if (pattconsumption.test(measurements[i].getPhenomenons()[j]) == true){
+					//alert("Consumption");
+					consumption[i].push(measurements[i].getPhenomenons()[j]);		
+				}
+			
+				if (pattco2.test(measurements[i].getPhenomenons()[j]) == true){
+					//alert("co2");
+					co2[i].push(measurements[i].getPhenomenons()[j]);	
+				}
+			
+				if (pattspeed.test(measurements[i].getPhenomenons()[j]) == true){
+					//alert("speed");
+					speed[i].push(measurements[i].getPhenomenons()[j]);		
+				}
+			
+				if (pattmaf.test(measurements[i].getPhenomenons()[j]) == true){
+					//alert("maf");
+					maf[i].push(measurements[i].getPhenomenons()[j]);		
+				}
+			}
+		}
+		
+				
+	for (var i=0, j=0, k=1,l=2,m=3; i < measurements.length; i++,j=j+4,k=k+4,l=l+4,m=m+4) {
 					
 //Creating the Headrow of the Table
 		if (i == 0)	{
@@ -60,8 +97,7 @@ function initTable() {
 		
 		currentRow = document.createElement("tr");
 		
-		currentCell0 = document.createElement("td");
-		//currentCell[j] = document.createElement("td");	
+		currentCell0 = document.createElement("td");	
 		currentCell1 = document.createElement("td");
 		currentCell2 = document.createElement("td");
 		currentCell3 = document.createElement("td");
@@ -69,28 +105,26 @@ function initTable() {
 
 		//ID-Column
 		currentText0 = document.createTextNode(measurements[i].getId());
-		//currentText[j] = document.createTextNode(measurements[j].getPhenomenons()[j]+ " Value: " + measurements[i].getValues()[j]);
 		//Consumption-Column
-		currentText1 = measurements[i].getPhenomenons()[0]+ " Value: " + measurements[i].getValues()[0];
+		currentText1 = consumption[i] + " Value: " + measurements[i].getValues()[j];
 		currentFragment1 = document.createTextNode(currentText1.substring(41,43) + " " + currentText1.substring(30,33));
 		//CO2-Column
-		currentText2 = measurements[i].getPhenomenons()[1]+ " Value: " + measurements[i].getValues()[1];
+		currentText2 = co2[i] + " Value: " + measurements[i].getValues()[k];
 		currentFragment2 = document.createTextNode(currentText2.substring(34,35) + " " + currentText2.substring(22,25));
 		//Speed-Column
-		currentText3 = measurements[i].getPhenomenons()[2]+ " Value: " + measurements[i].getValues()[2];
+		currentText3 = speed[i] + " Value: " + measurements[i].getValues()[l];
 		currentFragment3 = document.createTextNode(currentText3.substring(37,38) + " " + currentText3.substring(24,28));
 		//MAF-Column
-		currentText4 = measurements[i].getPhenomenons()[3]+ " Value: " + measurements[i].getValues()[3];
+		currentText4 = maf[i] + " Value: " + measurements[i].getValues()[m];
 		currentFragment4 = document.createTextNode(currentText4.substring(33,36) + " " + currentText4.substring(22,25));
 		
 		currentCell0.appendChild(currentText0);
-		//currentCell[j].appendChild(currentText[j]);
 		currentCell1.appendChild(currentFragment1);
 		currentCell2.appendChild(currentFragment2);
 		currentCell3.appendChild(currentFragment3);
 		currentCell4.appendChild(currentFragment4);
+		
 		currentRow.appendChild(currentCell0);
-		//currentRow.appendChild(currentCell[j]);
 		currentRow.appendChild(currentCell1);
 		currentRow.appendChild(currentCell2);
 		currentRow.appendChild(currentCell3);
@@ -100,7 +134,7 @@ function initTable() {
 
 }
 
-}, 1000);
+}, 4000);
 	myTable.appendChild(mytablebody);
 	myTable.setAttribute("border",1);
 	
