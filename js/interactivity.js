@@ -43,34 +43,6 @@ function changeMode() {
  * additonal: datepicker in german language and timepicker
  */
 $(function() {
-	$.datepicker.regional['de'] = {
-		clearText : 'löschen',
-		clearStatus : 'aktuelles Datum löschen',
-		closeText : 'schließen',
-		closeStatus : 'ohne Änderungen schließen',
-		prevText : '<zurück',
-		prevStatus : 'letzten Monat zeigen',
-		nextText : 'Vor>',
-		nextStatus : 'nächsten Monat zeigen',
-		currentText : 'heute',
-		currentStatus : '',
-		monthNames : ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-		monthNamesShort : ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-		monthStatus : 'anderen Monat anzeigen',
-		yearStatus : 'anderes Jahr anzeigen',
-		weekHeader : 'Wo',
-		weekStatus : 'Woche des Monats',
-		dayNames : ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-		dayNamesShort : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-		dayNamesMin : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-		dayStatus : 'Setze DD als ersten Wochentag',
-		dateStatus : 'Wähle D, M d',
-		dateFormat : 'dd.mm.yy',
-		firstDay : 1,
-		initStatus : 'Wähle ein Datum',
-		isRTL : false
-	};
-	$.datepicker.setDefaults($.datepicker.regional['de']);
 	
 	$.timepicker.regional['de'] = {
 		timeOnlyTitle : 'Uhrzeit auswählen',
@@ -80,36 +52,48 @@ $(function() {
 		secondText : 'Sekunde',
 		currentText : 'Jetzt',
 		closeText : 'Auswählen',
+		monthNames : ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+		monthNamesShort : ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+		dayNames : ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+		dayNamesShort : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+		dayNamesMin : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+		weekHeader : 'Wo',
+		weekStatus : 'Woche des Monats',
 		ampm : false
 	};
 	$.timepicker.setDefaults($.timepicker.regional['de']);
 	
-	$("#date_from").datetimepicker({
-		defaultDate: "-1w",
+	$("#date-from").datetimepicker({
+		
 		minDate: new Date(2013,5,8),
 		maxDate: "+0",
-		changeMonth: true,
-		changeYear: true,
+		changeMonth: false,
+		changeYear: false,
 		numberOfMonths: 3,
-		showWeek: true,
-		onClose: function( selectedDate ) {
-			$("#calendar-to").datetimepicker("option", "minDate", selectedDate);
-		}
+		showWeek: false,
+		dateFormat: "dd-mm-yy"
+		
 	});
 	
-	$("#date_to").datetimepicker({
-		defaultDate: "+0d",
-		minDate: new Date(2013,5,8),
-		maxDate: "+0",
-		changeMonth: true,
-		changeYear: true,
+	$("#date-to").datetimepicker({
+		
+		changeMonth: false,
+		changeYear: false,
 		numberOfMonths: 3,
-		showWeek: true,
+		showWeek: false,
+		dateFormat: "dd-mm-yy",
 		onClose: function( selectedDate ) {
-			$("#calendar-from").datetimepicker("option", "maxDate", selectedDate);
+			$("#date-from").datepicker("option", "maxDate", selectedDate);
+		},
+		beforeShow: function (selectedDate) {
+			var min = $("#date-from").datepicker("getDate");
+			$("#date-to").datepicker("option","minDate", min);
+			$("#date-to").datepicker("option","maxDate", "+0");
 		}
 	});
+
 });
+	
 
 function interpolate() {
 	if (document.getElementById("interpolation-btn").src == "img/stop_interpolation.png") {
