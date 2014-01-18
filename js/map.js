@@ -152,7 +152,7 @@ function resizeMap() {
  */
 function showMarkers(query) {
 	try {
-		var measurements = query.getMeasurements();
+		var measurements = query.getData();
 		setTimeout(function() {
 			for (var i = 0, j = 0, k = 1, l = 2, m = 3; i < measurements.length; i++, j = j + 4, k = k + 4, l = l + 4, m = m + 4) {
 				var marker = new google.maps.Marker({

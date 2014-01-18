@@ -525,20 +525,29 @@ Boundingbox.prototype.toUrlValue = function() {
 // -------------------
 // --- Query class ---
 // -------------------
-// Constructor without filter
-function Query(url) {
+/**
+ * Constructor without filter
+ * To see the possible keywords look at the function 'getData()'
+ */
+function Query(keyword) {
 	try {
-		this.url	= new String(url);
-		this.filter	= null;
+		this.url		= "https://envirocar.org/api/stable/";
+		this.keyword	= new String(keyword);
+		this.filter		= null;
 	} catch(e) {
 		alert("Could not create Query. This is the error message: " + e.message);
 	}
 }
-// Constructor with filter
-function Query(url, filter) {
+
+/**
+ * Constructor with filter
+ * To see the possible keywords look at the function 'getData()'
+ */
+function Query(keyword, filter) {
 	try {
-		this.url	= new String(url);
-		this.filter	= filter;
+		this.url		= "https://envirocar.org/api/stable/";
+		this.keyword	= new String(keyword);
+		this.filter		= filter;
 	} catch(e) {
 		alert("Could not create Query. This is the error message: " + e.message);
 	}
@@ -546,10 +555,30 @@ function Query(url, filter) {
 
 // Setting the variables
 Query.prototype.url;
+Query.prototype.keyword;
 Query.prototype.filter;
+
+/**
+ * Get the data depending on the used filter and keyword
+ * Possible keywords:
+ * - measurements
+ * - sensors
+ * - tracks (not implemented yet)
+ */
+Query.prototype.getData = function() {
+	if (this.keyword == 'measurements') {
+		return this.getMeasurements();
+	}
+	if (this.keyword == 'sensors') {
+		return this.getSensors();
+	}
+}
 
 // Get the measurements from an URL and parse the JSON file into a Measurement array
 Query.prototype.getMeasurements = function() {
+	// Create a temporal URL
+	var queryURL = this.url + "measurements";
+	
 	var result = [];
 	typeof result === Measurement;
 	var tempId,
@@ -558,7 +587,7 @@ Query.prototype.getMeasurements = function() {
 	tempPhenomenons = [],
 	tempValues = [];
 	
-	$.getJSON(this.url, function(json) {
+	$.getJSON(queryURL, function(json) {
 		$.each(json, function(index, data) {
 			$.each(data, function(arrayIndex, arrayElement) {
 				$.each(arrayElement, function(key, value) {
