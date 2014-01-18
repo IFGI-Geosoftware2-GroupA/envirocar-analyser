@@ -86,21 +86,27 @@ $(function() {
 	
 	$("#date_from").datetimepicker({
 		defaultDate: "-1w",
-		maxDate: "+0d",
+		minDate: new Date(2013,5,8),
+		maxDate: "+0",
 		changeMonth: true,
+		changeYear: true,
 		numberOfMonths: 3,
+		showWeek: true,
 		onClose: function( selectedDate ) {
-			$( "#calendar-to" ).datepicker( "option", "minDate", selectedDate );
+			$("#calendar-to").datetimepicker("option", "minDate", selectedDate);
 		}
 	});
 	
 	$("#date_to").datetimepicker({
 		defaultDate: "+0d",
-		maxDate: "+0d",
+		minDate: new Date(2013,5,8),
+		maxDate: "+0",
 		changeMonth: true,
+		changeYear: true,
 		numberOfMonths: 3,
+		showWeek: true,
 		onClose: function( selectedDate ) {
-			$( "#calendar-from" ).datepicker( "option", "maxDate", selectedDate );
+			$("#calendar-from").datetimepicker("option", "maxDate", selectedDate);
 		}
 	});
 });
