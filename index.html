@@ -16,8 +16,8 @@
 		<!-- Stylesheets and Favicon -->
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="shortcut icon" href="img/favicon.ico" />
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-		<link rel="stylesheet" href="https://raw.github.com/jonthornton/jquery-timepicker/master/jquery.timepicker.css" />
+		<link rel="stylesheet" href="css/lib/jquery-ui.css">
+		<link rel="stylesheet" href="css/lib/jquery-ui-timepicker-addon.min.css" />
 		
 		<!-- Fonts and Flags -->
 		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
@@ -33,7 +33,7 @@
 		<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker and jQuery.floatThead -->
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
 		<script src="js/lib/jquery-ui.min.js"></script>
-		<script src="js/lib/jquery.timepicker.min.js"></script>
+		<script src="js/lib/jquery-ui-timepicker-addon.min.js"></script>
 		<script src="js/lib/jquery.floatThead.min.js"></script>
 		
 		<!-- Highcharts 3.0 -->
@@ -96,27 +96,21 @@
 										<table>
 											<tr>
 												<td>
-													<label for="from">Beginn: </label>
+													<label for="from">Von: </label>
 												</td>
 						                 		<td>
-													<input type="text" id="date_from" size="10">
-												</td>
-												<td>
-													<input type="text" id="time_from" size="5">
+													<input type="text" id="date_from" size="16">
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<label for="to">Ende: </label>
+													<label for="to">Bis: </label>
 												</td>
 						                 		<td>
-													<input type="text" id="date_to" size="10">
+													<input type="text" id="date_to" size="16">
 												</td>
 												<td>
-													<input type="text" id="time_to" size="5">
-												</td>
-												<td>
-													 	<div id="timerange-btn" class="button_base b03_skewed_slide_in">
+													<div id="timerange-btn" class="button_base b03_skewed_slide_in">
 												        <div>Zeitraum auswählen</div>
 												        <div></div>
 														<div>Tracks anzeigen</div>
