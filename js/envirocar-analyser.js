@@ -555,8 +555,8 @@ Query.prototype.getMeasurements = function() {
 	var tempId,
 	tempPoint,
 	tempTimestamp,
-	tempPhenomenons = [],
-	tempValues = [];
+	tempPhenomenons,
+	tempValues;
 	
 	$.getJSON(this.url, function(json) {
 		$.each(json, function(index, data) {
@@ -578,6 +578,8 @@ Query.prototype.getMeasurements = function() {
 							// Get the id of the measurement
 							if (propKey == "id") {
 								tempId = propValue;
+								tempPhenomenons=[];
+								tempValues=[];
 							}
 							// Get the timestamp of the measurement
 							if (propKey == "time") {
