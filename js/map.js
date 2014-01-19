@@ -154,7 +154,7 @@ function showMarkers(query) {
 	try {
 		var measurements = query.getData();
 		setTimeout(function() {
-			for (var i = 0, j = 0, k = 1, l = 2, m = 3; i < measurements.length; i++, j = j + 4, k = k + 4, l = l + 4, m = m + 4) {
+			for (var i = 0; i < measurements.length; i++) {
 				var marker = new google.maps.Marker({
 					position : measurements[i].getPoint(),
 					icon : 'img/circle.png'
@@ -208,28 +208,33 @@ function refreshMarkers(zoom) {
  */
 function buildInfoWindow(marker,map,measurements){   
 	// Setting Content of Infowindow
-	
-	var content = '<div style="text-align: center; font-size:14px;">'+
+	try{
+		var content = '<div style="text-align: center; font-size:14px;">'+
 						'<center><b>'+"ID: "+ measurements.id +
-						'</br> '+ measurements.timestamp +'</b></br>';
+						'</br> '+ measurements.timestamp +'</b></br>';			
+				
+				for(i=0;i<measurements.phenomenons.length;i++){
+						content = content+measurements.phenomenons[i].name+'('+measurements.phenomenons[i].unit+')'+
+						": " + measurements.values[i]+'</br>';
+				}
+						content= content+'</center>'+'</div>';
 		
-					
-	for(i=0;i<measurements.phenomenons.length;i++){
 		
-			content = content+measurements.phenomenons[i].name+'('+measurements.phenomenons[i].unit+')'+": " + measurements.values[i]+'</br>';
-		
-	}
-	content= content+'</center>'+'</div>';
         // ------------------------------------
         // --- Listener for the InfoWindow ---
         // ------------------------------------
         // Open the InfoWindow when a marker is clicked and
         // closes if user "clicks" into map
         // Function to close infowindow is implemented in smartinfowindow.js
+		
 		google.maps.event.addListener(marker, 'click', function(e) {
 		//Create a Smart Info Window with options
 			new SmartInfoWindow({position: marker.getPosition(),map: map,content: content});
 		});
+		}
+		catch(e){
+			alert(e.message);
+		}
 }		
 		 // -----------------------------------------
         // --- End of Listener for the InfoWindow ---
