@@ -161,57 +161,8 @@ function showMarkers(query) {
 				});
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
-
-				// Variables for Infowindow
-				// Create Variables for values
-				if (measurements[i].getValues()[j] != undefined) {
-					var val1 = measurements[i].getValues()[j];
-				} else {
-					var val1 = "Kein Wert";
-				}
-				if (measurements[i].getValues()[k] != undefined) {
-					var val2 = measurements[i].getValues()[k];
-				} else {
-					var val2 = "Kein Wert";
-				}
-				if (measurements[i].getValues()[l] != undefined) {
-					var val3 = measurements[i].getValues()[l];
-				} else {
-					var val3 = "Kein Wert";
-				}
-				if (measurements[i].getValues()[m] != undefined) {
-					var val4 = measurements[i].getValues()[m];
-				} else {
-					var val4 = "Kein Wert";
-				}
-
-				// Create Variables for Phenomenons
-				if (measurements[i].getPhenomenons()[j] != undefined) {
-					var phen1 = measurements[i].getPhenomenons()[j].name + " (" + measurements[i].getPhenomenons()[j].unit + ")";
-				} else {
-					var phen1 = "Kein Wert";
-				}
-				if (measurements[i].getPhenomenons()[k] != undefined) {
-					var phen2 = measurements[i].getPhenomenons()[k].name + " (" + measurements[i].getPhenomenons()[k].unit + ")";
-				} else {
-					var phen2 = "Kein Wert";
-				}
-				if (measurements[i].getPhenomenons()[l] != undefined) {
-					var phen3 = measurements[i].getPhenomenons()[l].name + " (" + measurements[i].getPhenomenons()[l].unit + ")";
-				} else {
-					var phen3 = "Kein Wert";
-				}
-				if (measurements[i].getPhenomenons()[m] != undefined) {
-					var phen4 = measurements[i].getPhenomenons()[m].name + " (" + measurements[i].getPhenomenons()[m].unit + ")";
-				} else {
-					var phen4 = "Kein Wert";
-				}
-
-				// Create InfoWindow with the specific Pheonomenons and values to avoid
-				// arrangement problems of arrays and parsing
-				if (measurements[i] != undefined) {
-					buildInfoWindow(marker, map, measurements[i], val1, val2, val3, val4, phen1, phen2, phen3, phen4);
-				}
+				// Create infowindow for marker[i]/measurement[i]
+				buildInfoWindow(marker,map,measurements[i]);
 			}
 
 			var mcOptions = {
@@ -255,18 +206,20 @@ function refreshMarkers(zoom) {
  * Creates InfoWindows for every marker on 
  * map and in measurement and adds event Listener 
  */
-function buildInfoWindow(marker,map,measurements,val1,val2,val3,val4,phen1,phen2,phen3,phen4){   
+function buildInfoWindow(marker,map,measurements){   
 	// Setting Content of Infowindow
 	
 	var content = '<div style="text-align: center; font-size:14px;">'+
 						'<center><b>'+"ID: "+ measurements.id +
-						'</br> '+ measurements.timestamp +'</b></br>' +
-						phen1+ " : " + val1+ " " + '</br>'+
-						phen2+ " : " + val2+ " " + '</br>'+
-						phen3+ " : " + val3+ " " + '</br>'+
-						phen4+ " : " + val4+ " " + '</br>'+	
-					'</center>'+
-				'</div>';
+						'</br> '+ measurements.timestamp +'</b></br>';
+		
+					
+	for(i=0;i<measurements.phenomenons.length;i++){
+		
+			content = content+measurements.phenomenons[i].name+'('+measurements.phenomenons[i].unit+')'+": " + measurements.values[i]+'</br>';
+		
+	}
+	content= content+'</center>'+'</div>';
         // ------------------------------------
         // --- Listener for the InfoWindow ---
         // ------------------------------------
@@ -277,10 +230,10 @@ function buildInfoWindow(marker,map,measurements,val1,val2,val3,val4,phen1,phen2
 		//Create a Smart Info Window with options
 			new SmartInfoWindow({position: marker.getPosition(),map: map,content: content});
 		});
+}		
 		 // -----------------------------------------
         // --- End of Listener for the InfoWindow ---
         // ------------------------------------------
-}
 
 /**
  * Create a control Element on Map for enabling Streetsegment Collection
