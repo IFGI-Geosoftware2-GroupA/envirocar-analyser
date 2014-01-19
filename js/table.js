@@ -28,8 +28,8 @@ function initTable() {
 	setTimeout(function() {
 		//alert(measurements[4].phenomenons[0] + measurements[4].phenomenons[1] + measurements[4].phenomenons[2]);
 		
-		for (i=0, k=0 /*, k=0, l=1,m=2,n=3*/; i< measurements.length; i++, k=k+4/*, k=k+4,l=l+4,m=m+4,n=n+4*/){
-			for (j=k; j< k+4; j++){
+		for (i=0, j=0 /*, k=0, l=1,m=2,n=3*/; i< measurements.length; i++/*, k=k+4,l=l+4,m=m+4,n=n+4*/){
+			for (j=0;j<measurements[i].phenomenons.length;j++){
 				
 				if (measurements[i].getPhenomenons()[j].name == "Consumption"){
 					//alert("Consumption");
