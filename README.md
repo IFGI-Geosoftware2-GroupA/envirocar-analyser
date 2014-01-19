@@ -20,7 +20,4 @@ Entwickler:
  * Daniel Sawatzky ([@dsawatzky](https://github.com/dsawatzky))
  * Axel Virnich ([@avi92](https://github.com/avi92))
 
-
-
- 
-
+Probleme bitte [hier](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/issues/new) melden.

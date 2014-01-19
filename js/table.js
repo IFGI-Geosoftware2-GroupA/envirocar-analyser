@@ -13,8 +13,8 @@ function createTable() {
 
 function initTable() {
 	try {
-		var query = new Query('examples/simpleExample.json');
-		var measurements = query.getMeasurements();
+		var query = new Query('measurements');
+		var measurements = query.getData();
 		
 		var myTable     = document.createElement("table");
 		var mytablebody = document.createElement("tbody");

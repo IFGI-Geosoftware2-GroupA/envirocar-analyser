@@ -16,7 +16,8 @@
 		<!-- Stylesheets and Favicon -->
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="shortcut icon" href="img/favicon.ico" />
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="css/lib/jquery-ui.css">
+		<link rel="stylesheet" href="css/lib/jquery-ui-timepicker-addon.min.css" />
 		
 		<!-- Fonts and Flags -->
 		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
@@ -27,16 +28,17 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&language=de&libraries=geometry,places"></script>
 		
 		<!-- MarkerClusterer -->
-		<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
+		<script src="js/lib/markerclusterer_compiled.js"></script>
 		
-		<!-- jQuery 2.0.3, jQuery UI 1.10.3 and jQuery.floatThead -->
-		<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker and jQuery.floatThead -->
+		<script src="js/lib/jquery-2.0.3.min.js"></script>
+		<script src="js/lib/jquery-ui.min.js"></script>
+		<script src="js/lib/jquery-ui-timepicker-addon.min.js"></script>
 		<script src="js/lib/jquery.floatThead.min.js"></script>
 		
 		<!-- Highcharts 3.0 -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
+		<script src="js/lib/highcharts.js"></script>
 		
 		<!-- Functions for Website Interactivity -->
 		<script src="js/interactivity.js"></script> 
@@ -94,29 +96,21 @@
 										<table>
 											<tr>
 												<td>
-													<label for="from">Beginn: </label>
+													<label for="from">Von: </label>
 												</td>
 						                 		<td>
-													<!--<input type="text" id="from" name="from">-->
-													<input type="date" name="start-date">
-												</td>
-												<td>
-													<input type="time" name="start_time">
+													<input type="text" id="date-from" size="16">
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<label for="to">Ende: </label>
+													<label for="to">Bis: </label>
 												</td>
 						                 		<td>
-													<!--<input type="text" id="to" name="to">-->
-													<input type="date" name="end-date">
+													<input type="text" id="date-to" size="16">
 												</td>
 												<td>
-													<input type="time" name="end_time">
-												</td>
-												<td>
-													 	<div id="timerange-btn" class="button_base b03_skewed_slide_in">
+													<div id="timerange-btn" class="button_base b03_skewed_slide_in">
 												        <div>Zeitraum auswählen</div>
 												        <div></div>
 														<div>Tracks anzeigen</div>
@@ -144,7 +138,7 @@
 								<td>
 									<div id="analysis-interpolation">
 										<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>
-										<input id="interpolation-btn" type="image" src="img/run_interpolation.png" width="48" height="48" />
+										<input id="interpolation-btn" type="image" onclick="interpolate()" src="img/run_interpolation.png" width="48" height="48" />
 									</div>
 									<progress id="progressbar" value="0" max="100"></progress>
 								</td>
@@ -173,7 +167,6 @@
 				<div class="clearfix">
 					<div id="map-container" class="left">
 						<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
-						<!--<input type="button" id="search-button" class="controls" onclick="codeAddress();"></button>-->
 						
 						<div id="map">
 							<!-- the map will be displayed here -->
@@ -182,7 +175,7 @@
 						<script type="text/javascript">
 							// display the simple example
 							$(document).ready(function() {
-								var q = new Query('https://envirocar.org/api/stable/measurements');
+								var q = new Query('measurements');
 								showMarkers(q);
 							});
 						</script>
