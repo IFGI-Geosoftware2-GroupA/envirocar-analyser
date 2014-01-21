@@ -31,7 +31,8 @@ function initMap() {
 		center: new google.maps.LatLng(51.478333, 7.555), // center of North-Rhine-Westphalia)
 		mapTypeControl: true,
 		mapTypeControlOptions: {
-			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+			mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID, "OSM"],
+			style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
 		},
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		minZoom: 8,
@@ -43,6 +44,16 @@ function initMap() {
 		}
 	};
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
+	
+	//Define OSM map type pointing at the OpenStreetMap tile server
+	map.mapTypes.set("OSM", new google.maps.ImageMapType({
+		getTileUrl : function(coord, zoom) {
+			return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+		},
+		tileSize : new google.maps.Size(256, 256),
+		name : "OSM",
+		maxZoom : 18
+	})); 
 		 
 	// Bounds for North-Rhine-Westphalia (NRW)
 	nrwBounds = new google.maps.LatLngBounds(
