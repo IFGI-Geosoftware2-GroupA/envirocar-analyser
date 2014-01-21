@@ -80,8 +80,8 @@ function initMap() {
 	
 	var searchBox = new google.maps.places.SearchBox(/** @type {HTMLInputElement} */(input));
 	
-	// Listen for the dragend event
-	google.maps.event.addListener(map, 'dragend', function() {
+	// Listen for the 'center_changed' event to pan the map back to NRW
+	google.maps.event.addListener(map, 'center_changed', function() {
 		// Is the map still in our bounding box of North-Rhine-Westphalia?
 		if (nrwBounds.contains(map.getCenter())) {
 			// YES
