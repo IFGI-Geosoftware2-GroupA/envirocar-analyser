@@ -9,7 +9,7 @@ Wir verwenden dabei die Google Maps API und jQuery als externe Libraries.
 
 Die Daten stammen aus dem [enviroCar-Projekt](https://envirocar.org/)
 
-:copyright: 2013 
+:copyright: 2014
 
 Entwickler:
  * Jens Balmert ([@Jens13579](https://github.com/Jens13579))
