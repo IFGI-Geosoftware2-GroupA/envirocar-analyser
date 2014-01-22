@@ -73,7 +73,7 @@ LineChart.prototype.getOptions = function() {
 // adds a point to an existing series
 // point has to fit the current data scheme
 LineChart.prototype.addPoint = function(series, point) {
-	this.chart.series[series].addPoint(options);
+	this.chart.series[series].addPoint(point);
 };
 
 // adds a new line to the chart - data array has to fit the current data scheme

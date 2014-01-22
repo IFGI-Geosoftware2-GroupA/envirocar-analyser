@@ -110,8 +110,17 @@ function initMap() {
 		refreshMarkers(map.getZoom());
 	});
 	
-	// Listen for the event fired when the user selects an item from the
-	// pick list. Retrieve the matching places for that item.
+	/*
+	 * Listen for changed map type id to enable/disable collecting street segments
+	 * Only Google Maps are allowed to be used for the Google Directions API
+	 */
+	google.maps.event.addListener(map, 'maptypeid_changed', function() {
+		if (map.getMapTypeId() == 'OSM') {
+			alert('Only Google Maps are allowed to be used for the Google Directions API');
+		}
+	});
+	
+	// Listen for the search box results
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
 		var places = searchBox.getPlaces();
 		if (google.maps.geometry.poly.containsLocation(places[0].geometry.location, nrwPolygon)) {
@@ -130,7 +139,6 @@ function initMap() {
 		searchBox.setBounds(bounds);
 	});
 	
-
 	 // Create the DIV to hold the streetmode control and call the collectStreets() constructor
 	 // passing in this DIV.
 	 var streetControlDiv = document.createElement('div');
