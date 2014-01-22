@@ -132,13 +132,25 @@ function initTable() {
 }, 4000);
 	myTable.appendChild(mytablebody);
 	myTable.setAttribute("border",1);
-	
+		
 	return myTable;
 } catch(e) {
 		alert(e.message);
 	}
 }
 
+	$(function() {
+		var $table = $('myTable');
+		
+		$('table').floatThead({
+    	scrollingTop: pageTop,
+    	useAbsolutePositioning: true,
+    	scrollContainer: function($table){
+        
+        return $table.closest('#table');
+    }
+});
+}
 
 function refreshTable() {
 
