@@ -15,9 +15,11 @@ function initTable() {
 	try {
 		var query = new Query('measurements');
 		var measurements = query.getData();
-		
 		var myTable     = document.createElement("table");
+		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
+		
+		myTable.setAttribute("id", "tableid");
 		
 		consumption = new Array();
 		co2 = new Array();
@@ -33,22 +35,22 @@ function initTable() {
 				
 				if (measurements[i].getPhenomenons()[j].name == "Consumption"){
 					//alert("Consumption");
-					consumption.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);		
+					consumption.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);		
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "CO2"){
 					//alert("co2");
-					co2.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);	
+					co2.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);	
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "Speed"){
 					//alert("speed");
-					speed.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);		
+					speed.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);		
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "MAF"){
 					//alert("maf");
-					maf.push(measurements[i].getPhenomenons()[j].unit + " " + measurements[i].getValues()[j]);		
+					maf.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);		
 				}
 			}
 		}
@@ -85,7 +87,7 @@ function initTable() {
 			headrow.appendChild(headcell4);
 			headrow.appendChild(headcell5);			
 			
-			mytablebody.appendChild(headrow);
+			mytablehead.appendChild(headrow);
 		}
 
 //Creating the rest of the Table
@@ -130,6 +132,7 @@ function initTable() {
 }
 
 }, 4000);
+	myTable.appendChild(mytablehead);
 	myTable.appendChild(mytablebody);
 	myTable.setAttribute("border",1);
 		
@@ -139,8 +142,10 @@ function initTable() {
 	}
 }
 
+/*
+function floatHead(){
 $(function() {
-	var $table1 = $('myTable');
+	var $table1 = $('#tableid');
 		
 	$table1.floatThead({
     	scrollingTop: pageTop,
@@ -150,7 +155,16 @@ $(function() {
        		return $table1.closest('div');
     	}
 	});
-)}
+)};
+}*/
+
+function dataTable(){
+$(function(){
+	$(document).ready(function() {
+		$('#tableid').dataTable();
+	} );
+})
+}
 
 function refreshTable() {
 
