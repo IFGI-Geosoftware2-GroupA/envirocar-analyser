@@ -141,12 +141,13 @@ function initMap() {
 	
 	 // Create the DIV to hold the streetmode control and call the collectStreets() constructor
 	 // passing in this DIV.
+	 /*
 	 var streetControlDiv = document.createElement('div');
 	 var streetcontrol = new collectStreets(streetControlDiv, map);
 	
 	 streetControlDiv.index = 1;
 	 map.controls[google.maps.ControlPosition.TOP_RIGHT].push(streetControlDiv);
-	 
+	 */
 	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
 	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true,strokeColor: "#CC33FF"});
