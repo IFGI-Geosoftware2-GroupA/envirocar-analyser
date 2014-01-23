@@ -130,7 +130,9 @@
 											<tr>
 												<td>
 					                    			<form action="">
+					                    				<label for="trackSel">Track-ID: </label>
 														<select id="trackSel">
+															
 															<script type="text/javascript">	
 																var sel = document.getElementById('trackSel');
 																var query = new Query('measurements');
@@ -143,7 +145,7 @@
 																	sel.appendChild(option);
 																}
 																
-														
+															
 															</script>
 															
 														
@@ -153,10 +155,21 @@
 											</tr>
 											<tr>
 												<td>
-												    <div class="button_base b03_skewed_slide_in">
-												        <div>Track auswählen</div>
+													<label for="phenomen">Phänomen: </label>
+													<form action="">
+					                    				<select id="trackSel">
+					                    					<option>Verbrauch</option>	
+															<option>CO2-Emission</option>	
+															<option>Geschwindigkeit</option>		
+															<option>Luftmasse</option>	
+														</select>
+													</form>
+												</td>
+												<td>
+												    <div class="button_base b03_skewed_slide_in" onClick="streetMode();">
+												        <div>Straßenauswahl aus</div>
 												        <div></div>
-												        <div>Track anzeigen</div>
+												        <div>Straßenauswahl an</div>
 												    </div>
 										    	</td>
 										    </tr>

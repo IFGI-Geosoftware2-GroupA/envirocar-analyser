@@ -7,6 +7,9 @@
 	var wWidth = getWindowWidth();
 	var pos = getScrollXY();
 
+	var streetmode = false;
+	var alerted = false;
+	
 // Map Window Height
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
 //document.getElementById('map').style.height = '"' + wHeight + 'px"';
@@ -193,6 +196,7 @@ function changeFlag(directionValue) {
 		}
 		
 		
+
 		if (directionValue == 2)
 		{
 			document.getElementById("ger_eng").style.display = 'none';
@@ -203,3 +207,18 @@ function changeFlag(directionValue) {
 		
 
 }
+
+function streetMode(){
+  		if(alerted==false){
+  			alert("remove the last points with 'rightclick' somewhere in the map not at a point!");
+  			alerted =true;
+  		}
+  		if(streetmode==false){ 
+  			 
+  			// Call enableStreetmode() function
+  			enableStreetmode();
+  		}else if(streetmode==true){
+  			// Call disableStreetmode() function for clearing the overlay and removing Listener
+  			disableStreetmode();
+  		}
+ }
