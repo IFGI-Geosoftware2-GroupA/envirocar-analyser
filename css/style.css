@@ -25,14 +25,14 @@ html, body {
 
 #body-container {
     
-    /*height:100%;*/
+    height:100%;
     position:relative;
     
     
 }
 
 #content {
-	
+	height: 100%;
 }
 /* classes for clearfix and floating of divs */
 
@@ -197,11 +197,12 @@ a img{
 /* Map */
 
 #map-container {
-	position: relative;
+	position: absolute;
     width: 100%;
+    height: auto !important;
 	overflow: hidden;
 	top: 106px;
-	bottom: 20px;
+	bottom: 33px;
 }
 
 
@@ -218,8 +219,7 @@ a img{
 
 
 #map {
-	position: relative;
-	height: 636px;
+	height: 100%;
 }
 
 
