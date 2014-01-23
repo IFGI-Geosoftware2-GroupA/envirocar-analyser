@@ -146,6 +146,7 @@ function dataTable(){
 $(function(){
 	$(document).ready(function() {
 		$('#tableid').dataTable({
+				"sPaginationType": "full_numbers",
 				"sScrollY" : "200px",
 				"bPaginate" : false,
 				"bScrollCollapse" : true,
@@ -155,8 +156,12 @@ $(function(){
 					    "sInfo": "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
 					    "sInfoEmpty": "Zeige 0 bis 0 von 0 Einträgen",
 					    "sInfoFiltered": "(aus _MAX_ Einträgen gefilterte Daten)",
+					    "sFirst": "Erste",
+					    "sNext": "Nächste",
+					    "sPrevious": "Zurück",
+					    "sLast": "Letzte",
 					    "sSearch": "Suche:"
-					}
+				}
 			});
 	} );
 });
