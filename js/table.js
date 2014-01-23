@@ -148,7 +148,7 @@ $(function(){
 		$('#tableid').dataTable({
 				"sPaginationType": "full_numbers",
 				"sScrollY" : "200px",
-				"bPaginate" : false,
+				"bPaginate" : true,
 				"bScrollCollapse" : true,
 				"oLanguage": {
 					    "sLengthMenu": "Zeige _MENU_ Einträge pro Seite",
