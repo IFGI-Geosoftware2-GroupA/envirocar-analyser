@@ -51,7 +51,28 @@
 	$_en = "Engine load";
 	
 	$_de = "GPS-Genauigkeit";
-	$_en = "GPS-Accuracy";
+	$_en = "GPS Accuracy";
+	
+	$_de = "GPS-Höhe";
+	$_en = "GPS Altitude";
+	
+	$_de = "GPS-Richtung";
+	$_en = "GPS Bearing";
+	
+	$_de = "";
+	$_en = "";
+	
+	$_de = "";
+	$_en = "";
+	
+	$_de = "";
+	$_en = "";
+	
+	$_de = "";
+	$_en = "";
+	
+	$_de = "";
+	$_en = "";
 	
 	$_de = "";
 	$_en = "";
