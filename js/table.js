@@ -142,28 +142,16 @@ function initTable() {
 	}
 }
 
-/*
-function floatHead(){
-$(function() {
-	var $table1 = $('#tableid');
-		
-	$table1.floatThead({
-    	scrollingTop: pageTop,
-    	useAbsolutePositioning: true,
-    	scrollContainer: function($table1){
-       
-       		return $table1.closest('div');
-    	}
-	});
-)};
-}*/
-
 function dataTable(){
 $(function(){
 	$(document).ready(function() {
-		$('#tableid').dataTable();
+		$('#tableid').dataTable({
+				"sScrollY" : "200px",
+				"bPaginate" : false,
+				"bScrollCollapse" : true
+			});
 	} );
-})
+});
 }
 
 function refreshTable() {
