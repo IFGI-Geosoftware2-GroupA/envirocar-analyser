@@ -77,12 +77,14 @@
 					<div id="container">
 						<table>
 							<colgroup>
-							   <col width="150">
-							   <col width="50">
-							   <col width="600">
-							   <col width="500">
 							   <col width="200">
-							   <col width="50">
+							   <col width="25">
+							   <col width="350">
+							   <col width="100">
+							   <col width="400">
+							   <col width="100">
+							   <col width="80">
+							   <col width="30">
 							</colgroup>
 							<tr>
 								<td>
@@ -120,26 +122,52 @@
 											</tr>
 				                     	</table>
 				                    </div>
-				                    <div id ="trackSelection">
-				                    	<form action="">
-											<select name="tracks">
-												<option value="51c97d05e4b0fe5a04e9e735">Track 1</option>
-												<option value="51c980c8e4b05956bbffceff">Track 2</option>
-												<option value="51c97d05e4b0fe5a04e9e737">Track 3</option>
-												<option value="51c980c8e4b05956bbffcf01">Track 4</option>
-											</select>
-										</form>
-									    <div class="button_base b03_skewed_slide_in">
-									        <div>Track auswählen</div>
-									        <div></div>
-									        <div>Track anzeigen</div>
-									    </div>
+								</td>
+								<td></td>
+								<td>
+									<div id ="trackSelection">
+										<table>
+											<tr>
+												<td>
+					                    			<form action="">
+														<select id="trackSel">
+															<script type="text/javascript">	
+																var sel = document.getElementById('trackSel');
+																var query = new Query('measurements');
+																var measurements = query.getData();		
+																for (var i=0; i < measurements.length; i++) {
+																	var id = measurements[i].getId();
+																	var option = document.createElement('option');
+																	option.innerHTML = measurements[i].getId();
+																	option.value = measurements[i].getId();
+																	sel.appendChild(option);
+																}
+																
+														
+															</script>
+															
+														
+														</select>
+													</form>
+												</td>
+											</tr>
+											<tr>
+												<td>
+												    <div class="button_base b03_skewed_slide_in">
+												        <div>Track auswählen</div>
+												        <div></div>
+												        <div>Track anzeigen</div>
+												    </div>
+										    	</td>
+										    </tr>
+									    </table>
 				                    </div>
 								</td>
 								<td>
+									
 									<div id="analysis-interpolation">
 										<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>
-										<input id="interpolation-btn" type="image" onclick="interpolate()" src="img/run_interpolation.png" width="48" height="48" />
+										<input id="interpolation-btn" type="image" onclick="interpolateAnimation()" src="img/run_interpolation.png" width="48" height="48" />
 									</div>
 									<progress id="progressbar" value="0" max="100"></progress>
 								</td>
@@ -168,11 +196,11 @@
 				<div class="clearfix">
 					<div id="map-container" class="left">
 						<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
-						
-						<div id="map">
-							<!-- the map will be displayed here -->
-						</div>
-					
+							
+							<div id="map">
+								<!-- the map will be displayed here -->
+							</div>
+		
 						<script type="text/javascript">
 							// display the simple example
 							$(document).ready(function() {
@@ -188,7 +216,7 @@
 					<div class="right">
 						<div id="table" class="top">
 							 <form name="checkbox">
-				                 <p>Kreuzen Sie die gewünschten Measurements an:</p>
+				                <!-- <p>Kreuzen Sie die gewünschten Measurements an:</p>-->
 				                   <p>
 				                     <input type="checkbox" name="id" checked> ID
 				                     <input type="checkbox" name="verbrauch" checked> Verbrauch
@@ -218,7 +246,7 @@
 			
 			<footer>
 				<div class="footer">
-					<img src="./img/blank.png" onClick="changeLanguage('en')" class="flag flag-gb" alt="English"> &middot;
+					<img src="./img/blank.png" onClick="changeFlag('1')" class="flag flag-gb" alt="English"> &middot;
 					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
 				</div>
 			</footer>

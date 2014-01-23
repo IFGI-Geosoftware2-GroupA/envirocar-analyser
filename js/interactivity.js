@@ -2,6 +2,15 @@
  * @author Daniel Sawatzky, Marius Runde
  */
  
+// Global variables
+	var wHeight = getWindowHeight();
+	var wWidth = getWindowWidth();
+	var pos = getScrollXY();
+
+// Map Window Height
+//alert("Höhe: " + wHeight + "Breite: " + wWidth);
+//document.getElementById('map').style.height = '"' + wHeight + 'px"';
+
 // Function to change between normal and analysis mode
 function changeMode() {
 	var curWidth = document.getElementById('map').style.width;
@@ -9,11 +18,12 @@ function changeMode() {
 	if (curWidth == "50%") {
 		document.getElementById('map').style.display = "block";
 		document.getElementById('map').style.width = "100%";
+		//document.getElementById('map').style.height = '"' + wHeight + 'px"';
 		document.getElementById('chart').style.display = "none";
 		document.getElementById('table').style.display = "none";
 		document.getElementById('nav-bar').style.background = "#fff";
 		document.getElementById('calendar').style.display = "block";
-		document.getElementById('trackSelection').style.display = "none";
+		document.getElementById('trackSelection').style.display = "block";
 		document.getElementById('logo').src = "img/enviroCarLogo_transparent.png";
 		resizeMap();
 		document.getElementById('search-input').style.display = "block";
@@ -21,12 +31,13 @@ function changeMode() {
 		document.getElementById('analysis-mode-label').style.color = "#000";
 		document.getElementById('analysis-interpolation').style.display = "none";
 		document.getElementById('progressbar').style.display = "none";
+		
 	} else {
 		document.getElementById('map').style.width = "50%";
 		document.getElementById('chart').style.display = "block";
 		document.getElementById('table').style.display = "block";
 		document.getElementById('nav-bar').style.background = "#1D83C3";
-		document.getElementById('calendar').style.display = "none";
+		document.getElementById('calendar').style.display = "block";
 		document.getElementById('trackSelection').style.display = "block";
 		document.getElementById('logo').src = "img/enviroCarLogo_trans_white.png";
 		resizeMap();
@@ -94,8 +105,9 @@ $(function() {
 
 });
 	
+// Animations for interpolation progressbar and buttons
 
-function interpolate() {
+function interpolateAnimation() {
 	if (document.getElementById("interpolation-btn").src == "img/stop_interpolation.png") {
 		//alert("stop");
 		document.getElementById("interpolation-btn").src = "img/run_interpolation.png";
@@ -105,7 +117,7 @@ function interpolate() {
 	}
 }
 
-$(document).ready(function() {
+$('#interpolation-btn').ready(function() {
 	var progressbar = $('#progressbar'), max = progressbar.attr('max'), time = (1000 / max) * 5, value = progressbar.val();
 
 	var loading = function() {
@@ -125,3 +137,69 @@ $(document).ready(function() {
 		loading();
 	});
 });
+
+
+/**
+ * Window functions (height, width, scroll position)
+ * Author: Daniel Sawatzky 
+ */
+	function getWindowWidth(){
+		var value;
+		try {
+			value = document.body.clientWidth;
+		} catch(e){
+			value = window.innerWidth;
+		}
+		return value; //window.innerWidth;
+	}
+	function getWindowHeight(){
+		var value;
+		try {
+			value = document.body.clientHeight;
+		} catch(e){
+			value = window.innerHeight;
+		}
+		return value; //window.innerHeight;
+	}
+	
+	function getScrollXY() {
+		var scrOfX = 0, scrOfY = 0;
+		if( typeof( window.pageYOffset ) == 'number' ) {
+			//Netscape compliant
+			scrOfY = window.pageYOffset;
+			scrOfX = window.pageXOffset;
+		} else if( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
+			//DOM compliant
+			scrOfY = document.body.scrollTop;
+			scrOfX = document.body.scrollLeft;
+		} else if( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
+			//IE6 standards compliant mode
+			scrOfY = document.documentElement.scrollTop;
+			scrOfX = document.documentElement.scrollLeft;
+		}
+		return [ scrOfX, scrOfY ];
+	}
+
+/* Change flag */
+
+function changeFlag(directionValue) {
+		
+		if (directionValue == 1)
+		{
+			document.getElementById("ger_eng").style.display = '';
+			document.getElementById("eng_ger").style.display = 'none';
+			document.getElementById("direction").options[0].selected = true;
+			direction = 1;
+		}
+		
+		
+		if (directionValue == 2)
+		{
+			document.getElementById("ger_eng").style.display = 'none';
+			document.getElementById("eng_ger").style.display = '';
+			document.getElementById("direction").options[1].selected = true;
+			direction = 2;
+		}
+		
+
+}
