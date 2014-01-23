@@ -154,7 +154,8 @@ $(function(){
 					    "sZeroRecords": "Keine Einträge gefunden",
 					    "sInfo": "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
 					    "sInfoEmpty": "Zeige 0 bis 0 von 0 Einträgen",
-					    "sInfoFiltered": "(aus _MAX_ Einträgen gefilterte Daten)"
+					    "sInfoFiltered": "(aus _MAX_ Einträgen gefilterte Daten)",
+					    "sSearch": "Suche:"
 					}
 			});
 	} );
