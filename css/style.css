@@ -47,13 +47,13 @@ html, body {
 }
 
 .top{
-   top: 100px;
-   height:35%;
+   top: 105px;
+   height:45%;
 }
  
 .bottom{
-   height:40%;
-   top: 55%;
+   height:37%;
+   top: 58%;
 }
 
 
@@ -229,9 +229,9 @@ a img{
 	
 	display: none;
 	position: absolute;
-	overflow:scroll;
+	overflow: auto;
 	margin: 5px;
-	padding: 25px;
+	padding: 0 25px 0 25px;
 
 }
 
