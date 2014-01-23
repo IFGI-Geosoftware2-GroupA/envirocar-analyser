@@ -148,7 +148,14 @@ $(function(){
 		$('#tableid').dataTable({
 				"sScrollY" : "200px",
 				"bPaginate" : false,
-				"bScrollCollapse" : true
+				"bScrollCollapse" : true,
+				"oLanguage": {
+					    "sLengthMenu": "Zeige _MENU_ Einträge pro Seite",
+					    "sZeroRecords": "Keine Einträge gefunden",
+					    "sInfo": "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
+					    "sInfoEmpty": "Zeige 0 bis 0 von 0 Einträgen",
+					    "sInfoFiltered": "(aus _MAX_ Einträgen gefilterte Daten)"
+					}
 			});
 	} );
 });
