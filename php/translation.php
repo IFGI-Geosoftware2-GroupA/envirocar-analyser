@@ -1,30 +1,30 @@
 <?php
-    $_de = "Exploration und Visualisierung";
-	$_en = "Exploration and Visualisation";
+    $explo_und_Visu_de = "Exploration und Visualisierung";
+	$explo_and_Visu_en = "Exploration and Visualisation";
 	
-	$_de = "Von";
-	$_en = "From";
+	$von_de = "Von";
+	$from_en = "From";
 	
-	$_de = "Bis";
-	$_en = "To";
+	$bis_de = "Bis";
+	$to_en = "To";
 	
-	$_de = "Zeitraum auswählen";
-	$_en = "Select Time Period";
+	$zeitraum_de = "Zeitraum auswählen";
+	$select_en = "Select Time Period";
 	
-	$_de = "Tracks anzeigen";
-	$_en = "Display Tracks";
+	$tracks_de = "Tracks anzeigen";
+	$display_en = "Display Tracks";
 	
-	$_de = "Track-ID:";
-	$_en = "Track-ID:";
+	$track_de = "Track-ID:";
+	$track_en = "Track-ID:";
 	
-	$_de = "Phänomen:";
-	$_en = "Phenomenon:";
+	$phänomen_de = "Phänomen:";
+	$phenomenon_en = "Phenomenon:";
 	
-	$_de = "Straßenauswahl aus";
-	$_en = "Street Selection On";
+	$straßen_aus_de = "Straßenauswahl aus";
+	$street_on_en = "Street Selection On";
 	
-	$_de = "Straßenauswahln an";
-	$_en = "Street Selection Off";
+	$straßen_an_de = "Straßenauswahln an";
+	$streets_off_en = "Street Selection Off";
 	
 	$analyse_modus_label_de = "Analyse Modus";
 	$analyse_modus_label_en = "Analysis Mode";
@@ -98,6 +98,19 @@
 	$_de = "Langzeitkraftstofftrimm";
 	$_en = "Long-Term Fuel Trim";
 	
-	$_de = "";
-	$_en = "";
+	$_de = "O2 Lambda Aktuell";
+	$_en = "O2 Lambda Current";
+	
+	$_de = "O2 Lambda Aktuell ER";
+	$_en = "O2 Lambda Current ER";
+	
+	$_de = "O2 Lambda Spannung";
+	$_en = "O2 Lambda Voltage";
+	
+	$_de = "O2 Lambda Spannung ER";
+	$_en = "O2 Lambda Voltage ER";
+	
+	$_de = "Kurzzeitkraftstofftrimm";
+	$_en = "Short-Term Fuel Trim 1";
+	
 ?>
