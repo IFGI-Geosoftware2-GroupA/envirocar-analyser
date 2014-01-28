@@ -14,10 +14,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<!-- Stylesheets and Favicon -->
-		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="shortcut icon" href="img/favicon.ico" />
-		<link rel="stylesheet" href="css/lib/jquery-ui.css">
-		<link rel="stylesheet" href="css/lib/jquery-ui-timepicker-addon.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/lib/jquery-ui-timepicker-addon.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-duallistbox.css" />
+		<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10-dev/css/jquery.dataTables.css">
 		
 		<!-- Fonts and Flags -->
@@ -31,10 +33,12 @@
 		<!-- MarkerClusterer -->
 		<script src="js/lib/markerclusterer_compiled.js"></script>
 		
-		<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker and jQuery.dataTables -->
+		<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker, Bootstrap Dual Listbox and jQuery.dataTables -->
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
 		<script src="js/lib/jquery-ui.min.js"></script>
 		<script src="js/lib/jquery-ui-timepicker-addon.min.js"></script>
+		<script src="js/lib/jquery.bootstrap-duallistbox.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
 		<script src="js/lib/jquery.dataTables.min.js"></script>
 		
 		<!-- Highcharts 3.0 -->
@@ -42,7 +46,8 @@
 		<script src="js/lib/highcharts.js"></script>
 		
 		<!-- Functions for Website Interactivity -->
-		<script src="js/interactivity.js"></script> 
+		<script src="js/interactivity.js"></script>
+		<script src="js/getParameters.js"></script> 
 		
 		<!-- Custom classes -->
 		<script src="js/envirocar-analyser.js"></script>
@@ -155,14 +160,48 @@
 											</tr>
 											<tr>
 												<td>
-													<label for="phenomen">Phänomen: </label>
+													<!-- <label for="phenomen">Phänomen: </label> -->
 													<form action="">
-					                    				<select id="trackSel">
+														<select multiple="multiple" size="10" id="duallistbox_phenomenons">
+															<option value="co2">CO2-Emission</option>
+															<option value="geschwindigkeit">Geschwindigkeit</option>
+															<option value="luftmasse">Luftmasse</option>
+															<option value="verbrauch">Verbrauch</option>
+														</select>
+														<script>
+															var l = getParam('l');
+															if (l == "en") {
+																var dlb_phenomenons = $('#duallistbox_phenomenons').bootstrapDualListbox({
+																	nonselectedlistlabel: 'Possible Phenomenons',
+																	selectedlistlabel: 'Selected Phenomenons',
+																	infotext: 'Show all {0}',
+																	infotextfiltered: '{0} of {1}',
+																	infotextempty: 'No entries',
+																	filterplaceholder: 'Search phenomenons...',
+																	filtertextclear: 'Show all',
+																	preserveselectiononmove: 'moved',
+																	moveonselect: true
+																});
+															} else {
+																var dlb_phenomenons = $('#duallistbox_phenomenons').bootstrapDualListbox({
+																	nonselectedlistlabel: 'M&ouml;gliche Ph&auml;nomene',
+																	selectedlistlabel: 'Ausgew&auml;hlte Ph&auml;nomene',
+																	infotext: 'Zeige alle {0}',
+																	infotextfiltered: '{0} von {1}',
+																	infotextempty: 'Keine Eintr&auml;ge',
+																	filterplaceholder: 'Suche Ph&auml;nomene...',
+																	filtertextclear: 'Zeige alle',
+																	preserveselectiononmove: 'moved',
+																	moveonselect: true
+																});
+															}
+														</script>
+					                    				<!-- <select id="trackSel">
 					                    					<option>Verbrauch</option>	
 															<option>CO2-Emission</option>	
 															<option>Geschwindigkeit</option>		
 															<option>Luftmasse</option>	
-														</select>
+														</select> -->
 													</form>
 												</td>
 												<td>
