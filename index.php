@@ -89,7 +89,7 @@
 							<tr>
 								<td>
 									<div id="logo-container">
-									  <a href="./index.html" title="Homepage"><img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png"></a>
+									  <a href="./index.php" title="Homepage"><img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png"></a>
 									  <label for="logo" id="logo-label">Exploration und Visualisierung</label>
 									</div>
 								</td>
@@ -133,6 +133,11 @@
 					                    				<label for="trackSel">Track-ID: </label>
 														<select id="trackSel">
 															
+															<option>51c97d05e4b0fe5a04e9e735</option>
+															<option>51c97d05e4b0fe5a04e9e737</option>
+															<option>51c97d05e4b0fe5a04e9e739</option>
+															<option>51c97d05e4b0fe5a04e9e73b</option>
+															
 															<script type="text/javascript">	
 																var sel = document.getElementById('trackSel');
 																var query = new Query('measurements');
@@ -144,8 +149,7 @@
 																	option.value = measurements[i].getId();
 																	sel.appendChild(option);
 																}
-																
-															
+
 															</script>
 															
 														
@@ -179,10 +183,12 @@
 								<td>
 									
 									<div id="analysis-interpolation">
-										<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>
+										<!--<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>-->
 										<input id="interpolation-btn" type="image" onclick="interpolateAnimation()" src="img/run_interpolation.png" width="48" height="48" />
 									</div>
+									<!--
 									<progress id="progressbar" value="0" max="100"></progress>
+									-->
 								</td>
 								<td>
 									<label id="analysis-mode-label" for="analysis-mode">Analysemodus</label>
