@@ -209,6 +209,9 @@ function changeFlag(directionValue) {
 }
 
 function streetMode(){
+  	if(map.getMapTypeId()=="OSM"){
+  		alert("Change map layer to a google map");
+  	}else{
   		if(alerted==false){
   			alert("remove the last points with 'rightclick' somewhere in the map not at a point!");
   			alerted =true;
@@ -221,4 +224,4 @@ function streetMode(){
   			// Call disableStreetmode() function for clearing the overlay and removing Listener
   			disableStreetmode();
   		}
- }
+ }}
