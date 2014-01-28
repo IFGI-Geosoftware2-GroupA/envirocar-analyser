@@ -120,6 +120,8 @@ header {
 
 #analysis-interpolation {
 	display: none;
+	float: right;
+	padding: 10px;
 }
 
 #analysis-mode-interpolation-label {
