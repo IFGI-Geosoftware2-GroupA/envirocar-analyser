@@ -6,12 +6,12 @@
 // --- Methods for the table ---
 // -----------------------------
 // Initialize the table
-function createTable() {
+function initTable() {
     node = document.getElementById("table");
-    node.appendChild(initTable());
+    node.appendChild(createTable());
     }
 
-function initTable() {
+function createTable() {
 	try {
 		var query = new Query('measurements');
 		var measurements = query.getData();

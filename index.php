@@ -285,9 +285,8 @@
 				                   </p>
 			                 </form>
 							<script type="text/javascript">
-								createTable();
+								initTable();
 								dataTable();
-								floatHead();
 							</script>
 						</div>
 						
