@@ -32,8 +32,7 @@ function changeMode() {
 		document.getElementById('search-input').style.display = "block";
 		document.getElementById('logo-label').style.color = "#000";
 		document.getElementById('analysis-mode-label').style.color = "#000";
-		document.getElementById('analysis-interpolation').style.display = "none";
-		document.getElementById('progressbar').style.display = "none";
+		
 		
 	} else {
 		document.getElementById('map').style.width = "50%";
@@ -47,8 +46,7 @@ function changeMode() {
 		document.getElementById('search-input').style.display = "block";
 		document.getElementById('logo-label').style.color = "#fff";
 		document.getElementById('analysis-mode-label').style.color = "#fff";
-		document.getElementById('analysis-interpolation').style.display = "block";
-		document.getElementById('progressbar').style.display = "block";
+		
 	}
 }
 

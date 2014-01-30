@@ -22,9 +22,10 @@
 		<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10-dev/css/jquery.dataTables.css">
 		
-		<!-- Fonts and Flags -->
+		<!-- Fonts, Icons and Flags -->
 		<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link href="css/flags.css" rel="stylesheet">
 		
 		<!-- Google Maps API v3.14 -->
@@ -85,9 +86,9 @@
 							   <col width="200">
 							   <col width="25">
 							   <col width="350">
-							   <col width="100">
-							   <col width="400">
-							   <col width="100">
+							   <col width="25">
+							   <col width="600">
+							   <col width="25">
 							   <col width="80">
 							   <col width="30">
 							</colgroup>
@@ -107,7 +108,16 @@
 													<label for="from">Von: </label>
 												</td>
 						                 		<td>
-													<input type="text" id="date-from" size="16">
+													<input type="text" id="date-from" size="14">
+												</td>
+												<td>
+												
+													<div id="timerange-btn" class="button_base b03_skewed_slide_in">
+												        <div>Zeitraum auswählen</div>
+												        <div></div>
+														<div>Tracks anzeigen</div>
+													</div>
+													
 												</td>
 											</tr>
 											<tr>
@@ -115,25 +125,10 @@
 													<label for="to">Bis: </label>
 												</td>
 						                 		<td>
-													<input type="text" id="date-to" size="16">
+													<input type="text" id="date-to" size="14">
 												</td>
 												<td>
-													<div id="timerange-btn" class="button_base b03_skewed_slide_in">
-												        <div>Zeitraum auswählen</div>
-												        <div></div>
-														<div>Tracks anzeigen</div>
-													</div>
-												</td>
-											</tr>
-				                     	</table>
-				                    </div>
-								</td>
-								<td></td>
-								<td>
-									<div id ="trackSelection">
-										<table>
-											<tr>
-												<td>
+													<div id="trackSelection">
 					                    			<form action="">
 					                    				<label for="trackSel">Track-ID: </label>
 														<select id="trackSel">
@@ -159,14 +154,38 @@
 															
 														
 														</select>
-													</form>
-												</td>
+														</div>
+														<br><br>
+													</form>	
+												</td>				
 											</tr>
 											<tr>
+												<td></td>
+												<td></td>
 												<td>
-													<!-- <label for="phenomen">Phänomen: </label> -->
+													<div id="streetModeBtn" class="button_base b03_skewed_slide_in" onClick="streetMode();">
+												        <div>Straßenauswahl aus</div>
+												        <div></div>
+												        <div>Straßenauswahl an</div>
+												    </div>
+													<div id="analysis-interpolation">
+														<!--<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>-->
+														<input id="interpolation-btn" type="image" onclick="interpolateAnimation()" src="img/run_interpolation.png" width="48" height="48" />
+													</div>
+													<!--
+													<progress id="progressbar" value="0" max="100"></progress>
+													-->
+												</td>
+											</tr>
+				                     	</table>
+				                    </div>
+				                 </td>
+				              	 <td></td>
+								 <td>	
+									<div id ="phenomenSelection">
+										
 													<form action="">
-														<select multiple="multiple" size="10" id="duallistbox_phenomenons">
+														<select multiple="multiple" size="4" id="duallistbox_phenomenons">
 															<option value="co2">CO2-Emission</option>
 															<option value="geschwindigkeit">Geschwindigkeit</option>
 															<option value="luftmasse">Luftmasse</option>
@@ -200,35 +219,12 @@
 																});
 															}
 														</script>
-					                    				<!-- <select id="trackSel">
-					                    					<option>Verbrauch</option>	
-															<option>CO2-Emission</option>	
-															<option>Geschwindigkeit</option>		
-															<option>Luftmasse</option>	
-														</select> -->
-													</form>
-												</td>
-												<td>
-												    <div class="button_base b03_skewed_slide_in" onClick="streetMode();">
-												        <div>Straßenauswahl aus</div>
-												        <div></div>
-												        <div>Straßenauswahl an</div>
-												    </div>
-										    	</td>
-										    </tr>
-									    </table>
+					                    				
+													</form> 
+										
 				                    </div>
 								</td>
-								<td>
-									
-									<div id="analysis-interpolation">
-										<!--<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>-->
-										<input id="interpolation-btn" type="image" onclick="interpolateAnimation()" src="img/run_interpolation.png" width="48" height="48" />
-									</div>
-									<!--
-									<progress id="progressbar" value="0" max="100"></progress>
-									-->
-								</td>
+								<td></td>
 								<td>
 									<label id="analysis-mode-label" for="analysis-mode">Analysemodus</label>
 									<div class="onoffswitch" >
@@ -240,9 +236,15 @@
 									</div>
 								</td>
 								<td>
+									
 									<div id="help-button">
 										<a href="#" title="Hilfe"><img src="./img/help.png" height="48px" width="48px"></a>
 									</div>
+									<!--
+									<div class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+										<a href="#" class="hi-icon icon-question">Help</a>
+									</div>
+									-->
 								</td>
 							</tr>
 						</table>
@@ -285,9 +287,8 @@
 				                   </p>
 			                 </form>
 							<script type="text/javascript">
-								createTable();
+								initTable();
 								dataTable();
-								floatHead();
 							</script>
 						</div>
 						
