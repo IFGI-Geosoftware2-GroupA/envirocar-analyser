@@ -22,7 +22,7 @@ streetlistener,
 removepointlistener;
 var polyexport = new google.maps.MVCArray();
 var removepoints = [];
-
+var idwmarkers = [];
 /**
  * Initialize the map
  */
@@ -194,7 +194,7 @@ function showMarkers(query) {
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
 			}
-		}, 500);
+		}, 1000);
 	} catch(e) {
 		alert(e.message);
 	}
@@ -389,7 +389,7 @@ function disableStreetmode(){
  	// Deactivate Crosshair
  	map.setOptions({draggableCursor:null});
  	// Clear the history array for a later selection
- 	removepoints=[]; 	
+ 	removepoints=[]; 
 }
 /**
  * Function for exporting a Polyline Lat_Lng Element 
@@ -423,6 +423,140 @@ function getPolyline(){
 		return polyexport.getArray();
 	}
 }
+// Interpolates the choosen Streetsegments with IDW
+function interpolate(){
+	if(polyexport.length==0){
+		alert("Please select first street segments to interpolate");
+		}
+	else{
+		setTimeout(function(){
+			var query = new Query('measurements');
+			var measurements = query.getData();
+		},500);
+		
+		var classarray = classifyValues(measurements);
+		//var measurements = query.getData();
+		// Create the markers along the selected road segments
+		for (var i=0,k=1;k<getPolyline().length;i++,k++){
+			var origin = getPolylineAt(i);
+			var destination = getPolylineAt(k);
+			for (var j=1; j<=10;j++){
+				var step = (1/10);
+				var interpolated= google.maps.geometry.spherical.interpolate(origin, destination, step * j);
+					var numerator =0;
+					var denominator = 0;
+					// Define numerator of IDW
+					for(var m=0; m<measurements.length;m++){
+							var n = 0;
+							while(measurements[m].phenomenons[n].name != "Speed"){
+								n++;
+							}
+							var alpha = measurements[m].values[n];
+							var p1 = measurements[m].getPoint();
+							var p2 = interpolated;
+							var beta = Distance(p1,p2);
+							var gamma = (alpha/beta);
+							numerator = (numerator + gamma);
+					}				
+					// Define denominator of IDW
+					for (var m=0; m<measurements.length;m++){
+							var alpha = 1;
+							var p1 = measurements[m].getPoint();
+							var p2 =interpolated;
+							var beta = Distance(p1,p2);
+							var gamma = (alpha/beta);
+						 denominator = (denominator + gamma);
+					}
+					// Calculate IDW Value for the actual marker
+					var speedidw=(numerator / denominator);
+					console.log(speedidw);
+					
+					// Decides in which class the value lies
+				var getColor = function(){	
+					for(var i=0;i<classarray.length;i++){
+						if(speedidw < classarray[i]){
+							var color = i.toString();
+							return color;
+						}
+						else if(speedidw > classarray[classarray.length-1]){
+							var color ="max";
+							return color;
+						}
+						else{continue;}
+					
+					return color;
+					}
+				};
+				var color = getColor();
+				var idwicon = 'img/interpolated/'+color+'.png';
+				var marker = new google.maps.Marker({
+						position : interpolated,
+						icon: idwicon	
+					});
+			idwmarkers.push(marker);
+			}	
+		}
+		for (var i=0; i<idwmarkers.length;i++){
+		idwmarkers[i].setMap(map);
+		}
+	}
+}
+// Calculates distance between 2 points
+function Distance(p1,p2){
+	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1,p2);
+	return dist;	
+}
+
+// Classifies a Measurement object and returns an array with the classes based on standard deviation
+
+function classifyValues(measurements){
+	var mean = 0,
+	sd=0,
+	total=0,
+	speedvalues = [];
+	// Store values of Speed in an extra Array
+	for(var i=0; i<measurements.length;i++){
+		n=0;
+		while(measurements[i].phenomenons[n].name != "Speed"){
+			n++;
+		}
+	speedvalues.push(measurements[i].values[n]);
+	}
+	// Sort Array
+	speedvalues.sort(numSort);
+	// Calculate mean
+	for (var i =0, n=speedvalues.length; i<n ;i++){
+		total+=speedvalues[i];
+	}
+	mean=(total/speedvalues.length);
+	
+	// Calculates standarddeviation
+	total=0;
+	for(var i=0;i<speedvalues.length;i++){
+		var deviation= speedvalues[i]-mean;
+		total+=deviation*deviation;
+	}
+	sd = Math.sqrt(total/(speedvalues.length -1));
+	
+	var numIntervals = 0;
+	while(numIntervals*sd < speedvalues[speedvalues.length-1]){
+		numIntervals++;
+	}
+	var classes=[];
+	
+	
+		for(var i=1; i<numIntervals; i++){
+		var val =(i*sd);
+		classes.push(val);
+		}
+	
+	
+	return classes;
+}
+// Helper function to sort Numbers
+function numSort(a, b) { 
+   return (a - b);
+} 
 // ----------------------------------
 // --- End of methods for the map ---
 // ----------------------------------
