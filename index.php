@@ -32,7 +32,8 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&language=de&libraries=geometry,places"></script>
 		
 		<!-- MarkerClusterer -->
-		<script src="js/lib/markerclusterer_compiled.js"></script>
+		<!-- <script src="js/lib/markerclusterer_compiled.js"></script> -->
+		<script src="js/lib/markerclusterer.js"></script>
 		
 		<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker, Bootstrap Dual Listbox and jQuery.dataTables -->
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
@@ -169,12 +170,12 @@
 												        <div>Straßenauswahl an</div>
 												    </div>
 													<div id="analysis-interpolation">
-														<!--<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>-->
+														<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>
 														<input id="interpolation-btn" type="image" onclick="interpolateAnimation()" src="img/run_interpolation.png" width="48" height="48" />
 													</div>
-													<!--
+													
 													<progress id="progressbar" value="0" max="100"></progress>
-													-->
+													
 												</td>
 											</tr>
 				                     	</table>
