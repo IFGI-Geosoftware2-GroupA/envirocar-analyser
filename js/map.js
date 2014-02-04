@@ -194,7 +194,7 @@ function showMarkers(query) {
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
 			}
-		}, 1000);
+		}, 700);
 	} catch(e) {
 		alert(e.message);
 	}
@@ -229,15 +229,34 @@ function refreshMarkers(zoom) {
 function buildInfoWindow(marker,map,measurements){   
 	// Setting Content of Infowindow
 	try{
-		var content = '<div style="text-align: center; font-size:14px;">'+
-						'<center><b>'+"ID: "+ measurements.id +
-						'</br> '+ measurements.timestamp +'</b></br>';			
-				
+		var content = '<div style="font-size:14px;text-align:center">'+
+						'<b>'+"ID: "+ measurements.id +
+						'</br> '+ measurements.timestamp +'</br></br>';			
+				// Add Sensor Data of the measurement
+				content+= 	"Sensorinformationen:"+'</br>'+
+							"SensorId: "+'</b>'+measurements.sensors.id +'</br>'+
+							'<b>' + "Fahrzeug: "+'</b>'+
+						    measurements.sensors.manufacturer + ": "+
+						    measurements.sensors.model + " (";
+			    if(measurements.sensors.fuelType == "gasoline"){
+			    	 content+= "Benzin" + ")"+'</br></br>'
+						    + '<b>'+ "Messwerte: "+'</br></b>';
+			    }
+			    else if(measurements.sensors.fuelType == "diesel"){
+			    	content+= "Diesel" + ")"+'</br></br>'
+						    + '<b>'+ "Messwerte: "+'</br></b>';
+			    }
+			    else{
+			    	 content+= measurements.sensors.fuelType + ")"+'</br></br>'
+						    + '<b>'+ "Messwerte: "+'</br></b>';
+			    }
+						   
+				// Add Phenomenons and values to the infoWindow
 				for(i=0;i<measurements.phenomenons.length;i++){
-						content = content+measurements.phenomenons[i].name+'('+measurements.phenomenons[i].unit+')'+
-						": " + measurements.values[i]+'</br>';
+						content += '<b>'+measurements.phenomenons[i].name+'</b> ('+measurements.phenomenons[i].unit+')'+
+						": " + Number((measurements.values[i]).toFixed(6))+'</br>';
 				}
-						content= content+'</center>'+'</div>';
+						content= content+'</div>';
 		
 		
         // ------------------------------------
@@ -253,7 +272,7 @@ function buildInfoWindow(marker,map,measurements){
 		});
 		}
 		catch(e){
-			alert(e.message);
+			alert(e);
 		}
 }		
 		 // -----------------------------------------
@@ -413,7 +432,7 @@ function getPolylineAt(i){
 /**
  * Function for exporting the whole Polyline representing
  * the user selected streets
- * @Returns the underlying Lat_Lng Array of the Polyline
+ * @return the underlying Lat_Lng Array of the Polyline
  */
 function getPolyline(){
 	if(polyexport.getLength()==0){
@@ -423,18 +442,28 @@ function getPolyline(){
 		return polyexport.getArray();
 	}
 }
-// Interpolates the choosen Streetsegments with IDW
-function interpolate(){
+
+ 		// ------------------------------------
+        // --- Methods for Interpolation ------
+        // ------------------------------------
+/**
+ * Interpolates the selected streetsegments for the phenomenon given
+ * by idwkey. Creates marker along the polyline and sets a color for it specific
+ * for the interpolated (Inverse Distance Weighting) value.
+ * @param idwkey (phenomenon.name to interpolate)
+ */
+function interpolate(idwkey){
 	if(polyexport.length==0){
 		alert("Please select first street segments to interpolate");
 		}
 	else{
+		this.idwkey = new String(idwkey);
 		setTimeout(function(){
 			var query = new Query('measurements');
 			var measurements = query.getData();
 		},500);
-		
-		var classarray = classifyValues(measurements);
+		// Classify the values
+		var classarray = classifyValues(measurements, idwkey);
 		//var measurements = query.getData();
 		// Create the markers along the selected road segments
 		for (var i=0,k=1;k<getPolyline().length;i++,k++){
@@ -448,7 +477,7 @@ function interpolate(){
 					// Define numerator of IDW
 					for(var m=0; m<measurements.length;m++){
 							var n = 0;
-							while(measurements[m].phenomenons[n].name != "Speed"){
+							while(measurements[m].phenomenons[n].name != idwkey){
 								n++;
 							}
 							var alpha = measurements[m].values[n];
@@ -468,17 +497,17 @@ function interpolate(){
 						 denominator = (denominator + gamma);
 					}
 					// Calculate IDW Value for the actual marker
-					var speedidw=(numerator / denominator);
-					console.log(speedidw);
+					var interpolatedValues=(numerator / denominator);
+					console.log(interpolatedValues);
 					
-					// Decides in which class the value lies
+					// Decides in which class the value lies and return the corresponding color
 				var getColor = function(){	
 					for(var i=0;i<classarray.length;i++){
-						if(speedidw < classarray[i]){
+						if(interpolatedValues < classarray[i]){
 							var color = i.toString();
 							return color;
 						}
-						else if(speedidw > classarray[classarray.length-1]){
+						else if(interpolatedValues > classarray[classarray.length-1]){
 							var color ="max";
 							return color;
 						}
@@ -507,56 +536,60 @@ function Distance(p1,p2){
 	return dist;	
 }
 
-// Classifies a Measurement object and returns an array with the classes based on standard deviation
-
-function classifyValues(measurements){
+/**
+ * Classifies the Phenomenon given by @idwkey of a measurement object by standard deviation
+ * and returns an array with the class breaks.
+ * @param: measurement(Measurement object), idwkey (Phenomenon.name e.g. Speed)
+ * @return: classes(Array with class breaks)
+ */
+function classifyValues(measurements, idwkey){
 	var mean = 0,
 	sd=0,
 	total=0,
-	speedvalues = [];
-	// Store values of Speed in an extra Array
+	idwvalues = [];
+	// Store values of the phenomenon in an extra Array
 	for(var i=0; i<measurements.length;i++){
 		n=0;
-		while(measurements[i].phenomenons[n].name != "Speed"){
+		while(measurements[i].phenomenons[n].name != idwkey){
 			n++;
 		}
-	speedvalues.push(measurements[i].values[n]);
+	idwvalues.push(measurements[i].values[n]);
 	}
 	// Sort Array
-	speedvalues.sort(numSort);
+	idwvalues.sort(numSort);
 	// Calculate mean
-	for (var i =0, n=speedvalues.length; i<n ;i++){
-		total+=speedvalues[i];
+	for (var i =0, n=idwvalues.length; i<n ;i++){
+		total+=idwvalues[i];
 	}
-	mean=(total/speedvalues.length);
-	
+	mean=(total/idwvalues.length);
 	// Calculates standarddeviation
 	total=0;
-	for(var i=0;i<speedvalues.length;i++){
-		var deviation= speedvalues[i]-mean;
+	for(var i=0;i<idwvalues.length;i++){
+		var deviation= idwvalues[i]-mean;
 		total+=deviation*deviation;
 	}
-	sd = Math.sqrt(total/(speedvalues.length -1));
-	
+	sd = Math.sqrt(total/(idwvalues.length -1));
+	// Count the number of Intervals/classes
 	var numIntervals = 0;
-	while(numIntervals*sd < speedvalues[speedvalues.length-1]){
+	while(numIntervals*sd < idwvalues[idwvalues.length-1]){
 		numIntervals++;
 	}
 	var classes=[];
-	
-	
+		// Store the Interval breaks into an array
 		for(var i=1; i<numIntervals; i++){
 		var val =(i*sd);
 		classes.push(val);
 		}
-	
-	
 	return classes;
 }
 // Helper function to sort Numbers
 function numSort(a, b) { 
    return (a - b);
 } 
+		// ----------------------------------------
+        // --- End of methods for Interpolation ---
+        // ----------------------------------------
+        
 // ----------------------------------
 // --- End of methods for the map ---
 // ----------------------------------

@@ -115,9 +115,9 @@ defaultPhenomenons.push(new Phenomenon("Short-Term Fuel Trim 1", "%", 0, 0));
 function Sensor(type, id, model, fuelType, manufacturer, constructionYear) {
 	try {
 		// TODO Only allow cars as sensors? Are there any differences to motorbikes etc.?
-		if (type.equals("car")) {
+		if (type == "car") {
 			// TODO Only allow 'gasoline' and 'diesel' as fuel types?
-			if (fuelType.equals("gasoline") || fuelType.equals("diesel")) {
+			if (fuelType == "gasoline" || fuelType == "diesel") {
 				this.id					= new String(id);
 				this.model				= new String(model);
 				this.fuelType			= new String(fuelType);
@@ -261,13 +261,14 @@ Sensor.prototype.parseJSON = function(json) {
 // --- Measurement class ---
 // -------------------------
 // Constructor
-function Measurement(id, point, timestamp, phenomenons, values) {
+function Measurement(id, point, timestamp, phenomenons, values, sensors) {
 	try {
 		this.id				= new String(id);
 		this.point			= point;
 		this.timestamp		= new Date(timestamp);
 		this.phenomenons	= phenomenons;
 		this.values			= values;
+		this.sensors		= sensors;
 	} catch(e) {
 		alert("Could not create Measurement. This is the error message: " + e.message);
 	}
@@ -279,6 +280,7 @@ Measurement.prototype.point;
 Measurement.prototype.timestamp;
 Measurement.prototype.phenomenons;
 Measurement.prototype.values;
+Measurement.prototype.sensors;
 
 // --- Getter ---
 Measurement.prototype.getId 			= function() { return this.id; };
@@ -286,6 +288,7 @@ Measurement.prototype.getPoint 			= function() { return this.point; };
 Measurement.prototype.getTimestamp 		= function() { return this.timestamp; };
 Measurement.prototype.getPhenomenons	= function() { return this.phenomenons; };
 Measurement.prototype.getValues			= function() { return this.values; };
+Measurement.prototype.getSensors		= function() { return this.sensors;};
 // --- End of getter ---
 
 // --- Setter ---
@@ -322,6 +325,13 @@ Measurement.prototype.setValues = function(values) {
 		this.values = values;
 	} catch(e) {
 		alert("Could not change values. This is the error message: " + e.message);
+	}
+};
+Measurement.prototype.setSensors = function(sensors) {
+	try {
+		this.sensors = sensors;
+	} catch(e) {
+		alert("Could not change sensors. This is the error message: " + e.message);
 	}
 };
 // --- End of setter ---
@@ -587,6 +597,14 @@ Query.prototype.getMeasurements = function() {
 	tempPhenomenons,
 	tempValues;
 	
+	var stempId,
+	stempModel,
+	stempFuelType,
+	stempManufacturer,
+	stempConstructionYear,
+	stempSensor,
+	stempType;
+	
 	$.getJSON(queryURL, function(json) {
 		$.each(json, function(index, data) {
 			$.each(data, function(arrayIndex, arrayElement) {
@@ -609,6 +627,8 @@ Query.prototype.getMeasurements = function() {
 								tempId = propValue;
 								tempPhenomenons=[];
 								tempValues=[];
+								tempSensors=[];
+								var isCar = false;
 							}
 							// Get the timestamp of the measurement
 							if (propKey == "time") {
@@ -616,7 +636,34 @@ Query.prototype.getMeasurements = function() {
 							}
 							// Get the sensor of the measurement
 							if (propKey == "sensor") {
-								// TODO
+								$.each(propValue, function(senKey, senValue){
+									if(senKey == "type"){
+										stempType = senValue;
+									}
+									if(senKey == "properties"){
+										$.each(senValue, function(singleSenKey, singleSenValue){
+											if(singleSenKey == "id"){
+												stempId = new String(singleSenValue);
+											}
+											if(singleSenKey == "model"){
+												stempModel = new String(singleSenValue);
+											}
+											if(singleSenKey == "fuelType"){
+									
+												stempFuelType = new String(singleSenValue);
+												
+											}
+											if (singleSenKey == "manufacturer") {
+												stempManufacturer = new String(singleSenValue);
+											}
+											
+											if (singleSenKey == "constructionYear") {
+												stempConstructionYear = new Number(singleSenValue);
+											}
+										});
+										stempSensor = new Sensor(stempType, stempId, stempModel, stempFuelType, stempManufacturer, stempConstructionYear);
+									}
+								});
 							}
 							// Get the phenomenons of the measurement
 							if (propKey == "phenomenons") {
@@ -635,7 +682,7 @@ Query.prototype.getMeasurements = function() {
 						});
 					}
 				});
-				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues));
+				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
 			});
 		});
 	});
