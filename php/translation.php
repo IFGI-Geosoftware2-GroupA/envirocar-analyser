@@ -110,7 +110,7 @@
 	$o2_lambda_voltage_er_de = "O2-Lambda-Spannung-ER";
 	$o2_lambda_voltage_er_en = "O2 Lambda Voltage ER";
 	
-	$stft_1_de = "Kurzzeitkraftstofftrimm";
+	$stft_1_de = "Kurzzeitkraftstofftrimm 1";
 	$stft_1_en = "Short-Term Fuel Trim 1";
 	
 ?>
