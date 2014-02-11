@@ -483,7 +483,7 @@ function interpolate(idwkey){
 							var alpha = measurements[m].values[n];
 							var p1 = measurements[m].getPoint();
 							var p2 = interpolated;
-							var beta = Distance(p1,p2);
+							var beta = Math.pow(Distance(p1,p2), 2);
 							var gamma = (alpha/beta);
 							numerator = (numerator + gamma);
 					}				
@@ -492,7 +492,7 @@ function interpolate(idwkey){
 							var alpha = 1;
 							var p1 = measurements[m].getPoint();
 							var p2 =interpolated;
-							var beta = Distance(p1,p2);
+							var beta = Math.pow(Distance(p1,p2),2);
 							var gamma = (alpha/beta);
 						 denominator = (denominator + gamma);
 					}
@@ -502,7 +502,7 @@ function interpolate(idwkey){
 					
 					// Decides in which class the value lies and return the corresponding color
 				var getColor = function(){	
-					for(var i=0;i<classarray.length;i++){
+					for(var i=0;i<classarray.length;i++ || i<=0){
 						if(interpolatedValues < classarray[i]){
 							var color = i.toString();
 							return color;
@@ -516,12 +516,16 @@ function interpolate(idwkey){
 					return color;
 					}
 				};
+			
+      
 				var color = getColor();
 				var idwicon = 'img/interpolated/'+color+'.png';
 				var marker = new google.maps.Marker({
 						position : interpolated,
 						icon: idwicon	
 					});
+					buildSmallInfoWindow(marker, map, interpolatedValues);
+					
 			idwmarkers.push(marker);
 			}	
 		}
@@ -586,6 +590,20 @@ function classifyValues(measurements, idwkey){
 function numSort(a, b) { 
    return (a - b);
 } 
+function buildSmallInfoWindow(marker,map,interpolatedValues){
+		var contentString= '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      interpolatedValues+
+      '</div>'+
+      '</div>';
+      var infowindow = new google.maps.InfoWindow({
+      content: contentString});
+	google.maps.event.addListener(marker, 'click', function() {
+   					 infowindow.open(map,marker);
+ 					 });
+}
+
 		// ----------------------------------------
         // --- End of methods for Interpolation ---
         // ----------------------------------------
