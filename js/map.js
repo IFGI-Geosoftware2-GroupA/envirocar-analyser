@@ -453,10 +453,6 @@ function initBoundingBox(){
     var p2 = map.getBounds().getSouthWest();
    
 	var bounds = new google.maps.LatLngBounds(
-      //new google.maps.LatLng(51.946804,7.598834),
-      //new google.maps.LatLng(51.957173,7.615743)
-      //new google.maps.LatLng((map.getBounds().getNorthEast().lat() + (map.getBounds().getNorthEast().lat() - map.getCenter().lat())/2),(map.getBounds().getNorthEast().lng() + (map.getBounds().getNorthEast().lng() - map.getCenter().lng())/2 ),
-      //new google.maps.LatLng((map.getBounds().getSouthWest().lat() - (map.getBounds().getSouthWest().lat() - map.getCenter().lat())/2),(map.getBounds().getSouthWest().lng() - (map.getBounds().getSouthWest().lng() - map.getCenter().lng())/2)))
       
       google.maps.geometry.spherical.interpolate(p2,p1, 1/3),
       google.maps.geometry.spherical.interpolate(p1,p2, 1/3)
@@ -471,11 +467,6 @@ function initBoundingBox(){
   });
 
   rectangle.setMap(map);
-
-  // Add an event listener on the rectangle.
-  // google.maps.event.addListener(rectangle, 'bounds_changed');
-
-
 
 }
 
