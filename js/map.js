@@ -151,6 +151,8 @@ function initMap() {
 	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
 	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true,strokeColor: "#CC33FF"});
+
+	
 }
 
 /*
@@ -193,6 +195,8 @@ function showMarkers(query) {
 			// Only change the bounds when measurements have been collected
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
+				//Create BoundingBox
+				initBoundingBox();
 			}
 		}, 700);
 	} catch(e) {
@@ -441,6 +445,38 @@ function getPolyline(){
 	else{
 		return polyexport.getArray();
 	}
+}
+
+function initBoundingBox(){
+	
+	var p1 = map.getBounds().getNorthEast();
+    var p2 = map.getBounds().getSouthWest();
+   
+	var bounds = new google.maps.LatLngBounds(
+      //new google.maps.LatLng(51.946804,7.598834),
+      //new google.maps.LatLng(51.957173,7.615743)
+      //new google.maps.LatLng((map.getBounds().getNorthEast().lat() + (map.getBounds().getNorthEast().lat() - map.getCenter().lat())/2),(map.getBounds().getNorthEast().lng() + (map.getBounds().getNorthEast().lng() - map.getCenter().lng())/2 ),
+      //new google.maps.LatLng((map.getBounds().getSouthWest().lat() - (map.getBounds().getSouthWest().lat() - map.getCenter().lat())/2),(map.getBounds().getSouthWest().lng() - (map.getBounds().getSouthWest().lng() - map.getCenter().lng())/2)))
+      
+      google.maps.geometry.spherical.interpolate(p2,p1, 1/3),
+      google.maps.geometry.spherical.interpolate(p1,p2, 1/3)
+      
+  );
+
+  // Define the rectangle and set its editable property to true.
+  rectangle = new google.maps.Rectangle({
+    bounds: bounds,
+    editable: true,
+    draggable: true
+  });
+
+  rectangle.setMap(map);
+
+  // Add an event listener on the rectangle.
+  // google.maps.event.addListener(rectangle, 'bounds_changed');
+
+
+
 }
 
  		// ------------------------------------
