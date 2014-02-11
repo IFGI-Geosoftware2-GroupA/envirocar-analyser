@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+<?php 
+	if(!isset($_GET['l'])){
+		include 'php/translation_de.php';
+	}	
+	
+	else if(isset($_GET['l']) && $_GET['l'] == 'en'){
+		include 'php/translation_en.php';
+	}
+	else if(isset($_GET['l']) && $_GET['l'] != 'en'){
+	    include 'php/translation_de.php';
+	}
+?>
+
+=======
 <?php
 	if (isset($_GET['l'])) {
 		$lang = $_GET['l'];
@@ -9,8 +24,9 @@
 		}
 	}
 ?>
+>>>>>>> 67edbd7530b10c77343edc70746785ff65fa144a
 <!DOCTYPE html>
-<html lang="de">
+<html l="de">
 	<head>
 		<meta charset="utf-8" />
 
@@ -117,7 +133,7 @@
 										<table>
 											<tr>
 												<td>
-													<label for="from">Von: </label>
+													<label for="from"><?php echo $from; ?> </label>
 												</td>
 						                 		<td>
 													<input type="text" id="date-from" size="14">
@@ -125,16 +141,16 @@
 												<td>
 												
 													<div id="timerange-btn" class="button_base b03_skewed_slide_in">
-												        <div>Zeitraum auswählen</div>
+												        <div><?php echo $select; ?></div>
 												        <div></div>
-														<div>Tracks anzeigen</div>
+														<div><?php echo $display; ?></div>
 													</div>
 													
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<label for="to">Bis: </label>
+													<label for="to"><?php echo $to; ?> </label>
 												</td>
 						                 		<td>
 													<input type="text" id="date-to" size="14">
@@ -142,7 +158,7 @@
 												<td>
 													<div id="trackSelection">
 					                    			<form action="">
-					                    				<label for="trackSel">Track-ID: </label>
+					                    				<label for="trackSel"><?php echo $track; ?> </label>
 														<select id="trackSel">
 															
 															<option>51c97d05e4b0fe5a04e9e735</option>
@@ -176,9 +192,9 @@
 												<td></td>
 												<td>
 													<div id="streetModeBtn" class="button_base b03_skewed_slide_in" onClick="streetMode();">
-												        <div>Straßenauswahl aus</div>
+												        <div><?php echo $streets_on; ?></div>
 												        <div></div>
-												        <div>Straßenauswahl an</div>
+												        <div><?php echo $streets_off; ?></div>
 												    </div>
 													<div id="analysis-interpolation">
 														<label id="analysis-mode-interpolation-label" for="analysis-interpolation">Interpolation</label>
@@ -198,10 +214,11 @@
 										
 													<form action="">
 														<select multiple="multiple" size="4" id="duallistbox_phenomenons">
-															<option value="co2">CO2-Emission</option>
-															<option value="geschwindigkeit">Geschwindigkeit</option>
-															<option value="luftmasse">Luftmasse</option>
-															<option value="verbrauch">Verbrauch</option>
+															<option value="co2"><?php echo $co2_emission; ?></option>
+
+															<option value="geschwindigkeit"><?php echo $speed; ?></option>
+															<option value="luftmasse"><?php echo $air_mass; ?></option>
+															<option value="verbrauch"><?php echo $consumption; ?></option>
 														</select>
 														<script>
 															var l = getParam('l');
@@ -238,10 +255,18 @@
 								</td>
 								<td></td>
 								<td>
-									<label id="analysis-mode-label" for="analysis-mode">Analysemodus</label>
+									<label id="analysis-mode-label" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
 									<div class="onoffswitch" >
 										<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onClick="changeMode()">
 										<label class="onoffswitch-label" for="myonoffswitch">
+											<?php
+					                            	if(isset($_GET['l']) && $_GET['l'] == 'en'){
+						                          	echo '<div class="onoffswitch-inner-en"></div>';	
+					                              	}
+					                            	else{
+					                         		echo '<div class="onoffswitch-inner-de"></div>';	
+				                               		}
+				                         	?>
 											<div class="onoffswitch-inner"></div>
 											<div class="onoffswitch-switch"></div>
 										</label>
@@ -250,7 +275,7 @@
 								<td>
 									
 									<div id="help-button">
-										<a href="#" title="Hilfe"><img src="./img/help.png" height="48px" width="48px"></a>
+										<a href="#" title=<?php echo $help; ?>><img src="./img/help.png" height="48px" width="48px"></a>
 									</div>
 									<!--
 									<div class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
@@ -290,11 +315,11 @@
 							 <form name="checkbox">
 				                <!-- <p>Kreuzen Sie die gewünschten Measurements an:</p>-->
 				                   <p>
-				                     <input type="checkbox" name="id" checked> ID
-				                     <input type="checkbox" name="verbrauch" checked> Verbrauch
-				                     <input type="checkbox" name="co2" checked> CO2
-				                     <input type="checkbox" name="geschwindigkeit" checked> Geschwindigkeit
-				                     <input type="checkbox" name="luftmasse"checked> Luftmasse
+				                     <input type="checkbox" name="id" checked> <?php echo $id; ?>
+				                     <input type="checkbox" name="verbrauch" checked> <?php echo $consumption; ?>
+				                     <input type="checkbox" name="co2" checked> <?php echo $co2; ?>
+				                     <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
+				                     <input type="checkbox" name="luftmasse"checked> <?php echo $air_mass; ?>
 				                     <input id="btnHide" type="button" onclick="refreshTable();" value="Aktualisieren">
 				                   </p>
 			                 </form>
@@ -317,12 +342,24 @@
 			
 			<footer>
 				<div class="footer">
+<<<<<<< HEAD
+					<?php
+						if(isset($_GET['l']) && $_GET['l'] == 'en'){
+							echo '<a href="index.php"><img src="./img/blank.png" class="flag flag-de" alt="English"></a> &middot';	
+						}
+						else{
+							echo '<a href="index.php?l=en"><img src="./img/blank.png" class="flag flag-gb" alt="English"></a> &middot;';	
+						}
+					?>
+=======
 					<!-- <img src="./img/blank.png" onClick="changeFlag('1')" class="flag flag-gb" alt="English"> &middot; -->
 					<input type="button" name="BoundingBox" id="BoundingBox" onClick="initBoundingBox()">
 					<a href="?l=<?php echo $other_lang; ?>"><img src="./img/blank.png" class="flag flag-gb" alt="English"> &middot;</a>
+>>>>>>> 67edbd7530b10c77343edc70746785ff65fa144a
 					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
 				</div>
 			</footer>
 		</div>
 	</body>
 </html>
+
