@@ -620,8 +620,6 @@ function interpolateBoundingBox(idwkey){
 		}	
 	}
 	interpolate(idwkey);
-	
-	
 }
 
 		// ----------------------------------------
