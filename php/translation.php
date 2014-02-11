@@ -86,7 +86,7 @@
 	$speed_de = "Geschwindigkeit";
 	$speed_en = "Speed";
 	
-	$throttle_position_de = "Drosselklappenstellungsposition";
+	$throttle_position_de = "Throttle-Position";
 	$throttle_position_en = "Throttle Position";
 	
 	$fsl_de = "Kraftstoffanlagenkreislauf";
