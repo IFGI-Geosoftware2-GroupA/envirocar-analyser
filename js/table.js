@@ -35,22 +35,22 @@ function createTable() {
 				
 				if (measurements[i].getPhenomenons()[j].name == "Consumption"){
 					//alert("Consumption");
-					consumption.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);		
+					consumption.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "CO2"){
 					//alert("co2");
-					co2.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);	
+					co2.push((Number(measurements[i].getValues()[j]).toFixed(3)) + " " + measurements[i].getPhenomenons()[j].unit);	
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "Speed"){
 					//alert("speed");
-					speed.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);		
+					speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);		
 				}
 				else
 				if (measurements[i].getPhenomenons()[j].name == "MAF"){
 					//alert("maf");
-					maf.push(measurements[i].getValues()[j] + " " + measurements[i].getPhenomenons()[j].unit);		
+					maf.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
 				}
 			}
 		}
