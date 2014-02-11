@@ -1,78 +1,85 @@
 <?php
-	$explo_and_Visu_en = "Exploration and Visualisation";
 	
-	$from_en = "From";
+	$on = "On";
 	
-	$to_en = "To";
+	$off = "Off";
 	
-	$select_en = "Select Time Period";
+	$explo_and_Visu = "Exploration and Visualisation";
 	
-	$display_en = "Display Tracks";
+	$from = "From:";
 	
-	$track_en = "Track-ID:";
+	$to = "To:";
 	
-	$phenomenon_en = "Phenomenon:";
+	$select = "Select Time Period";
 	
-	$streets_on_en = "Street Selection On";
+	$display = "Display Tracks";
 	
-	$streets_off_en = "Street Selection Off";
+	$track = "Track-ID:";
 	
-	$analysis_mode_label_en = "Analysis Mode";
+	$phenomenon = "Phenomenon:";
 	
-	$help_en = "Help";
+	$streets_on = "Street Selection On";
 	
-	$id_en = "ID";
+	$streets_off = "Street Selection Off";
 	
-	$consumption_en = "Consumption";
+	$analysis_mode_label = "Analysis Mode";
 	
-	$co2_emission_en = "CO2-Emission";
+	$help = "Help";
 	
-	$speed_en = "Speed";
+	$id = "ID";
 	
-	$air_mass_en = "Air Mass";
+	$consumption = "Consumption";
 	
-	$engine_load_en = "Engine Load";
+	$co2 = "CO2";
 	
-	$gps_accuracy_en = "GPS Accuracy";
+	$co2_emission = "CO2 emission";
 	
-	$gps_altitude_en = "GPS Altitude";
+	$speed = "Speed";
 	
-	$gps_bearing_en = "GPS Bearing";
+	$air_mass = "Air Mass";
 	
-	$gps_hdop_en = "GPS HDOP";
+	$engine_load = "Engine Load";
 	
-	$gps_pdop_en = "GPS PDOP";
+	$gps_accuracy = "GPS Accuracy";
 	
-	$gps_speed_en = "GPS Speed";
+	$gps_altitude = "GPS Altitude";
 	
-	$gps_vdop_en = "GPS-VDOP";
+	$gps_bearing = "GPS Bearing";
 	
-	$intake_pressure_en = "Intake Pressure";
+	$gps_hdop = "GPS HDOP";
 	
-	$intake_temperature_en = "Intake Temperature";
+	$gps_pdop = "GPS PDOP";
 	
-	$maf_en = "MAF";
+	$gps_speed = "GPS Speed";
 	
-	$rpm_en = "Rpm";
+	$gps_vdop = "GPS-VDOP";
 	
-	$speed_en = "Speed";
+	$intake_pressure = "Intake Pressure";
 	
-	$throttle_position_en = "Throttle Position";
+	$intake_temperature = "Intake Temperature";
 	
-	$fsl_en = "Fuel System Loop";
+	$maf = "MAF";
 	
-	$fssc_en = "Fuel System Status Code";
+	$rpm = "Rpm";
 	
-	$ltft_en = "Long-Term Fuel Trim";
+	$speed = "Speed";
 	
-	$o2_lambda_current_en = "O2 Lambda Current";
+	$throttle_position = "Throttle Position";
 	
-	$o2_lambda_current_er_en = "O2 Lambda Current ER";
+	$fsl = "Fuel System Loop";
 	
-	$o2_lambda_voltage_en = "O2 Lambda Voltage";
+	$fssc = "Fuel System Status Code";
 	
-	$o2_lambda_voltage_er_en = "O2 Lambda Voltage ER";
+	$ltft = "Long-Term Fuel Trim";
 	
-	$stft_1_en = "Short-Term Fuel Trim 1";
+	$o2_lambda_current = "O2 Lambda Current";
+	
+	$o2_lambda_current_er = "O2 Lambda Current ER";
+	
+	$o2_lambda_voltage = "O2 Lambda Voltage";
+	
+	$o2_lambda_voltage_er = "O2 Lambda Voltage ER";
+	
+	$stft_1 = "Short-Term Fuel Trim 1";
 	
 ?>

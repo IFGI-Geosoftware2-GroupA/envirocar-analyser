@@ -1,79 +1,85 @@
 <?php
     
-    $explo_and_Visu_de = "Exploration und Visualisierung";
+    $on = "An";
 	
-	$from_de = "Von";
+	$off = "Aus";
+    
+    $explo_and_Visu = "Exploration und Visualisierung";
 	
-	$to_de = "Bis";
+	$from = "Von:";
 	
-	$select_de = "Zeitraum auswählen";
+	$to = "Bis:";
 	
-	$display_de = "Tracks anzeigen";
+	$select = "Zeitraum auswählen";
 	
-	$track_de = "Track-ID:";
+	$display = "Tracks anzeigen";
 	
-	$phenomenon_de = "Phänomen:";
+	$track = "Track-ID:";
 	
-	$streets_on_de = "Straßenauswahln An";
+	$phenomenon = "Phänomen:";
 	
-	$streets_off_de = "Straßenauswahl Aus";
+	$streets_on = "Straßenauswahl An";
 	
-	$analysis_mode_label_de = "Analyse Modus";
+	$streets_off = "Straßenauswahl Aus";
 	
-    $help_de = "Hilfe";
+	$analysis_mode_label = "Analyse Modus";
 	
-	$id_de = "ID";
+    $help = "Hilfe";
 	
-	$consumption_de = "Verbrauch";
+	$id = "ID";
 	
-	$co2_emission_de = "CO2-Emission";
+	$consumption = "Verbrauch";
 	
-	$speed_de = "Geschwindigkeit";
+	$co2 = "CO2";
 	
-	$air_mass_de = "Luftmasse";
+	$co2_emission = "CO2-Emission";
 	
-	$engine_load_de = "Motorlast";
+	$speed = "Geschwindigkeit";
 	
-	$gps_accuracy_de = "GPS-Genauigkeit";
+	$air_mass = "Luftmasse";
 	
-	$gps_altitude_de = "GPS-Höhe";
+	$engine_load = "Motorlast";
+	
+	$gps_accuracy = "GPS-Genauigkeit";
+	
+	$gps_altitude = "GPS-Höhe";
 
-	$gps_bearing_de = "GPS-Richtung";
+	$gps_bearing = "GPS-Richtung";
 	
-	$gps_hdop_de = "GPS-HDOP";
+	$gps_hdop = "GPS-HDOP";
 	
-	$gps_pdop_de = "GPS-PDOP";
+	$gps_pdop = "GPS-PDOP";
 
-	$gps_speed_de = "GPS-Geschwindigkeit";
+	$gps_speed = "GPS-Geschwindigkeit";
 	
-	$gps_vdop_de = "GPS VDOP";
+	$gps_vdop = "GPS VDOP";
 	
-	$intake_pressure_de = "Einlassdruck";
+	$intake_pressure = "Einlassdruck";
 	
-	$intake_temperature_de = "Einlasstemperatur";
+	$intake_temperature = "Einlasstemperatur";
 
-	$maf_de = "LMM";
+	$maf = "LMM";
 
-	$rpm_de = "UpM";
+	$rpm = "UpM";
 	
-	$speed_de = "Geschwindigkeit";
+	$speed = "Geschwindigkeit";
 	
-	$throttle_position_de = "Throttle-Position";
+	$throttle_position = "Throttle-Position";
 
-	$fsl_de = "Kraftstoffanlagenkreislauf";
+	$fsl = "Kraftstoffanlagenkreislauf";
 
-	$fssc_de = "Kraftstoffanlagenstatus-Code";
+	$fssc = "Kraftstoffanlagenstatus-Code";
 	
-	$ltft_de = "Langzeitkraftstofftrimm";
+	$ltft = "Langzeitkraftstofftrimm";
 	
-	$o2_lambda_current_de = "O2-Lambda-Strömung";
+	$o2_lambda_current = "O2-Lambda-Strömung";
 	
-	$o2_lambda_current_er_de = "O2-Lambda-Ströung ER";
+	$o2_lambda_current_er = "O2-Lambda-Ströung ER";
 	
-	$o2_lambda_voltage_de = "O2-Lambda-Spannung";
+	$o2_lambda_voltage = "O2-Lambda-Spannung";
 
-	$o2_lambda_voltage_er_de = "O2-Lambda-Spannung-ER";
+	$o2_lambda_voltage_er = "O2-Lambda-Spannung-ER";
 	
-	$stft_1_de = "Kurzzeitkraftstofftrimm 1";
+	$stft_1 = "Kurzzeitkraftstofftrimm 1";
 	
 ?>
