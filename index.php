@@ -318,6 +318,7 @@
 			<footer>
 				<div class="footer">
 					<!-- <img src="./img/blank.png" onClick="changeFlag('1')" class="flag flag-gb" alt="English"> &middot; -->
+					<input type="button" name="BoundingBox" id="BoundingBox" onClick="initBoundingBox()">
 					<a href="?l=<?php echo $other_lang; ?>"><img src="./img/blank.png" class="flag flag-gb" alt="English"> &middot;</a>
 					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
 				</div>

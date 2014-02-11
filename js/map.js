@@ -4,7 +4,7 @@
 // ---------------------------
 // --- Methods for the map ---
 // ---------------------------
-// Variables for the map, markers and markers bounds
+// Variables for the map, markers, markers bounds and BoundingBox
 var map,
 nrwBounds,
 markers = [],
@@ -12,6 +12,7 @@ mc,
 mcUsedBefore = true,
 maxZoomLevelForClusterer = 12,
 markersBounds = new google.maps.LatLngBounds();
+BoundingBox = false;
 // Variables for collecting Streetsegments
 var path = new google.maps.MVCArray(),
 service = new google.maps.DirectionsService(),
@@ -198,7 +199,7 @@ function showMarkers(query) {
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
 				//Create BoundingBox
-				initBoundingBox();
+				//initBoundingBox();
 			}
 		}, 700);
 	} catch(e) {
@@ -451,6 +452,9 @@ function getPolyline(){
 
 function initBoundingBox(){
 	
+	if (BoundingBox == false){
+	
+	BoundingBox = true;		
 	var p1 = map.getBounds().getNorthEast();
     var p2 = map.getBounds().getSouthWest();
    
@@ -470,6 +474,11 @@ function initBoundingBox(){
 
   rectangle.setMap(map);
 
+}
+else{
+	
+	rectangle.setMap();
+}
 }
 
  		// ------------------------------------
