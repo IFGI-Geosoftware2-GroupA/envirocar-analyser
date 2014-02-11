@@ -582,7 +582,7 @@ Query.prototype.getData = function() {
 	if (this.keyword == 'sensors') {
 		return this.getSensors();
 	}
-}
+};
 
 // Get the measurements from an URL and parse the JSON file into a Measurement array
 Query.prototype.getMeasurements = function() {

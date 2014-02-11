@@ -114,11 +114,13 @@ function initMap() {
 	 * Listen for changed map type id to enable/disable collecting street segments
 	 * Only Google Maps are allowed to be used for the Google Directions API
 	 */
+	/*
 	google.maps.event.addListener(map, 'maptypeid_changed', function() {
 		if (map.getMapTypeId() == 'OSM') {
 			alert('Only Google Maps are allowed to be used for the Google Directions API');
 		}
 	});
+	*/
 	
 	// Listen for the search box results
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
@@ -283,54 +285,54 @@ function buildInfoWindow(marker,map,measurements){
         // --- End of Listener for the InfoWindow ---
         // ------------------------------------------
 
-/**
- * Create a control Element on Map for enabling Streetsegment Collection
- * 
- */
-function collectStreets(controlDiv, map) {
-
-  // Set CSS styles for the DIV containing the control
-  // Setting padding to 5 px will offset the control
-  // from the edge of the map.
-  controlDiv.style.padding = '5px';
-
-  // Set CSS for the control border.
-  var controlUI = document.createElement('div');
-  controlUI.style.backgroundColor = 'white';
-  controlUI.style.borderStyle = 'solid';
-  controlUI.style.borderWidth = '2px';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.textAlign = 'center';
-  controlUI.title = 'Click to collect Streetsegments';
-  controlDiv.appendChild(controlUI);
-
-  // Set CSS for the control interior.
-  var controlText = document.createElement('div');
-  controlText.style.fontFamily = 'Arial,sans-serif';
-  controlText.style.fontSize = '12px';
-  controlText.style.paddingLeft = '4px';
-  controlText.style.paddingRight = '4px';
-  controlText.innerHTML = '<strong>Collect Streetsegments on/off </strong>';
-  controlUI.appendChild(controlText);
-  
-  // Handles events if button is 'clicked'
-  google.maps.event.addDomListener(controlUI, 'click', function() {
-  	
-  		// Alert the user one time
-  		if(alerted==false){
-  			alert("remove the last points with 'rightclick' somewhere in the map not at a point!");
-  			alerted =true;
-  		}
-  		if(streetmode==false){ 
-  			 
-  			// Call enableStreetmode() function
-  			enableStreetmode();
-  		}else if(streetmode==true){
-  			// Call disableStreetmode() function for clearing the overlay and removing Listener
-  			disableStreetmode();
-  		}
-  });
-}
+// /**
+ // * Create a control Element on Map for enabling Streetsegment Collection
+ // * 
+ // */
+// function collectStreets(controlDiv, map) {
+// 
+  // // Set CSS styles for the DIV containing the control
+  // // Setting padding to 5 px will offset the control
+  // // from the edge of the map.
+  // controlDiv.style.padding = '5px';
+// 
+  // // Set CSS for the control border.
+  // var controlUI = document.createElement('div');
+  // controlUI.style.backgroundColor = 'white';
+  // controlUI.style.borderStyle = 'solid';
+  // controlUI.style.borderWidth = '2px';
+  // controlUI.style.cursor = 'pointer';
+  // controlUI.style.textAlign = 'center';
+  // controlUI.title = 'Click to collect Streetsegments';
+  // controlDiv.appendChild(controlUI);
+// 
+  // // Set CSS for the control interior.
+  // var controlText = document.createElement('div');
+  // controlText.style.fontFamily = 'Arial,sans-serif';
+  // controlText.style.fontSize = '12px';
+  // controlText.style.paddingLeft = '4px';
+  // controlText.style.paddingRight = '4px';
+  // controlText.innerHTML = '<strong>Collect Streetsegments on/off </strong>';
+  // controlUI.appendChild(controlText);
+//   
+  // // Handles events if button is 'clicked'
+  // google.maps.event.addDomListener(controlUI, 'click', function() {
+//   	
+  		// // Alert the user one time
+  		// if(alerted==false){
+  			// alert("remove the last points with 'rightclick' somewhere in the map not at a point!");
+  			// alerted =true;
+  		// }
+  		// if(streetmode==false){ 
+//   			 
+  			// // Call enableStreetmode() function
+  			// enableStreetmode();
+  		// }else if(streetmode==true){
+  			// // Call disableStreetmode() function for clearing the overlay and removing Listener
+  			// disableStreetmode();
+  		// }
+  // });
+// }
 /**
  * Function to enable the Streetmode.
  * Adds Listener, sets the map overlay and switches cursor to 'crosshair'
@@ -481,7 +483,7 @@ function initBoundingBox(){
  */
 function interpolate(idwkey){
 	if(polyexport.length==0){
-		alert("Please select first street segments to interpolate");
+		alert("Please select first street segments to interpolate or create a bounding box");
 		}
 	else{
 		this.idwkey = new String(idwkey);
@@ -496,8 +498,8 @@ function interpolate(idwkey){
 		for (var i=0,k=1;k<getPolyline().length;i++,k++){
 			var origin = getPolylineAt(i);
 			var destination = getPolylineAt(k);
-			for (var j=1; j<=10;j++){
-				var step = (1/10);
+			for (var j=1; j<=25;j++){
+				var step = (1/25);
 				var interpolated= google.maps.geometry.spherical.interpolate(origin, destination, step * j);
 					var numerator =0;
 					var denominator = 0;
@@ -510,7 +512,7 @@ function interpolate(idwkey){
 							var alpha = measurements[m].values[n];
 							var p1 = measurements[m].getPoint();
 							var p2 = interpolated;
-							var beta = Math.pow(Distance(p1,p2), 16);
+							var beta = Math.pow(Distance(p1,p2), 2);
 							var gamma = (alpha/beta);
 							numerator = (numerator + gamma);
 					}				
@@ -519,7 +521,7 @@ function interpolate(idwkey){
 							var alpha = 1;
 							var p1 = measurements[m].getPoint();
 							var p2 =interpolated;
-							var beta = Math.pow(Distance(p1,p2),16);
+							var beta = Math.pow(Distance(p1,p2),2);
 							var gamma = (alpha/beta);
 						 denominator = (denominator + gamma);
 					}
@@ -629,6 +631,24 @@ function buildSmallInfoWindow(marker,map,interpolatedValues){
 	google.maps.event.addListener(marker, 'click', function() {
    					 infowindow.open(map,marker);
  					 });
+}
+/**
+ * Changes the polyexport, that it represents the measurements in the boundingbox
+ * @param {String} idwkey represents the Phenomenon which should be interpolated
+ */
+function interpolateBoundingBox(idwkey){
+	this.idwkey = new String(idwkey);
+	// Create a Polyline
+	polyexport.clear();
+	//Get all points in the boundingbox
+	for(var i=0;i<measurements.length;i++){
+		if(boundingbox.getBounds().contains(measurements[i].getPoint()) == true){
+			polyexport.push(measurements[i].getPoint());
+		}	
+	}
+	interpolate(idwkey);
+	
+	
 }
 
 		// ----------------------------------------

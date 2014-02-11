@@ -1,3 +1,14 @@
+<?php
+	if (isset($_GET['l'])) {
+		$lang = $_GET['l'];
+		if ($lang != 'en') {
+			$lang = 'de';
+			$other_lang = 'en';
+		} else {
+			$other_lang = 'de';
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="de">
 	<head>
@@ -29,7 +40,7 @@
 		<link href="css/flags.css" rel="stylesheet">
 		
 		<!-- Google Maps API v3.14 -->
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&language=de&libraries=geometry,places"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&language=<?php echo $lang; ?>&libraries=geometry,places"></script>
 		
 		<!-- MarkerClusterer -->
 		<!-- <script src="js/lib/markerclusterer_compiled.js"></script> -->
@@ -306,7 +317,8 @@
 			
 			<footer>
 				<div class="footer">
-					<img src="./img/blank.png" onClick="changeFlag('1')" class="flag flag-gb" alt="English"> &middot;
+					<!-- <img src="./img/blank.png" onClick="changeFlag('1')" class="flag flag-gb" alt="English"> &middot; -->
+					<a href="?l=<?php echo $other_lang; ?>"><img src="./img/blank.png" class="flag flag-gb" alt="English"> &middot;</a>
 					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
 				</div>
 			</footer>
