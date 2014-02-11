@@ -483,7 +483,7 @@ function interpolate(idwkey){
 							var alpha = measurements[m].values[n];
 							var p1 = measurements[m].getPoint();
 							var p2 = interpolated;
-							var beta = Math.pow(Distance(p1,p2), 16);
+							var beta = Math.pow(Distance(p1,p2), 2;
 							var gamma = (alpha/beta);
 							numerator = (numerator + gamma);
 					}				
@@ -492,7 +492,7 @@ function interpolate(idwkey){
 							var alpha = 1;
 							var p1 = measurements[m].getPoint();
 							var p2 =interpolated;
-							var beta = Math.pow(Distance(p1,p2),16);
+							var beta = Math.pow(Distance(p1,p2),2);
 							var gamma = (alpha/beta);
 						 denominator = (denominator + gamma);
 					}
