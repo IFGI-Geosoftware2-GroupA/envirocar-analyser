@@ -24,6 +24,7 @@ removepointlistener;
 var polyexport = new google.maps.MVCArray();
 var removepoints = [];
 var idwmarkers = [];
+var rectangle;
 /**
  * Initialize the map
  */
@@ -651,13 +652,11 @@ function interpolateBoundingBox(idwkey){
 	polyexport.clear();
 	//Get all points in the boundingbox
 	for(var i=0;i<measurements.length;i++){
-		if(boundingbox.getBounds().contains(measurements[i].getPoint()) == true){
+		if(rectangle.getBounds().contains(measurements[i].getPoint()) == true){
 			polyexport.push(measurements[i].getPoint());
 		}	
 	}
 	interpolate(idwkey);
-	
-	
 }
 
 		// ----------------------------------------
