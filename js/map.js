@@ -477,7 +477,7 @@ function initBoundingBox(){
 
 }
 else{
-	
+	BoundingBox = false;
 	rectangle.setMap();
 }
 }
