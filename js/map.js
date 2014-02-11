@@ -153,6 +153,8 @@ function initMap() {
 	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
 	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true,strokeColor: "#CC33FF"});
+
+	
 }
 
 /*
@@ -195,6 +197,8 @@ function showMarkers(query) {
 			// Only change the bounds when measurements have been collected
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
+				//Create BoundingBox
+				initBoundingBox();
 			}
 		}, 700);
 	} catch(e) {
@@ -443,6 +447,29 @@ function getPolyline(){
 	else{
 		return polyexport.getArray();
 	}
+}
+
+function initBoundingBox(){
+	
+	var p1 = map.getBounds().getNorthEast();
+    var p2 = map.getBounds().getSouthWest();
+   
+	var bounds = new google.maps.LatLngBounds(
+      
+      google.maps.geometry.spherical.interpolate(p2,p1, 1/3),
+      google.maps.geometry.spherical.interpolate(p1,p2, 1/3)
+      
+  );
+
+  // Define the rectangle and set its editable property to true.
+  rectangle = new google.maps.Rectangle({
+    bounds: bounds,
+    editable: true,
+    draggable: true
+  });
+
+  rectangle.setMap(map);
+
 }
 
  		// ------------------------------------
