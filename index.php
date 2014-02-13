@@ -357,7 +357,7 @@
 							echo '<a href="index.php?l=en"><img src="./img/blank.png" class="flag flag-gb" alt="English"></a> &middot;';	
 						}
 					?>
-
+					
 					<a href="?l='<?php echo $other_lang; ?>'"><img src="./img/blank.png" class="flag flag-gb" alt="English"> &middot;</a>
 
 					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
