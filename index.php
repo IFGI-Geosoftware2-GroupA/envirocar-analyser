@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php 
 	if(!isset($_GET['l'])){
 		include 'php/translation_de.php';
@@ -12,7 +11,6 @@
 	}
 ?>
 
-=======
 <?php
 	if (isset($_GET['l'])) {
 		$lang = $_GET['l'];
@@ -24,7 +22,7 @@
 		}
 	}
 ?>
->>>>>>> 67edbd7530b10c77343edc70746785ff65fa144a
+
 <!DOCTYPE html>
 <html l="de">
 	<head>
@@ -188,7 +186,7 @@
 												</td>				
 											</tr>
 											<tr>
-												<td></td>
+												<td><input type="button" name="BoundingBox" id="BoundingBox" onClick="initBoundingBox()"></td>
 												<td></td>
 												<td>
 													<div id="streetModeBtn" class="button_base b03_skewed_slide_in" onClick="streetMode();">
@@ -256,21 +254,29 @@
 								<td></td>
 								<td>
 									<label id="analysis-mode-label" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
-									<div class="onoffswitch" >
-										<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onClick="changeMode()">
-										<label class="onoffswitch-label" for="myonoffswitch">
-											<?php
-					                            	if(isset($_GET['l']) && $_GET['l'] == 'en'){
-						                          	echo '<div class="onoffswitch-inner-en"></div>';	
-					                              	}
-					                            	else{
-					                         		echo '<div class="onoffswitch-inner-de"></div>';	
-				                               		}
-				                         	?>
-											<div class="onoffswitch-inner"></div>
-											<div class="onoffswitch-switch"></div>
-										</label>
-									</div>
+									<?php
+										if(isset($_GET['l']) && $_GET['l'] == 'en'){
+										echo 
+										'<div class="onoffswitch" >
+											<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch-en" onClick="changeMode()">
+											<label class="onoffswitch-label" for="myonoffswitch-en">
+												<div class="onoffswitch-inner-en">							                         
+												<div class="onoffswitch-switch"></div>
+											</label>
+										</div>'; 
+										}
+										else {
+					                    echo 
+					                    '<div class="onoffswitch" >
+											<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch-de" onClick="changeMode()">
+											<label class="onoffswitch-label" for="myonoffswitch-de">
+												<div class="onoffswitch-inner-de">							                         
+												<div class="onoffswitch-switch"></div>
+											</label>
+										</div>';
+										}
+					                ?>
+									
 								</td>
 								<td>
 									
@@ -342,7 +348,7 @@
 			
 			<footer>
 				<div class="footer">
-<<<<<<< HEAD
+
 					<?php
 						if(isset($_GET['l']) && $_GET['l'] == 'en'){
 							echo '<a href="index.php"><img src="./img/blank.png" class="flag flag-de" alt="English"></a> &middot';	
@@ -351,11 +357,9 @@
 							echo '<a href="index.php?l=en"><img src="./img/blank.png" class="flag flag-gb" alt="English"></a> &middot;';	
 						}
 					?>
-=======
-					<!-- <img src="./img/blank.png" onClick="changeFlag('1')" class="flag flag-gb" alt="English"> &middot; -->
-					<input type="button" name="BoundingBox" id="BoundingBox" onClick="initBoundingBox()">
-					<a href="?l=<?php echo $other_lang; ?>"><img src="./img/blank.png" class="flag flag-gb" alt="English"> &middot;</a>
->>>>>>> 67edbd7530b10c77343edc70746785ff65fa144a
+
+					<a href="?l='<?php echo $other_lang; ?>'"><img src="./img/blank.png" class="flag flag-gb" alt="English"> &middot;</a>
+
 					2014 enviroCar &middot; &copy; Copyright by Axel Virnich, Daniel Sawatzky, Jan-Philipp Heine, Jens Balmert, Mario Gerdes, Marius Runde, Thiemo Gärtner
 				</div>
 			</footer>

@@ -370,23 +370,24 @@ border: none;
     display: block; overflow: hidden; cursor: pointer;
     border: 2px solid #FFFFFF; border-radius: 50px;
 }
-.onoffswitch-inner {
+/* german button */
+.onoffswitch-inner-de {
     width: 200%; margin-left: -100%;
     -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
     -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
 }
-.onoffswitch-inner:before, .onoffswitch-inner:after {
+.onoffswitch-inner-de:before, .onoffswitch-inner:after {
     float: left; width: 50%; height: 41px; padding: 0; line-height: 41px;
     font-size: 25px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
-.onoffswitch-inner:before {
+.onoffswitch-inner-de:before {
     content: "AN";
     padding-left: 14px;
     background-color: #EEEEEE; color: #1D83C3;
 	text-align: left;
 }
-.onoffswitch-inner:after {
+.onoffswitch-inner-de:after {
     content: "AUS";
     padding-right: 14px;
     background-color: #EEEEEE; color: #92C049;
@@ -406,6 +407,30 @@ border: none;
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
     background-color: #1D83C3; 
+}
+
+/* english button */
+.onoffswitch-inner-en {
+    width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner-en:before, .onoffswitch-inner:after {
+    float: left; width: 50%; height: 41px; padding: 0; line-height: 41px;
+    font-size: 25px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner-en:before {
+    content: "ON";
+    padding-left: 14px;
+    background-color: #EEEEEE; color: #1D83C3;
+	text-align: left;
+}
+.onoffswitch-inner-en:after {
+    content: "OFF";
+    padding-right: 14px;
+    background-color: #EEEEEE; color: #92C049;
+    text-align: right;
 }
 
 
