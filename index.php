@@ -351,10 +351,10 @@
 
 					<?php
 						if(isset($_GET['l']) && $_GET['l'] == 'en'){
-							echo '<a href="index.php"><img src="./img/blank.png" class="flag flag-de" alt="English"></a> &middot;';	
+							echo '<a href="index.php"><img src="./img/flag_germany.png" class="flag" alt="English"></a> &middot;';	
 						}
 						else{
-							echo '<a href="index.php?l=en"><img src="./img/blank.png" class="flag flag-gb" alt="English"></a> &middot;';	
+							echo '<a href="index.php?l=en"><img src="./img/flag_united_kingdom.png" class="flag" alt="German"></a> &middot;';	
 						}
 					?>
 
