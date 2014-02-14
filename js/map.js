@@ -189,6 +189,13 @@ function showMarkers(query) {
 				markersBounds.extend(measurements[i].getPoint());
 				// Create infowindow for marker[i]/measurement[i]
 				buildInfoWindow(marker,map,measurements[i]);
+				google.maps.event.addListener(marker, 'click', function(){
+					var mid = measurements[i].getId();
+					var bg = document.createAttribute("backgroundColor");
+					bg.nodeValue = '#B0C4DE';
+					document.getElementById(mid).setAttributeNode(bg);
+					
+				});
 			}
 
 			var mcOptions = {

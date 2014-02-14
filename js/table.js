@@ -101,6 +101,9 @@ function createTable() {
 		currentCell4 = document.createElement("td");
 
 		//ID-Column
+		var idatt = document.createAttribute("id"); 
+		idatt.nodeValue = measurements[i].getId();
+		currentCell0.setAttributeNode(idatt);
 		currentText0 = document.createTextNode(measurements[i].getId());
 		//Consumption-Column
 		currentText1 = document.createTextNode(consumption[i]);
