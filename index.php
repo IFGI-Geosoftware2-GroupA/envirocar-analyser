@@ -122,7 +122,7 @@
 								<td>
 									<div id="logo-container">
 									  <a href="./index.php" title="Homepage"><img id="logo" alt="Logo" width="200px" src="img/enviroCarLogo_transparent.png"></a>
-									  <label for="logo" id="logo-label">Exploration und Visualisierung</label>
+									  <label for="logo" id="logo-label"><?php echo $logoLabel; ?></label>
 									</div>
 								</td>
 								<td></td>
@@ -298,7 +298,7 @@
 			<div id="content">
 				<div class="clearfix">
 					<div id="map-container" class="left">
-						<input id="search-input" class="controls" type="text" placeholder="Suche nach St&auml;dten">
+						<input id="search-input" class="controls" type="text" placeholder="<?php echo $mapSearch ?>">
 							
 							<div id="map">
 								<!-- the map will be displayed here -->

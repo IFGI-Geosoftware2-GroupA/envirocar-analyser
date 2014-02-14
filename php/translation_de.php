@@ -4,7 +4,7 @@
 	
 	$off = "Aus";
     
-    $explo_and_Visu = "Exploration und Visualisierung";
+    $logoLabel = "Exploration und Visualisierung";
 	
 	$from = "Von:";
 	
@@ -81,5 +81,7 @@
 	$o2_lambda_voltage_er = "O2-Lambda-Spannung-ER";
 	
 	$stft_1 = "Kurzzeitkraftstofftrimm 1";
+	
+	$mapSearch = "Suche nach St&auml;dten";
 	
 ?>

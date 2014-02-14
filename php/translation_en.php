@@ -4,7 +4,7 @@
 	
 	$off = "Off";
 	
-	$explo_and_Visu = "Exploration and Visualisation";
+	$logoLabel = "Exploration and Visualisation";
 	
 	$from = "From:";
 	
@@ -81,5 +81,7 @@
 	$o2_lambda_voltage_er = "O2 Lambda Voltage ER";
 	
 	$stft_1 = "Short-Term Fuel Trim 1";
+	
+	$mapSearch = "Search for cities";
 	
 ?>
