@@ -1,6 +1,11 @@
 .bootstrap-duallistbox-container .buttons {
     width: 100%;
+    height: 23px;
     margin-bottom: -1px;
+}
+
+.bootstrap-duallistbox-container .btn {
+	height: 21px;
 }
 
 .bootstrap-duallistbox-container label {
