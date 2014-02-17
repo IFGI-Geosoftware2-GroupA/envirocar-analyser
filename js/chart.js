@@ -15,7 +15,7 @@ function LineChart() {
 	// default line chart options for time related data
 	this.options = {
 		chart : {
-			renderTo : 'chart',
+			renderTo : 'analyser-chart',
 			type : 'line',
 			zoomType : 'xy'
 		},

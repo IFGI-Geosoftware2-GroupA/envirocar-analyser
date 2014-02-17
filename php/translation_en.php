@@ -1,5 +1,11 @@
 <?php
 	
+	$contact = "Contact";
+	
+	$imprint = "Imprint";
+	
+	$terms = "Terms of Use";
+	
 	$on = "On";
 	
 	$off = "Off";
@@ -10,13 +16,17 @@
 	
 	$to = "To:";
 	
-	$select = "Select Time Period";
+	$selectTime = "Select time period";
+	
+	$selectSpace = "Select space segment";
 	
 	$display = "Display Tracks";
 	
 	$track = "Track-ID:";
 	
 	$phenomenon = "Phenomenon:";
+	
+	$selectStreet = "Street Selection";
 	
 	$streets_on = "Street Selection On";
 	
@@ -83,5 +93,7 @@
 	$stft_1 = "Short-Term Fuel Trim 1";
 	
 	$mapSearch = "Search for cities";
+	
+	$refresh = "Refresh";
 	
 ?>

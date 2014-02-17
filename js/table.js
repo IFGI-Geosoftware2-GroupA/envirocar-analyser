@@ -7,7 +7,7 @@
 // -----------------------------
 // Initialize the table
 function initTable() {
-    node = document.getElementById("table");
+    node = document.getElementById("analyser-table");
     node.appendChild(createTable());
     }
 

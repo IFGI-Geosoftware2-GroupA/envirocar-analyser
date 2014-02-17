@@ -1,5 +1,11 @@
 <?php
     
+	$contact = "Kontakt";
+	
+	$imprint = "Impressum";
+	
+	$terms = "Nutzungsbedingungen";
+	
     $on = "An";
 	
 	$off = "Aus";
@@ -10,13 +16,17 @@
 	
 	$to = "Bis:";
 	
-	$select = "Zeitraum auswählen";
+	$selectTime = "Zeitraum auswählen";
+	
+	$selectSpace = "Raumauschnitt auswählen";
 	
 	$display = "Tracks anzeigen";
 	
 	$track = "Track-ID:";
 	
 	$phenomenon = "Phänomen:";
+	
+	$selectStreet = "Straßenauswahl";
 	
 	$streets_on = "Straßenauswahl An";
 	
@@ -83,5 +93,7 @@
 	$stft_1 = "Kurzzeitkraftstofftrimm 1";
 	
 	$mapSearch = "Suche nach St&auml;dten";
+		
+	$refresh = "Aktualisieren";
 	
 ?>
