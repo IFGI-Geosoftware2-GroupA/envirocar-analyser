@@ -19,7 +19,7 @@ function createTable() {
 		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
 		
-		myTable.setAttribute("id", "tableid");
+		myTable.setAttribute("id", "tableID");
 		
 		consumption = new Array();
 		co2 = new Array();
@@ -137,9 +137,13 @@ function createTable() {
 }
 
 function dataTable(){
-$(function(){
+
 	$(document).ready(function() {
-		$('#tableid').dataTable({
+
+		$('#tableID').dataTable({
+
+				"aoColumnDefs": [
+      { "asSorting": [ "asc" ], "aTargets": [ 1] },],		
 				"sPaginationType": "full_numbers",
 				"sScrollY" : "200px",
 				"bPaginate" : true,
@@ -157,8 +161,8 @@ $(function(){
 					    "sSearch": "Suche:"
 				}
 			});
-	} );
-});
+	});
+
 }
 //Refresh the Table after the ButtonClick with the marked checkboxes
 function refreshTable() {
