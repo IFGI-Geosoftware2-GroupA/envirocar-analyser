@@ -49,10 +49,15 @@ body {
 	background-color: #fff;
 	border-bottom: 1px solid #888888;
 	height: 10em;
-	display: -webkit-flex;
-    display: flex;
 	width: 100%;
-	z-index: 50;
+	z-index: 5;
+	
+	
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    flex:auto;
 
 }
 
@@ -61,6 +66,8 @@ body {
 	flex: logo;
 	width: 200px;
 	margin: 1em 0 0 1em;
+	z-index: 6; 
+	background: #fff;
 }
 
 #header-nav .controls {
@@ -108,8 +115,27 @@ body {
 	margin: 1em 0.5em 0 0; 
 	
 }
+
 #timeSelection {
-	
+	width: 250px;
+}
+
+
+@media screen and (max-width: 1315px) {
+
+	.timelabel {
+		float: left;
+		clear:both;
+	}
+	#selectTimeBtn {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 1315px) {
+	#timeSelection {
+		width: 200px;
+	}
 }
 
 #space {
@@ -141,13 +167,18 @@ body {
 	margin-left: 2em;
 }
 
+#analysis-mode{
+
+}
 #analysis-mode-label {
 	font-size: 0.9em;
 	text-align: center;
+	
 }
 
 #helpButton{
 	margin: 2em 0 0 3em;
+	float: right;
 }
 
 #footer{

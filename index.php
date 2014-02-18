@@ -104,7 +104,7 @@
 					
 					<label for="from" class="timelabel"><?php echo $from; ?> </label>
 					<input type="text" id="date-from" class="controls" size="12">	
-					<br><br>			
+					<br>
 					<label for="to" class="timelabel"><?php echo $to; ?> </label>
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
