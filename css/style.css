@@ -6,14 +6,18 @@
 * @copyright 	Copyright 2014, Geosoftware 2 Group A, ifgi Muenster
 * @version 		1.0
 *
-* Content:  1. general styles and calibration
+* Content:  1. General styles and calibration
 *		 	2. enviroCar analyser styles
-*			3. map styles
-*			4. button styles
+*				2.1 Map styles
+* 				2.2 Chart styles
+* 				2.3 Table styles
+* 			3. Google Maps styles
+*			4. Button styles
+* 			5. Style fixes
 ********************************************************************/
 
 /********************************************************************
-	1. general styles and calibration
+	1. General styles and calibration
 ********************************************************************/
 
 html { 
@@ -27,7 +31,6 @@ body {
     padding: 0;
 	font-family: 'Roboto', sans-serif;
 	background-color: #fff;
-	/* background-color: #1D83C3; !important; */
 	
 }
 
@@ -45,12 +48,11 @@ body {
 	padding: 0.5em 0.5em 0.5em 0.5em;
 	background-color: #fff;
 	border-bottom: 1px solid #888888;
-	height: 8em;
+	height: 10em;
 	display: -webkit-flex;
     display: flex;
-	display: box;
-	box-orient: horizontal;
 	width: 100%;
+	z-index: 50;
 
 }
 
@@ -58,6 +60,7 @@ body {
 	-webkit-flex: logo;
 	flex: logo;
 	width: 200px;
+	margin: 1em 0 0 1em;
 }
 
 #header-nav .controls {
@@ -67,26 +70,29 @@ body {
 	-moz-box-sizing: border-box;
 	outline: none;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+	height: 25px;
 }
   
 #date-from  {
 	background-color: #fff;
-	width: 170px;
+	width: 150px;
 	font-family: Roboto;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 300;
 	text-overflow: ellipsis;
 	text-align: center;
+	float: right;
 }
 
 #date-to {
 	background-color: #fff;
-	width: 170px;
+	width: 150px;
 	font-family: Roboto;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 300;
 	text-overflow: ellipsis;
 	text-align: center;
+	float: right;
 }
 
 #date-from:focus {
@@ -97,27 +103,33 @@ body {
 	border-color: #4d90fe;
 }
 
-#timeSelection {
-	width: 30%;
+.timelabel{
+	float: left;
+	margin: 1em 0.5em 0 0; 
+	
 }
-
-
+#timeSelection {
+	
+}
 
 #space {
-	margin-left: -2em;
+	margin-left: 2em;
+	margin-top: 0.5em;
+	
 }
 #spaceSelection {
-	margin: 0.5em 1em 1em 0em;
+	margin: 0.5em 1em 1.5em 0em;
 }
 
 #trackSelection {
-	padding-top: 10px;
+	float: left;
+	
 }
 
 #streetSelection {
-	margin: 0.5em 1em 1em 0em;
+	margin: 0.4em 1em 1.6em 0em;
 	background-color: #fff;
-	width: 170px;
+	width: auto;
 	font-family: Roboto;
 	font-size: 16px;
 	font-weight: 300;
@@ -126,82 +138,16 @@ body {
 }
 
 #phenomenSelection {
-
+	margin-left: 2em;
 }
 
-/* Application Content */
-#application-content{
-	
+#analysis-mode-label {
+	font-size: 0.9em;
+	text-align: center;
 }
 
-#map-container {
-	position: absolute;
-    width: 100%;
-    height: auto !important;
-	overflow: hidden;
-	top: 8em;
-	bottom: 1.4em;
-}
-
-#map-container i {
-	position: absolute;
-	display: block;
-	box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
-}
-
-#analyser-map i {
-	position: absolute;
-	display: block;
-	box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
-}
-
-.map-top { top: -5px; left: 0; right: 0; height: 5px; z-index: 10;}
-.map-bottom { bottom: -5px; left: 0; right: 0; height: 5px; z-index: 10;}
-
-#map {
-	height: 100%;
-}
-
-#analyser-map {
-	position: absolute;
-    height: auto !important;
-	overflow: hidden;
-	top: 8em;
-	bottom: 1.4em;
-	float: left;
-	width:50%;
-}
-
-#analyser-panel {
-	float: right;
-	width:50%;
-}
-
-#analyser-chart{
-	position: absolute;
-	width:50%;
-}
-
-.top {
-	position: absolute;
-	top: 8em;
-	height: 50%;
-}
-
-#analyser-table{
-	position: absolute;
-	overflow: auto;
-	margin: 0.5em;
-	padding: 0 2em 0 1em;
-	width: 49%;
-}
-.bottom {
-	bottom: 1.4em;
-	height: 30%;
-}
-
-label #analysis-mode-label {
-	font-size: 0.5em;
+#helpButton{
+	margin: 2em 0 0 3em;
 }
 
 #footer{
@@ -224,7 +170,72 @@ label #analysis-mode-label {
 
 
 /********************************************************************
-	3. map styles
+	2.1 enviroCar analyser map styles
+********************************************************************/
+
+#map-container {
+	position: absolute;
+    width: 100%;
+    height: auto !important;
+	overflow: hidden;
+	top: 10em;
+	bottom: 1.4em;
+}
+
+#map-container i {
+	position: absolute;
+	display: block;
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
+}
+
+.map-top { top: -5px; left: 0; right: 0; height: 5px; z-index: 10;}
+.map-bottom { bottom: -5px; left: 0; right: 0; height: 5px; z-index: 10;}
+
+#map {
+	height: 100%;
+}
+
+/********************************************************************
+	2.2 enviroCar analyser chart styles
+********************************************************************/
+
+#analyser-panel {
+	float: right;
+	width:50%;
+	display: none;
+}
+
+#analyser-chart{
+	position: absolute;
+	width:50%;
+}
+
+.top {
+	position: absolute;
+	top: 10em;
+	height: 50%;
+}
+
+/********************************************************************
+	2.3 enviroCar analyser table styles
+********************************************************************/
+
+#analyser-table{
+	position: absolute;
+	overflow: auto;
+	margin: 0.5em;
+	padding: 0 2em 0 1em;
+	width: 49%;
+}
+.bottom {
+	bottom: 1.4em;
+	height: 30%;
+}
+
+
+
+/********************************************************************
+	3. Google Maps styles
 ********************************************************************/
 
 /* Search control and input
@@ -311,7 +322,7 @@ label #analysis-mode-label {
 }
 
 /********************************************************************
-	4. button styles
+	4. Button styles
 ********************************************************************/
 
 #selectTimeBtn {
@@ -319,9 +330,10 @@ label #analysis-mode-label {
 	background: #fff;
 	border: 1px solid #1D83C3;
 	font-weight: bold;
-	width: 170px;
-	height: 30px;
-	margin: 0.5em 0 0 9em;
+	width: 100%;
+	height: 25px;
+	float: right;
+	margin: 1em 0 0 0;
 }
 
 #selectTimeBtn:hover {
@@ -329,8 +341,6 @@ label #analysis-mode-label {
 	background-color: #1D83C3;
 	border: 1px solid #1D83C3;
 	font-weight: bold;
-	width: 170px;
-	height: 30px;
 }
 
 .spaceButton {
@@ -338,8 +348,9 @@ label #analysis-mode-label {
 	background: #fff;
 	border: 1px solid #92C049;
 	font-weight: bold;
-	width: 200px;
-	height: 30px;
+	width: auto;
+	height: 25px;
+
 }
 
 .spaceButton:hover {
@@ -347,18 +358,9 @@ label #analysis-mode-label {
 	background-color: #92C049;
 	border: 1px solid #92C049;
 	font-weight: bold;
-	width: 200px;
-	height: 30px;
+	
 }
 
-.spaceButton:active {
-	color: #fff;
-	background-color: #92C049;
-	border: 1px solid #92C049;
-	font-weight: bold;
-	width: 200px;
-	height: 30px;
-}
 
 #refreshBtn {
 	color: #1D83C3;
@@ -381,3 +383,41 @@ label #analysis-mode-label {
 	margin: 0.5em 0 0 4em;
 
 }
+
+/* Analysis Mode switch */
+
+#analyseModeBtn {
+	color: #1D83C3;
+	background: #fff;
+	border: 1px solid #1D83C3;
+	font-weight: bold;
+	width: 120px;
+	height: 30px;
+	margin: 0.5em 0 0 4em;
+
+}
+
+.left{
+	float:left;
+}
+.right {
+	float: right;
+}
+
+.center {
+	
+}
+
+/********************************************************************
+	5. Style fixes
+********************************************************************/
+
+.clearfix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0px;
+}
+
+.ui-datepicker{z-index: 99 !important};

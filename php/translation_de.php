@@ -18,7 +18,7 @@
 	
 	$selectTime = "Zeitraum auswählen";
 	
-	$selectSpace = "Raumauschnitt auswählen";
+	$selectSpace = "Raumauswahl";
 	
 	$display = "Tracks anzeigen";
 	

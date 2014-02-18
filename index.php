@@ -33,7 +33,7 @@
 	
 	<title>envirocar-analyser</title>
 	<meta name="description" content="Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten" />
-	<meta name="author" content="Marius Runde, Jens Balmert, Daniel Sawatzky" />
+	<meta name="author" content="Marius Runde, Daniel Sawatzky, Jens Balmert" />
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
@@ -44,19 +44,18 @@
 	<link rel="stylesheet" type="text/css" href="css/lib/jquery-ui-timepicker-addon.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-duallistbox.css" />
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10-dev/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="css/icons.css" />
+	<link rel="stylesheet" type="text/css" href="css/flags.css" >
 	
-	<!-- Fonts, Icons and Flags -->
+	<!-- Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="css/icons.css" />
-	<link href="css/flags.css" rel="stylesheet">
-	
+
 	<!-- Google Maps API v3.14 -->
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&language=<?php echo $lang; ?>&libraries=geometry,places"></script>
 	
 	<!-- MarkerClusterer -->
-	<!-- <script src="js/lib/markerclusterer_compiled.js"></script> -->
 	<script src="js/lib/markerclusterer.js"></script>
 	
 	<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker, Bootstrap Dual Listbox -->
@@ -65,7 +64,6 @@
 	<script src="js/lib/jquery-ui-timepicker-addon.min.js"></script>
 	<script src="js/lib/jquery.bootstrap-duallistbox.js"></script>
 	<script src="js/lib/bootstrap.min.js"></script>
-	<script src="js/lib/jquery.dataTables.min.js"></script>
 	
 	<!-- Highcharts 3.0 -->
 	<script src="js/lib/highcharts.js"></script>
@@ -78,8 +76,8 @@
 	<script src="js/envirocar-analyser.js"></script>
 	
 	<!-- Functions of the map, table and chart -->
-	<script src="js/chart.js"></script>
 	<script src="js/map.js"></script>
+	<script src="js/chart.js"></script>
 	<script src="js/table.js"></script>
 	
 	<!-- Boundaries of NRW -->
@@ -104,12 +102,12 @@
 				<label for="timeSelection"><?php $selectTimeRange ?></label>
 				<form action="" method="post">
 					
-					<label for="from"><?php echo $from; ?> </label>
-					<input type="text" id="date-from" class="controls" size="14">	
-								
-					<label for="to"><?php echo $to; ?> </label>
-					<input type="text" id="date-to" class="controls" size="14">
-					
+					<label for="from" class="timelabel"><?php echo $from; ?> </label>
+					<input type="text" id="date-from" class="controls" size="12">	
+					<br><br>			
+					<label for="to" class="timelabel"><?php echo $to; ?> </label>
+					<input type="text" id="date-to" class="controls" size="12">
+					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
 						value="<?php echo $selectTime ?>" onClick="">
 				</form>
@@ -117,20 +115,22 @@
 			
 			<div id="space">
 				<div id="spaceSelection">
-					<input type="button" name="boundingBox" id="boundingBox" class="spaceButton" 
+					<input type="button" name="boundingBox" id="boundingBox" class="left spaceButton" 
 					value="<?php echo $selectSpace ?>" onClick="initBoundingBox()">
 				</div>
-		
+				<br>
 				<div id="streetSelection">
-					<input type="button" name="streetSelection" id="streetSelectionBtn" class="spaceButton"
+					<input type="button" name="streetSelection" id="streetSelectionBtn" class="left spaceButton"
 					value="<?php echo $selectStreet ?>" onClick="streetMode();">
 				</div>
+				<br>
+				<div id="trackSelection">
+					<select id="trackSelectionList">
+				  		<option value="Track-ID">selektierte Track-IDs</option>
+					</select>
+				</div>
 			</div>
-			<div id="trackSelection">
-				<select id="trackSelectionList">
-				  <option value="Track-ID">selektierte Track-IDs</option>
-				</select>
-			</div>
+			
 			
 			<div id ="phenomenSelection">
 								
@@ -175,13 +175,16 @@
 			</div>
 			
 			
-			<div class="hi-icon-wrap hi-icon-effect-1-blue hi-icon-effect-1a">
-				<!--<label id="analysis-mode-label" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>-->
-				<a href="analyser.php" class="hi-icon icon-switch" title="Analysemodus">Analysemode</a>
+			<div id="analysis-mode" class="right">
+				<label id="analysis-mode-label" class="right" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
+				<br>
+				<input type="button" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
 			</div>
 			
-			<div class="hi-icon-wrap hi-icon-effect-1-blue hi-icon-effect-1a">
-				<a href="help.php" class="hi-icon icon-info" title="Hilfe">Help</a>
+			
+			<div id="helpButton" class="right">
+				<a href="help.php"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
+				
 			</div>
 			
 		</div> <!-- end div header-nav -->	
@@ -211,7 +214,34 @@
 				<i class="map-top"></i>
 				<i class="map-bottom"></i>
 			</div>
+			
+			<div id="analyser-panel">
+						
+				<div id="analyser-chart" class="top">
+					<script type="text/javascript">
+						var lineChart = new LineChart();
+						lineChart.initChart();
+						lineChart.createChartFromTrack();
+					</script>	
+				</div>
 		
+				<div id="analyser-table" class="bottom">
+					<form name="checkbox">
+						   <p>
+							 <input type="checkbox" name="id" checked> <?php echo $id; ?>
+							 <input type="checkbox" name="verbrauch" checked> <?php echo $consumption; ?>
+							 <input type="checkbox" name="co2" checked> <?php echo $co2; ?>
+							 <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
+							 <input type="checkbox" name="luftmasse"checked> <?php echo $air_mass; ?>
+							 <input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">
+						   </p>
+					</form>
+					<script type="text/javascript">
+						initTable();
+						dataTable();
+					</script>
+				</div>
+			</div>
 		</div> <!-- end div application-content -->	
 		
 		<div id="footer" >

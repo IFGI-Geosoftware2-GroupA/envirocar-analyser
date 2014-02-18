@@ -6,46 +6,46 @@
 	var wHeight = getWindowHeight();
 	var wWidth = getWindowWidth();
 	var pos = getScrollXY();
-
+	
 	var streetmode = false;
 	var alerted = false;
 	
-// Map Window Height
+// Screen resolution
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
-//document.getElementById('map').style.height = '"' + wHeight + 'px"';
+
 
 // Function to change between normal and analysis mode
 function changeMode() {
-	var curWidth = document.getElementById('map').style.width;
+	
+	var mapWidth = document.getElementById('map-container').style.width;
 
-	if (curWidth == "50%") {
-		document.getElementById('map').style.display = "block";
-		document.getElementById('map').style.width = "100%";
-		//document.getElementById('map').style.height = '"' + wHeight + 'px"';
-		document.getElementById('chart').style.display = "none";
-		document.getElementById('table').style.display = "none";
-		document.getElementById('nav-bar').style.background = "#fff";
-		document.getElementById('calendar').style.display = "block";
-		document.getElementById('trackSelection').style.display = "block";
-		document.getElementById('logo').src = "img/enviroCarLogo_transparent.png";
-		resizeMap();
-		document.getElementById('search-input').style.display = "block";
-		document.getElementById('logo-label').style.color = "#000";
-		document.getElementById('analysis-mode-label').style.color = "#000";
+	if (mapWidth == "50%") {
+		document.getElementById('analyseModeBtn').value ="Aus";
+		document.getElementById('analyseModeBtn').style.color ="#1D83C3";
+		document.getElementById('analyseModeBtn').style.border ="1px solid #1D83C3";
 		
+		document.getElementById('map-container').style.display = "block";
+		document.getElementById('map-container').style.width = "100%";
+		resizeMap();
+		document.getElementById('analyser-panel').style.display = "none";
+		document.getElementById('analyser-chart').style.display = "none";
+		document.getElementById('analyser-table').style.display = "none";
+		
+		document.getElementById('header-nav').style.background = "#fff";	
 		
 	} else {
-		document.getElementById('map').style.width = "50%";
-		document.getElementById('chart').style.display = "block";
-		document.getElementById('table').style.display = "block";
-		document.getElementById('nav-bar').style.background = "#1D83C3";
-		document.getElementById('calendar').style.display = "block";
-		document.getElementById('trackSelection').style.display = "block";
-		document.getElementById('logo').src = "img/enviroCarLogo_trans_white.png";
+		document.getElementById('analyseModeBtn').value ="An";
+		document.getElementById('analyseModeBtn').style.color ="red";
+		document.getElementById('analyseModeBtn').style.border ="1px solid red";
+		
+		document.getElementById('map-container').style.width = "50%";
 		resizeMap();
-		document.getElementById('search-input').style.display = "block";
-		document.getElementById('logo-label').style.color = "#fff";
-		document.getElementById('analysis-mode-label').style.color = "#fff";
+		
+		document.getElementById('analyser-panel').style.display = "block";
+		document.getElementById('analyser-chart').style.display = "block";
+		document.getElementById('analyser-table').style.display = "block";
+		/*document.getElementById('header-nav').style.background = "#1D83C3";*/
+		
 		
 	}
 }
@@ -55,25 +55,49 @@ function changeMode() {
  * additonal: datepicker in german language and timepicker
  */
 $(function() {
-	
-	$.timepicker.regional['de'] = {
-		timeOnlyTitle : 'Uhrzeit auswählen',
-		timeText : 'Zeit',
-		hourText : 'Stunde',
-		minuteText : 'Minute',
-		secondText : 'Sekunde',
-		currentText : 'Jetzt',
-		closeText : 'Auswählen',
-		monthNames : ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-		monthNamesShort : ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-		dayNames : ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-		dayNamesShort : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-		dayNamesMin : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-		weekHeader : 'Wo',
-		weekStatus : 'Woche des Monats',
+	var l = getParam('lang');
+	if (l == "en") {
+		$.timepicker.regional['en'] = {
+			timeOnlyTitle : 'Choose time',
+			timeText : 'Time',
+			hourText : 'Houe',
+			minuteText : 'Minute',
+			secondText : 'Second',
+			currentText : 'Now',
+			closeText : 'Choose',
+			monthNames : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+			monthNamesShort : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
+			dayNames : ['Sunday', 'Monday', 'Thuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+			dayNamesShort : ['Sun', 'Mon', 'Thu', 'Wed', 'Thu', 'Fri', 'Sat'],
+			dayNamesMin : ['Sun', 'Mon', 'Thu', 'Wed', 'Thu', 'Fri', 'Sat'],
+			weekHeader : 'We',
+			weekStatus : 'Week of the month',
+			ampm : false
+		};
+		$.timepicker.setDefaults($.timepicker.regional['en']);
+	} else {
+		
+		$.timepicker.regional['de'] = {
+			timeOnlyTitle : 'Uhrzeit auswählen',
+			timeText : 'Zeit',
+			hourText : 'Stunde',
+			minuteText : 'Minute',
+			secondText : 'Sekunde',
+			currentText : 'Jetzt',
+			closeText : 'Auswählen',
+			monthNames : ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+			monthNamesShort : ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+			dayNames : ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+			dayNamesShort : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+			dayNamesMin : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+			weekHeader : 'Wo',
+			weekStatus : 'Woche des Monats',
 		ampm : false
-	};
-	$.timepicker.setDefaults($.timepicker.regional['de']);
+		};
+		$.timepicker.setDefaults($.timepicker.regional['de']);
+		
+	}	
+	
 	
 	$("#date-from").datetimepicker({
 		
@@ -104,39 +128,6 @@ $(function() {
 		}
 	});
 
-});
-	
-// Animations for interpolation progressbar and buttons
-
-function interpolateAnimation() {
-	if (document.getElementById("interpolation-btn").src == "img/stop_interpolation.png") {
-		//alert("stop");
-		document.getElementById("interpolation-btn").src = "img/run_interpolation.png";
-	} else {
-		//alert("run");
-		document.getElementById("interpolation-btn").src = "img/stop_interpolation.png";
-	}
-}
-
-$('#interpolation-btn').ready(function() {
-	var progressbar = $('#progressbar'), max = progressbar.attr('max'), time = (1000 / max) * 5, value = progressbar.val();
-
-	var loading = function() {
-		value += 1;
-		addValue = progressbar.val(value);
-
-		if (value == max) {
-			clearInterval(animate);
-		}
-	};
-
-	var animate = setInterval(function() {
-		loading();
-	}, time);
-
-	$('#interpolation-btn').click(function() {
-		loading();
-	});
 });
 
 
@@ -181,37 +172,14 @@ $('#interpolation-btn').ready(function() {
 		return [ scrOfX, scrOfY ];
 	}
 
-/* Change flag */
 
-function changeFlag(directionValue) {
-		
-		if (directionValue == 1)
-		{
-			document.getElementById("ger_eng").style.display = '';
-			document.getElementById("eng_ger").style.display = 'none';
-			document.getElementById("direction").options[0].selected = true;
-			direction = 1;
-		}
-		
-		
-
-		if (directionValue == 2)
-		{
-			document.getElementById("ger_eng").style.display = 'none';
-			document.getElementById("eng_ger").style.display = '';
-			document.getElementById("direction").options[1].selected = true;
-			direction = 2;
-		}
-		
-
-}
 
 function streetMode(){
   	if(map.getMapTypeId()=="OSM"){
   		alert("Change map layer to a google map");
   	}else{
   		if(alerted==false){
-  			alert("remove the last points with 'rightclick' somewhere in the map not at a point!");
+  			alert("Remove the last points with 'rightclick' somewhere in the map, but not at a point!");
   			alerted =true;
   		}
   		if(streetmode==false){ 
