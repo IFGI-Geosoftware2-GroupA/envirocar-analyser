@@ -44,9 +44,9 @@
 	<link rel="stylesheet" type="text/css" href="css/lib/jquery-ui-timepicker-addon.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-duallistbox.css" />
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="css/lib/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="css/icons.css" />
 	<link rel="stylesheet" type="text/css" href="css/flags.css" >
+	<link rel="stylesheet" type="text/css" href="css/lib/tablestyle.css" >
 	
 	<!-- Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
@@ -60,7 +60,8 @@
 	
 	<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker, Bootstrap Dual Listbox -->
 	<script src="js/lib/jquery-2.0.3.min.js"></script>
-	<script src="js/lib/jquery.dataTables.min.js"></script>
+	<!--<script src="js/lib/jquery-latest.js"></script>-->
+	<script src="js/lib/jquery.tablesorter.min.js"></script>
 	<script src="js/lib/jquery-ui.min.js"></script>
 	<script src="js/lib/jquery-ui-timepicker-addon.min.js"></script>
 	<script src="js/lib/jquery.bootstrap-duallistbox.js"></script>

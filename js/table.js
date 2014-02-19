@@ -20,6 +20,7 @@ function createTable() {
 		var mytablebody = document.createElement("tbody");
 		
 		myTable.setAttribute("id", "tableID");
+		myTable.setAttribute("class", "tablesorter");
 		
 		consumption = new Array();
 		co2 = new Array();
@@ -140,29 +141,9 @@ function dataTable(){
 
 	$(document).ready(function() {
 
-		$('#tableID').dataTable({
+		$("#tableID").tablesorter();
 
-				"aoColumnDefs": [
-      { "asSorting": [ "asc" ], "aTargets": [ 1] },],		
-				"sPaginationType": "full_numbers",
-				"sScrollY" : "200px",
-				"bPaginate" : true,
-				"bScrollCollapse" : true,
-				"oLanguage": {
-					    "sLengthMenu": "Zeige _MENU_ Einträge pro Seite",
-					    "sZeroRecords": "Keine Einträge gefunden",
-					    "sInfo": "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
-					    "sInfoEmpty": "Zeige 0 bis 0 von 0 Einträgen",
-					    "sInfoFiltered": "(aus _MAX_ Einträgen gefilterte Daten)",
-					    "sFirst": "Erste",
-					    "sNext": "Nächste",
-					    "sPrevious": "Zurück",
-					    "sLast": "Letzte",
-					    "sSearch": "Suche:"
-				}
-			});
-	});
-
+});
 }
 //Refresh the Table after the ButtonClick with the marked checkboxes
 function refreshTable() {
@@ -182,24 +163,24 @@ function refreshTable() {
 	}
 	
 	if(document.checkbox.co2.checked == true) {
-       	$('#table td:nth-child(3),#table th:nth-child(3)').show();
+       	$('#analyser-table td:nth-child(3),#analyser-table th:nth-child(3)').show();
 	}
 	else {
-		$('#table td:nth-child(3),#table th:nth-child(3)').hide();
+		$('#analyser-table td:nth-child(3),#analyser-table th:nth-child(3)').hide();
 	}
 	
 	if(document.checkbox.geschwindigkeit.checked == true) {
-       	$('#table td:nth-child(4),#table th:nth-child(4)').show();
+       	$('#analyser-table td:nth-child(4),#analyser-table th:nth-child(4)').show();
 	}
 	else {
-		$('#table td:nth-child(4),#table th:nth-child(4)').hide();
+		$('#analyser-table td:nth-child(4),#analyser-table th:nth-child(4)').hide();
 	}
 	
 	if(document.checkbox.luftmasse.checked == true) {
-       	$('#table td:nth-child(5),#table th:nth-child(5)').show();
+       	$('#analyser-table td:nth-child(5),#analyser-table th:nth-child(5)').show();
 	}
 	else {
-		$('#table td:nth-child(5),#table th:nth-child(5)').hide();	
+		$('#analyser-table td:nth-child(5),#analyser-table th:nth-child(5)').hide();	
 	}
 	
 }
