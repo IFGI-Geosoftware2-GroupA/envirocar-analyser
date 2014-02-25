@@ -117,7 +117,7 @@
 			
 			<div id="space">
 				<div id="spaceSelection">
-					<input type="button" name="boundingBox" id="boundingBox" class="left spaceButton" 
+					<input type="button" name="boundingBox" id="boundingBoxBtn" class="left spaceButton" 
 					value="<?php echo $selectSpace ?>" onClick="initBoundingBox()">
 				</div>
 				<br>

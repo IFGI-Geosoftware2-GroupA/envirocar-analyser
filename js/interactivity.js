@@ -23,6 +23,7 @@ function changeMode() {
 		document.getElementById('analyseModeBtn').value ="Aus";
 		document.getElementById('analyseModeBtn').style.color ="#1D83C3";
 		document.getElementById('analyseModeBtn').style.border ="1px solid #1D83C3";
+		document.getElementById('analyseModeBtn').style.background ="#fff";
 		
 		document.getElementById('map-container').style.display = "block";
 		document.getElementById('map-container').style.width = "100%";
@@ -31,12 +32,13 @@ function changeMode() {
 		document.getElementById('analyser-chart').style.display = "none";
 		document.getElementById('analyser-table').style.display = "none";
 		
-		document.getElementById('header-nav').style.background = "#fff";	
+		/*document.getElementById('header-nav').style.background = "#fff";*/
 		
 	} else {
 		document.getElementById('analyseModeBtn').value ="An";
-		document.getElementById('analyseModeBtn').style.color ="red";
-		document.getElementById('analyseModeBtn').style.border ="1px solid red";
+		document.getElementById('analyseModeBtn').style.color ="#fff";
+		document.getElementById('analyseModeBtn').style.border ="#990000";
+		document.getElementById('analyseModeBtn').style.background ="#990000";
 		
 		document.getElementById('map-container').style.width = "50%";
 		resizeMap();
@@ -44,8 +46,8 @@ function changeMode() {
 		document.getElementById('analyser-panel').style.display = "block";
 		document.getElementById('analyser-chart').style.display = "block";
 		document.getElementById('analyser-table').style.display = "block";
-		/*document.getElementById('header-nav').style.background = "#1D83C3";*/
 		
+		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
 		
 	}
 }
@@ -191,3 +193,28 @@ function streetMode(){
   			disableStreetmode();
   		}
  }}
+ 
+/* Click Handler Styles */
+$(document).ready(function(){
+	
+	$("#boundingBoxBtn").click(function(){
+		if (BoundingBox == true){
+		  $(this).css("color","#fff");	
+		  $(this).css("background","#92C049");	
+		} else {
+		  $(this).css("color","#92C049");	
+		  $(this).css("background","#fff");
+		}
+	});
+	
+	$("#streetSelectionBtn").click(function(){
+		if(streetmode==true){
+		  $(this).css("color","#fff");	
+		  $(this).css("background","#92C049");	
+		} else {
+		  $(this).css("color","#92C049");	
+		  $(this).css("background","#fff");	
+		}
+	});
+
+});
