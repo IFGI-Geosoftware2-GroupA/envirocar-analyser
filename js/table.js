@@ -19,7 +19,7 @@ function createTable() {
 		var mytablebody = document.createElement("tbody");
 		
 		myTable.setAttribute("id", "tableID");
-		myTable.setAttribute("class", "tablesorter");
+		//myTable.setAttribute("class", "tablesorter");
 		
 		consumption = new Array();
 		co2 = new Array();
@@ -139,8 +139,13 @@ function openMarkerInfoWindow(id) {
 function dataTable(){
 	$(document).ready(function() {
 
-
-		$("#tableID").tablesorter();
+		$('#tableID').fixheadertable({
+       		height      : 200, 
+   			zebra       : true, 
+   			sortable    : true,
+   			sortedColId : 0, 
+  			sortType    : ['string', 'string', 'string', 'string'],
+        });
 
 });
 
