@@ -240,7 +240,7 @@
 					</form>
 					<script type="text/javascript">
 						initTable();
-						dataTable();
+						tablestyle();
 					</script>
 				</div>
 			</div>
