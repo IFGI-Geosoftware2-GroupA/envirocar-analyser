@@ -181,21 +181,24 @@ function showMarkers(query) {
 		var measurements = query.getData();
 		setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
+				// Create marker for each measurement
 				var marker = new google.maps.Marker({
 					position : measurements[i].getPoint(),
 					icon : 'img/circle.png'
 				});
+				marker.id = measurements[i].getId();
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
+				
 				// Create infowindow for marker[i]/measurement[i]
-				buildInfoWindow(marker,map,measurements[i]);
-				google.maps.event.addListener(marker, 'click', function(){
-					var mid = measurements[i].getId();
-					var bg = document.createAttribute("backgroundColor");
-					bg.nodeValue = '#B0C4DE';
-					document.getElementById(mid).setAttributeNode(bg);
-					
-				});
+				buildInfoWindow(marker, map, measurements[i]);
+				
+				// google.maps.event.addListener(marker, 'click', function(){
+					// var mid = marker.id;
+					// var bg = document.createAttribute("backgroundColor");
+					// bg.nodeValue = '#B0C4DE';
+					// document.getElementById(mid).setAttributeNode(bg);
+				// });
 			}
 
 			var mcOptions = {
