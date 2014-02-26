@@ -292,40 +292,46 @@ function buildInfoWindow(marker,map,measurements){
  */
 function enableStreetmode(){
 	// Streetmode on
-  	streetmode=true;
+  	streetmode = true;
+  	
   	// Set Crosshair as cursor
   	map.setOptions({draggableCursor:'crosshair'});
+  	
   	// Clear the Exportarray if it is not empty
-  	if(polyexport.getLength()!=0){
+  	if (polyexport.getLength() != 0) {
   		polyexport.clear();
   	}
+  	
   	// Set Polyline to Map necessary for reactivating streetmode
   	poly.setPath(path);
   	poly.setVisible(true);
+  	
   	// Setup the click event listeners: For Adding Listener to enable streetsegment selection
     streetlistener = google.maps.event.addListener(map, 'click', function(evt) {
-		// store actual length of array for adding a 'click' history
-		// needed for removing the selection
-		removepoints.push(path.length);
-    	if (path.getLength() == 0) {
-	    	path.push(evt.latLng);
-	    	// Holds the Content in an extra array to export data till user starts a new selection
-			polyexport.push(evt.latLng);
-			poly.setPath(path);
-	    } else {	
-			service.route({
-		        origin: path.getAt(path.getLength() - 1),
-		        destination: evt.latLng,
-		        //Using TravelMode Walking to avoid oneway problem
-		        travelMode: google.maps.DirectionsTravelMode.DRIVING
-			}, function(result, status) {
-		        if (status == google.maps.DirectionsStatus.OK) {
-		        	for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-		            	path.push(result.routes[0].overview_path[i]);
-		            	polyexport.push(result.routes[0].overview_path[i]);
-		         	}
-				}
-			});
+		if (google.maps.geometry.poly.containsLocation(evt.latLng, nrwPolygon)) {
+			// store actual length of array for adding a 'click' history
+			// needed for removing the selection
+			removepoints.push(path.length);
+	    	if (path.getLength() == 0) {
+		    	path.push(evt.latLng);
+		    	// Holds the Content in an extra array to export data till user starts a new selection
+				polyexport.push(evt.latLng);
+				poly.setPath(path);
+		    } else {	
+				service.route({
+			        origin: path.getAt(path.getLength() - 1),
+			        destination: evt.latLng,
+			        //Using TravelMode Walking to avoid oneway problem
+			        travelMode: google.maps.DirectionsTravelMode.DRIVING
+				}, function(result, status) {
+			        if (status == google.maps.DirectionsStatus.OK) {
+			        	for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+			            	path.push(result.routes[0].overview_path[i]);
+			            	polyexport.push(result.routes[0].overview_path[i]);
+			         	}
+					}
+				});
+			}
 		}
   	});
   	// Setup the click event listener to undo user Selection
