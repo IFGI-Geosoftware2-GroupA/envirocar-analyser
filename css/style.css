@@ -51,6 +51,7 @@ body {
 	height: 10em;
 	display: -webkit-flex;
     display: flex;
+    display: -ms-flexbox;
 	width: 100%;
 	z-index: 50;
 
