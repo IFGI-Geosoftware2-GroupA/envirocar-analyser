@@ -149,6 +149,7 @@ body {
 
 #helpButton{
 	margin: 2em 0 0 3em;
+	float: right;
 }
 
 #footer{
@@ -204,17 +205,21 @@ body {
 	float: right;
 	width:50%;
 	display: none;
+	border-left: 1px solid #888888;
+	z-index: 10;
 }
 
 #analyser-chart{
 	position: absolute;
 	width:50%;
+	height: 40%;
+	border: none;
 }
 
 .top {
 	position: absolute;
 	top: 10em;
-	height: 45%;
+	
 }
 
 /********************************************************************
@@ -224,17 +229,34 @@ body {
 #analyser-table{
 	position: absolute;
 	overflow: auto;
-	margin: 0.5em;
-	padding: 0 2em 0 1em;
-	width: 49%;
+	padding: 0 1em 0 1em;
+	margin-right: 1em;
+	width: 50%;
+	height: 35%;
+	border: none;
 }
 .bottom {
 	bottom: 1.4em;
-	height: 30%;
+	
 }
 
+@media (max-height: 720px) {
+	#analyser-table{
+		height: 30%;
+	}
+}
 
+@media (max-height: 600px) {
+	#analyser-table{
+		height: 25%;
+	}
+}
 
+@media (max-height: 500px) {
+	#analyser-table{
+		height: 20%;
+	}
+}
 /********************************************************************
 	3. Google Maps styles
 ********************************************************************/

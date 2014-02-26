@@ -46,7 +46,7 @@ function changeMode() {
 		document.getElementById('analyser-panel').style.display = "block";
 		document.getElementById('analyser-chart').style.display = "block";
 		document.getElementById('analyser-table').style.display = "block";
-		
+	
 		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
 		
 	}
