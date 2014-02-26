@@ -10,6 +10,19 @@
 // - LineChart class -
 // -------------------
 
+// (function (H) {
+    // Highcharts.Chart.prototype.callbacks.push(function (chart) {
+        // H.addEvent(chart.series.point, 'click', function (e) {
+            // e = chart.pointer.normalize();
+            // alert('Clicked chart at ' + e.chartX + ', ' + e.chartY);
+        // });
+        // // H.addEvent(chart.xAxis[0], 'afterSetExtremes', function (e) {
+            // // alert('Set extremes to ' + e.min + ', ' + e.max);
+        // // });
+    // });
+// }(Highcharts));
+
+
 // Constructor
 function LineChart() {
 	// default line chart options for time related data
@@ -27,6 +40,7 @@ function LineChart() {
 			y : 30
 		},
 		xAxis : {
+			id : 'x-Axis',
 			labels : {
 				formatter : function() {
 					return Highcharts.dateFormat('%H:%M:%S', this.value);
@@ -35,6 +49,18 @@ function LineChart() {
 			}
 		},
 		yAxis : {
+			id : 'y-Axis',
+		},
+		plotOptions : {
+			series : {
+				point : {
+					events : {
+						 mouseOver: function() {
+                            console.log(this.name);
+                        }
+					}
+				}
+			}
 		},
 		legend : {
 			layout : 'vertical',
@@ -182,13 +208,13 @@ LineChart.prototype.createChartFromTrack = function() {
 		var time = features[i].properties.time;
 		var d = new Date(time);
 		var utc = Date.UTC(d.getYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds());
-		gpsSpeed.push(new Array(utc, Math.round(features[i].properties.phenomenons['GPS Speed'].value * 100) / 100));
-		gpsAccuracy.push(new Array(utc, features[i].properties.phenomenons['GPS Accuracy'].value));
-		gpsBearing.push(new Array(utc, features[i].properties.phenomenons['GPS Bearing'].value));
-		gpsVDOP.push(new Array(utc, features[i].properties.phenomenons['GPS VDOP'].value));
-		gpsHDOP.push(new Array(utc, features[i].properties.phenomenons['GPS HDOP'].value));
-		gpsPDOP.push(new Array(utc, features[i].properties.phenomenons['GPS PDOP'].value));
-		gpsAltitude.push(new Array(utc, features[i].properties.phenomenons['GPS Altitude'].value));
+		gpsSpeed.push({x : utc, y : Math.round(features[i].properties.phenomenons['GPS Speed'].value * 100/100), name : features[i].properties.id});
+		gpsAccuracy.push({x : utc, y : features[i].properties.phenomenons['GPS Accuracy'].value, name : features[i].properties.id});
+		gpsBearing.push({x : utc, y : features[i].properties.phenomenons['GPS Bearing'].value, name : features[i].properties.id});
+		gpsVDOP.push({x : utc, y : features[i].properties.phenomenons['GPS VDOP'].value, name : features[i].properties.id});
+		gpsHDOP.push({x : utc, y : features[i].properties.phenomenons['GPS HDOP'].value, name : features[i].properties.id});
+		gpsPDOP.push({x : utc, y : features[i].properties.phenomenons['GPS PDOP'].value, name : features[i].properties.id});
+		gpsAltitude.push({x : utc, y : features[i].properties.phenomenons['GPS Altitude'].value, name : features[i].properties.id});
 	}
 	
 	this.setTitle('Track Information');
@@ -196,10 +222,12 @@ LineChart.prototype.createChartFromTrack = function() {
 	this.addSeries('GPS Geschwindigkeit(km/h)', true, gpsSpeed);
 	this.addSeries('GPS Genauigkeit(%)', true, gpsAccuracy);
 	this.addSeries('GPS Peilung(deg)', true, gpsBearing);
-	this.addSeries('GPS Höhe(m)', true, gpsAltitude);
+	this.addSeries('GPS Höhe(m)', true, gpsAltitude);	
 	this.addSeries('GPS PDOP', false, gpsPDOP);
 	this.addSeries('GPS VDOP', false, gpsVDOP);
 	this.addSeries('GPS HDOP', false, gpsHDOP);
+	
+	
 };
 
 // --------------------------
