@@ -10,6 +10,9 @@ function initTable() {
 	node.appendChild(createTable());
 }
 
+/**
+ * Create the Table on the basis of the json File
+ */
 function createTable() {
 	try {
 		var query = new Query('measurements');
@@ -19,7 +22,6 @@ function createTable() {
 		var mytablebody = document.createElement("tbody");
 		
 		myTable.setAttribute("id", "tableID");
-		myTable.setAttribute("class", "tablesorter");
 		
 		consumption = new Array();
 		co2 = new Array();
@@ -29,20 +31,29 @@ function createTable() {
 		setTimeout(function() {
 			//Put Phenomenons in Arrays
 			for (i=0, j=0; i< measurements.length; i++) {
+				
 				for (j=0;j<measurements[i].phenomenons.length;j++) {
+					
 					if (measurements[i].getPhenomenons()[j].name == "Consumption") {
 						consumption.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
-					} else if (measurements[i].getPhenomenons()[j].name == "CO2") {
+					} 
+					
+					else if (measurements[i].getPhenomenons()[j].name == "CO2") {
 						co2.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);	
-					} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
+					} 
+					
+					else if (measurements[i].getPhenomenons()[j].name == "Speed") {
 						speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);		
-					} else if (measurements[i].getPhenomenons()[j].name == "MAF") {
+					} 
+					
+					else if (measurements[i].getPhenomenons()[j].name == "MAF") {
 						maf.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
 					}
 				}
 			}
 			
 			for (var i=0; i < measurements.length; i++) {					
+				
 				//Creating the Headrow of the Table
 				if (i == 0)	{
 					headrow = document.createElement("tr");
@@ -89,12 +100,16 @@ function createTable() {
 		
 				//ID-Column
 				currentText0 = document.createTextNode(measurements[i].getId());
+				
 				//Consumption-Column
 				currentText1 = document.createTextNode(consumption[i]);
+				
 				//CO2-Column
 				currentText2 = document.createTextNode(co2[i]); 
+				
 				//Speed-Column
 				currentText3 = document.createTextNode(speed[i]); 
+				
 				//MAF-Column
 				currentText4 = document.createTextNode(maf[i]); 
 				
@@ -135,52 +150,61 @@ function openMarkerInfoWindow(id) {
 	}
 }
 
-// TODO: Missing documentation and bad code formatting quality (Marius)
-function dataTable(){
+/**
+ * Use the existing HTML Table and changes some style parameters
+ */
+function tablestyle(){
 	$(document).ready(function() {
-
-
-		$("#tableID").tablesorter();
-
-});
+		$('#tableID').fixheadertable({
+       		height      : 200, 
+   			zebra       : true, 
+   			sortable    : true,
+   			sortedColId : 0, 
+  			sortType    : ['string', 'string', 'string', 'string'],
+        });
+	});
 
 }
 
-//Refresh the Table after the ButtonClick with the marked checkboxes
+/**
+ * Refresh the Table with the marked checkboxes by clicking the 'Aktualisieren' Button 
+ */
 function refreshTable() {
 	if (document.checkbox.id.checked == true) {
       	$('#analyser-table td:nth-child(1), #analyser-table th:nth-child(1)').show();
+      	
 	} else {
 		$('#analyser-table td:nth-child(1),#analyser-table th:nth-child(1)').hide();
 	}
 	
 	if (document.checkbox.verbrauch.checked == true) {
       	$('#analyser-table td:nth-child(2),#analyser-table th:nth-child(2)').show();
+      	
 	} else {
 		$('#analyser-table td:nth-child(2),#analyser-table th:nth-child(2)').hide();
 	}
 	
 	if(document.checkbox.co2.checked == true) {
        	$('#analyser-table td:nth-child(3),#analyser-table th:nth-child(3)').show();
-	}
-	else {
+       	
+	} else {
 		$('#analyser-table td:nth-child(3),#analyser-table th:nth-child(3)').hide();
 	}
 	
 	if(document.checkbox.geschwindigkeit.checked == true) {
        	$('#analyser-table td:nth-child(4),#analyser-table th:nth-child(4)').show();
-	}
-	else {
+       	
+	} else {
 		$('#analyser-table td:nth-child(4),#analyser-table th:nth-child(4)').hide();
 	}
 	
 	if(document.checkbox.luftmasse.checked == true) {
        	$('#analyser-table td:nth-child(5),#analyser-table th:nth-child(5)').show();
-	}
-	else {
+       	
+	} else {
 		$('#analyser-table td:nth-child(5),#analyser-table th:nth-child(5)').hide();	
+	}
 
-}
 }
 // ------------------------------------
 // --- End of methods for the table ---
