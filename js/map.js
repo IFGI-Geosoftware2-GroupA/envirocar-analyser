@@ -250,101 +250,42 @@ function buildInfoWindow(marker,map,measurements){
 		var content = '<div style="font-size:14px;text-align:center">'+
 						'<b>'+"ID: "+ measurements.id +
 						'</br> '+ measurements.timestamp +'</br></br>';			
-				// Add Sensor Data of the measurement
-				content+= 	"Sensorinformationen:"+'</br>'+
-							"SensorId: "+'</b>'+measurements.sensors.id +'</br>'+
-							'<b>' + "Fahrzeug: "+'</b>'+
-						    measurements.sensors.manufacturer + ": "+
-						    measurements.sensors.model + " (";
-			    if(measurements.sensors.fuelType == "gasoline"){
-			    	 content+= "Benzin" + ")"+'</br></br>'
-						    + '<b>'+ "Messwerte: "+'</br></b>';
-			    }
-			    else if(measurements.sensors.fuelType == "diesel"){
-			    	content+= "Diesel" + ")"+'</br></br>'
-						    + '<b>'+ "Messwerte: "+'</br></b>';
-			    }
-			    else{
-			    	 content+= measurements.sensors.fuelType + ")"+'</br></br>'
-						    + '<b>'+ "Messwerte: "+'</br></b>';
-			    }
-						   
-				// Add Phenomenons and values to the infoWindow
-				for(i=0;i<measurements.phenomenons.length;i++){
-						content += '<b>'+measurements.phenomenons[i].name+'</b> ('+measurements.phenomenons[i].unit+')'+
-						": " + Number((measurements.values[i]).toFixed(6))+'</br>';
-				}
-						content= content+'</div>';
+		// Add Sensor Data of the measurement
+		content += 	"Sensorinformationen:"+'</br>'+
+					"SensorId: "+'</b>'+measurements.sensors.id +'</br>'+
+					'<b>' + "Fahrzeug: "+'</b>'+
+				    measurements.sensors.manufacturer + ": "+
+				    measurements.sensors.model + " (";
+	    if (measurements.sensors.fuelType == "gasoline") {
+	    	 content+= "Benzin" + ")"+'</br></br>'
+				    + '<b>'+ "Messwerte: "+'</br></b>';
+	    } else if (measurements.sensors.fuelType == "diesel") {
+	    	content+= "Diesel" + ")"+'</br></br>'
+				    + '<b>'+ "Messwerte: "+'</br></b>';
+	    } else {
+	    	 content+= measurements.sensors.fuelType + ")"+'</br></br>'
+				    + '<b>'+ "Messwerte: "+'</br></b>';
+	    }
 		
+		// Add Phenomenons and values to the infoWindow
+		for(i=0;i<measurements.phenomenons.length;i++){
+			content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')'+
+			": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+		}
+		content = content + '</div>';
 		
-        // ------------------------------------
-        // --- Listener for the InfoWindow ---
-        // ------------------------------------
         // Open the InfoWindow when a marker is clicked and
         // closes if user "clicks" into map
         // Function to close infowindow is implemented in smartinfowindow.js
-		
 		google.maps.event.addListener(marker, 'click', function(e) {
 		//Create a Smart Info Window with options
 			new SmartInfoWindow({position: marker.getPosition(),map: map,content: content});
 		});
-		}
-		catch(e){
-			alert(e);
-		}
+	} catch(e) {
+		alert(e);
+	}
 }		
-		 // -----------------------------------------
-        // --- End of Listener for the InfoWindow ---
-        // ------------------------------------------
 
-// /**
- // * Create a control Element on Map for enabling Streetsegment Collection
- // * 
- // */
-// function collectStreets(controlDiv, map) {
-// 
-  // // Set CSS styles for the DIV containing the control
-  // // Setting padding to 5 px will offset the control
-  // // from the edge of the map.
-  // controlDiv.style.padding = '5px';
-// 
-  // // Set CSS for the control border.
-  // var controlUI = document.createElement('div');
-  // controlUI.style.backgroundColor = 'white';
-  // controlUI.style.borderStyle = 'solid';
-  // controlUI.style.borderWidth = '2px';
-  // controlUI.style.cursor = 'pointer';
-  // controlUI.style.textAlign = 'center';
-  // controlUI.title = 'Click to collect Streetsegments';
-  // controlDiv.appendChild(controlUI);
-// 
-  // // Set CSS for the control interior.
-  // var controlText = document.createElement('div');
-  // controlText.style.fontFamily = 'Arial,sans-serif';
-  // controlText.style.fontSize = '12px';
-  // controlText.style.paddingLeft = '4px';
-  // controlText.style.paddingRight = '4px';
-  // controlText.innerHTML = '<strong>Collect Streetsegments on/off </strong>';
-  // controlUI.appendChild(controlText);
-//   
-  // // Handles events if button is 'clicked'
-  // google.maps.event.addDomListener(controlUI, 'click', function() {
-//   	
-  		// // Alert the user one time
-  		// if(alerted==false){
-  			// alert("remove the last points with 'rightclick' somewhere in the map not at a point!");
-  			// alerted =true;
-  		// }
-  		// if(streetmode==false){ 
-//   			 
-  			// // Call enableStreetmode() function
-  			// enableStreetmode();
-  		// }else if(streetmode==true){
-  			// // Call disableStreetmode() function for clearing the overlay and removing Listener
-  			// disableStreetmode();
-  		// }
-  // });
-// }
 /**
  * Function to enable the Streetmode.
  * Adds Listener, sets the map overlay and switches cursor to 'crosshair'
@@ -367,31 +308,29 @@ function enableStreetmode(){
 		// needed for removing the selection
 		removepoints.push(path.length);
     	if (path.getLength() == 0) {
-	      path.push(evt.latLng);
-	     // Holds the Content in an extra array to export data till user starts a new selection
-	      polyexport.push(evt.latLng);
-	      poly.setPath(path);
+	    	path.push(evt.latLng);
+	    	// Holds the Content in an extra array to export data till user starts a new selection
+			polyexport.push(evt.latLng);
+			poly.setPath(path);
 	    } else {	
-	      service.route({
+			service.route({
 		        origin: path.getAt(path.getLength() - 1),
 		        destination: evt.latLng,
 		        //Using TravelMode Walking to avoid oneway problem
 		        travelMode: google.maps.DirectionsTravelMode.DRIVING
-		  }, function(result, status) {
+			}, function(result, status) {
 		        if (status == google.maps.DirectionsStatus.OK) {
-		          for (var i = 0, len = result.routes[0].overview_path.length;
-		              i < len; i++) {
-		            path.push(result.routes[0].overview_path[i]);
-		            polyexport.push(result.routes[0].overview_path[i]);
-		          }
-		        }
-		      }
-	      );
-	     }	  	
-  	}); 
+		        	for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+		            	path.push(result.routes[0].overview_path[i]);
+		            	polyexport.push(result.routes[0].overview_path[i]);
+		         	}
+				}
+			});
+		}
+  	});
   	// Setup the click event listener to undo user Selection
   	removepointlistener = google.maps.event.addListener(map, 'rightclick', function(){
-		if (path.length>0){
+		if (path.length > 0) {
 			// Removes the last 'click' action made by user
 	  		while(path.length != removepoints[removepoints.length-1]){
 	  		path.pop(path[path.length-1]);
@@ -400,15 +339,15 @@ function enableStreetmode(){
 	  		// set the path again
 	  		poly.setPath(path);
 	  		// Delete the last Element to step further back in history of clicks
-	  		if(removepoints.length!=0){
+	  		if (removepoints.length!=0) {
 	  			removepoints.pop(removepoints[removepoints.length-1]);
 	  		}
-	  	}
-	  	else{
+	  	} else {
 	  		alert("No Point to remove! Use leftclick to set a point!");
 	  	}	
   	});
 }
+
 /**
  * Function to disable the Streetmode and export the collected Data.
  * Removes Listener, clears the map overlay and switches cursor back to 'hand'
@@ -428,165 +367,156 @@ function disableStreetmode(){
  	// Clear the history array for a later selection
  	removepoints=[]; 
 }
+
 /**
  * Function for exporting a Polyline Lat_Lng Element 
  * from User Selection of Streetsegments
  * @Return: the underlying Lat_Lng Element at i
  */
 function getPolylineAt(i){
-	if(i>polyexport.getLength()){
+	if (i > polyexport.getLength()) {
 		throw "Element not in range";
-	}
-	else if(i<0){
+	} else if (i < 0) {
 		throw "No negative Elements";
-	}
-	else if(polyexport.getLength()==0){
+	} else if (polyexport.getLength() == 0) {
 		throw "No Segments have been selected";
-	}
-	else{
+	} else {
 		return polyexport.getAt(i);
 	}
 }
+
 /**
  * Function for exporting the whole Polyline representing
  * the user selected streets
  * @return the underlying Lat_Lng Array of the Polyline
  */
 function getPolyline(){
-	if(polyexport.getLength()==0){
+	if (polyexport.getLength() == 0) {
 		throw "No Segments have been selected";
-	}
-	else{
+	} else{
 		return polyexport.getArray();
 	}
 }
 
 function initBoundingBox(){
-	
-	if (BoundingBox == false){
-	
-	BoundingBox = true;		
-	var p1 = map.getBounds().getNorthEast();
-    var p2 = map.getBounds().getSouthWest();
-   
-	var bounds = new google.maps.LatLngBounds(
-      
-      google.maps.geometry.spherical.interpolate(p2,p1, 1/3),
-      google.maps.geometry.spherical.interpolate(p1,p2, 1/3)
-      
-  );
-
-  // Define the rectangle and set its editable property to true.
-  rectangle = new google.maps.Rectangle({
-    bounds: bounds,
-    editable: true,
-    draggable: true
-  });
-
-  rectangle.setMap(map);
-
-}
-else{
-	BoundingBox = false;
-	rectangle.setMap();
-}
+	if (BoundingBox == false) {
+		BoundingBox = true;		
+		var p1 = map.getBounds().getNorthEast();
+	    var p2 = map.getBounds().getSouthWest();
+		
+		var bounds = new google.maps.LatLngBounds(
+			google.maps.geometry.spherical.interpolate(p2,p1, 1/3),
+			google.maps.geometry.spherical.interpolate(p1,p2, 1/3)
+		);
+		
+		// Define the rectangle and set its editable property to true.
+		rectangle = new google.maps.Rectangle({
+			bounds: bounds,
+			editable: true,
+			draggable: true
+		});
+		
+		rectangle.setMap(map);
+	} else {
+		BoundingBox = false;
+		rectangle.setMap();
+	}
 }
 
- 		// ------------------------------------
-        // --- Methods for Interpolation ------
-        // ------------------------------------
+// ------------------------------------
+// --- Methods for Interpolation ------
+// ------------------------------------
 /**
  * Interpolates the selected streetsegments for the phenomenon given
  * by idwkey. Creates marker along the polyline and sets a color for it specific
  * for the interpolated (Inverse Distance Weighting) value.
  * @param idwkey (phenomenon.name to interpolate)
  */
-function interpolate(idwkey){
-	if(polyexport.length==0){
+function interpolate(idwkey) {
+	if (polyexport.length == 0) {
 		alert("Please select first street segments to interpolate or create a bounding box");
-		}
-	else{
+	} else {
 		this.idwkey = new String(idwkey);
 		setTimeout(function(){
 			var query = new Query('measurements');
 			var measurements = query.getData();
-		},500);
+		}, 500);
 		// Classify the values
 		var classarray = classifyValues(measurements, idwkey);
 		//var measurements = query.getData();
 		// Create the markers along the selected road segments
-		for (var i=0,k=1;k<getPolyline().length;i++,k++){
+		for (var i=0, k=1; k < getPolyline().length; i++, k++){
 			var origin = getPolylineAt(i);
 			var destination = getPolylineAt(k);
-			for (var j=1; j<=25;j++){
+			for (var j=1; j <= 25; j++){
 				var step = (1/25);
 				var interpolated= google.maps.geometry.spherical.interpolate(origin, destination, step * j);
-					var numerator =0;
-					var denominator = 0;
-					// Define numerator of IDW
-					for(var m=0; m<measurements.length;m++){
-							var n = 0;
-							while(measurements[m].phenomenons[n].name != idwkey){
-								n++;
-							}
-							var alpha = measurements[m].values[n];
-							var p1 = measurements[m].getPoint();
-							var p2 = interpolated;
-							var beta = Math.pow(Distance(p1,p2), 2);
-							var gamma = (alpha/beta);
-							numerator = (numerator + gamma);
-					}				
-					// Define denominator of IDW
-					for (var m=0; m<measurements.length;m++){
-							var alpha = 1;
-							var p1 = measurements[m].getPoint();
-							var p2 =interpolated;
-							var beta = Math.pow(Distance(p1,p2),2);
-							var gamma = (alpha/beta);
-						 denominator = (denominator + gamma);
+				var numerator =0;
+				var denominator = 0;
+				// Define numerator of IDW
+				for (var m=0; m < measurements.length; m++){
+					var n = 0;
+					while(measurements[m].phenomenons[n].name != idwkey){
+						n++;
 					}
-					// Calculate IDW Value for the actual marker
-					var interpolatedValues=(numerator / denominator);
-					console.log(interpolatedValues);
-					
-					// Decides in which class the value lies and return the corresponding color
+					var alpha = measurements[m].values[n];
+					var p1 = measurements[m].getPoint();
+					var p2 = interpolated;
+					var beta = Math.pow(distance(p1,p2), 2);
+					var gamma = (alpha/beta);
+					numerator = (numerator + gamma);
+				}
+				// Define denominator of IDW
+				for (var m=0; m < measurements.length; m++){
+					var alpha = 1;
+					var p1 = measurements[m].getPoint();
+					var p2 =interpolated;
+					var beta = Math.pow(distance(p1, p2), 2);
+					var gamma = (alpha/beta);
+					denominator = (denominator + gamma);
+				}
+				// Calculate IDW Value for the actual marker
+				var interpolatedValues=(numerator / denominator);
+				console.log(interpolatedValues);
+				
+				// Decides in which class the value lies and return the corresponding color
 				var getColor = function(){	
-					for(var i=0;i<classarray.length;i++ || i<=0){
-						if(interpolatedValues < classarray[i]){
+					for (var i=0; i<classarray.length; i++ || i<=0){
+						if (interpolatedValues < classarray[i]) {
 							var color = i.toString();
 							return color;
-						}
-						else if(interpolatedValues > classarray[classarray.length-1]){
+						} else if (interpolatedValues > classarray[classarray.length-1]) {
 							var color ="max";
 							return color;
+						} else {
+							continue;
 						}
-						else{continue;}
-					
-					return color;
+						
+						return color;
 					}
 				};
-			
-      
+				
 				var color = getColor();
 				var idwicon = 'img/interpolated/'+color+'.png';
 				var marker = new google.maps.Marker({
-						position : interpolated,
-						icon: idwicon	
-					});
-					buildSmallInfoWindow(marker, map, interpolatedValues);
+					position : interpolated,
+					icon: idwicon	
+				});
+				buildSmallInfoWindow(marker, map, interpolatedValues);
 					
-			idwmarkers.push(marker);
-			}	
+				idwmarkers.push(marker);
+			}
 		}
-		for (var i=0; i<idwmarkers.length;i++){
-		idwmarkers[i].setMap(map);
+		for (var i=0; i < idwmarkers.length; i++){
+			idwmarkers[i].setMap(map);
 		}
 	}
 }
+
 // Calculates distance between 2 points
-function Distance(p1,p2){
-	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1,p2);
-	return dist;	
+function distance(p1, p2) {
+	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+	return dist;
 }
 
 /**
@@ -595,63 +525,66 @@ function Distance(p1,p2){
  * @param: measurement(Measurement object), idwkey (Phenomenon.name e.g. Speed)
  * @return: classes(Array with class breaks)
  */
-function classifyValues(measurements, idwkey){
+function classifyValues(measurements, idwkey) {
 	var mean = 0,
 	sd=0,
 	total=0,
 	idwvalues = [];
 	// Store values of the phenomenon in an extra Array
-	for(var i=0; i<measurements.length;i++){
+	for (var i=0; i < measurements.length; i++) {
 		n=0;
-		while(measurements[i].phenomenons[n].name != idwkey){
+		while(measurements[i].phenomenons[n].name != idwkey) {
 			n++;
 		}
-	idwvalues.push(measurements[i].values[n]);
+		idwvalues.push(measurements[i].values[n]);
 	}
 	// Sort Array
 	idwvalues.sort(numSort);
 	// Calculate mean
-	for (var i =0, n=idwvalues.length; i<n ;i++){
-		total+=idwvalues[i];
+	for (var i=0, n=idwvalues.length; i < n ;i++) {
+		total += idwvalues[i];
 	}
-	mean=(total/idwvalues.length);
+	mean = (total/idwvalues.length);
 	// Calculates standarddeviation
-	total=0;
-	for(var i=0;i<idwvalues.length;i++){
-		var deviation= idwvalues[i]-mean;
-		total+=deviation*deviation;
+	total = 0;
+	for (var i=0; i < idwvalues.length; i++) {
+		var deviation = idwvalues[i]-mean;
+		total += deviation*deviation;
 	}
 	sd = Math.sqrt(total/(idwvalues.length -1));
 	// Count the number of Intervals/classes
 	var numIntervals = 0;
-	while(numIntervals*sd < idwvalues[idwvalues.length-1]){
+	while (numIntervals*sd < idwvalues[idwvalues.length-1]) {
 		numIntervals++;
 	}
-	var classes=[];
+	var classes = [];
 		// Store the Interval breaks into an array
-		for(var i=1; i<numIntervals; i++){
-		var val =(i*sd);
-		classes.push(val);
+		for (var i=1; i < numIntervals; i++) {
+			var val = (i*sd);
+			classes.push(val);
 		}
 	return classes;
 }
+
 // Helper function to sort Numbers
 function numSort(a, b) { 
    return (a - b);
 } 
-function buildSmallInfoWindow(marker,map,interpolatedValues){
-		var contentString= '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      interpolatedValues+
-      '</div>'+
-      '</div>';
-      var infowindow = new google.maps.InfoWindow({
-      content: contentString});
+
+function buildSmallInfoWindow(marker, map, interpolatedValues){
+	var contentString= '<div id="content">' +
+		'<div id="siteNotice">' +
+		'</div>' +
+		interpolatedValues +
+		'</div>' +
+		'</div>';
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString});
 	google.maps.event.addListener(marker, 'click', function() {
-   					 infowindow.open(map,marker);
- 					 });
+		infowindow.open(map,marker);
+	});
 }
+
 /**
  * Changes the polyexport, that it represents the measurements in the boundingbox
  * @param {String} idwkey represents the Phenomenon which should be interpolated
