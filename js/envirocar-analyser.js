@@ -83,30 +83,30 @@ Phenomenon.prototype.equals = function(otherPhenomenon) {
 // Default phenomenons
 defaultPhenomenons = [];
 defaultPhenomenons.push(new Phenomenon("CO2", "kg/h", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Calculated MAF", "g/s", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("Calculated MAF", "g/s", 0, 0));
 defaultPhenomenons.push(new Phenomenon("Consumption", "l/h", 0, 0));
 defaultPhenomenons.push(new Phenomenon("Engine Load", "%", 0, 0));
-defaultPhenomenons.push(new Phenomenon("GPS Accuracy", "%"));
-defaultPhenomenons.push(new Phenomenon("GPS Altitude", "m"));
-defaultPhenomenons.push(new Phenomenon("GPS Bearing", "deg"));
-defaultPhenomenons.push(new Phenomenon("GPS HDOP", "precision"));
-defaultPhenomenons.push(new Phenomenon("GPS PDOP", "precision"));
-defaultPhenomenons.push(new Phenomenon("GPS Speed", "km/h", 0, 0));
-defaultPhenomenons.push(new Phenomenon("GPS VDOP", "precision"));
-defaultPhenomenons.push(new Phenomenon("Intake Pressure", "kPa", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Intake Temperature", "c", 0, 0));
-defaultPhenomenons.push(new Phenomenon("MAF", "l/s", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("GPS Accuracy", "%"));
+// defaultPhenomenons.push(new Phenomenon("GPS Altitude", "m"));
+// defaultPhenomenons.push(new Phenomenon("GPS Bearing", "deg"));
+// defaultPhenomenons.push(new Phenomenon("GPS HDOP", "precision"));
+// defaultPhenomenons.push(new Phenomenon("GPS PDOP", "precision"));
+// defaultPhenomenons.push(new Phenomenon("GPS Speed", "km/h", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("GPS VDOP", "precision"));
+// defaultPhenomenons.push(new Phenomenon("Intake Pressure", "kPa", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("Intake Temperature", "c", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("MAF", "l/s", 0, 0));
 defaultPhenomenons.push(new Phenomenon("Rpm", "u/min", 0, 0));
 defaultPhenomenons.push(new Phenomenon("Speed", "km/h", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Throttle Position", "%", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Fuel System Loop", "boolean number", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Fuel System Status Code", "category", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Long-Term Fuel Trim 1", "%", 0, 0));
-defaultPhenomenons.push(new Phenomenon("O2 Lambda Current", "A", 0, 0));
-defaultPhenomenons.push(new Phenomenon("O2 Lambda Current ER", "ratio", 0, 0));
-defaultPhenomenons.push(new Phenomenon("O2 Lambda Voltage", "V", 0, 0));
-defaultPhenomenons.push(new Phenomenon("O2 Lambda Voltage ER", "ratio", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Short-Term Fuel Trim 1", "%", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("Throttle Position", "%", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("Fuel System Loop", "boolean number", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("Fuel System Status Code", "category", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("Long-Term Fuel Trim 1", "%", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("O2 Lambda Current", "A", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("O2 Lambda Current ER", "ratio", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("O2 Lambda Voltage", "V", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("O2 Lambda Voltage ER", "ratio", 0, 0));
+// defaultPhenomenons.push(new Phenomenon("Short-Term Fuel Trim 1", "%", 0, 0));
 
 // --------------------
 // --- Sensor class ---
