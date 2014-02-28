@@ -104,10 +104,11 @@ LineChart.prototype.addPoint = function(series, point) {
 
 // adds a new line to the chart - data array has to fit the current data scheme
 // visible determnies whether the line should be displayed immediately
-LineChart.prototype.addSeries = function(title, visible, data) {
+LineChart.prototype.addSeries = function(title, visible, id, data) {
 	var options = {
 		name : title,
 		visible : visible,
+		id : id,
 		data : data
 	};
 	this.chart.addSeries(options);
@@ -126,6 +127,19 @@ LineChart.prototype.getChartOptions = function(){
 // returns the series with the name given
 LineChart.prototype.getSeries = function(name) {
 	return this.chart.series[name];
+};
+
+// unselect all marked points and mark all Points of a certain id
+LineChart.prototype.highlight = function(id){
+	var selection = this.getChart().getSelectedPoints();
+	for(var i = 0; i < selection.length; i++){
+		selection[i].select(false);
+	}
+	var series = this.getAllSeries();
+	for(var i = 0; i < series.length; i++){
+		if(this.chart.get(series[i].options.id).visible)
+			this.getChart().get(series[i].options.id + id).select(true,true);
+	}
 };
 
 // renders the chart to the chart div
@@ -208,25 +222,23 @@ LineChart.prototype.createChartFromTrack = function() {
 		var time = features[i].properties.time;
 		var d = new Date(time);
 		var utc = Date.UTC(d.getYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds());
-		gpsSpeed.push({x : utc, y : Math.round(features[i].properties.phenomenons['GPS Speed'].value * 100/100), name : features[i].properties.id});
-		gpsAccuracy.push({x : utc, y : features[i].properties.phenomenons['GPS Accuracy'].value, name : features[i].properties.id});
-		gpsBearing.push({x : utc, y : features[i].properties.phenomenons['GPS Bearing'].value, name : features[i].properties.id});
-		gpsVDOP.push({x : utc, y : features[i].properties.phenomenons['GPS VDOP'].value, name : features[i].properties.id});
-		gpsHDOP.push({x : utc, y : features[i].properties.phenomenons['GPS HDOP'].value, name : features[i].properties.id});
-		gpsPDOP.push({x : utc, y : features[i].properties.phenomenons['GPS PDOP'].value, name : features[i].properties.id});
-		gpsAltitude.push({x : utc, y : features[i].properties.phenomenons['GPS Altitude'].value, name : features[i].properties.id});
+		gpsSpeed.push({x : utc, y : Math.round(features[i].properties.phenomenons['GPS Speed'].value * 100/100), name : features[i].properties.id, id : 'GPS Speed' + features[i].properties.id});
+		gpsAccuracy.push({x : utc, y : features[i].properties.phenomenons['GPS Accuracy'].value, name : features[i].properties.id, id : 'GPS Accuracy' + features[i].properties.id});
+		gpsBearing.push({x : utc, y : features[i].properties.phenomenons['GPS Bearing'].value, name : features[i].properties.id, id : 'GPS Bearing' + features[i].properties.id});
+		gpsVDOP.push({x : utc, y : features[i].properties.phenomenons['GPS VDOP'].value, name : features[i].properties.id, id : 'GPS VDOP' +features[i].properties.id});
+		gpsHDOP.push({x : utc, y : features[i].properties.phenomenons['GPS HDOP'].value, name : features[i].properties.id, id : 'GPS HDOP' +features[i].properties.id});
+		gpsPDOP.push({x : utc, y : features[i].properties.phenomenons['GPS PDOP'].value, name : features[i].properties.id, id : 'GPS PDOP' + features[i].properties.id});
+		gpsAltitude.push({x : utc, y : features[i].properties.phenomenons['GPS Altitude'].value, name : features[i].properties.id, id : 'GPS Altitude' +features[i].properties.id});
 	}
-	
 	this.setTitle('Track Information');
 	this.setAxisTitle('x', 'Zeit');
-	this.addSeries('GPS Geschwindigkeit(km/h)', true, gpsSpeed);
-	this.addSeries('GPS Genauigkeit(%)', true, gpsAccuracy);
-	this.addSeries('GPS Peilung(deg)', true, gpsBearing);
-	this.addSeries('GPS Höhe(m)', true, gpsAltitude);	
-	this.addSeries('GPS PDOP', false, gpsPDOP);
-	this.addSeries('GPS VDOP', false, gpsVDOP);
-	this.addSeries('GPS HDOP', false, gpsHDOP);
-	
+	this.addSeries('GPS Geschwindigkeit(km/h)', true, 'GPS Speed',gpsSpeed);
+	this.addSeries('GPS Genauigkeit(%)', true, 'GPS Accuracy',gpsAccuracy);
+	this.addSeries('GPS Peilung(deg)', true, 'GPS Bearing',gpsBearing);
+	this.addSeries('GPS Höhe(m)', true, 'GPS Altitude',gpsAltitude);	
+	this.addSeries('GPS PDOP', false, 'GPS PDOP', gpsPDOP);
+	this.addSeries('GPS VDOP', false, 'GPS VDOP', gpsVDOP);
+	this.addSeries('GPS HDOP', false, 'GPS HDOP', gpsHDOP);	
 	
 };
 
