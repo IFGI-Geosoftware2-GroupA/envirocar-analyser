@@ -90,7 +90,7 @@ function createTable() {
 				var id = document.createAttribute("id"); 
 				id.nodeValue = measurements[i].getId();
 				currentRow.setAttributeNode(id);
-				currentRow.onclick = openMarkerInfoWindow(id.nodeValue);
+				// currentRow.onclick = openMarkerInfoWindow(id.nodeValue);
 				
 				currentCell0 = document.createElement("td");	
 				currentCell1 = document.createElement("td");

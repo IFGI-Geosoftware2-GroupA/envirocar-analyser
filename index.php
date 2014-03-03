@@ -78,8 +78,8 @@
 	<script src="js/envirocar-analyser.js"></script>
 	
 	<!-- Functions of the map, table and chart -->
-	<script src="js/map.js"></script>
 	<script src="js/chart.js"></script>
+	<script src="js/map.js"></script>
 	<script src="js/table.js"></script>
 	
 	<!-- Boundaries of NRW -->

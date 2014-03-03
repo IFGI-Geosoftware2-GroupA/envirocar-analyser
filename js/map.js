@@ -187,18 +187,18 @@ function showMarkers(query) {
 					icon : 'img/circle.png'
 				});
 				marker.id = measurements[i].getId();
+				google.maps.event.addListener(marker, 'click', function(){
+					lineChart.highlight(marker.id);
+					// var mid = marker.id;
+					// var bg = document.createAttribute("backgroundColor");
+					// bg.nodeValue = '#B0C4DE';
+					// document.getElementById(mid).setAttributeNode(bg);
+				});
 				markers.push(marker);
 				markersBounds.extend(measurements[i].getPoint());
 				
 				// Create infowindow for marker[i]/measurement[i]
 				buildInfoWindow(marker, map, measurements[i]);
-				
-				// google.maps.event.addListener(marker, 'click', function(){
-					// var mid = marker.id;
-					// var bg = document.createAttribute("backgroundColor");
-					// bg.nodeValue = '#B0C4DE';
-					// document.getElementById(mid).setAttributeNode(bg);
-				// });
 			}
 
 			var mcOptions = {
