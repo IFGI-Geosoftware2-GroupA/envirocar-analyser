@@ -119,7 +119,7 @@ function initMap() {
 	/*
 	google.maps.event.addListener(map, 'maptypeid_changed', function() {
 		if (map.getMapTypeId() == 'OSM') {
-			alert('Only Google Maps are allowed to be used for the Google Directions API');
+			alert('Only Google Maps are allowed to be used for the Google Directions API.');
 		}
 	});
 	*/
@@ -132,7 +132,12 @@ function initMap() {
 			map.setCenter(places[0].geometry.location);
 			map.setZoom(14);
 		} else {
-			alert('Der gesuchte Ort liegt nicht im erfassten Anwendungsgebiet.');
+			var l = getParam('lang');
+			if (l == "en") {
+				alert('The place you are searching for does not lie in the area of application.');	
+			} else {
+				alert('Der gesuchte Ort liegt nicht im erfassten Anwendungsgebiet.');
+			}
 		}
 	});
 	
@@ -349,7 +354,12 @@ function enableStreetmode(){
 	  			removepoints.pop(removepoints[removepoints.length-1]);
 	  		}
 	  	} else {
-	  		alert("No Point to remove! Use leftclick to set a point!");
+	  		var l = getParam('lang');
+			if (l == "en") {
+				alert("No Point to remove! Use leftclick to set a point!");
+			} else {
+	  			alert("Kein Punkt zum Entfernen vorhanden! Bitte setzen Sie mit Linksklick einen Punkt!");
+	  		}
 	  	}	
   	});
 }
@@ -440,7 +450,12 @@ function initBoundingBox(){
  */
 function interpolate(idwkey) {
 	if (polyexport.length == 0) {
-		alert("Please select first street segments to interpolate or create a bounding box");
+		var l = getParam('lang');
+			if (l == "en") {
+				alert("Please select first street segments to interpolate or create a bounding box.");
+			} else {
+				alert("Bitte wählen Sie erst Straßensegmente aus um zu Interpolieren oder erstellen Sie eine Bounding Box.");
+			}	
 	} else {
 		this.idwkey = new String(idwkey);
 		setTimeout(function(){
