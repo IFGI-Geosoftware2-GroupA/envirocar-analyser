@@ -82,10 +82,13 @@ Phenomenon.prototype.equals = function(otherPhenomenon) {
 
 // Default phenomenons
 defaultPhenomenons = [];
-defaultPhenomenons.push(new Phenomenon("CO2", "kg/h", 0, 0));
+// 95 kg/h is the EU limit for 2021 and 130 for 2015.
+defaultPhenomenons.push(new Phenomenon("CO2", "kg/h", 95, 130));
 // defaultPhenomenons.push(new Phenomenon("Calculated MAF", "g/s", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Consumption", "l/h", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Engine Load", "%", 0, 0));
+// 5 l/h is the consumption of a economical car in average and 15 l/h of a non-economical car in the city.
+defaultPhenomenons.push(new Phenomenon("Consumption", "l/h", 5, 15));
+// 0% menas that the car is in no-load, 100% means full throttle
+defaultPhenomenons.push(new Phenomenon("Engine Load", "%", 0, 100));
 // defaultPhenomenons.push(new Phenomenon("GPS Accuracy", "%"));
 // defaultPhenomenons.push(new Phenomenon("GPS Altitude", "m"));
 // defaultPhenomenons.push(new Phenomenon("GPS Bearing", "deg"));
@@ -96,8 +99,10 @@ defaultPhenomenons.push(new Phenomenon("Engine Load", "%", 0, 0));
 // defaultPhenomenons.push(new Phenomenon("Intake Pressure", "kPa", 0, 0));
 // defaultPhenomenons.push(new Phenomenon("Intake Temperature", "c", 0, 0));
 // defaultPhenomenons.push(new Phenomenon("MAF", "l/s", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Rpm", "u/min", 0, 0));
-defaultPhenomenons.push(new Phenomenon("Speed", "km/h", 0, 0));
+// Belor 1000 u/min normally means non-load, over 3000 normally means to run at too high revs
+defaultPhenomenons.push(new Phenomenon("Rpm", "u/min", 1000, 3000));
+// Below 40 km/h means slow city speed, above 130 km/h means above the German advisory speed limit
+defaultPhenomenons.push(new Phenomenon("Speed", "km/h", 40, 130));
 // defaultPhenomenons.push(new Phenomenon("Throttle Position", "%", 0, 0));
 // defaultPhenomenons.push(new Phenomenon("Fuel System Loop", "boolean number", 0, 0));
 // defaultPhenomenons.push(new Phenomenon("Fuel System Status Code", "category", 0, 0));

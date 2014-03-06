@@ -46,51 +46,49 @@
 	
 	$speed = "Geschwindigkeit";
 	
-	$air_mass = "Luftmasse";
+	// $air_mass = "Luftmasse";
 	
 	$engine_load = "Motorlast";
 	
-	$gps_accuracy = "GPS-Genauigkeit";
+	// $gps_accuracy = "GPS-Genauigkeit";
 	
-	$gps_altitude = "GPS-Höhe";
+	// $gps_altitude = "GPS-Höhe";
 
-	$gps_bearing = "GPS-Richtung";
+	// $gps_bearing = "GPS-Richtung";
 	
-	$gps_hdop = "GPS-HDOP";
+	// $gps_hdop = "GPS-HDOP";
 	
-	$gps_pdop = "GPS-PDOP";
+	// $gps_pdop = "GPS-PDOP";
 
-	$gps_speed = "GPS-Geschwindigkeit";
+	// $gps_speed = "GPS-Geschwindigkeit";
 	
-	$gps_vdop = "GPS VDOP";
+	// $gps_vdop = "GPS VDOP";
 	
-	$intake_pressure = "Einlassdruck";
+	// $intake_pressure = "Einlassdruck";
 	
-	$intake_temperature = "Einlasstemperatur";
+	// $intake_temperature = "Einlasstemperatur";
 
-	$maf = "LMM";
+	// $maf = "LMM";
 
-	$rpm = "UpM";
+	$rpm = "Umdreh./Minute";
 	
-	$speed = "Geschwindigkeit";
-	
-	$throttle_position = "Throttle-Position";
+	// $throttle_position = "Throttle-Position";
 
-	$fsl = "Kraftstoffanlagenkreislauf";
+	// $fsl = "Kraftstoffanlagenkreislauf";
 
-	$fssc = "Kraftstoffanlagenstatus-Code";
+	// $fssc = "Kraftstoffanlagenstatus-Code";
 	
-	$ltft = "Langzeitkraftstofftrimm";
+	// $ltft = "Langzeitkraftstofftrimm";
 	
-	$o2_lambda_current = "O2-Lambda-Strömung";
+	// $o2_lambda_current = "O2-Lambda-Strömung";
 	
-	$o2_lambda_current_er = "O2-Lambda-Ströung ER";
+	// $o2_lambda_current_er = "O2-Lambda-Ströung ER";
 	
-	$o2_lambda_voltage = "O2-Lambda-Spannung";
+	// $o2_lambda_voltage = "O2-Lambda-Spannung";
 
-	$o2_lambda_voltage_er = "O2-Lambda-Spannung-ER";
+	// $o2_lambda_voltage_er = "O2-Lambda-Spannung-ER";
 	
-	$stft_1 = "Kurzzeitkraftstofftrimm 1";
+	// $stft_1 = "Kurzzeitkraftstofftrimm 1";
 	
 	$mapSearch = "Suche nach St&auml;dten";
 		
