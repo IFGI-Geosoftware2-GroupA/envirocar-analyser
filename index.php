@@ -233,6 +233,8 @@
 							 <input type="checkbox" name="verbrauch" checked> <?php echo $consumption; ?>
 							 <input type="checkbox" name="co2" checked> <?php echo $co2; ?>
 							 <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
+							 <input type="checkbox" name="motorlast" checked> <?php echo $engine_load; ?>
+							 <input type="checkbox" name="umdrehungen" checked> <?php echo $rpm; ?>
 							 <input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">
 						   </p>
 					</form>

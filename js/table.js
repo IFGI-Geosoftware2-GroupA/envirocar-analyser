@@ -26,7 +26,9 @@ function createTable() {
 		consumption = new Array();
 		co2 = new Array();
 		speed = new Array();
-		maf = new Array();
+		//maf = Array();
+		engineload = new Array();
+		rpm = new Array();
 
 		setTimeout(function() {
 			//Put Phenomenons in Arrays
@@ -46,9 +48,13 @@ function createTable() {
 						speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);		
 					} 
 					
-					else if (measurements[i].getPhenomenons()[j].name == "MAF") {
-						maf.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
+					else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
+						engineload.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
 					}
+					
+					else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
+						rpm.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);			
+				}
 				}
 			}
 			
@@ -58,24 +64,28 @@ function createTable() {
 				if (i == 0)	{
 					headrow = document.createElement("tr");
 					
+					headcell0 = document.createElement("th");
 					headcell1 = document.createElement("th");
 					headcell2 = document.createElement("th");
 					headcell3 = document.createElement("th");
 					headcell4 = document.createElement("th");
 					headcell5 = document.createElement("th");
 					
-					headtext1 = document.createTextNode("ID");
-					headtext2 = document.createTextNode("Verbrauch");
-					headtext3 = document.createTextNode("CO2");
-					headtext4 = document.createTextNode("Geschwindigkeit");
-					headtext5 = document.createTextNode("Luftmasse");
+					headtext0 = document.createTextNode("ID");
+					headtext1 = document.createTextNode("Verbrauch");
+					headtext2 = document.createTextNode("CO2");
+					headtext3 = document.createTextNode("Geschwindigkeit");
+					headtext4 = document.createTextNode("Motorlast");
+					headtext5 = document.createTextNode("Umdrehungen");
 					
+					headcell0.appendChild(headtext0);
 					headcell1.appendChild(headtext1);
 					headcell2.appendChild(headtext2);
 					headcell3.appendChild(headtext3);
 					headcell4.appendChild(headtext4);
 					headcell5.appendChild(headtext5);
 					
+					headrow.appendChild(headcell0);
 					headrow.appendChild(headcell1);
 					headrow.appendChild(headcell2);
 					headrow.appendChild(headcell3);
@@ -97,6 +107,7 @@ function createTable() {
 				currentCell2 = document.createElement("td");
 				currentCell3 = document.createElement("td");
 				currentCell4 = document.createElement("td");
+				currentCell5 = document.createElement("td");
 		
 				//ID-Column
 				currentText0 = document.createTextNode(measurements[i].getId());
@@ -110,23 +121,29 @@ function createTable() {
 				//Speed-Column
 				currentText3 = document.createTextNode(speed[i]); 
 				
-				//MAF-Column
-				currentText4 = document.createTextNode(maf[i]); 
+				//Engine Load-Column
+				currentText4 = document.createTextNode(engineload[i]); 
+				
+				//RPM-Column
+				currentText5 = document.createTextNode(rpm[i]); 
 				
 				currentCell0.appendChild(currentText0);
 				currentCell1.appendChild(currentText1);
 				currentCell2.appendChild(currentText2);
 				currentCell3.appendChild(currentText3);
 				currentCell4.appendChild(currentText4);
+				currentCell5.appendChild(currentText5);
 				
 				currentRow.appendChild(currentCell0);
 				currentRow.appendChild(currentCell1);
 				currentRow.appendChild(currentCell2);
 				currentRow.appendChild(currentCell3);
 				currentRow.appendChild(currentCell4);
+				currentRow.appendChild(currentCell5);
 				
 				mytablebody.appendChild(currentRow);
 			}
+
 		}, 4000);
 		myTable.appendChild(mytablehead);
 		myTable.appendChild(mytablebody);
@@ -157,10 +174,8 @@ function tablestyle(){
 	$(document).ready(function() {
 		$('#tableID').fixheadertable({
        		height      : 200, 
-   			zebra       : true, 
-   			sortable    : true,
-   			sortedColId : 0, 
-  			sortType    : ['string', 'string', 'string', 'string'],
+   			zebra       : true 
+ 
         });
 	});
 
@@ -198,11 +213,18 @@ function refreshTable() {
 		$('#analyser-table td:nth-child(4),#analyser-table th:nth-child(4)').hide();
 	}
 	
-	if(document.checkbox.luftmasse.checked == true) {
+	if(document.checkbox.motorlast.checked == true) {
        	$('#analyser-table td:nth-child(5),#analyser-table th:nth-child(5)').show();
        	
 	} else {
 		$('#analyser-table td:nth-child(5),#analyser-table th:nth-child(5)').hide();	
+	}
+	
+	if(document.checkbox.umdrehungen.checked == true) {
+       	$('#analyser-table td:nth-child(6),#analyser-table th:nth-child(6)').show();
+       	
+	} else {
+		$('#analyser-table td:nth-child(6),#analyser-table th:nth-child(6)').hide();	
 	}
 
 }
