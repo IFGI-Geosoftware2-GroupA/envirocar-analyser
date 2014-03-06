@@ -193,7 +193,7 @@ function showMarkers(query) {
 				});
 				marker.id = measurements[i].getId();
 				google.maps.event.addListener(marker, 'click', function(){
-					lineChart.highlight(marker.id);
+					// lineChart.highlight(marker.id); // TODO uncomment when Chart data is uploaded
 					// var mid = marker.id;
 					// var bg = document.createAttribute("backgroundColor");
 					// bg.nodeValue = '#B0C4DE';
