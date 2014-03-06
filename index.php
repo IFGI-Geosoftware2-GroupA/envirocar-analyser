@@ -140,7 +140,6 @@
 					<select multiple="multiple" size="4" id="duallistbox_phenomenons">
 						<option value="co2"><?php echo $co2_emission; ?></option>
 						<option value="geschwindigkeit"><?php echo $speed; ?></option>
-						<option value="luftmasse"><?php echo $air_mass; ?></option>
 						<option value="verbrauch"><?php echo $consumption; ?></option>
 					</select>
 					<script>
@@ -234,7 +233,6 @@
 							 <input type="checkbox" name="verbrauch" checked> <?php echo $consumption; ?>
 							 <input type="checkbox" name="co2" checked> <?php echo $co2; ?>
 							 <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
-							 <input type="checkbox" name="luftmasse"checked> <?php echo $air_mass; ?>
 							 <input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">
 						   </p>
 					</form>
