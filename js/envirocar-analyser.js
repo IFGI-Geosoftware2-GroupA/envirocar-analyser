@@ -85,7 +85,7 @@ defaultPhenomenons = [];
 // 95 kg/h is the EU limit for 2021 and 130 for 2015.
 defaultPhenomenons.push(new Phenomenon("CO2", "kg/h", 95, 130));
 // defaultPhenomenons.push(new Phenomenon("Calculated MAF", "g/s", 0, 0));
-// 5 l/h is the consumption of a economical car in average and 15 l/h of a non-economical car in the city.
+// 5 l/h is the consumption of a economical car in average and 15 l/h of a non-economical car in the city and/or uphill.
 defaultPhenomenons.push(new Phenomenon("Consumption", "l/h", 5, 15));
 // 0% menas that the car is in no-load, 100% means full throttle
 defaultPhenomenons.push(new Phenomenon("Engine Load", "%", 0, 100));
