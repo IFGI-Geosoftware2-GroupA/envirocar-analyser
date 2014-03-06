@@ -190,7 +190,7 @@ function streetMode(){
 			if (l == "en") {
 				alert("Remove the last points with 'rightclick' somewhere in the map, but not at a point!");
 			} else {
-  				alert("Entfernen Sie den letzten Punkt mir einem Rechtsklick an einem beliebigen Ort auf der Karte, aber nicht auf einem Punkt!");
+  				alert("Entfernen Sie den letzten Punkt mit Rechtsklick auf einen beliebigen Ort auf der Karte, aber nicht auf einen Punkt!");
   		}
   			alerted =true;
   		}
