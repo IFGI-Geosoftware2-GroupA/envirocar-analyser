@@ -178,10 +178,20 @@ $(function() {
 
 function streetMode(){
   	if(map.getMapTypeId()=="OSM"){
-  		alert("Change map layer to a google map");
+  		var l = getParam('lang');
+		if (l == "en") {
+			alert("Change map layer to a google map.");
+		} else {
+			alert("Ändern Sie die Karte zu einer Google-Karte.");
+	    }
   	}else{
   		if(alerted==false){
-  			alert("Remove the last points with 'rightclick' somewhere in the map, but not at a point!");
+  			var l = getParam('lang');
+			if (l == "en") {
+				alert("Remove the last points with 'rightclick' somewhere in the map, but not at a point!");
+			} else {
+  				alert("Entfernen Sie den letzten Punkt mit Rechtsklick auf einen beliebigen Ort auf der Karte, aber nicht auf einen Punkt!");
+  		}
   			alerted =true;
   		}
   		if(streetmode==false){ 
