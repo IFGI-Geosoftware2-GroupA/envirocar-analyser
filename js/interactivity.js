@@ -179,11 +179,11 @@ $(function() {
 function streetMode(){
   	if(map.getMapTypeId()=="OSM"){
   		var l = getParam('lang');
-			if (l == "en") {
-				alert("Change map layer to a google map.");
-			} else {
-  				alert("Ändern Sie die Karte zu einer Google-Karte.");
-  		    }
+		if (l == "en") {
+			alert("Change map layer to a google map.");
+		} else {
+			alert("Ändern Sie die Karte zu einer Google-Karte.");
+	    }
   	}else{
   		if(alerted==false){
   			var l = getParam('lang');
