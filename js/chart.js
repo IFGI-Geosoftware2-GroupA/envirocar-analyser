@@ -130,12 +130,9 @@ LineChart.prototype.getSeries = function(name) {
 	return this.chart.series[name];
 };
 
-// unselect all marked points and mark all Points of a certain id
+// marks all Points of a certain id
 LineChart.prototype.highlight = function(id){
-	var selection = this.getChart().getSelectedPoints();
-	for(var i = 0; i < selection.length; i++){
-		selection[i].select(false);
-	}
+	this.unselect();
 	var series = this.getAllSeries();
 	for(var i = 0; i < series.length; i++){
 		if(this.chart.get(series[i].options.id).visible)
@@ -198,6 +195,14 @@ LineChart.prototype.setTitle = function(title) {
 	this.chart.setTitle({
 		text : title
 	});
+};
+
+// unselects all marked points
+LineChart.prototype.unselect = function(){
+	var selection = this.getChart().getSelectedPoints();
+	for(var i = 0; i < selection.length; i++){
+		selection[i].select(false);
+	}
 };
 
 
