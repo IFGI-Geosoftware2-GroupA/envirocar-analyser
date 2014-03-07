@@ -56,8 +56,8 @@ function LineChart() {
 			series : {
 				point : {
 					events : {
-						 mouseOver: function() {
-                            console.log(this.name);
+						 click: function() {
+                            // console.log(this.name);
                         }
 					}
 				}
