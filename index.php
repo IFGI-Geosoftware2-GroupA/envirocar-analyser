@@ -77,10 +77,11 @@
 	<!-- Custom classes -->
 	<script src="js/envirocar-analyser.js"></script>
 	
-	<!-- Functions of the map, table and chart -->
+	<!-- Functions of the map, table, chart and filter -->
 	<script src="js/chart.js"></script>
 	<script src="js/map.js"></script>
 	<script src="js/table.js"></script>
+	<script src="js/filter.js"></script>
 	
 	<!-- Boundaries of NRW -->
 	<script src="js/boundaries.js"></script>
