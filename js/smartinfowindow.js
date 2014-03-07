@@ -162,8 +162,15 @@ SmartInfoWindow.prototype.createElement = function() {
 
     function removeSmartInfoWindow(ib) {
       return function() {
+        // Close SmartInfoWindow
         ib.setMap(null);
+        // Unselect measurements in chart
         lineChart.unselect();
+        // Unselect measurements in table
+        var tr = document.getElementsByTagName('tr');
+        for (var i = 0; i < tr.length; i++) {
+        	tr[i].style.backgroundColor = '#FFFFFF';
+        }
       };
     }
 
