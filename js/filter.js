@@ -204,51 +204,79 @@ function getDateTime() {
 	
 }
 
-function testParsing(JSONFile) {
+function getBBox() {
 	
-
-	var jsonTrackIDs = JSON.stringify(JSONFile);
-
-	var objtest = jQuery.parseJSON(jsonTrackIDs);
+	pointNorthEast = rectangle.getBounds().getNorthEast().toString();
+	pointSouthWest = rectangle.getBounds().getSouthWest().toString();
 	
-	var track = objtest.tracks[0].id;
+	// alert("NE: " + pointNorthEast + "\n" + "SW: " + pointSouthWest);
 	
-	var allTracks = "https://envirocar.org/api/stable/tracks/";
+	pointNorthEastX = pointNorthEast.slice(1,18);
+	pointNorthEastY = pointNorthEast.slice(20,37);
+	pointSouthWestX = pointSouthWest.slice(1,18);
+	pointSouthWestY = pointSouthWest.slice(20,37);
 	
-	var trackURL = allTracks.concat(track);
+	var pnex = pointNorthEastX;
+	var pney = pointNorthEastY;
+	var pswx = pointSouthWestX;
+	var pswy = pointSouthWestY;
 	
-	alert(trackURL);
+	var BBoxURL = baseurlBBox.concat(pswx, comma, pswy, comma, pnex, comma, pney);
 	
-	var json = (function () {
-		
-		
-			var json = null;
-			$.ajax({
-				'async': false,
-				// Requesting a local file due to the cross domain constrait explained above
-				'url': trackURL,
-				'dataType': "json",
-				// If request succeeded the callback function stores the requested JSON to var = json 
-				'success': function (data) {json = data;},
-				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
-			});
-			
-			// returns the object
-			return json;
-		})();
-	
-	var jsonTrackData = JSON.stringify(json);
-
-	var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
-	
-	alert(jsonTrackDataObj.properties.sensor.properties.manufacturer);
-	
-	// alert(JSON.stringify(JSONFile));
-	
-	
+	// https://envirocar.org/api/stable/tracks?bbox=51.94526347230317,7.626482342364511,51.95054506839408,7.603436801737075
+	// findet keine Tracks
+	alert(BBoxURL);
 }
 
+
+// function testBBox(bounds) {
+// 	
+	// var point1 = map.getBounds().getNorthEast();
+	// var point2 = map.getBounds().getSouthWest();
+// 	
+	// alert(bounds);
+
+	// var jsonTrackIDs = JSON.stringify(JSONFile);
+// 
+	// var objtest = jQuery.parseJSON(jsonTrackIDs);
+// 	
+	// var track = objtest.tracks[0].id;
+// 	
+	// var allTracks = "https://envirocar.org/api/stable/tracks/";
+// 	
+	// var trackURL = allTracks.concat(track);
+// 	
+	// alert(trackURL);
+// 	
+	// var json = (function () {
+// 		
+// 		
+			// var json = null;
+			// $.ajax({
+				// 'async': false,
+				// // Requesting a local file due to the cross domain constrait explained above
+				// 'url': trackURL,
+				// 'dataType': "json",
+				// // If request succeeded the callback function stores the requested JSON to var = json 
+				// 'success': function (data) {json = data;},
+				// 'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+			// });
+// 			
+			// // returns the object
+			// return json;
+		// })();
+// 	
+	// var jsonTrackData = JSON.stringify(json);
+// 
+	// var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+// 	
+	// alert(jsonTrackDataObj.properties.sensor.properties.manufacturer);
+	
+	// alert(JSON.stringify(JSONFile));
+//}	
+
 // old stuff
+
 
 function getManufacturerBMW() {   
 
