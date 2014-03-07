@@ -220,7 +220,7 @@ function showMarkers(query) {
 function createListenerForMarkers(marker) {
 	google.maps.event.addListener(marker, 'click', function(){
 		lineChart.highlight(marker.id);
-		document.getElementById(marker.id).style.backgroundColor = '#FF0000';
+		document.getElementById(marker.id).style.backgroundColor = '#66CCFF';
 		// var mid = marker.id;
 		// var bg = document.createAttribute("backgroundColor");
 		// bg.nodeValue = '#B0C4DE';
