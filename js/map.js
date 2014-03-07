@@ -191,7 +191,7 @@ function showMarkers(query) {
 					position : measurements[i].getPoint(),
 					icon : 'img/circle.png'
 				});
-				marker.id = measurements[i].getId();
+				marker.id = '' + measurements[i].getId() + '';
 				google.maps.event.addListener(marker, 'click', function(){
 					lineChart.highlight(marker.id);
 					// var mid = marker.id;
