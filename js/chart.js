@@ -132,7 +132,6 @@ LineChart.prototype.getSeries = function(name) {
 
 // marks all Points of a certain id
 LineChart.prototype.highlight = function(id){
-	this.unselect();
 	var series = this.getAllSeries();
 	for(var i = 0; i < series.length; i++){
 		if(this.chart.get(series[i].options.id).visible)
@@ -232,27 +231,22 @@ LineChart.prototype.createChartFromTrack = function() {
 					
 					if (measurements[i].getPhenomenons()[j].name == "Consumption") {
 						consumptionA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Consumption' +  measurementId});	
-						// alert('Consumption: Time: ' + utc.toString() + ' Value: ' + measurements[i].getValues()[j] + ' ID: ' + measurementId);
 					} 
 					
 					else if (measurements[i].getPhenomenons()[j].name == "CO2") {
 						co2A.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'CO2' +  measurementId});
-						// alert('CO2: Time: ' + utc.toString() + ' Value: ' + measurements[i].getValues()[j] + ' ID: ' + measurementId);
 					} 
 					
 					else if (measurements[i].getPhenomenons()[j].name == "Speed") {
 						speedA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Speed' +  measurementId});	
-						// alert('Speed: Time: ' + utc.toString() + ' Value: ' + measurements[i].getValues()[j] + ' ID: ' + measurementId);
 					} 
 					
 					else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
 						engineLoadA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'EngineLoad' +  measurementId});	
-						// alert('Engine Load: Time: ' + utc.toString() + ' Value: ' + measurements[i].getValues()[j] + ' ID: ' + measurementId);
 					}
 					
 					else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
 						rpmA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Rpm' +  measurementId});			
-						// alert('RPM: Time: ' + utc.toString() + ' Value: ' + measurements[i].getValues()[j] + ' ID: ' + measurementId);
 					}
 				}
 			}
