@@ -222,7 +222,15 @@
 						
 				<div id="analyser-chart" class="top">
 					<script type="text/javascript">
-						var lineChart = new LineChart();
+						<?php
+						if(isset($_GET['lang'])){
+							if($_GET['lang'] == 'en') echo 'var lineChart = new LineChart("en");';
+							else echo 'var lineChart = new LineChart("en");';	
+						}
+						else{
+							echo 'var lineChart = new LineChart("de");';
+						} 
+						?>
 						lineChart.initChart();
 						lineChart.createChartFromTrack();
 					</script>	

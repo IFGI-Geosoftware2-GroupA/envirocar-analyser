@@ -24,7 +24,7 @@
 
 
 // Constructor
-function LineChart() {
+function LineChart(language) {
 	// default line chart options for time related data
 	this.options = {
 		chart : {
@@ -76,6 +76,7 @@ function LineChart() {
 		}
 	};
 	this.chart = new Highcharts.Chart(this.options);
+	this.language = language;
 }
 
 // Setting the variables
@@ -94,6 +95,12 @@ LineChart.prototype.setOptions = function(options) {
 };
 LineChart.prototype.getOptions = function() {
 	return this.options;
+};
+LineChart.prototype.getLanguage = function(){
+	return this.language;
+};
+LineChart.prototype.setLanguage = function(language){
+	this.language = language;
 };
 
 
@@ -227,37 +234,59 @@ LineChart.prototype.createChartFromTrack = function() {
 			var d = measurements[i].getTimestamp();
 			var utc = Date.UTC(d.getYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds());
 			var measurementId = measurements[i].getId() + '';
-				for (j=0;j<measurements[i].phenomenons.length;j++) {
-					
-					if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-						consumptionA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Consumption' +  measurementId});	
-					} 
-					
-					else if (measurements[i].getPhenomenons()[j].name == "CO2") {
-						co2A.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'CO2' +  measurementId});
-					} 
-					
-					else if (measurements[i].getPhenomenons()[j].name == "Speed") {
-						speedA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Speed' +  measurementId});	
-					} 
-					
-					else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-						engineLoadA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'EngineLoad' +  measurementId});	
-					}
-					
-					else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-						rpmA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Rpm' +  measurementId});			
-					}
+			for (j=0;j<measurements[i].phenomenons.length;j++) {
+				
+				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
+					consumptionA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Consumption' +  measurementId});	
+				} 
+				
+				else if (measurements[i].getPhenomenons()[j].name == "CO2") {
+					co2A.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'CO2' +  measurementId});
+				} 
+				
+				else if (measurements[i].getPhenomenons()[j].name == "Speed") {
+					speedA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Speed' +  measurementId});	
+				} 
+				
+				else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
+					engineLoadA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'EngineLoad' +  measurementId});	
+				}
+				
+				else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
+					rpmA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Rpm' +  measurementId});			
 				}
 			}
-		chart.setTitle('Messungen');
-		chart.setAxisTitle('x', 'Zeit');
-		chart.setAxisTitle('y', 'Werte');
-		if(speedA.length > 0)			chart.addSeries('Geschwindigkeit(km/h)', true, 'Speed', speedA);
-		if(consumptionA.length > 0)		chart.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
-		if(co2A.length > 0)				chart.addSeries('CO2(kg/h)', true, 'CO2', co2A);
-		if(engineLoadA.length > 0)		chart.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
-		if(rpmA.length > 0)				chart.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);
+		}
+		if(chart.getLanguage() == 'de'){
+			chart.setTitle('Messungen');
+			chart.setAxisTitle('x', 'Zeit');
+			chart.setAxisTitle('y', 'Werte');
+			if(speedA.length > 0)			chart.addSeries('Geschwindigkeit(km/h)', true, 'Speed', speedA);
+			if(consumptionA.length > 0)		chart.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
+			if(co2A.length > 0)				chart.addSeries('CO2(kg/h)', true, 'CO2', co2A);
+			if(engineLoadA.length > 0)		chart.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
+			if(rpmA.length > 0)				chart.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);	
+		}
+		else if(chart.getLanguage() == 'en'){
+			chart.setTitle('Measurements');
+			chart.setAxisTitle('x', 'Time');
+			chart.setAxisTitle('y', 'Values');
+			if(speedA.length > 0)			chart.addSeries('Speed(km/h)', true, 'Speed', speedA);
+			if(consumptionA.length > 0)		chart.addSeries('Consumption(l/h)', true, 'Consumption', consumptionA);
+			if(co2A.length > 0)				chart.addSeries('CO2(kg/h)', true, 'CO2', co2A);
+			if(engineLoadA.length > 0)		chart.addSeries('Engine Load(%)', true, 'EngineLoad', engineLoadA);
+			if(rpmA.length > 0)				chart.addSeries('Revolutions(u/min)', true, 'Rpm', rpmA);	
+		}	
+		else{
+			chart.setTitle('Messungen');
+			chart.setAxisTitle('x', 'Zeit');
+			chart.setAxisTitle('y', 'Werte');
+			if(speedA.length > 0)			chart.addSeries('Geschwindigkeit(km/h)', true, 'Speed', speedA);
+			if(consumptionA.length > 0)		chart.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
+			if(co2A.length > 0)				chart.addSeries('CO2(kg/h)', true, 'CO2', co2A);
+			if(engineLoadA.length > 0)		chart.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
+			if(rpmA.length > 0)				chart.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);	
+		}
 	}, 5000);
 	
 };
