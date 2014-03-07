@@ -17,7 +17,8 @@
 
 var startDate;
 var endDate;
-var baseurl = "https://envirocar.org/api/stable/tracks?during=";
+var baseurl = "https://envirocar.org/api/stable/tracks?during="; //Global variable specifying the URL for the temporal filter contributed by the envirocar API
+var allTracks = "https://envirocar.org/api/stable/tracks/";
 var hyphen = "-";
 var literalT = "T";
 var literalZ = "Z";
@@ -26,24 +27,27 @@ var doublePoint = ":";
 
 function getDateTime() {
 	
+		// Getting the values of the boxes where datetime is displayed
 	 	startDate = $('#date-from').val();
 		endDate = $('#date-to').val();
 	
-	
-	if(startDate == '' && endDate == '') {
+	// Check if a start and end date is specifyed. If not the user gets an alert
+	if(startDate == '' || endDate == '') {
 		
-		alert("Kein Start- und Endzeitpunkt ausgewählt");
+		alert("Kein Start- und / oder Endzeitpunkt ausgewählt");
 		
 	} 
 	else{
-	
+		
+		// Storing the value of the date-from box in a variable
 		var startDate = $('#date-from').val();
 	
+		// Storing the value of the date-to box in a variable
 		var endDate = $('#date-to').val();
 	
 		alert("Sie haben den Startzeitpunkt " + startDate + " und den Endzeitpunkt " + endDate + " ausgewählt.");
 		
-		//StartDate
+		//Getting the literals from the date-from box and start building the first part of the string
 		
 		var year = startDate.charAt(6);
 		var year1 = startDate.charAt(7);
@@ -68,16 +72,17 @@ function getDateTime() {
 		var minute1 = startDate.charAt(15);
 		var seconds = "00";
 		
-		var baseurlstartDate = baseurlYearMonthDay.concat(hour, hour1, doublePoint, minute, minute1, doublePoint, seconds,literalZ , comma);
+		var baseurlStartDate = baseurlYearMonthDay.concat(hour, hour1, doublePoint, minute, minute1, doublePoint, seconds,literalZ , comma);
+		//alert(baseurlStartDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,
 		
-		//EndDate
+		//Getting the literals from the date-to box and start building the second part of the string
 		
 		var endYear = endDate.charAt(6);
 		var endYear1 = endDate.charAt(7);
 		var endYear2 = endDate.charAt(8);
 		var endYear3 = endDate.charAt(9);
 		
-		var baseurlEndDateYear = baseurlstartDate.concat(endYear, endYear1, endYear2, endYear3,hyphen);
+		var baseurlEndDateYear = baseurlStartDate.concat(endYear, endYear1, endYear2, endYear3,hyphen);
 		
 		var endMonth = endDate.charAt(3);
 		var endMonth1 = endDate.charAt(4);
@@ -96,11 +101,12 @@ function getDateTime() {
 		var seconds = "00";
 		
 		var baseurlEndDate = baseurlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
+		//alert(baseurlEndDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
 		
 		var requestURL = baseurlEndDate;
 		
-		alert("Die URL für die RESTAbfrage " + requestURL);
-		
+		// alert("Die URL für die RESTAbfrage " + requestURL);
+				
 		// Requesting the JSON File from envirocar
 		
 		var json = (function () {
@@ -109,7 +115,6 @@ function getDateTime() {
 									var json = null;
 									$.ajax({
 										'async': false,
-										// Requesting a local file due to the cross domain constrait explained above
 										'url': requestURL,
 										'dataType': "json",
 										// If request succeeded the callback function stores the requested JSON to var = json 
@@ -124,12 +129,121 @@ function getDateTime() {
 		// stores the returned object in the variable JSONFile.
 		var JSONFile = json;
 		
-		alert("Das ist der abgerufene JSONFile " + JSON.stringify(JSONFile));
+		// alert("Das ist der abgerufene JSONFile " + JSON.stringify(JSONFile));
 		
-		// returns the JSONFile where the data is stored.
-		return JSONFile;
+			// Loops through the requested JSONFile and gets with the use of the trackID the additional information for all specified tracks
+					
+			$.each(JSONFile.tracks, function (key, value) {
+				
+				trackURL = allTracks.concat(value.id);
+				
+				 var json = (function () {
+			
+				var json = null;
+					$.ajax({
+						'async': false,
+						'url': trackURL,
+						'dataType': "json",
+						// If request succeeded the callback function stores the requested JSON to var = json 
+						'success': function (data) {json = data;},
+						'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+					});
+					
+					// returns the object
+					return json;
+				})();
+	
+	// The requested JSON File is cast to a string
+	var jsonTrackData = JSON.stringify(json);
+
+	// The JSON File is now parsed and could be entered
+	var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+	
+			// Text for the dropdown menu
+            $("#trackSelectionList").append($('<option></option>').val(value.id).html(jsonTrackDataObj.properties.sensor.properties.manufacturer + " " + jsonTrackDataObj.properties.sensor.properties.model + " TrackID: " + value.id));
+            });
+			
+			// onChange alert with more specific car data
+            $('#trackSelectionList').change(function () {
+                                
+                trackURL = allTracks.concat($(this).val());
+                
+               	
+	            var json = (function () {
+			
+				var json = null;
+					$.ajax({
+						'async': false,
+						// Requesting a local file due to the cross domain constrait explained above
+						'url': trackURL,
+						'dataType': "json",
+						// If request succeeded the callback function stores the requested JSON to var = json 
+						'success': function (data) {json = data;},
+						'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+					});
+					
+					// returns the object
+					return json;
+				})();
+	
+	var jsonTrackData = JSON.stringify(json);
+
+	var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+	
+	alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
+		+ "ModelType: " + jsonTrackDataObj.properties.sensor.properties.model + "\n"
+		+ "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
+		+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
+
+            });
+            
+		// testParsing(JSONFile);
+		// return JSONFile;
 			
 	}
+	
+}
+
+function testParsing(JSONFile) {
+	
+
+	var jsonTrackIDs = JSON.stringify(JSONFile);
+
+	var objtest = jQuery.parseJSON(jsonTrackIDs);
+	
+	var track = objtest.tracks[0].id;
+	
+	var allTracks = "https://envirocar.org/api/stable/tracks/";
+	
+	var trackURL = allTracks.concat(track);
+	
+	alert(trackURL);
+	
+	var json = (function () {
+		
+		
+			var json = null;
+			$.ajax({
+				'async': false,
+				// Requesting a local file due to the cross domain constrait explained above
+				'url': trackURL,
+				'dataType': "json",
+				// If request succeeded the callback function stores the requested JSON to var = json 
+				'success': function (data) {json = data;},
+				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+			});
+			
+			// returns the object
+			return json;
+		})();
+	
+	var jsonTrackData = JSON.stringify(json);
+
+	var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+	
+	alert(jsonTrackDataObj.properties.sensor.properties.manufacturer);
+	
+	// alert(JSON.stringify(JSONFile));
 	
 	
 }
