@@ -337,6 +337,13 @@ function enableStreetmode(){
 					}
 				});
 			}
+		} else {
+			var l = getParam('lang');
+			if (l == "en") {
+				alert('The place you have selected does not lie in the area of application.');	
+			} else {
+				alert('Der ausgewählte Ort liegt nicht im erfassten Anwendungsgebiet.');
+	  		}
 		}
   	});
   	// Setup the click event listener to undo user Selection
