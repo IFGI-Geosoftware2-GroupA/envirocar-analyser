@@ -2,7 +2,7 @@
     
 	$contact = "Kontakt";
 	$contact_content = "Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-mail-Adresse: 
-	                    m_rund02@uni-muenster.de, axelvirnich@uni-muenster.de, t_gaer03@uni-muenster.de";
+	                    marius.runde@uni-muenster.de, axelvirnich@uni-muenster.de, t_gaer03@uni-muenster.de";
 	
 	$imprint = "Impressum";
 	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Daten der Community 
