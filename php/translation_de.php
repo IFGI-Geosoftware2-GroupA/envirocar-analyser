@@ -92,8 +92,8 @@ THE SOFTWARE.";
 	                 Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
 	                 Kartenausschnitt ausgewählt werden. Durch Klicken auf das Plus- und das Minussymbol 
 	                 der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
-	                 Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid', 'OSM' kann zwischen einer reinen 
-	                 Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
+	                 Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
+	                 reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
 	                 OpenStreepMap-Karte gewählt werden. Möchte man Daten für eine bestimmte Zeit für einen 
 	                 bestimmten Ort analysieren, so wählt man zunächst unter 'Von:' und 'Bis:' das 
 	                 Zeitintervall aus, in dem man auf die entsprechende Tage und zum Schluss auf 'Zeitraum 
