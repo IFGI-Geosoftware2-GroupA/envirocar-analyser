@@ -192,15 +192,15 @@ function getDateTime() {
 }
 
 function getBBox() {
-	pointNorthEast = rectangle.getBounds().getNorthEast().toString();
-	pointSouthWest = rectangle.getBounds().getSouthWest().toString();
+	pointNorthEast = rectangle.getBounds().getNorthEast();
+	pointSouthWest = rectangle.getBounds().getSouthWest();
 	
 	// alert("NE: " + pointNorthEast + "\n" + "SW: " + pointSouthWest); // TODO delete before release
 	
-	pointNorthEastX = pointNorthEast.slice(1,18);
-	pointNorthEastY = pointNorthEast.slice(20,37);
-	pointSouthWestX = pointSouthWest.slice(1,18);
-	pointSouthWestY = pointSouthWest.slice(20,37);
+	pointNorthEastX = pointNorthEast.lat();
+	pointNorthEastY = pointNorthEast.lng();
+	pointSouthWestX = pointSouthWest.lat();
+	pointSouthWestY = pointSouthWest.lng();
 	
 	var pnex = pointNorthEastX;
 	var pney = pointNorthEastY;
