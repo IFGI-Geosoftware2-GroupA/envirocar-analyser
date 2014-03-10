@@ -196,8 +196,6 @@ function showMarkers(query) {
 			// Only change the bounds when measurements have been collected
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
-				//Create BoundingBox
-				//initBoundingBox();
 			}
 		}, 700);
 	} catch(e) {
@@ -410,6 +408,7 @@ function getPolyline(){
 	}
 }
 
+// Create a bounding box overlay on the map
 function initBoundingBox(){
 	if (BoundingBox == false) {
 		BoundingBox = true;		
@@ -432,6 +431,12 @@ function initBoundingBox(){
 	} else {
 		BoundingBox = false;
 		rectangle.setMap();
+		
+		if (getParam('lang') == 'en') {
+			alert('The bounding box has been saved successfully!');
+		} else {
+			alert('Die Boundingbox wurde erfolgreich gespeichert!');
+		}
 	}
 }
 
