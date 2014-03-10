@@ -112,18 +112,6 @@ function initMap() {
 		refreshMarkers(map.getZoom());
 	});
 	
-	/*
-	 * Listen for changed map type id to enable/disable collecting street segments
-	 * Only Google Maps are allowed to be used for the Google Directions API
-	 */
-	/*
-	google.maps.event.addListener(map, 'maptypeid_changed', function() {
-		if (map.getMapTypeId() == 'OSM') {
-			alert('Only Google Maps are allowed to be used for the Google Directions API.');
-		}
-	});
-	*/
-	
 	// Listen for the search box results
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
 		var places = searchBox.getPlaces();
@@ -208,8 +196,6 @@ function showMarkers(query) {
 			// Only change the bounds when measurements have been collected
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
-				//Create BoundingBox
-				//initBoundingBox();
 			}
 		}, 700);
 	} catch(e) {
@@ -364,9 +350,9 @@ function enableStreetmode(){
 	  	} else {
 	  		var l = getParam('lang');
 			if (l == "en") {
-				alert("No Point to remove! Use leftclick to set a point!");
+				alert("No point existing to remove. Please use leftclick to set a point.");
 			} else {
-	  			alert("Kein Punkt zum Entfernen vorhanden! Bitte setzen Sie mit Linksklick einen Punkt!");
+	  			alert("Es ist kein Punkt mehr zum Entfernen vorhanden. Bitte setzen Sie mit Linksklick einen Punkt.");
 	  		}
 	  	}	
   	});
@@ -422,6 +408,7 @@ function getPolyline(){
 	}
 }
 
+// Create a bounding box overlay on the map
 function initBoundingBox(){
 	if (BoundingBox == false) {
 		BoundingBox = true;		
@@ -444,6 +431,14 @@ function initBoundingBox(){
 	} else {
 		BoundingBox = false;
 		rectangle.setMap();
+		
+		getBBox();
+		
+		if (getParam('lang') == 'en') {
+			alert('The bounding box has been saved successfully!');
+		} else {
+			alert('Die Boundingbox wurde erfolgreich gespeichert!');
+		}
 	}
 }
 
