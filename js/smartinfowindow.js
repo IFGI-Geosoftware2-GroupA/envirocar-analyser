@@ -1,4 +1,4 @@
-/* An SmartInfoWindow is like an info window, but it displays
+/* A SmartInfoWindow is like an info window, but it displays
  * under the marker, opens quicker, and has flexible styling.
  * @param {Object} opts Passes configuration options.
  */
@@ -162,7 +162,15 @@ SmartInfoWindow.prototype.createElement = function() {
 
     function removeSmartInfoWindow(ib) {
       return function() {
+        // Close SmartInfoWindow
         ib.setMap(null);
+        // Unselect measurements in chart
+        lineChart.unselect();
+        // Unselect measurements in table
+        var tr = document.getElementsByTagName('tr');
+        for (var i = 0; i < tr.length; i++) {
+        	tr[i].style.backgroundColor = '#FFFFFF';
+        }
       };
     }
 
@@ -192,13 +200,6 @@ SmartInfoWindow.prototype.createElement = function() {
 SmartInfoWindow.mouseFilter = function(e) {
   e.returnValue = 'true';
   e['handled'] = true;
-};
-
-/**
- * Closes infowindow
- */
-SmartInfoWindow.prototype.close = function() {
-  this.setMap(null);
 };
 
 /**

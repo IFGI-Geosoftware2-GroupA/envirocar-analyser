@@ -77,10 +77,11 @@
 	<!-- Custom classes -->
 	<script src="js/envirocar-analyser.js"></script>
 	
-	<!-- Functions of the map, table and chart -->
+	<!-- Functions of the map, table, chart and filter -->
 	<script src="js/chart.js"></script>
 	<script src="js/map.js"></script>
 	<script src="js/table.js"></script>
+	<script src="js/filter.js"></script>
 	
 	<!-- Boundaries of NRW -->
 	<script src="js/boundaries.js"></script>
@@ -111,7 +112,7 @@
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $selectTime ?>" onClick="">
+						value="<?php echo $selectTime ?>" onClick="getDateTime()">
 				</form>
 			</div>
 			
@@ -128,19 +129,21 @@
 				<br>
 				<div id="trackSelection">
 					<select id="trackSelectionList">
-				  		<option value="Track-ID">selektierte Track-IDs</option>
+				  		<!-- <option value="Track-ID">selektierte Track-IDs</option>
+				  		<option value="Track-ID2">test</option> -->
 					</select>
 				</div>
 			</div>
 			
 			
 			<div id ="phenomenSelection">
-								
 				<form action="">
 					<select multiple="multiple" size="4" id="duallistbox_phenomenons">
 						<option value="co2"><?php echo $co2_emission; ?></option>
-						<option value="geschwindigkeit"><?php echo $speed; ?></option>
-						<option value="verbrauch"><?php echo $consumption; ?></option>
+						<option value="consumption"><?php echo $consumption; ?></option>
+						<option value="engine_load"><?php echo $engine_load; ?></option>
+						<option value="rpm"><?php echo $rpm; ?></option>
+						<option value="speed"><?php echo $speed; ?></option>
 					</select>
 					<script>
 						var l = getParam('lang');
@@ -170,22 +173,17 @@
 							});
 						}
 					</script>
-					
 				</form> 
-				
 			</div>
-			
 			
 			<div id="analysis-mode" class="right">
 				<label id="analysis-mode-label" class="right" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
-				<br>
+				<br />
 				<input type="button" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
 			</div>
 			
-			
 			<div id="helpButton" class="right">
-				<a href="help.php"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
-				
+				<a href="#" onclick="toggleHelp();"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
 			</div>
 			
 		</div> <!-- end div header-nav -->	
@@ -193,11 +191,9 @@
 		<div id="application-content" >
 			
 			<div id="map-container" >
-		
 				<div id="map">
 					<!-- the map will be displayed here -->
 				</div>
-		
 				<script type="text/javascript">
 					// display the simple example
 					$(document).ready(function() {
@@ -217,10 +213,19 @@
 			</div>
 			
 			<div id="analyser-panel">
-						
 				<div id="analyser-chart" class="top">
 					<script type="text/javascript">
-						var lineChart = new LineChart();
+						<?php
+						if (isset($_GET['lang'])) {
+							if ($_GET['lang'] == 'en') {
+								echo 'var lineChart = new LineChart("en");';
+							} else {
+								echo 'var lineChart = new LineChart("en");';
+							}	
+						} else {
+							echo 'var lineChart = new LineChart("de");';
+						} 
+						?>
 						lineChart.initChart();
 						lineChart.createChartFromTrack();
 					</script>	
@@ -243,6 +248,22 @@
 						tablestyle();
 					</script>
 				</div>
+				
+				<div id="analyser-help" class="top" style="display: none">
+					<?php echo $help_content; ?>
+				</div>
+				
+				<div id="analyser-contact" class="top" style="display: none">
+					<?php echo $contact_content; ?>
+				</div>
+				
+				<div id="analyser-imprint" class="top" style="display: none">
+					<?php echo $imprint_content; ?>
+				</div>
+				
+				<div id="analyser-terms" class="top" style="display: none">
+					<?php echo $terms_content; ?>
+				</div>
 			</div>
 		</div> <!-- end div application-content -->	
 		
@@ -257,9 +278,9 @@
 					}
 				?>
 								
-				&copy 2014 &middot; enviroCar &middot; <a href="contact.php"><?php echo $contact ?></a> 
-				&middot; <a href="imprint.php"><?php echo $imprint ?></a>
-				&middot; <a href="terms.php"><?php echo $terms ?></a>
+				&copy 2014 &middot; enviroCar &middot; <a href="#" onclick="toggleContact();"><?php echo $contact ?></a> 
+				&middot; <a href="#" onclick="toggleImprint();"><?php echo $imprint ?></a>
+				&middot; <a href="#" onclick="toggleTerms();"><?php echo $terms ?></a>
 			
 			</span>
 		</div> <!-- end div footer -->	

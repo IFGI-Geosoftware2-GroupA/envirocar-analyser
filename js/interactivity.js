@@ -3,27 +3,38 @@
  */
  
 // Global variables
-	var wHeight = getWindowHeight();
-	var wWidth = getWindowWidth();
-	var pos = getScrollXY();
-	
-	var streetmode = false;
-	var alerted = false;
+var wHeight = getWindowHeight();
+var wWidth = getWindowWidth();
+var pos = getScrollXY();
+
+var streetmode = false;
+var alerted = false;
+
+// Enable or disable the help, contact, imprint or terms of usage in the analyser-panel
+var toggled = false;
+var lastContent = '';
 	
 // Screen resolution
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
 
-
 // Function to change between normal and analysis mode
 function changeMode() {
+	var on, off;
+	if (getParam('lang') == 'en') {
+		on = 'On';
+		off = 'Off';
+	} else {
+		on = 'An';
+		off = 'Aus';
+	}
 	
 	var mapWidth = document.getElementById('map-container').style.width;
 
 	if (mapWidth == "50%") {
-		document.getElementById('analyseModeBtn').value ="Aus";
-		document.getElementById('analyseModeBtn').style.color ="#1D83C3";
-		document.getElementById('analyseModeBtn').style.border ="1px solid #1D83C3";
-		document.getElementById('analyseModeBtn').style.background ="#fff";
+		document.getElementById('analyseModeBtn').value = off;
+		document.getElementById('analyseModeBtn').style.color = "#1D83C3";
+		document.getElementById('analyseModeBtn').style.border = "1px solid #1D83C3";
+		document.getElementById('analyseModeBtn').style.background = "#fff";
 		
 		document.getElementById('map-container').style.display = "block";
 		document.getElementById('map-container').style.width = "100%";
@@ -35,10 +46,14 @@ function changeMode() {
 		/*document.getElementById('header-nav').style.background = "#fff";*/
 		
 	} else {
-		document.getElementById('analyseModeBtn').value ="An";
-		document.getElementById('analyseModeBtn').style.color ="#fff";
-		document.getElementById('analyseModeBtn').style.border ="#990000";
-		document.getElementById('analyseModeBtn').style.background ="#990000";
+		if (toggled) {
+			toggleAnalyserPanel('');
+		}
+		
+		document.getElementById('analyseModeBtn').value = on;
+		document.getElementById('analyseModeBtn').style.color = "#fff";
+		document.getElementById('analyseModeBtn').style.border = "#990000";
+		document.getElementById('analyseModeBtn').style.background = "#990000";
 		
 		document.getElementById('map-container').style.width = "50%";
 		resizeMap();
@@ -48,7 +63,6 @@ function changeMode() {
 		document.getElementById('analyser-table').style.display = "block";
 	
 		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
-		
 	}
 }
 
@@ -78,7 +92,6 @@ $(function() {
 		};
 		$.timepicker.setDefaults($.timepicker.regional['en']);
 	} else {
-		
 		$.timepicker.regional['de'] = {
 			timeOnlyTitle : 'Uhrzeit auswählen',
 			timeText : 'Zeit',
@@ -97,12 +110,9 @@ $(function() {
 		ampm : false
 		};
 		$.timepicker.setDefaults($.timepicker.regional['de']);
-		
 	}	
 	
-	
 	$("#date-from").datetimepicker({
-		
 		minDate: new Date(2013,5,8),
 		maxDate: "+0",
 		changeMonth: false,
@@ -110,11 +120,9 @@ $(function() {
 		numberOfMonths: 3,
 		showWeek: false,
 		dateFormat: "dd-mm-yy"
-		
 	});
 	
 	$("#date-to").datetimepicker({
-		
 		changeMonth: false,
 		changeYear: false,
 		numberOfMonths: 3,
@@ -129,7 +137,6 @@ $(function() {
 			$("#date-to").datepicker("option","maxDate", "+0");
 		}
 	});
-
 });
 
 
@@ -137,55 +144,54 @@ $(function() {
  * Window functions (height, width, scroll position)
  * Author: Daniel Sawatzky 
  */
-	function getWindowWidth(){
-		var value;
-		try {
-			value = document.body.clientWidth;
-		} catch(e){
-			value = window.innerWidth;
-		}
-		return value; //window.innerWidth;
+function getWindowWidth(){
+	var value;
+	try {
+		value = document.body.clientWidth;
+	} catch(e) {
+		value = window.innerWidth;
 	}
-	function getWindowHeight(){
-		var value;
-		try {
-			value = document.body.clientHeight;
-		} catch(e){
-			value = window.innerHeight;
-		}
-		return value; //window.innerHeight;
+	return value; //window.innerWidth;
+}
+function getWindowHeight(){
+	var value;
+	try {
+		value = document.body.clientHeight;
+	} catch(e) {
+		value = window.innerHeight;
 	}
-	
-	function getScrollXY() {
-		var scrOfX = 0, scrOfY = 0;
-		if( typeof( window.pageYOffset ) == 'number' ) {
-			//Netscape compliant
-			scrOfY = window.pageYOffset;
-			scrOfX = window.pageXOffset;
-		} else if( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
-			//DOM compliant
-			scrOfY = document.body.scrollTop;
-			scrOfX = document.body.scrollLeft;
-		} else if( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
-			//IE6 standards compliant mode
-			scrOfY = document.documentElement.scrollTop;
-			scrOfX = document.documentElement.scrollLeft;
-		}
-		return [ scrOfX, scrOfY ];
+	return value; //window.innerHeight;
+}
+
+function getScrollXY() {
+	var scrOfX = 0, scrOfY = 0;
+	if ( typeof( window.pageYOffset ) == 'number' ) {
+		//Netscape compliant
+		scrOfY = window.pageYOffset;
+		scrOfX = window.pageXOffset;
+	} else if ( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
+		//DOM compliant
+		scrOfY = document.body.scrollTop;
+		scrOfX = document.body.scrollLeft;
+	} else if ( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
+		//IE6 standards compliant mode
+		scrOfY = document.documentElement.scrollTop;
+		scrOfX = document.documentElement.scrollLeft;
 	}
+	return [ scrOfX, scrOfY ];
+}
 
-
-
+// Enable or disable the street selection mode
 function streetMode(){
-  	if(map.getMapTypeId()=="OSM"){
+  	if (map.getMapTypeId() == "OSM") {
   		var l = getParam('lang');
 		if (l == "en") {
 			alert("Change map layer to a google map.");
 		} else {
 			alert("Bitte ändern Sie die Karte zu einer Google-Karte.");
 	    }
-  	}else{
-  		if(alerted==false){
+  	} else {
+  		if (alerted == false) {
   			var l = getParam('lang');
 			if (l == "en") {
 				alert("Remove the last points with 'rightclick' somewhere on the map, but not on a point.");
@@ -194,21 +200,19 @@ function streetMode(){
   		}
   			alerted =true;
   		}
-  		if(streetmode==false){ 
-  			 
+  		if (streetmode == false) { 
   			// Call enableStreetmode() function
   			enableStreetmode();
-  		}else if(streetmode==true){
+  		} else if (streetmode == true) {
   			// Call disableStreetmode() function for clearing the overlay and removing Listener
   			disableStreetmode();
   		}
- }}
- 
+}}
+
 /* Click Handler Styles */
-$(document).ready(function(){
-	
-	$("#boundingBoxBtn").click(function(){
-		if (BoundingBox == true){
+$(document).ready(function() {
+	$("#boundingBoxBtn").click(function() {
+		if (BoundingBox == true) {
 		  $(this).css("color","#fff");	
 		  $(this).css("background","#92C049");	
 		} else {
@@ -217,8 +221,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#streetSelectionBtn").click(function(){
-		if(streetmode==true){
+	$("#streetSelectionBtn").click(function() {
+		if (streetmode == true) {
 		  $(this).css("color","#fff");	
 		  $(this).css("background","#92C049");	
 		} else {
@@ -226,5 +230,84 @@ $(document).ready(function(){
 		  $(this).css("background","#fff");	
 		}
 	});
-
 });
+
+/*
+ * Change the content of the analyser panel.
+ * The id must specify the id of the element (without the 'analyser-' before).
+ * E.g. if the element has the id 'analyser-help', you will have to pass the id 'help' to the function.
+ */
+function toggleAnalyserPanel(id) {
+	var possibleIDs = ['help', 'contact', 'imprint', 'terms'];
+	
+	if (lastContent == '' || lastContent != id) {
+		toggled = false;
+	}
+	lastContent = id;
+	
+	document.getElementById('map-container').style.width = '50%';
+	resizeMap();
+	document.getElementById('analyser-panel').style.display = 'block';
+	if (toggled) {
+		// First hide all other content
+		document.getElementById('analyser-help').style.display = 'none';
+		document.getElementById('analyser-contact').style.display = 'none';
+		document.getElementById('analyser-imprint').style.display = 'none';
+		document.getElementById('analyser-terms').style.display = 'none';
+		
+		// Change the analyser status button
+		var on;
+		if (getParam('lang') == 'en') {
+			on = 'On';
+		} else {
+			on = 'An';
+		}
+		document.getElementById('analyseModeBtn').value = on;
+		document.getElementById('analyseModeBtn').style.color = '#fff';
+		document.getElementById('analyseModeBtn').style.border = '#990000';
+		document.getElementById('analyseModeBtn').style.background = '#990000';
+		
+		// Then display the analyser content
+		document.getElementById('analyser-chart').style.display = 'block';
+		document.getElementById('analyser-table').style.display = 'block';
+		
+		// Last change the toggled variable
+		toggled = false;
+	} else {
+		// First hide the analyser content
+		document.getElementById('analyser-chart').style.display = 'none';
+		document.getElementById('analyser-table').style.display = 'none';
+		
+		// Then display the expected content
+		for (var i = 0; i < possibleIDs.length; i++) {
+			if (id == possibleIDs[i]) {
+				document.getElementById('analyser-' + possibleIDs[i]).style.display = 'block';
+			} else {
+				document.getElementById('analyser-' + possibleIDs[i]).style.display = 'none';
+			}
+		}
+		
+		// Last change the toggled variable
+		toggled = true;
+	}
+}
+
+// Enable or disable the help content in the analyser-panel
+function toggleHelp() {
+	toggleAnalyserPanel('help');
+}
+
+// Enable or disable the contact content in the analyser-panel
+function toggleContact() {
+	toggleAnalyserPanel('contact');
+}
+
+// Enable or disable the imprint content in the analyser-panel
+function toggleImprint() {
+	toggleAnalyserPanel('imprint');
+}
+
+// Enable or disable the terms of usage content in the analyser-panel
+function toggleTerms() {
+	toggleAnalyserPanel('terms');
+}

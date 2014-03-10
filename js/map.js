@@ -112,18 +112,6 @@ function initMap() {
 		refreshMarkers(map.getZoom());
 	});
 	
-	/*
-	 * Listen for changed map type id to enable/disable collecting street segments
-	 * Only Google Maps are allowed to be used for the Google Directions API
-	 */
-	/*
-	google.maps.event.addListener(map, 'maptypeid_changed', function() {
-		if (map.getMapTypeId() == 'OSM') {
-			alert('Only Google Maps are allowed to be used for the Google Directions API.');
-		}
-	});
-	*/
-	
 	// Listen for the search box results
 	google.maps.event.addListener(searchBox, 'places_changed', function() {
 		var places = searchBox.getPlaces();
@@ -191,15 +179,9 @@ function showMarkers(query) {
 					position : measurements[i].getPoint(),
 					icon : 'img/circle.png'
 				});
-				marker.id = measurements[i].getId();
-				google.maps.event.addListener(marker, 'click', function(){
-					// lineChart.highlight(marker.id); // TODO uncomment when Chart data is uploaded
-					// var mid = marker.id;
-					// var bg = document.createAttribute("backgroundColor");
-					// bg.nodeValue = '#B0C4DE';
-					// document.getElementById(mid).setAttributeNode(bg);
-				});
+				marker.id = '' + measurements[i].getId() + '';
 				markers.push(marker);
+				createListenerForMarkers(markers[i]);
 				markersBounds.extend(measurements[i].getPoint());
 				
 				// Create infowindow for marker[i]/measurement[i]
@@ -221,6 +203,13 @@ function showMarkers(query) {
 	} catch(e) {
 		alert(e.message);
 	}
+}
+
+function createListenerForMarkers(marker) {
+	google.maps.event.addListener(marker, 'click', function(){
+		lineChart.highlight(marker.id);
+		document.getElementById(marker.id).style.backgroundColor = '#66CCFF';
+	});
 }
 
 /**
@@ -337,6 +326,13 @@ function enableStreetmode(){
 					}
 				});
 			}
+		} else {
+			var l = getParam('lang');
+			if (l == "en") {
+				alert('The place you have selected does not lie in the area of application.');	
+			} else {
+				alert('Der ausgewählte Ort liegt nicht im erfassten Anwendungsgebiet.');
+	  		}
 		}
   	});
   	// Setup the click event listener to undo user Selection
