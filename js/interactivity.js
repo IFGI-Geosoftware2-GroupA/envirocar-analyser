@@ -10,8 +10,9 @@ var pos = getScrollXY();
 var streetmode = false;
 var alerted = false;
 
-// Enable or disable the help in the analyser-panel
-var help = false;
+// Enable or disable the help, contact, imprint or terms of usage in the analyser-panel
+var toggled = false;
+var lastContent = '';
 	
 // Screen resolution
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
@@ -45,8 +46,8 @@ function changeMode() {
 		/*document.getElementById('header-nav').style.background = "#fff";*/
 		
 	} else {
-		if (help) {
-			toggleHelp();
+		if (toggled) {
+			toggleAnalyserPanel('');
 		}
 		
 		document.getElementById('analyseModeBtn').value = on;
@@ -231,14 +232,29 @@ $(document).ready(function() {
 	});
 });
 
-// Enable or disable the help in the analyser-panel
-function toggleHelp() {
-	document.getElementById('map-container').style.width = "50%";
+/*
+ * Change the content of the analyser panel.
+ * The id must specify the id of the element (without the 'analyser-' before).
+ * E.g. if the element has the id 'analyser-help', you will have to pass the id 'help' to the function.
+ */
+function toggleAnalyserPanel(id) {
+	var possibleIDs = ['help', 'contact', 'imprint', 'terms'];
+	
+	if (lastContent == '' || lastContent != id) {
+		toggled = false;
+	}
+	lastContent = id;
+	
+	document.getElementById('map-container').style.width = '50%';
 	resizeMap();
-	document.getElementById('analyser-panel').style.display = "block";
-	if (help) {
-		// First hide the help content
+	document.getElementById('analyser-panel').style.display = 'block';
+	if (toggled) {
+		// First hide all other content
 		document.getElementById('analyser-help').style.display = 'none';
+		document.getElementById('analyser-contact').style.display = 'none';
+		document.getElementById('analyser-imprint').style.display = 'none';
+		document.getElementById('analyser-terms').style.display = 'none';
+		
 		// Change the analyser status button
 		var on;
 		if (getParam('lang') == 'en') {
@@ -247,21 +263,51 @@ function toggleHelp() {
 			on = 'An';
 		}
 		document.getElementById('analyseModeBtn').value = on;
-		document.getElementById('analyseModeBtn').style.color = "#fff";
-		document.getElementById('analyseModeBtn').style.border = "#990000";
-		document.getElementById('analyseModeBtn').style.background = "#990000";
+		document.getElementById('analyseModeBtn').style.color = '#fff';
+		document.getElementById('analyseModeBtn').style.border = '#990000';
+		document.getElementById('analyseModeBtn').style.background = '#990000';
+		
 		// Then display the analyser content
 		document.getElementById('analyser-chart').style.display = 'block';
 		document.getElementById('analyser-table').style.display = 'block';
-		// Last change the help variable
-		help = false;
+		
+		// Last change the toggled variable
+		toggled = false;
 	} else {
 		// First hide the analyser content
 		document.getElementById('analyser-chart').style.display = 'none';
 		document.getElementById('analyser-table').style.display = 'none';
-		// Then display the help content
-		document.getElementById('analyser-help').style.display = 'block';
-		// Last change the help variable
-		help = true;
+		
+		// Then display the expected content
+		for (var i = 0; i < possibleIDs.length; i++) {
+			if (id == possibleIDs[i]) {
+				document.getElementById('analyser-' + possibleIDs[i]).style.display = 'block';
+			} else {
+				document.getElementById('analyser-' + possibleIDs[i]).style.display = 'none';
+			}
+		}
+		
+		// Last change the toggled variable
+		toggled = true;
 	}
+}
+
+// Enable or disable the help content in the analyser-panel
+function toggleHelp() {
+	toggleAnalyserPanel('help');
+}
+
+// Enable or disable the contact content in the analyser-panel
+function toggleContact() {
+	toggleAnalyserPanel('contact');
+}
+
+// Enable or disable the imprint content in the analyser-panel
+function toggleImprint() {
+	toggleAnalyserPanel('imprint');
+}
+
+// Enable or disable the terms of usage content in the analyser-panel
+function toggleTerms() {
+	toggleAnalyserPanel('terms');
 }

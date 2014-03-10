@@ -252,6 +252,18 @@
 				<div id="analyser-help" class="top" style="display: none">
 					<?php echo $help_content; ?>
 				</div>
+				
+				<div id="analyser-contact" class="top" style="display: none">
+					<?php echo $contact_content; ?>
+				</div>
+				
+				<div id="analyser-imprint" class="top" style="display: none">
+					<?php echo $imprint_content; ?>
+				</div>
+				
+				<div id="analyser-terms" class="top" style="display: none">
+					<?php echo $terms_content; ?>
+				</div>
 			</div>
 		</div> <!-- end div application-content -->	
 		
@@ -266,9 +278,9 @@
 					}
 				?>
 								
-				&copy 2014 &middot; enviroCar &middot; <a href="contact.php"><?php echo $contact ?></a> 
-				&middot; <a href="imprint.php"><?php echo $imprint ?></a>
-				&middot; <a href="terms.php"><?php echo $terms ?></a>
+				&copy 2014 &middot; enviroCar &middot; <a href="#" onclick="toggleContact();"><?php echo $contact ?></a> 
+				&middot; <a href="#" onclick="toggleImprint();"><?php echo $imprint ?></a>
+				&middot; <a href="#" onclick="toggleTerms();"><?php echo $terms ?></a>
 			
 			</span>
 		</div> <!-- end div footer -->	
