@@ -23,6 +23,7 @@ var literalZ = "Z";
 var comma = ",";
 var doublePoint = ":";
 
+// TODO missing documentation!!!
 function getDateTime() {
 	// Getting the values of the boxes where datetime is displayed
 	startDate = $('#date-from').val();
