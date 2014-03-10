@@ -29,8 +29,12 @@ function getDateTime() {
 	endDate = $('#date-to').val();
 	
 	// Check if a start and end date is specifyed. If not the user gets an alert
-	if(startDate == '' || endDate == '') {
-		alert("Kein Start- und / oder Endzeitpunkt ausgewählt");
+	if (startDate == '' || endDate == '') {
+		if (getParam('lang') == 'en') {
+			alert('No start and / or end date selected')
+		} else {
+			alert('Kein Start- und / oder Endzeitpunkt ausgewählt');
+		}
 	} else {
 		// Storing the value of the date-from box in a variable
 		var startDate = $('#date-from').val();
