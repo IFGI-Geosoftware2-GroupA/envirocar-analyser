@@ -4,13 +4,11 @@
  * Class for selecting different attributes from the JSON File.
  * Actually the jFunk library is used but it can change in the future due to some difficulties.
  * Usage: jF("*[attribute=foo]",JSONFile).get() is equal to select * from JSONFile where attribute=foo
- * 
  */
 
-
 /*
- * getManufacturerX(), getFuelTypeX(),getXX() are functions for filtering the JSON File. The JSON File is load by calling
- * the loadJSON() function and then stored as a variable. Afterwards the data get filtered and stored in a new variable.
+ * getManufacturerX(), getFuelTypeX(),getXX() are functions for filtering the JSON File. The JSON File is loaded by calling
+ * the loadJSON() function and then stored as a variable. Afterwards the data is filtered and stored in a new variable.
  * 
  * @return filtered JSONFile as a JavaScript Object
  */
@@ -26,25 +24,20 @@ var comma = ",";
 var doublePoint = ":";
 
 function getDateTime() {
-	
-		// Getting the values of the boxes where datetime is displayed
-	 	startDate = $('#date-from').val();
-		endDate = $('#date-to').val();
+	// Getting the values of the boxes where datetime is displayed
+	startDate = $('#date-from').val();
+	endDate = $('#date-to').val();
 	
 	// Check if a start and end date is specifyed. If not the user gets an alert
 	if(startDate == '' || endDate == '') {
-		
 		alert("Kein Start- und / oder Endzeitpunkt ausgewählt");
-		
-	} 
-	else{
-		
+	} else {
 		// Storing the value of the date-from box in a variable
 		var startDate = $('#date-from').val();
-	
+		
 		// Storing the value of the date-to box in a variable
 		var endDate = $('#date-to').val();
-	
+		
 		alert("Sie haben den Startzeitpunkt " + startDate + " und den Endzeitpunkt " + endDate + " ausgewählt.");
 		
 		//Getting the literals from the date-from box and start building the first part of the string
@@ -76,7 +69,6 @@ function getDateTime() {
 		//alert(baseurlStartDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,
 		
 		//Getting the literals from the date-to box and start building the second part of the string
-		
 		var endYear = endDate.charAt(6);
 		var endYear1 = endDate.charAt(7);
 		var endYear2 = endDate.charAt(8);
@@ -110,106 +102,95 @@ function getDateTime() {
 		// Requesting the JSON File from envirocar
 		
 		var json = (function () {
-	
-	
-									var json = null;
-									$.ajax({
-										'async': false,
-										'url': requestURL,
-										'dataType': "json",
-										// If request succeeded the callback function stores the requested JSON to var = json 
-										'success': function (data) {json = data;},
-										'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
-									});
-									
-									// returns the object
-									return json;
-									})();
-	
+			var json = null;
+			$.ajax({
+				'async': false,
+				'url': requestURL,
+				'dataType': "json",
+				// If request succeeded the callback function stores the requested JSON to var = json 
+				'success': function (data) {json = data;},
+				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+			});
+			
+			// returns the object
+			return json;
+		})();
+		
 		// stores the returned object in the variable JSONFile.
 		var JSONFile = json;
 		
 		// alert("Das ist der abgerufene JSONFile " + JSON.stringify(JSONFile));
 		
-			// Loops through the requested JSONFile and gets with the use of the trackID the additional information for all specified tracks
+		// Loops through the requested JSONFile and gets with the use of the trackID the additional information for all specified tracks
 					
-			$.each(JSONFile.tracks, function (key, value) {
-				
-				trackURL = allTracks.concat(value.id);
-				
-				 var json = (function () {
+		$.each(JSONFile.tracks, function (key, value) {
+			trackURL = allTracks.concat(value.id);
 			
+			var json = (function () {
 				var json = null;
-					$.ajax({
-						'async': false,
-						'url': trackURL,
-						'dataType': "json",
-						// If request succeeded the callback function stores the requested JSON to var = json 
-						'success': function (data) {json = data;},
-						'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
-					});
-					
-					// returns the object
-					return json;
-				})();
-	
-	// The requested JSON File is cast to a string
-	var jsonTrackData = JSON.stringify(json);
-
-	// The JSON File is now parsed and could be entered
-	var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
-	
+				$.ajax({
+					'async': false,
+					'url': trackURL,
+					'dataType': "json",
+					// If request succeeded the callback function stores the requested JSON to var = json 
+					'success': function (data) {json = data;},
+					'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+				});
+				
+				// returns the object
+				return json;
+			})();
+			
+			// The requested JSON File is cast to a string
+			var jsonTrackData = JSON.stringify(json);
+			
+			// The JSON File is now parsed and could be entered
+			var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+			
 			// Text for the dropdown menu
             $("#trackSelectionList").append($('<option></option>').val(value.id).html(jsonTrackDataObj.properties.sensor.properties.manufacturer + " " + jsonTrackDataObj.properties.sensor.properties.model + " TrackID: " + value.id));
-            });
+		});
+		
+		// onChange alert with more specific car data
+		$('#trackSelectionList').change(function () {
+			trackURL = allTracks.concat($(this).val());
 			
-			// onChange alert with more specific car data
-            $('#trackSelectionList').change(function () {
-                                
-                trackURL = allTracks.concat($(this).val());
-                
-               	
-	            var json = (function () {
-			
+			var json = (function () {
 				var json = null;
-					$.ajax({
-						'async': false,
-						// Requesting a local file due to the cross domain constrait explained above
-						'url': trackURL,
-						'dataType': "json",
-						// If request succeeded the callback function stores the requested JSON to var = json 
-						'success': function (data) {json = data;},
-						'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
-					});
-					
-					// returns the object
-					return json;
-				})();
-	
-	var jsonTrackData = JSON.stringify(json);
-
-	var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
-	
-	alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
-		+ "ModelType: " + jsonTrackDataObj.properties.sensor.properties.model + "\n"
-		+ "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
-		+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
-
-            });
-            
+				$.ajax({
+					'async': false,
+					// Requesting a local file due to the cross domain constrait explained above
+					'url': trackURL,
+					'dataType': "json",
+					// If request succeeded the callback function stores the requested JSON to var = json 
+					'success': function (data) {json = data;},
+					'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+				});
+				
+				// returns the object
+				return json;
+			})();
+			
+			var jsonTrackData = JSON.stringify(json);
+			
+			var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+			
+			alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
+			+ "ModelType: " + jsonTrackDataObj.properties.sensor.properties.model + "\n"
+			+ "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
+			+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
+		});
+		
 		// testParsing(JSONFile);
 		// return JSONFile;
-			
 	}
-	
 }
 
 function getBBox() {
-	
 	pointNorthEast = rectangle.getBounds().getNorthEast().toString();
 	pointSouthWest = rectangle.getBounds().getSouthWest().toString();
 	
-	// alert("NE: " + pointNorthEast + "\n" + "SW: " + pointSouthWest);
+	// alert("NE: " + pointNorthEast + "\n" + "SW: " + pointSouthWest); // TODO delete before release
 	
 	pointNorthEastX = pointNorthEast.slice(1,18);
 	pointNorthEastY = pointNorthEast.slice(20,37);
@@ -228,7 +209,7 @@ function getBBox() {
 	alert(BBoxURL);
 }
 
-
+// TODO delete function before release
 // function testBBox(bounds) {
 // 	
 	// var point1 = map.getBounds().getNorthEast();
@@ -277,9 +258,8 @@ function getBBox() {
 
 // old stuff
 
-
-function getManufacturerBMW() {   
-
+// Get measurements with manufacturer = BMW
+function getManufacturerBMW() {
 	// Load JSON File via AJAX Request from URL
     json = loadJSON();
     
@@ -291,12 +271,10 @@ function getManufacturerBMW() {
 	
 	// Returns filtered JSONFile
 	return BMW;
-
 }
 
-
-function getManufacturerVW() {   
-
+// Get measurements with manufacturer = VW
+function getManufacturerVW() {
     json = loadJSON();
     
     var VW = jF("*[manufacturer=VW]",json).get();
@@ -305,11 +283,10 @@ function getManufacturerVW() {
 	document.getElementById("simplyatest").innerHTML = JSON.stringify(VW);
 	
 	return VW;
-	
 }
 
-function getFuelTypeDiesel() {   
-	
+// Get measurements with fuel type = Diesel
+function getFuelTypeDiesel() {
 	json = loadJSON();
 	
     var diesel=jF("*[fuelType=diesel]",json).get();
@@ -318,11 +295,10 @@ function getFuelTypeDiesel() {
 	document.getElementById("simplyatest").innerHTML = JSON.stringify(diesel);
 	
 	return diesel;
-
 }
 
+// Get measurements with manufacturer = BMW and fuel type = Diesel
 function getDIESELVW() {
-	
 	json = getFuelTypeDiesel();
 	
 	var dieselVW = jF("*[manufacturer=VW]",json).get();
@@ -332,7 +308,3 @@ function getDIESELVW() {
 	
 	return dieselVW;
 }
-
-
-
-
