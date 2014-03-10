@@ -372,11 +372,11 @@ LineChart.prototype.createChartFromTrack = function() {
 // --------------------------
 
 // Constructor
-function BarChart() {
+function BarChart(language) {
 	// default line chart options for time related data
 	this.options = {
 		chart : {
-			renderTo : 'chart',
+			renderTo : 'analyser-chart',
 			type : 'bar',
 			zoomType : 'xy'
 		},
@@ -388,6 +388,10 @@ function BarChart() {
 			y : 30
 		},
 		xAxis : {
+			categories : ["Mean", "Standard Error", "Min", "Max"],
+			title: {
+				text : null
+			}
 		},
 		yAxis : {
 		},
@@ -395,10 +399,11 @@ function BarChart() {
 			layout : 'vertical',
 			align : 'right',
 			verticalAlign : 'middle',
-			borderWidth : 0
+			borderWidth : 1
 		}
 	};
 	this.chart = new Highcharts.Chart(this.options);
+	this.language = language;
 }
 
 // Setting the variables
@@ -418,7 +423,94 @@ BarChart.prototype.setOptions = function(options) {
 BarChart.prototype.getOptions = function() {
 	return this.options;
 };
+BarChart.prototype.setLanguage = function(language){
+	this.language = language;
+};
+BarChart.prototype.getLanguage = function(){
+	return this.language;
+};
 
+// adds a new series to the chart
+BarChart.prototype.addSeries = function(name, visible, data){
+	var options = {
+		name : name,
+		visible : visible,
+		data : data
+	};
+	this.chart.addSeries(options);
+};
+
+
+//creates the chart directly from the aggregation results
+BarChart.prototype.createChartFromAggregation = function(json){
+	//parse the json string returned from server to object
+	var json = JSON.parse(json);
+	
+	//arrays to save the aggregation values
+	var co2 = new Array();
+	var speed = new Array();
+	var consumption = new Array();
+	var rpm = new Array();
+	var engineLoad = new Array();
+	
+	//sort the values to the arrays
+	co2.push(json[0]['CO2']['Mean']);
+	co2.push(json[0]['CO2']['Standard Error']);
+	co2.push(json[0]['CO2']['Min']);
+	co2.push(json[0]['CO2']['Max']);
+	
+	consumption.push(json[1]['Consumption']['Mean']);
+	consumption.push(json[1]['Consumption']['Standard Error']);
+	consumption.push(json[1]['Consumption']['Min']);
+	consumption.push(json[1]['Consumption']['Max']);
+	
+	engineLoad.push(json[2]['Engine Load']['Mean']);
+	engineLoad.push(json[2]['Engine Load']['Standard Error']);
+	engineLoad.push(json[2]['Engine Load']['Min']);
+	engineLoad.push(json[2]['Engine Load']['Max']);
+	
+	rpm.push(json[3]['Rpm']['Mean']);
+	rpm.push(json[3]['Rpm']['Standard Error']);
+	rpm.push(json[3]['Rpm']['Min']);
+	rpm.push(json[3]['Rpm']['Max']);
+	
+	speed.push(json[4]['Speed']['Mean']);
+	speed.push(json[4]['Speed']['Standard Error']);
+	speed.push(json[4]['Speed']['Min']);
+	speed.push(json[4]['Speed']['Max']);
+	
+	//add information in the language selected
+	if(this.getLanguage() == 'en'){
+		this.setTitle('Aggregation Results');
+		this.setAxisTitle('y', 'Values');
+		this.setAxisCategories('x', ['Mean', 'Standard Error', 'Minimum', 'Maximum']);
+		this.addSeries('CO2(g/h)', true, co2);
+		this.addSeries('Speed(km/h)', true, speed);
+		this.addSeries('Consumption(l/h)', true, consumption);
+		this.addSeries('Rpm(u/min)', true, rpm);
+		this.addSeries('Engine Load(%)', true, engineLoad);	
+	}
+	else if(this.getLanguage() == 'de'){
+		this.setTitle('Aggregation Ergebnisse');
+		this.setAxisTitle('y', 'Werte');
+		this.setAxisCategories('x', ['Durchschnitt', 'Standardfehler', 'Minimum', 'Maximum']);
+		this.addSeries('CO2(g/h)', true, co2);
+		this.addSeries('Geschwindigkeit(km/h)', true, speed);
+		this.addSeries('Verbrauch(l/h)', true, consumption);
+		this.addSeries('Umdrehungen(u/min)', true, rpm);
+		this.addSeries('Motorlast(%)', true, engineLoad);	
+	}
+	else{
+		this.setTitle('Aggregation Ergebnisse');
+		this.setAxisTitle('y', 'Werte');
+		this.setAxisCategories('x', ['Durchschnitt', 'Standardfehler', 'Minimum', 'Maximum']);
+		this.addSeries('CO2(g/h)', true, co2);
+		this.addSeries('Geschwindigkeit(km/h)', true, speed);
+		this.addSeries('Verbrauch(l/h)', true, consumption);
+		this.addSeries('Umdrehungen(u/min)', true, rpm);
+		this.addSeries('Motorlast(%)', true, engineLoad);
+	}
+};
 
 // returns all the series of the chart as array
 BarChart.prototype.getAllSeries = function() {
