@@ -137,12 +137,13 @@
 			
 			
 			<div id ="phenomenSelection">
-								
 				<form action="">
 					<select multiple="multiple" size="4" id="duallistbox_phenomenons">
 						<option value="co2"><?php echo $co2_emission; ?></option>
-						<option value="geschwindigkeit"><?php echo $speed; ?></option>
-						<option value="verbrauch"><?php echo $consumption; ?></option>
+						<option value="consumption"><?php echo $consumption; ?></option>
+						<option value="engine_load"><?php echo $engine_load; ?></option>
+						<option value="rpm"><?php echo $rpm; ?></option>
+						<option value="speed"><?php echo $speed; ?></option>
 					</select>
 					<script>
 						var l = getParam('lang');
@@ -172,18 +173,14 @@
 							});
 						}
 					</script>
-					
 				</form> 
-				
 			</div>
-			
 			
 			<div id="analysis-mode" class="right">
 				<label id="analysis-mode-label" class="right" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
 				<br>
 				<input type="button" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
 			</div>
-			
 			
 			<div id="helpButton" class="right">
 				<a href="help.php"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>

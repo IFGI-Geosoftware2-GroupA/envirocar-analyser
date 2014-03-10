@@ -91,7 +91,7 @@
 	// $stft_1 = "Kurzzeitkraftstofftrimm 1";
 	
 	$mapSearch = "Suche nach St&auml;dten";
-		
+	
 	$refresh = "Aktualisieren";
 	
 ?>
