@@ -15,42 +15,43 @@ if ($json === null) {
 
 	// Arrays of measured phenomenons
 	$co2 = array();
-	$calMaf = array();
+	// $calMaf = array();
 	$speed = array();
 	$consumption = array();
 	$engineLoad = array();
-	$gpsAccuracy = array();
-	$gpsAltitude = array();
-	$gpsBearing = array();
-	$gpsHDOP = array();
-	$gpsPDOP = array();
-	$gpsSpeed = array();
-	$gpsVDOP = array();
-	$intakePressure = array();
-	$maf = array();
-	$intakeTemperature = array();
+	// $gpsAccuracy = array();
+	// $gpsAltitude = array();
+	// $gpsBearing = array();
+	// $gpsHDOP = array();
+	// $gpsPDOP = array();
+	// $gpsSpeed = array();
+	// $gpsVDOP = array();
+	// $intakePressure = array();
+	// $maf = array();
+	// $intakeTemperature = array();
 	$rpm = array();
-	$throttlePosition = array();
-	$longTermFuelTrim = array();
-	$o2Current = array();
-	$o2CurrentER = array();
-	$o2Voltage = array();
-	$o2VoltageER = array();
-	$shortTermFuelTrim = array();
+	// $throttlePosition = array();
+	// $longTermFuelTrim = array();
+	// $o2Current = array();
+	// $o2CurrentER = array();
+	// $o2Voltage = array();
+	// $o2VoltageER = array();
+	// $shortTermFuelTrim = array();
 
 	//arrays to save the names and the data of the phenomenons
-	$m_names = array('CO2', 'Calculated MAF', 'Consumption', 'Engine Load', 'GPS Accuracy', 'GPS Altitude', 'GPS Bearing', 'GPS HDOP', 'GPS PDOP', 'GPS Speed', 'GPS VDOP', 'Intake Pressure', 'Intake Temperature', 'MAF', 'Rpm', 'Speed', 'Throttle Position', 'Long Term Fuel Trim', 'O2 Lambda Current', 'O2 Lambda Current ER', 'O2 Lambda Voltage', 'O2 Lambda Voltage ER', 'Short-Term Fuel Trim');
-	$m_arrays = array($co2, $calMaf, $consumption, $engineLoad, $gpsAccuracy, $gpsAltitude, $gpsBearing, $gpsHDOP, $gpsPDOP, $gpsSpeed, $gpsVDOP, $intakePressure, $intakeTemperature, $maf, $rpm, $speed, $throttlePosition, $longTermFuelTrim, $o2Current, $o2CurrentER, $o2Voltage, $o2VoltageER, $shortTermFuelTrim);
+	$m_names = array('CO2', 'Consumption', 'Engine Load', 'Rpm', 'Speed');
+	$m_arrays = array($co2, $consumption, $engineLoad, $rpm, $speed);
 
 	//Amount of Phenomenons
 	$number_phenomenons = sizeof($m_names);
 
-	//iterate thorugh array and sort values to arrays
-	for ($x = 0; $x < $jsonSize; $x++) {
+	// iterate through json file and sort values to arrays
+	for($x = 0; $x < $jsonSize; $x++){
 		$current = $json -> features[$x] -> properties -> phenomenons;
-		for ($i = 0; $i < $number_phenomenons; $i++) {
-			if (isset($current -> $m_names[$i]))
+		for($i = 0; $i < $number_phenomenons; $i++){
+			if(isset($current -> $m_names[$i])){
 				array_push($m_arrays[$i], $current -> $m_names[$i] -> value);
+			}
 		}
 	}
 

@@ -112,7 +112,7 @@
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $selectTime ?>" onClick="getDateTime()">
+						value="<?php echo $selectTime ?>" onClick="getDateTime();">
 				</form>
 			</div>
 			
@@ -128,10 +128,7 @@
 				</div>
 				<br>
 				<div id="trackSelection">
-					<select id="trackSelectionList">
-				  		<!-- <option value="Track-ID">selektierte Track-IDs</option>
-				  		<option value="Track-ID2">test</option> -->
-					</select>
+					<select id="trackSelectionList" size="1"></select>
 				</div>
 			</div>
 			
@@ -176,14 +173,20 @@
 				</form> 
 			</div>
 			
-			<div id="analysis-mode" class="right">
-				<label id="analysis-mode-label" class="right" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
-				<br />
-				<input type="button" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
+			<div id="analysisInterpolation">
+				<label id="analysisInterpolation-label" for="analysisInterpolation-label"><?php echo $interpolation_label; ?></label>
+				<br/><br/>
+				<a href="#" id="interpolationBtn" onclick="interpolate();" title="Start Interpolation"><img src="img/interpolation.png" width="48px" height="48px" alt="Interpolation"></a>
 			</div>
 			
-			<div id="helpButton" class="right">
-				<a href="#" onclick="toggleHelp();"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
+			<div id="analysis-mode" >
+				<label id="analysis-mode-label" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
+				<br/>
+				<input type="button" class="left" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
+			</div>
+			
+			<div id="helpButton" >
+				<a href="#" onclick="toggleHelp();" title="Hilfe"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
 			</div>
 			
 		</div> <!-- end div header-nav -->	
@@ -265,6 +268,16 @@
 					<?php echo $terms_content; ?>
 				</div>
 			</div>
+			
+			<!-- loading window -->
+			<div id="loading-div-background" class="transparent">
+			    <div id="loading-div">
+			      <img style="height:16px;margin:30px;" src="img/loading.gif" alt="Loading..."/>
+			      <h4 style="color:gray;font-weight:normal;"><?php echo $wait; ?></h4>
+			      <button id="hideLoadingWindowBtn" onClick="hideProgressAnimation(); return cancelEvent()"><?php echo $cancel; ?></button>
+			    </div>
+			</div>
+			
 		</div> <!-- end div application-content -->	
 		
 		<div id="footer" >
