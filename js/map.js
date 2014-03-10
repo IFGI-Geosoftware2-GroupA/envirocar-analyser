@@ -356,9 +356,9 @@ function enableStreetmode(){
 	  	} else {
 	  		var l = getParam('lang');
 			if (l == "en") {
-				alert("No Point to remove! Use leftclick to set a point!");
+				alert("No point existing to remove. Please use leftclick to set a point.");
 			} else {
-	  			alert("Kein Punkt zum Entfernen vorhanden! Bitte setzen Sie mit Linksklick einen Punkt!");
+	  			alert("Es ist kein Punkt mehr zum Entfernen vorhanden. Bitte setzen Sie mit Linksklick einen Punkt.");
 	  		}
 	  	}	
   	});

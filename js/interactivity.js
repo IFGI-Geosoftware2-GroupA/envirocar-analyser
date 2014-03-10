@@ -182,15 +182,15 @@ function streetMode(){
 		if (l == "en") {
 			alert("Change map layer to a google map.");
 		} else {
-			alert("Ändern Sie die Karte zu einer Google-Karte.");
+			alert("Bitte ändern Sie die Karte zu einer Google-Karte.");
 	    }
   	}else{
   		if(alerted==false){
   			var l = getParam('lang');
 			if (l == "en") {
-				alert("Remove the last points with 'rightclick' somewhere in the map, but not at a point!");
+				alert("Remove the last points with 'rightclick' somewhere on the map, but not on a point.");
 			} else {
-  				alert("Entfernen Sie den letzten Punkt mit Rechtsklick auf einen beliebigen Ort auf der Karte, aber nicht auf einen Punkt!");
+  				alert("Entfernen Sie den letzten Punkt mit Rechtsklick auf einen beliebigen Ort auf der Karte, aber nicht auf einen Punkt.");
   		}
   			alerted =true;
   		}
