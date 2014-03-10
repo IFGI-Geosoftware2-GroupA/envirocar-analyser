@@ -36,6 +36,7 @@ function getDateTime() {
 			alert('Kein Start- und / oder Endzeitpunkt ausgewählt');
 		}
 	} else {
+		
 		// Storing the value of the date-from box in a variable
 		var startDate = $('#date-from').val();
 		
@@ -111,15 +112,18 @@ function getDateTime() {
 				'async': false,
 				'url': requestURL,
 				'dataType': "json",
+				'beforeSend': function(){showProgressAnimation();},
+				'complete': function(){hideProgressAnimation();},
 				// If request succeeded the callback function stores the requested JSON to var = json 
 				'success': function (data) {json = data;},
 				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+
 			});
 			
 			// returns the object
 			return json;
 		})();
-		
+			
 		// stores the returned object in the variable JSONFile.
 		var JSONFile = json;
 		
@@ -187,6 +191,8 @@ function getDateTime() {
 		
 		// testParsing(JSONFile);
 		// return JSONFile;
+		
+		
 	}
 }
 
