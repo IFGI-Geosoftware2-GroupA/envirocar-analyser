@@ -4,7 +4,7 @@
 	$contact_content = "Kontakt...";
 	
 	$imprint = "Impressum";
-	$imprint_content = "Impressum...";
+	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Daten der Community Plattfrom enviroCar. Ausschließlich enviroCar ist als alleiniger Besitzer der Daten für die Richtigkeit der Daten verantwortlich. Für Fehler bei der Darstellung oder der Benutzerschnittstelle ist das envirocar-analyser Entwickler-Team verantwortlich.";
 	
 	$terms = "Nutzungsbedingungen";
 	$terms_content = "The MIT License (MIT)<br />
