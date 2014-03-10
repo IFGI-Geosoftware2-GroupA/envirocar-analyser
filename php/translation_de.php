@@ -14,7 +14,7 @@
 	                    Jens Balmert
 	                    Mario Gerdes
 	                    Jan-Philipp Heine
-	                    Marius Maria Runde
+	                    Marius Runde
 	                    Daniel Sawatzky
 	                    Axel Peter Virnich";
 	
