@@ -1,21 +1,36 @@
 <?php
     
 	$contact = "Kontakt";
-	$contact_content = "Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-mail-Adresse: 
-	                    m_rund02@uni-muenster.de, axelvirnich@uni-muenster.de, t_gaer03@uni-muenster.de";
+	$contact_content = "Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-Mail-Adresse: 
+	                    <br />
+	                    <br />
+	                    m_rund02@uni-muenster.de, 
+	                    <br />
+	                    axelvirnich@uni-muenster.de, 
+	                    <br />
+	                    t_gaer03@uni-muenster.de";
 	
 	$imprint = "Impressum";
 	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Daten der Community 
-	                    Plattfrom enviroCar. Ausschließlich enviroCar ist als alleiniger Besitzer der Daten für die Richtigkeit der 
-	                    Daten verantwortlich. Für Fehler bei der Darstellung oder der Benutzerschnittstelle ist das envirocar-analyser 
-	                    Entwickler-Team verantwortlich.
+	                    Plattform enviroCar. Ausschließlich enviroCar ist als alleiniger Besitzer der Rohdaten für die Richtigkeit 
+	                    der Rohdaten verantwortlich. Für Fehler bei der Darstellung, Berechnung oder der Benutzerschnittstelle ist 
+	                    das envirocar-analyser Entwickler-Team verantwortlich.
+	                    <br />
+	                    <br />
 	                    Betreiber der Webseite:
+	                    <br />
 	                    Thiemo Gärtner
+	                    <br />
 	                    Jens Balmert
+	                    <br />
 	                    Mario Gerdes
+	                    <br />
 	                    Jan-Philipp Heine
+	                    <br />
 	                    Marius Maria Runde
+	                    <br />
 	                    Daniel Sawatzky
+	                    <br />
 	                    Axel Peter Virnich";
 	
 	$terms = "Nutzungsbedingungen";
@@ -71,7 +86,31 @@ THE SOFTWARE.";
 	
     $help = "Hilfe";
 	
-	$help_content = "Das hier ist die Hilfe...";
+	$help_content = "Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
+	                 anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
+	                 Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
+	                 Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
+	                 Kartenausschnitt ausgewählt werden. Durch Klicken auf das Plus- und das Minussymbol 
+	                 der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
+	                 Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid', 'OSM' kann zwischen einer reinen 
+	                 Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
+	                 OpenStreepMap-Karte gewählt werden. Möchte man Daten für eine bestimmte Zeit für einen 
+	                 bestimmten Ort analysieren, so wählt man zunächst unter 'Von:' und 'Bis:' das 
+	                 Zeitintervall aus, in dem man auf die entsprechende Tage und zum Schluss auf 'Zeitraum 
+	                 auswählen' klickt. Anschließend kann man zur Bestimmung des Ortes entweder auf 
+	                 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man durch Ziehen des 
+	                 Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. Oder aber durch 
+	                 Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte setzen, um 
+	                 alle Straßensegmente zwischen diesen Punkten auszuwählen. Unter 'Mögliche Phänomene' 
+	                 kann man entweder durch Klicken auf die Doppelpfeile alle Phänomene oder durch Klicken 
+	                 auf eines der Phänomene, Phänomene einzeln auswählen. Ebenso kann man unter 'Ausgewählte 
+	                 Phänomene' auch Phänomene wieder abwählen. Um die Daten nun zu Analysieren, klickt man 
+	                 auf das Analysemodus-Feld. Danach erscheint oben der Interpolationsknopf zum 
+	                 Interpolieren der Daten und unten die Grafik und Tabelle. Führt man den Mauszeiger über 
+	                 die Grafik, so erhält man die Informationen zu der jeweiligen Messung. Bei der Tabelle 
+	                 können Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
+	                 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbar an der Seite der 
+	                 Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";
 	
 	$id = "ID";
 	
