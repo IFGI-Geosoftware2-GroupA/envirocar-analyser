@@ -1,10 +1,22 @@
 <?php
     
 	$contact = "Kontakt";
-	$contact_content = "Kontakt...";
+	$contact_content = "Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-mail-Adresse: 
+	                    m_rund02@uni-muenster.de, axelvirnich@uni-muenster.de, t_gaer03@uni-muenster.de";
 	
 	$imprint = "Impressum";
-	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Daten der Community Plattfrom enviroCar. Ausschließlich enviroCar ist als alleiniger Besitzer der Daten für die Richtigkeit der Daten verantwortlich. Für Fehler bei der Darstellung oder der Benutzerschnittstelle ist das envirocar-analyser Entwickler-Team verantwortlich.";
+	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Daten der Community 
+	                    Plattfrom enviroCar. Ausschließlich enviroCar ist als alleiniger Besitzer der Daten für die Richtigkeit der 
+	                    Daten verantwortlich. Für Fehler bei der Darstellung oder der Benutzerschnittstelle ist das envirocar-analyser 
+	                    Entwickler-Team verantwortlich.
+	                    Betreiber der Webseite:
+	                    Thiemo Gärtner
+	                    Jens Balmert
+	                    Mario Gerdes
+	                    Jan-Philipp Heine
+	                    Marius Maria Runde
+	                    Daniel Sawatzky
+	                    Axel Peter Virnich";
 	
 	$terms = "Nutzungsbedingungen";
 	$terms_content = "The MIT License (MIT)<br />
