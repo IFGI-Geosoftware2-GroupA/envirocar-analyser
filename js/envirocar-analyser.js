@@ -610,86 +610,96 @@ Query.prototype.getMeasurements = function() {
 	stempSensor,
 	stempType;
 	
-	$.getJSON(queryURL, function(json) {
-		$.each(json, function(index, data) {
-			$.each(data, function(arrayIndex, arrayElement) {
-				$.each(arrayElement, function(key, value) {
-					// Get the geometry of the measurement
-					if (key == "geometry") {
-						$.each(value, function(geomKey, geomValue) {
-							if (geomKey == "coordinates") {
-								var lat = geomValue[1];
-								var lng = geomValue[0];
-								tempPoint = new google.maps.LatLng(lat, lng);
+	var json = (function () {
+		var requestedJson = null;
+		$.ajax({
+			'async': false,
+			// Requesting a local file due to the cross domain constrait explained above
+			'url': queryURL,
+			'dataType': "json",
+			// If request succeeded the callback function stores the requested JSON to var = json 
+			'success': function (data) {requestedJson = data;},
+			'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+		});
+		return requestedJson;
+	})();
+	
+	$.each(json.features, function(arrayIndex, arrayElement) {
+		$.each(arrayElement, function(key, value) {
+			// Get the geometry of the measurement
+			if (key == "geometry") {
+				$.each(value, function(geomKey, geomValue) {
+					if (geomKey == "coordinates") {
+						var lat = geomValue[1];
+						var lng = geomValue[0];
+						tempPoint = new google.maps.LatLng(lat, lng);
+					}
+				});
+			}
+			// Get the properties of the measurement
+			if (key == "properties") {
+				$.each(value, function(propKey, propValue) {
+					// Get the id of the measurement
+					if (propKey == "id") {
+						tempId = propValue;
+						tempPhenomenons=[];
+						tempValues=[];
+						tempSensors=[];
+						var isCar = false;
+					}
+					// Get the timestamp of the measurement
+					if (propKey == "time") {
+						tempTimestamp = propValue;
+					}
+					// Get the sensor of the measurement
+					if (propKey == "sensor") {
+						$.each(propValue, function(senKey, senValue){
+							if(senKey == "type"){
+								stempType = senValue;
+							}
+							if(senKey == "properties"){
+								$.each(senValue, function(singleSenKey, singleSenValue){
+									if(singleSenKey == "id"){
+										stempId = new String(singleSenValue);
+									}
+									if(singleSenKey == "model"){
+										stempModel = new String(singleSenValue);
+									}
+									if(singleSenKey == "fuelType"){
+							
+										stempFuelType = new String(singleSenValue);
+										
+									}
+									if (singleSenKey == "manufacturer") {
+										stempManufacturer = new String(singleSenValue);
+									}
+									
+									if (singleSenKey == "constructionYear") {
+										stempConstructionYear = new Number(singleSenValue);
+									}
+								});
+								stempSensor = new Sensor(stempType, stempId, stempModel, stempFuelType, stempManufacturer, stempConstructionYear);
 							}
 						});
 					}
-					// Get the properties of the measurement
-					if (key == "properties") {
-						$.each(value, function(propKey, propValue) {
-							// Get the id of the measurement
-							if (propKey == "id") {
-								tempId = propValue;
-								tempPhenomenons=[];
-								tempValues=[];
-								tempSensors=[];
-								var isCar = false;
-							}
-							// Get the timestamp of the measurement
-							if (propKey == "time") {
-								tempTimestamp = propValue;
-							}
-							// Get the sensor of the measurement
-							if (propKey == "sensor") {
-								$.each(propValue, function(senKey, senValue){
-									if(senKey == "type"){
-										stempType = senValue;
-									}
-									if(senKey == "properties"){
-										$.each(senValue, function(singleSenKey, singleSenValue){
-											if(singleSenKey == "id"){
-												stempId = new String(singleSenValue);
-											}
-											if(singleSenKey == "model"){
-												stempModel = new String(singleSenValue);
-											}
-											if(singleSenKey == "fuelType"){
-									
-												stempFuelType = new String(singleSenValue);
-												
-											}
-											if (singleSenKey == "manufacturer") {
-												stempManufacturer = new String(singleSenValue);
-											}
-											
-											if (singleSenKey == "constructionYear") {
-												stempConstructionYear = new Number(singleSenValue);
-											}
-										});
-										stempSensor = new Sensor(stempType, stempId, stempModel, stempFuelType, stempManufacturer, stempConstructionYear);
-									}
-								});
-							}
-							// Get the phenomenons of the measurement
-							if (propKey == "phenomenons") {
-								$.each(propValue, function(phenKey, phenValue) {
-									var tempName = phenKey;
-									$.each(phenValue, function(singlePhenKey, singlePhenValue) {
-										if (singlePhenKey == "unit") {
-											tempPhenomenons.push(new Phenomenon(tempName, singlePhenValue));
-										}
-										if (singlePhenKey == "value") {
-											tempValues.push(singlePhenValue);
-										}
-									});
-								});
-							}
+					// Get the phenomenons of the measurement
+					if (propKey == "phenomenons") {
+						$.each(propValue, function(phenKey, phenValue) {
+							var tempName = phenKey;
+							$.each(phenValue, function(singlePhenKey, singlePhenValue) {
+								if (singlePhenKey == "unit") {
+									tempPhenomenons.push(new Phenomenon(tempName, singlePhenValue));
+								}
+								if (singlePhenKey == "value") {
+									tempValues.push(singlePhenValue);
+								}
+							});
 						});
 					}
 				});
-				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
-			});
+			}
 		});
+		result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
 	});
 	return result;
 };

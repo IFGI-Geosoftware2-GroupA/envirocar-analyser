@@ -300,7 +300,7 @@ LineChart.prototype.createChartFromTrack = function() {
 	var query = new Query('measurements');
 	var measurements = query.getData();
 	//query data from server and sort phenomenon values to the corresponding arrays
-	setTimeout(function(){
+	// setTimeout(function(){ // TODO
 
 		for (i=0, j=0; i< measurements.length; i++) {
 			var d = measurements[i].getTimestamp();
@@ -360,8 +360,7 @@ LineChart.prototype.createChartFromTrack = function() {
 			if(engineLoadA.length > 0)		chart.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
 			if(rpmA.length > 0)				chart.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);	
 		}
-	}, 5000);
-	
+	// }, 5000); // TODO
 };
 
 // --------------------------
