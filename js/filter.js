@@ -214,55 +214,6 @@ function getBBox() {
 	alert(BBoxURL);
 }
 
-// TODO delete function before release
-// function testBBox(bounds) {
-// 	
-	// var point1 = map.getBounds().getNorthEast();
-	// var point2 = map.getBounds().getSouthWest();
-// 	
-	// alert(bounds);
-
-	// var jsonTrackIDs = JSON.stringify(JSONFile);
-// 
-	// var objtest = jQuery.parseJSON(jsonTrackIDs);
-// 	
-	// var track = objtest.tracks[0].id;
-// 	
-	// var allTracks = "https://envirocar.org/api/stable/tracks/";
-// 	
-	// var trackURL = allTracks.concat(track);
-// 	
-	// alert(trackURL);
-// 	
-	// var json = (function () {
-// 		
-// 		
-			// var json = null;
-			// $.ajax({
-				// 'async': false,
-				// // Requesting a local file due to the cross domain constrait explained above
-				// 'url': trackURL,
-				// 'dataType': "json",
-				// // If request succeeded the callback function stores the requested JSON to var = json 
-				// 'success': function (data) {json = data;},
-				// 'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
-			// });
-// 			
-			// // returns the object
-			// return json;
-		// })();
-// 	
-	// var jsonTrackData = JSON.stringify(json);
-// 
-	// var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
-// 	
-	// alert(jsonTrackDataObj.properties.sensor.properties.manufacturer);
-	
-	// alert(JSON.stringify(JSONFile));
-//}	
-
-// old stuff
-
 // Get measurements with manufacturer = BMW
 function getManufacturerBMW() {
 	// Load JSON File via AJAX Request from URL
