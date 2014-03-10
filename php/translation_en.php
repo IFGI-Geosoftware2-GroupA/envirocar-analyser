@@ -119,4 +119,10 @@ THE SOFTWARE.";
 	
 	$refresh = "Refresh";
 	
+	$wait = "Please wait...";
+	
+	$cancel ="Cancel";
+	
+	$interpolation_label = "Interpolation";
+	
 ?>

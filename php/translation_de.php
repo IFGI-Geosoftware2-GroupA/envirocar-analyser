@@ -131,4 +131,10 @@ THE SOFTWARE.";
 	
 	$refresh = "Aktualisieren";
 	
+	$wait = "Bitte warten...";
+	
+	$cancel ="Abbrechen";
+	
+	$interpolation_label = "Interpolation";
+	
 ?>

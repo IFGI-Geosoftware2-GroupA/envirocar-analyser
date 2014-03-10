@@ -30,7 +30,7 @@ function createTable() {
 		engineload = new Array();
 		rpm = new Array();
 
-		setTimeout(function() {
+		// setTimeout(function() { // TODO
 			//Put Phenomenons in Arrays
 			for (i=0, j=0; i< measurements.length; i++) {
 				
@@ -144,7 +144,7 @@ function createTable() {
 				mytablebody.appendChild(currentRow);
 			}
 
-		}, 4000);
+		// }, 4000); // TODO
 		myTable.appendChild(mytablehead);
 		myTable.appendChild(mytablebody);
 		myTable.setAttribute("border",1);

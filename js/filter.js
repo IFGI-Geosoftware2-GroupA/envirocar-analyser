@@ -1,29 +1,29 @@
 /**
  * @author Jan-Philipp Heine
  * 
- * Class for selecting different attributes from the JSON File.
- * Actually the jFunk library is used but it can change in the future due to some difficulties.
- * Usage: jF("*[attribute=foo]",JSONFile).get() is equal to select * from JSONFile where attribute=foo
- */
-
-/*
- * getManufacturerX(), getFuelTypeX(),getXX() are functions for filtering the JSON File. The JSON File is loaded by calling
- * the loadJSON() function and then stored as a variable. Afterwards the data is filtered and stored in a new variable.
- * 
- * @return filtered JSONFile as a JavaScript Object
+ * This class contains methods for creating the REST requests which queries the envirocar API. Spatial and temporal querying is contained.
  */
 
 var startDate;
 var endDate;
 var baseurl = "https://envirocar.org/api/stable/tracks?during="; //Global variable specifying the URL for the temporal filter contributed by the envirocar API
 var allTracks = "https://envirocar.org/api/stable/tracks/";
+var baseurlBBox = "https://envirocar.org/api/stable/tracks?bbox=";
 var hyphen = "-";
 var literalT = "T";
 var literalZ = "Z";
 var comma = ",";
 var doublePoint = ":";
 
-// TODO missing documentation!!!
+/*
+ * getDateTime() This method gets the values from the date-from and date-to boxes using this values building a string. Afterwards it will 
+ * query the envirocar API to get the tracks.
+ * Additionally it is parsing the requested information, and the Car Model and track ID is displayed in the trackSelectionList element.
+ * On change an alert will appear which displays additional information.
+ * 
+ * @return JSON
+ */
+
 function getDateTime() {
 	// Getting the values of the boxes where datetime is displayed
 	startDate = $('#date-from').val();
@@ -37,6 +37,7 @@ function getDateTime() {
 			alert('Kein Start- und / oder Endzeitpunkt ausgewählt');
 		}
 	} else {
+		
 		// Storing the value of the date-from box in a variable
 		var startDate = $('#date-from').val();
 		
@@ -97,12 +98,10 @@ function getDateTime() {
 		var endMinute1 = endDate.charAt(15);
 		var seconds = "00";
 		
-		var baseurlEndDate = baseurlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
 		//alert(baseurlEndDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
+		var baseurlEndDate = baseurlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
 		
 		var requestURL = baseurlEndDate;
-		
-		// alert("Die URL für die RESTAbfrage " + requestURL);
 				
 		// Requesting the JSON File from envirocar
 		
@@ -112,19 +111,20 @@ function getDateTime() {
 				'async': false,
 				'url': requestURL,
 				'dataType': "json",
+				'beforeSend': function(){showProgressAnimation();},
+				'complete': function(){hideProgressAnimation();},
 				// If request succeeded the callback function stores the requested JSON to var = json 
 				'success': function (data) {json = data;},
 				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+
 			});
 			
 			// returns the object
 			return json;
 		})();
-		
+			
 		// stores the returned object in the variable JSONFile.
 		var JSONFile = json;
-		
-		// alert("Das ist der abgerufene JSONFile " + JSON.stringify(JSONFile));
 		
 		// Loops through the requested JSONFile and gets with the use of the trackID the additional information for all specified tracks
 					
@@ -186,81 +186,106 @@ function getDateTime() {
 			+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
 		});
 		
-		// testParsing(JSONFile);
-		// return JSONFile;
 	}
 }
+
+/*
+ * getBBox() This method gets the tracks within the user specified bounding box by building string with the use of the bounding box coordinates.
+ * Afterwards it will query the envirocar API to get the tracks.
+ * Additionally it is parsing the requested information, and the Car Model and track ID is displayed in the trackSelectionList element. On change
+ * an alert will appear which displays additional information.
+ * 
+ * @return JSON
+ */
 
 function getBBox() {
 	pointNorthEast = rectangle.getBounds().getNorthEast();
 	pointSouthWest = rectangle.getBounds().getSouthWest();
-	
-	// alert("NE: " + pointNorthEast + "\n" + "SW: " + pointSouthWest); // TODO delete before release
 	
 	pointNorthEastX = pointNorthEast.lat();
 	pointNorthEastY = pointNorthEast.lng();
 	pointSouthWestX = pointSouthWest.lat();
 	pointSouthWestY = pointSouthWest.lng();
 	
-	var pnex = pointNorthEastX;
-	var pney = pointNorthEastY;
-	var pswx = pointSouthWestX;
-	var pswy = pointSouthWestY;
 	
-	var BBoxURL = baseurlBBox.concat(pswx, comma, pswy, comma, pnex, comma, pney);
+	var BBoxURL = baseurlBBox.concat(pointSouthWestY, comma, pointSouthWestX, comma, pointNorthEastY, comma, pointNorthEastX);
+	// The URL should look like this: https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
 	
-	// https://envirocar.org/api/stable/tracks?bbox=51.94526347230317,7.626482342364511,51.95054506839408,7.603436801737075
-	// findet keine Tracks
-	alert(BBoxURL);
-}
-
-// Get measurements with manufacturer = BMW
-function getManufacturerBMW() {
-	// Load JSON File via AJAX Request from URL
-    json = loadJSON();
-    
-    // Filtering JSONFile
-    var BMW = jF("*[manufacturer=BMW]",json).get();
+	var json = (function () {
+			var json = null;
+			$.ajax({
+				'async': false,
+				'url': BBoxURL,
+				'dataType': "json",
+				// If request succeeded the callback function stores the requested JSON to var = json 
+				'success': function (data) {json = data;},
+				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+			});
+			
+			// returns the object
+			return json;
+		})();
+		
+		// stores the returned object in the variable JSONFile.
+		var jsonBBoxTracks = json;
+		
+		$.each(jsonBBoxTracks.tracks, function (key, value) {
+			trackURL = allTracks.concat(value.id);
+			
+			var json = (function () {
+				var json = null;
+				$.ajax({
+					'async': false,
+					'url': trackURL,
+					'dataType': "json",
+					// If request succeeded the callback function stores the requested JSON to var = json 
+					'success': function (data) {json = data;},
+					'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+				});
+				
+				// returns the object
+				return json;
+			})();
+			
+			// The requested JSON File is cast to a string
+			var jsonTrackData = JSON.stringify(json);
+			
+			// The JSON File is now parsed and could be entered
+			var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+			
+			// Text for the dropdown menu
+            $("#trackSelectionList").append($('<option></option>').val(value.id).html(jsonTrackDataObj.properties.sensor.properties.manufacturer + " " + jsonTrackDataObj.properties.sensor.properties.model + " TrackID: " + value.id));
+		});
+		
+		// onChange alert with more specific car data
+		$('#trackSelectionList').change(function () {
+			trackURL = allTracks.concat($(this).val());
+			
+			var json = (function () {
+				var json = null;
+				$.ajax({
+					'async': false,
+					// Requesting a local file due to the cross domain constrait explained above
+					'url': trackURL,
+					'dataType': "json",
+					// If request succeeded the callback function stores the requested JSON to var = json 
+					'success': function (data) {json = data;},
+					'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+				});
+				
+				// returns the object
+				return json;
+			})();
+			
+			var jsonTrackData = JSON.stringify(json);
+			
+			var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
+			
+			alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
+			+ "ModelType: " + jsonTrackDataObj.properties.sensor.properties.model + "\n"
+			+ "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
+			+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
+		});
 	
-	// document.getElementById("ManufacturerBMW").innerHTML = JSON.stringify(BMW);
-	document.getElementById("simplyatest").innerHTML = JSON.stringify(BMW);
-	
-	// Returns filtered JSONFile
-	return BMW;
-}
-
-// Get measurements with manufacturer = VW
-function getManufacturerVW() {
-    json = loadJSON();
-    
-    var VW = jF("*[manufacturer=VW]",json).get();
-	
-	// document.getElementById("ManufacturerVW").innerHTML = JSON.stringify(VW);
-	document.getElementById("simplyatest").innerHTML = JSON.stringify(VW);
-	
-	return VW;
-}
-
-// Get measurements with fuel type = Diesel
-function getFuelTypeDiesel() {
-	json = loadJSON();
-	
-    var diesel=jF("*[fuelType=diesel]",json).get();
-	
-	// document.getElementById("FuelTypeDiesel").innerHTML = JSON.stringify(diesel);
-	document.getElementById("simplyatest").innerHTML = JSON.stringify(diesel);
-	
-	return diesel;
-}
-
-// Get measurements with manufacturer = BMW and fuel type = Diesel
-function getDIESELVW() {
-	json = getFuelTypeDiesel();
-	
-	var dieselVW = jF("*[manufacturer=VW]",json).get();
-	
-	// document.getElementById("FuelTypeDiesel").innerHTML = JSON.stringify(dieselVW);
-	document.getElementById("simplyatest").innerHTML = JSON.stringify(dieselVW);
-	
-	return dieselVW;
+		// return jsonBBoxTracks;	
 }

@@ -148,8 +148,6 @@ function initMap() {
 	 
 	 // Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
 	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true,strokeColor: "#CC33FF"});
-
-	
 }
 
 /*
@@ -167,11 +165,11 @@ function resizeMap() {
  
 /**
  * Show measurements as markers on the map
- * The measurements must be collected within 500ms
  */
 function showMarkers(query) {
 	try {
 		var measurements = query.getData();
+		// Set timeout to wait for the map to be loaded
 		setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
 				// Create marker for each measurement
@@ -197,7 +195,7 @@ function showMarkers(query) {
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
 			}
-		}, 700);
+		}, 500);
 	} catch(e) {
 		alert(e.message);
 	}

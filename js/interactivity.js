@@ -45,6 +45,8 @@ function changeMode() {
 		
 		/*document.getElementById('header-nav').style.background = "#fff";*/
 		
+		document.getElementById('analysisInterpolation').style.display = "none";
+		
 	} else {
 		if (toggled) {
 			toggleAnalyserPanel('');
@@ -63,6 +65,8 @@ function changeMode() {
 		document.getElementById('analyser-table').style.display = "block";
 	
 		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
+		
+		document.getElementById('analysisInterpolation').style.display = "block";
 	}
 }
 
@@ -310,4 +314,29 @@ function toggleImprint() {
 // Enable or disable the terms of usage content in the analyser-panel
 function toggleTerms() {
 	toggleAnalyserPanel('terms');
+}
+
+// show loading window
+
+function showProgressAnimation() {      
+    $("#loading-div-background").show();
+}
+
+function hideProgressAnimation() { 
+	$("#loading-div-background").hide();
+}
+
+/* cancel an onClick event */
+
+function cancelEvent() {
+    try {
+        var e = window.event;
+        if(!e) e = window.Event;
+        if(e) {
+            e.returnValue = false;
+            e.cancelBubble = true;
+            e.stopPropagation();
+        }
+    } catch(c) {}
+    return false;
 }
