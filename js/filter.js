@@ -202,12 +202,7 @@ function getBBox() {
 	pointSouthWestX = pointSouthWest.lat();
 	pointSouthWestY = pointSouthWest.lng();
 	
-	var pnex = pointNorthEastX;
-	var pney = pointNorthEastY;
-	var pswx = pointSouthWestX;
-	var pswy = pointSouthWestY;
-	
-	var BBoxURL = baseurlBBox.concat(pswx, comma, pswy, comma, pnex, comma, pney);
+	var BBoxURL = baseurlBBox.concat(pointSouthWestX, comma, pointSouthWestY, comma, pointNorthEastX, comma, pointNorthEastY);
 	
 	// https://envirocar.org/api/stable/tracks?bbox=51.94526347230317,7.626482342364511,51.95054506839408,7.603436801737075
 	// findet keine Tracks
