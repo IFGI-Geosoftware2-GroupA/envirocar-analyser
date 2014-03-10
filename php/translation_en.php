@@ -36,6 +36,8 @@
 	
 	$help = "Help";
 	
+	$help_content = "This is the help...";
+	
 	$id = "ID";
 	
 	$consumption = "Consumption";

@@ -178,13 +178,12 @@
 			
 			<div id="analysis-mode" class="right">
 				<label id="analysis-mode-label" class="right" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
-				<br>
+				<br />
 				<input type="button" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
 			</div>
 			
 			<div id="helpButton" class="right">
-				<a href="help.php"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
-				
+				<a href="#" onclick="toggleHelp();"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
 			</div>
 			
 		</div> <!-- end div header-nav -->	
@@ -192,11 +191,9 @@
 		<div id="application-content" >
 			
 			<div id="map-container" >
-		
 				<div id="map">
 					<!-- the map will be displayed here -->
 				</div>
-		
 				<script type="text/javascript">
 					// display the simple example
 					$(document).ready(function() {
@@ -216,15 +213,16 @@
 			</div>
 			
 			<div id="analyser-panel">
-						
 				<div id="analyser-chart" class="top">
 					<script type="text/javascript">
 						<?php
-						if(isset($_GET['lang'])){
-							if($_GET['lang'] == 'en') echo 'var lineChart = new LineChart("en");';
-							else echo 'var lineChart = new LineChart("en");';	
-						}
-						else{
+						if (isset($_GET['lang'])) {
+							if ($_GET['lang'] == 'en') {
+								echo 'var lineChart = new LineChart("en");';
+							} else {
+								echo 'var lineChart = new LineChart("en");';
+							}	
+						} else {
 							echo 'var lineChart = new LineChart("de");';
 						} 
 						?>
@@ -249,6 +247,10 @@
 						initTable();
 						tablestyle();
 					</script>
+				</div>
+				
+				<div id="analyser-help" class="top" style="display: none">
+					<?php echo $help_content; ?>
 				</div>
 			</div>
 		</div> <!-- end div application-content -->	
