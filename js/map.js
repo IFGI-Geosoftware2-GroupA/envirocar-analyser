@@ -699,18 +699,18 @@ function buildSmallInfoWindow(idwmarker, map, interpolatedValues){
  * Changes the polyexport, that it represents the measurements in the boundingbox
  * @param {String} idwkey represents the Phenomenon which should be interpolated
  */
-function interpolateBoundingBox(idwkey){
-	this.idwkey = new String(idwkey);
-	// Create a Polyline
-	polyexport.clear();
-	//Get all points in the boundingbox
-	for(var i=0;i<measurements.length;i++){
-		if(rectangle.getBounds().contains(measurements[i].getPoint()) == true){
-			polyexport.push(measurements[i].getPoint());
-		}	
-	}
-	interpolate();
-}
+// function interpolateBoundingBox(idwkey){
+	// this.idwkey = new String(idwkey);
+	// // Create a Polyline
+	// polyexport.clear();
+	// //Get all points in the boundingbox
+	// for(var i=0;i<measurements.length;i++){
+		// if(rectangle.getBounds().contains(measurements[i].getPoint()) == true){
+			// polyexport.push(measurements[i].getPoint());
+		// }	
+	// }
+	// interpolate();
+// }
 
 		// ----------------------------------------
         // --- End of methods for Interpolation ---
