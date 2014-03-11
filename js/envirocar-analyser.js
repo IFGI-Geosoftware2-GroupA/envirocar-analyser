@@ -593,6 +593,9 @@ Query.prototype.getData = function() {
 Query.prototype.getMeasurements = function() {
 	// Create a temporal URL
 	var queryURL = this.url + "measurements";
+	if (this.filter != null) {
+		queryURL += this.filter.createUrlValue();
+	}
 	
 	var result = [];
 	typeof result === Measurement;
