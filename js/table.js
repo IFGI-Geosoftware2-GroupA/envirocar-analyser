@@ -65,6 +65,7 @@ function createTable() {
 					headrow = document.createElement("tr");
 					
 					headcell0 = document.createElement("th");
+					headcell0.setAttribute("id", "idrow");
 					headcell1 = document.createElement("th");
 					headcell2 = document.createElement("th");
 					headcell3 = document.createElement("th");
@@ -172,8 +173,18 @@ function openMarkerInfoWindow(id) {
  */
 function tablestyle(){
 	$(document).ready(function() {
-		$('#tableID').dataTable();
-});
+		var table = $('#tableID').dataTable({
+			"sPaginationType": "full_numbers",
+  			"sScrollY" : "200px",
+ 			"bPaginate" : false,
+ 			"oLanguage": {
+ 					    "sZeroRecords": "Keine Einträge gefunden",
+ 					    "sInfo": "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
+ 					    "sInfoEmpty": "Zeige 0 bis 0 von 0 Einträgen",
+ 					    "sSearch": "Suche:"
+ 					   }
+		});
+	});
 
 }
 

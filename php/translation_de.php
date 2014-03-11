@@ -66,7 +66,7 @@ THE SOFTWARE.";
 	
 	$to = "Bis:";
 	
-	$selectTime = "Zeitraum auswählen";
+	$getData = "Daten abrufen";
 	
 	$selectSpace = "Raumauswahl";
 	

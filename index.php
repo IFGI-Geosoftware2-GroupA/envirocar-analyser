@@ -1,25 +1,12 @@
 <?php 
-	if(!isset($_GET['lang'])){
-		include 'php/translation_de.php';
-	}	
-	
-	else if(isset($_GET['lang']) && $_GET['lang'] == 'en'){
+	if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		include 'php/translation_en.php';
+		$other_lang = 'de';
+	} else {
+		include 'php/translation_de.php';
+		$lang = 'de';
+		$other_lang = 'en';
 	}
-	else if(isset($_GET['lang']) && $_GET['lang'] != 'de'){
-	    include 'php/translation_de.php';
-	}
-	
-	if (isset($_GET['lang'])) {
-		$lang = $_GET['lang'];
-		if ($lang != 'en') {
-			$lang = 'de';
-			$other_lang = 'en';
-		} else {
-			$other_lang = 'de';
-		}
-	}
-
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +33,9 @@
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/icons.css" />
 	<link rel="stylesheet" type="text/css" href="css/flags.css" >
-	<link rel="stylesheet" type="text/css" href="css/lib/base.css" >
+	<link rel="stylesheet" type="text/css" href="css/lib/jquery.dataTables.css" >
 	<link rel="stylesheet" type="text/css" href="css/lib/jquery-ui-1.8.4.custom.css" >
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10-dev/css/jquery.dataTables.css">
 	
 	<!-- Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
@@ -120,7 +108,7 @@
 			</div>
 			
 			<div id="timeSelection">
-				<label for="timeSelection"><?php $selectTimeRange ?></label>
+				<label for="timeSelection"></label>
 				<form action="" method="post">
 					
 					<label for="from" class="timelabel"><?php echo $from; ?> </label>
@@ -130,7 +118,7 @@
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $selectTime ?>" onClick="getDateTime();">
+						value="<?php echo $getData; ?>" onClick="getSelection();">
 				</form>
 			</div>
 			
