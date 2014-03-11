@@ -102,20 +102,6 @@
 					<img id="logo" alt="enivroCar analyser logo" width="150px" src="img/enviroCarAnalyser.png">
 				</a>
 			</div>
-			<div id="timeSelection">
-				<label for="timeSelection"><?php $selectTimeRange ?></label>
-				<form action="" method="post">
-					
-					<label for="from" class="timelabel"><?php echo $from; ?> </label>
-					<input type="text" id="date-from" class="controls" size="12">	
-					<br><br>			
-					<label for="to" class="timelabel"><?php echo $to; ?> </label>
-					<input type="text" id="date-to" class="controls" size="12">
-					<br>
-					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $selectTime ?>" onClick="getDateTime();">
-				</form>
-			</div>
 			
 			<div id="space">
 				<div id="spaceSelection">
@@ -133,6 +119,20 @@
 				</div>
 			</div>
 			
+			<div id="timeSelection">
+				<label for="timeSelection"><?php $selectTimeRange ?></label>
+				<form action="" method="post">
+					
+					<label for="from" class="timelabel"><?php echo $from; ?> </label>
+					<input type="text" id="date-from" class="controls" size="12">	
+					<br><br>			
+					<label for="to" class="timelabel"><?php echo $to; ?> </label>
+					<input type="text" id="date-to" class="controls" size="12">
+					<br>
+					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
+						value="<?php echo $selectTime ?>" onClick="getDateTime();">
+				</form>
+			</div>
 			
 			<div id ="phenomenSelection">
 				<form action="">
