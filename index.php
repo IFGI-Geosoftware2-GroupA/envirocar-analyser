@@ -46,8 +46,9 @@
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/icons.css" />
 	<link rel="stylesheet" type="text/css" href="css/flags.css" >
-	<link rel="stylesheet" type="text/css" href="css/lib/base.css" >
+	<link rel="stylesheet" type="text/css" href="css/lib/jquery.dataTables.css" >
 	<link rel="stylesheet" type="text/css" href="css/lib/jquery-ui-1.8.4.custom.css" >
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10-dev/css/jquery.dataTables.css">
 	
 	<!-- Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
