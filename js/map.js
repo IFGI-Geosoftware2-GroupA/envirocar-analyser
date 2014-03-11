@@ -24,7 +24,7 @@ removepointlistener;
 var polyexport = new google.maps.MVCArray();
 var removepoints = [];
 var idwmarkers = [];
-var rectangle;
+var rectangle, measurements;
 /**
  * Initialize the map
  */
@@ -444,12 +444,22 @@ function initBoundingBox(){
 // --- Methods for Interpolation ------
 // ------------------------------------
 /**
- * Interpolates the selected streetsegments for the phenomenon given
- * by idwkey. Creates marker along the polyline and sets a color for it specific
- * for the interpolated (Inverse Distance Weighting) value.
- * @param idwkey (phenomenon.name to interpolate)
+ * Helper/Starter Method for the interpolation 
  */
 function interpolate() {
+	var query = new Query('measurements');
+			measurements = query.getData();
+	// Check wether bounding box is activated or not and trim the polyexport so that only measurements
+		// in the bounding box are present
+	if(BoundingBox == true){
+			polyexport.clear();
+		//Get all points in the boundingbox
+			for(var i=0;i<measurements.length;i++){
+				if(rectangle.getBounds().contains(measurements[i].getPoint()) == true){
+				polyexport.push(measurements[i].getPoint());
+				}	
+			}
+		}
 	if (polyexport.length == 0) {
 		var l = getParam('lang');
 			if (l == "en") {
@@ -458,12 +468,16 @@ function interpolate() {
 				alert("Bitte wählen Sie erst Straßensegmente aus um zu Interpolieren oder erstellen Sie eine Bounding Box.");
 			}	
 	} else {
+				
 		try{
+			// Stores every interpolation into an extra array for switching between selected interpolated phenomenon
 			speedmarkers = interpolatePhen("Speed");
 			co2markers = interpolatePhen("CO2");
 			consumptionmarkers = interpolatePhen("Consumption");
+			alert("Interpolation succeeded. showIdwSpeed(), showIdwConsumption(), showIdwCo2(), clearIdwDisplay() will show the results.");
 		}
 		catch(e) {alert("Could not perform Interpolation. This is the error message: " + e.message);}
+		
 	}
 }
 function showIdwSpeed(){
@@ -529,12 +543,18 @@ function distance(p1, p2) {
 	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
 	return dist;
 }
+/**
+ * Interpolates the selected streetsegments for the phenomenon given
+ * by idwkey. Creates marker along the polyline and sets a color for it specific
+ * for the interpolated (Inverse Distance Weighting) value.
+ * @param idwkey (phenomenon.name to interpolate)
+ * @return idwmarkers (the marker array with the interpolated values)
+ */
 function interpolatePhen(idwkey){
 	var idwmarkers = [];
 	this.idwkey = new String(idwkey);
 		
-			var query = new Query('measurements');
-			var measurements = query.getData();
+			
 	
 		// Classify the values
 		var classarray = classifyValues(measurements, idwkey);
@@ -589,13 +609,15 @@ function interpolatePhen(idwkey){
 						return color;
 					}
 				};
-				
+				// bind the color to the marker specific to it's value'
 				var color = getColor();
 				var idwicon = 'img/interpolated/'+color+'.png';
 				var idwmarker = new google.maps.Marker({
 					position : interpolated,
 					icon: idwicon	
 				});
+				// Create a info window for the marker to see the specific value
+				// bound to the marker
 				buildSmallInfoWindow(idwmarker, map, interpolatedValues);
 					
 				idwmarkers.push(idwmarker);
