@@ -7,7 +7,6 @@
 		$lang = 'de';
 		$other_lang = 'en';
 	}
-
 ?>
 
 <!DOCTYPE html>

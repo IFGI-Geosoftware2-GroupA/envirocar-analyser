@@ -119,7 +119,6 @@ defaultPhenomenons.push(new Phenomenon("Speed", "km/h", 40, 130));
 // Constructor
 function Sensor(type, id, model, fuelType, manufacturer, constructionYear) {
 	try {
-		// TODO Only allow cars as sensors? Are there any differences to motorbikes etc.?
 		if (type == "car") {
 			// TODO Only allow 'gasoline' and 'diesel' as fuel types?
 			if (fuelType == "gasoline" || fuelType == "diesel") {
@@ -214,7 +213,6 @@ Sensor.prototype.parseJSON = function(json) {
 		$.each(json, function(index, data) {
 			var isCar = false;
 			$.each(data, function(key, value) {
-				// TODO Only allow cars?
 				if (key == "type" && value == "car") {
 					isCar = true;
 				}
