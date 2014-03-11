@@ -175,8 +175,14 @@ function tablestyle(){
 	$(document).ready(function() {
 		var table = $('#tableID').dataTable({
 			"sPaginationType": "full_numbers",
-  				"sScrollY" : "200px",
- 				"bPaginate" : false,
+  			"sScrollY" : "200px",
+ 			"bPaginate" : false,
+ 			"oLanguage": {
+ 					    "sZeroRecords": "Keine Einträge gefunden",
+ 					    "sInfo": "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
+ 					    "sInfoEmpty": "Zeige 0 bis 0 von 0 Einträgen",
+ 					    "sSearch": "Suche:"
+ 					   }
 		});
 	});
 

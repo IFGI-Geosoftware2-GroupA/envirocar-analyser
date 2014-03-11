@@ -109,7 +109,7 @@
 			</div>
 			
 			<div id="timeSelection">
-				<label for="timeSelection"><?php $selectTimeRange ?></label>
+				<label for="timeSelection"></label>
 				<form action="" method="post">
 					
 					<label for="from" class="timelabel"><?php echo $from; ?> </label>
@@ -119,7 +119,7 @@
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $selectTime ?>" onClick="getDateTime();">
+						value="<?php echo $getData; ?>" onClick="getSelection();">
 				</form>
 			</div>
 			

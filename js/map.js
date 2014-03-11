@@ -430,13 +430,12 @@ function initBoundingBox(){
 		BoundingBox = false;
 		rectangle.setMap();
 		
-		getBBox();
 		
-		if (getParam('lang') == 'en') {
+		/*if (getParam('lang') == 'en') {
 			alert('The bounding box has been saved successfully!');
 		} else {
 			alert('Die Boundingbox wurde erfolgreich gespeichert!');
-		}
+		}*/
 	}
 }
 
