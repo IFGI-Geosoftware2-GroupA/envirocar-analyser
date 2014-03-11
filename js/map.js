@@ -449,7 +449,7 @@ function initBoundingBox(){
  * for the interpolated (Inverse Distance Weighting) value.
  * @param idwkey (phenomenon.name to interpolate)
  */
-function interpolate(idwkey) {
+function interpolate() {
 	if (polyexport.length == 0) {
 		var l = getParam('lang');
 			if (l == "en") {
@@ -458,20 +458,93 @@ function interpolate(idwkey) {
 				alert("Bitte wählen Sie erst Straßensegmente aus um zu Interpolieren oder erstellen Sie eine Bounding Box.");
 			}	
 	} else {
-		this.idwkey = new String(idwkey);
-		setTimeout(function(){
+		try{
+			speedmarkers = interpolatePhen("Speed");
+			co2markers = interpolatePhen("CO2");
+			consumptionmarkers = interpolatePhen("Consumption");
+		}
+		catch(e) {alert("Could not perform Interpolation. This is the error message: " + e.message);}
+	}
+}
+function showIdwSpeed(){
+	try{
+		for (var i=0; i < consumptionmarkers.length;i++){
+		consumptionmarkers[i].setMap(null);
+		}
+		for (var i=0; i < co2markers.length;i++){
+			co2markers[i].setMap(null);
+		}
+		for (var i=0; i < speedmarkers.length; i++){
+			speedmarkers[i].setMap(map);
+		}
+	}
+	catch(e){alert(e.message);}
+}
+function showIdwCo2(){
+	try{
+		for (var i=0; i < consumptionmarkers.length; i++){
+		consumptionmarkers[i].setMap(null);
+		}
+		for (var i=0; i < speedmarkers.length;i++){
+			speedmarkers[i].setMap(null);
+		}
+		for (var i=0; i < co2markers.length;i++){
+			co2markers[i].setMap(map);
+		}
+	}
+	catch(e){alert(e.message);}
+	
+}
+function showIdwConsumption(){
+	try{
+		for (var i=0; i < co2markers.length;i++){
+			co2markers[i].setMap(null);
+		}
+		for (var i=0; i < speedmarkers.length; i++){
+			speedmarkers[i].setMap(null);
+		}
+		for (var i=0; i < consumptionmarkers.length; i++){
+			consumptionmarkers[i].setMap(map);
+		}
+	}
+	catch(e){alert(e.message);}
+}
+function clearIdwDisplay(){
+	try{
+		for (var i=0; i < co2markers.length;i++){
+		co2markers[i].setMap(null);
+		}
+		for (var i=0; i < speedmarkers.length; i++){
+			speedmarkers[i].setMap(null);
+		}
+		for (var i=0; i < consumptionmarkers.length;i++){
+			consumptionmarkers[i].setMap(null);
+		}
+	}
+	catch(e){alert(e.message);}
+}
+
+// Calculates distance between 2 points
+function distance(p1, p2) {
+	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+	return dist;
+}
+function interpolatePhen(idwkey){
+	var idwmarkers = [];
+	this.idwkey = new String(idwkey);
+		
 			var query = new Query('measurements');
 			var measurements = query.getData();
-		}, 500);
+	
 		// Classify the values
 		var classarray = classifyValues(measurements, idwkey);
-		//var measurements = query.getData();
+		// var measurements = query.getData();
 		// Create the markers along the selected road segments
 		for (var i=0, k=1; k < getPolyline().length; i++, k++){
 			var origin = getPolylineAt(i);
 			var destination = getPolylineAt(k);
-			for (var j=1; j <= 25; j++){
-				var step = (1/25);
+			for (var j=1; j <= 10; j++){
+				var step = (1/10);
 				var interpolated= google.maps.geometry.spherical.interpolate(origin, destination, step * j);
 				var numerator =0;
 				var denominator = 0;
@@ -500,7 +573,6 @@ function interpolate(idwkey) {
 				// Calculate IDW Value for the actual marker
 				var interpolatedValues=(numerator / denominator);
 				console.log(interpolatedValues);
-				
 				// Decides in which class the value lies and return the corresponding color
 				var getColor = function(){	
 					for (var i=0; i<classarray.length; i++ || i<=0){
@@ -520,27 +592,17 @@ function interpolate(idwkey) {
 				
 				var color = getColor();
 				var idwicon = 'img/interpolated/'+color+'.png';
-				var marker = new google.maps.Marker({
+				var idwmarker = new google.maps.Marker({
 					position : interpolated,
 					icon: idwicon	
 				});
-				buildSmallInfoWindow(marker, map, interpolatedValues);
+				buildSmallInfoWindow(idwmarker, map, interpolatedValues);
 					
-				idwmarkers.push(marker);
+				idwmarkers.push(idwmarker);
 			}
 		}
-		for (var i=0; i < idwmarkers.length; i++){
-			idwmarkers[i].setMap(map);
-		}
-	}
+		return idwmarkers;
 }
-
-// Calculates distance between 2 points
-function distance(p1, p2) {
-	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
-	return dist;
-}
-
 /**
  * Classifies the Phenomenon given by @idwkey of a measurement object by standard deviation
  * and returns an array with the class breaks.
@@ -585,7 +647,11 @@ function classifyValues(measurements, idwkey) {
 			var val = (i*sd);
 			classes.push(val);
 		}
+		for (var i=0; i<classes.length;i++){
+		console.log("Klasse "+i+" "+classes[i]);
+		}
 	return classes;
+		
 }
 
 // Helper function to sort Numbers
@@ -593,7 +659,7 @@ function numSort(a, b) {
    return (a - b);
 } 
 
-function buildSmallInfoWindow(marker, map, interpolatedValues){
+function buildSmallInfoWindow(idwmarker, map, interpolatedValues){
 	var contentString= '<div id="content">' +
 		'<div id="siteNotice">' +
 		'</div>' +
@@ -602,8 +668,8 @@ function buildSmallInfoWindow(marker, map, interpolatedValues){
 		'</div>';
 	var infowindow = new google.maps.InfoWindow({
 		content: contentString});
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.open(map,marker);
+	google.maps.event.addListener(idwmarker, 'click', function() {
+		infowindow.open(map,idwmarker);
 	});
 }
 
@@ -621,7 +687,7 @@ function interpolateBoundingBox(idwkey){
 			polyexport.push(measurements[i].getPoint());
 		}	
 	}
-	interpolate(idwkey);
+	interpolate();
 }
 
 		// ----------------------------------------
