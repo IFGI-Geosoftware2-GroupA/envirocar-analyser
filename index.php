@@ -1,23 +1,11 @@
 <?php 
-	if(!isset($_GET['lang'])){
-		include 'php/translation_de.php';
-	}	
-	
-	else if(isset($_GET['lang']) && $_GET['lang'] == 'en'){
+	if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		include 'php/translation_en.php';
-	}
-	else if(isset($_GET['lang']) && $_GET['lang'] != 'de'){
-	    include 'php/translation_de.php';
-	}
-	
-	if (isset($_GET['lang'])) {
-		$lang = $_GET['lang'];
-		if ($lang != 'en') {
-			$lang = 'de';
-			$other_lang = 'en';
-		} else {
-			$other_lang = 'de';
-		}
+		$other_lang = 'de';
+	} else {
+		include 'php/translation_de.php';
+		$lang = 'de';
+		$other_lang = 'en';
 	}
 
 ?>
