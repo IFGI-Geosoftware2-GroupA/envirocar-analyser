@@ -61,7 +61,8 @@
 	
 	<!-- jQuery 2.0.3, jQuery UI 1.10.3, jQuery.timepicker, Bootstrap Dual Listbox -->
 	<script src="js/lib/jquery-2.0.3.min.js"></script>
-	<script src="js/lib/jquery.fixheadertable.js"></script>
+	<script src="js/lib/jquery-migrate-1.2.1.js"></script>
+	<script src="js/lib/jquery.dataTables.min.js"></script>
 	<script src="js/lib/jquery-ui.min.js"></script>
 	<script src="js/lib/jquery-ui-timepicker-addon.min.js"></script>
 	<script src="js/lib/jquery.bootstrap-duallistbox.js"></script>

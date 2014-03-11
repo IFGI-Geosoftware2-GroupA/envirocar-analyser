@@ -172,12 +172,8 @@ function openMarkerInfoWindow(id) {
  */
 function tablestyle(){
 	$(document).ready(function() {
-		$('#tableID').fixheadertable({
-       		height      : 200, 
-   			zebra       : true 
- 
-        });
-	});
+		$('#tableID').dataTable();
+});
 
 }
 
