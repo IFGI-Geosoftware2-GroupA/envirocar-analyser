@@ -134,9 +134,10 @@
 				</form>
 			</div>
 			
-			<div id ="phenomenSelection">
+			<div id ="carModelSelection">
 				<form action="">
 					<select multiple="multiple" size="4" id="duallistbox_phenomenons">
+						<!-- TODO must be filled dynamically -->
 						<option value="co2"><?php echo $co2_emission; ?></option>
 						<option value="consumption"><?php echo $consumption; ?></option>
 						<option value="engine_load"><?php echo $engine_load; ?></option>
@@ -147,24 +148,24 @@
 						var l = getParam('lang');
 						if (l == "en") {
 							var dlb_phenomenons = $('#duallistbox_phenomenons').bootstrapDualListbox({
-								nonselectedlistlabel: 'Possible Phenomenons',
-								selectedlistlabel: 'Selected Phenomenons',
+								nonselectedlistlabel: 'Possible Car Models',
+								selectedlistlabel: 'Selected Car Models',
 								infotext: 'Show all {0}',
 								infotextfiltered: '{0} of {1}',
 								infotextempty: 'No entries',
-								filterplaceholder: 'Search phenomenons...',
+								filterplaceholder: 'Search for car model...',
 								filtertextclear: 'Show all',
 								preserveselectiononmove: 'moved',
 								moveonselect: true
 							});
 						} else {
 							var dlb_phenomenons = $('#duallistbox_phenomenons').bootstrapDualListbox({
-								nonselectedlistlabel: 'M&ouml;gliche Ph&auml;nomene',
-								selectedlistlabel: 'Ausgew&auml;hlte Ph&auml;nomene',
+								nonselectedlistlabel: 'M&ouml;gliche Automodelle',
+								selectedlistlabel: 'Ausgew&auml;hlte Automodelle',
 								infotext: 'Zeige alle {0}',
 								infotextfiltered: '{0} von {1}',
 								infotextempty: 'Keine Eintr&auml;ge',
-								filterplaceholder: 'Suche Ph&auml;nomene...',
+								filterplaceholder: 'Suche nach Automodell...',
 								filtertextclear: 'Zeige alle',
 								preserveselectiononmove: 'moved',
 								moveonselect: true
