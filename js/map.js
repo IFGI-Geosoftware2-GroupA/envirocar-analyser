@@ -203,8 +203,11 @@ function showMarkers(query) {
 
 function createListenerForMarkers(marker) {
 	google.maps.event.addListener(marker, 'click', function(){
+		// Highlight measurement in the chart
 		lineChart.highlight(marker.id);
+		// Highlight and go to measurement in the table
 		document.getElementById(marker.id).style.backgroundColor = '#66CCFF';
+		document.location.hash = "#" + marker.id;
 	});
 }
 
