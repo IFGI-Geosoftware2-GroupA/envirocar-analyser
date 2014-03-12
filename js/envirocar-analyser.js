@@ -603,8 +603,11 @@ Query.prototype.getMeasurements = function() {
 	// }
 	
 	// var testURL = lastTrack();
-	var testURL = 'https://envirocar.org/api/stable/tracks?bbox=7.551546043717394,51.94314001513804,7.71073356228294,51.98424989430131';
 	
+	// testURL beliebige URL die nur zum Testen da ist
+	var testURL = 'https://envirocar.org/api/stable/tracks?bbox=8.239346953706672,51.92213464684146,8.79358611695909,52.113057665252164';
+	
+	// holt die track ids von der envirocar api
 	var json = (function () {
 		var json = null;
 		$.ajax({
@@ -626,6 +629,7 @@ Query.prototype.getMeasurements = function() {
 	
 	testJSON = jQuery.parseJSON(testJSON);
 	
+	// an die envirocar/tracks/ wird die id und measurements rangehängt
 	$.each(testJSON.tracks, function (key, value) {
 				trackURL = allTracks.concat(value.id);
 				
@@ -633,7 +637,7 @@ Query.prototype.getMeasurements = function() {
 				
 				querytestURL = trackURL;
 				
-	});
+	
 	
 	var queryURL = querytestURL;
 	
@@ -745,6 +749,8 @@ Query.prototype.getMeasurements = function() {
 		result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
 	});
 	return result;
+	
+	});
 };
 
 /**
