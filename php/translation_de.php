@@ -176,4 +176,14 @@ THE SOFTWARE.";
 	
 	$interpolation_label = "Interpolation";
 	
+	$ClearIDW = "Löschen";
+	
+	$selectIDW = "Auswählen";
+	
+	$selectIDWco2 = "CO2";
+	
+	$selectIDWconsumption = "Verbrauch";
+	
+	$selectIDWspeed = "Geschwindigkeit";
+	
 ?>

@@ -543,6 +543,21 @@ function clearIdwDisplay(){
 	catch(e){alert(e.message);}
 }
 
+function IDWSelection(){
+	if (document.getElementById("idwid").value = "co2") {
+		showIdwco2();
+	}
+	else 
+	if (document.getElementById("idwid").value = "consumption"){
+		showIdwConsumption();
+	}
+	else 
+	if (document.getElementById("idwid").value = "speed"){
+		showIdwSpeed();
+	}
+	
+}
+
 // Calculates distance between 2 points
 function distance(p1, p2) {
 	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
