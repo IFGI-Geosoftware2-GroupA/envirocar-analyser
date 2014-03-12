@@ -39,7 +39,7 @@ THE SOFTWARE.";
 	
 	$to = "To:";
 	
-	$selectTime = "Select time period";
+	$getData = "Get Data";
 	
 	$selectSpace = "Select space segment";
 	
