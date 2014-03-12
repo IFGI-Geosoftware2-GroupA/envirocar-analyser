@@ -453,3 +453,69 @@ function getDateTimeBBox() {
 	
 	
 }
+
+function lastTrack() {
+	
+	envirocarTrackURL = "https://envirocar.org/api/stable/tracks/";
+	
+	var json = (function () {
+		var json = null;
+		$.ajax({
+			'async': false,
+			'url': envirocarTrackURL,
+			'dataType': "json",
+			// If request succeeded the callback function stores the requested JSON to var = json 
+			'success': function (data) {json = data;},
+			'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+		});
+				
+				// returns the object
+		return json;
+	})();
+	
+	var envirocarTracks = JSON.stringify(json);
+	
+	var envirocarTracksObj = jQuery.parseJSON(envirocarTracks);
+	
+	var trackId = JSON.stringify(envirocarTracksObj.tracks[0].id);
+	
+	var trackIdUrl = envirocarTrackURL + trackId.slice(1,25);
+	
+	var json = (function () {
+		var json = null;
+		$.ajax({
+			'async': false,
+			'url': trackIdUrl,
+			'dataType': "json",
+			// If request succeeded the callback function stores the requested JSON to var = json 
+			'success': function (data) {json = data;},
+			'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+		});
+				
+				// returns the object
+		return json;
+	})();
+	
+	var trackInformation = JSON.stringify(json);
+	
+	var trackObj = jQuery.parseJSON(trackInformation);
+
+	var trackStartTime = JSON.stringify(trackObj.features[0].properties.time);
+	
+	trackStartTime = trackStartTime.slice(1,21);
+	
+	var trackStartTimeDateFormat = new Date(trackStartTime);
+	
+	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 24);
+	
+	var testingDate = jQuery.datepicker.formatDate('yy-mm-dd',trackStartTimeDateFormat);
+	
+	var trackStartDateMinusDay = testingDate + trackStartTime.slice(10,21);
+	
+	alert("trackstart " + trackStartTime + "\n" + "trackende " + trackStartDateMinusDay);
+	
+	var lastTrack = baseurl + trackStartDateMinusDay + comma + trackStartTime;
+	
+	alert(lastTrack);
+
+}
