@@ -512,10 +512,12 @@ function lastTrack() {
 	
 	var trackStartDateMinusDay = testingDate + trackStartTime.slice(10,21);
 	
-	alert("trackstart " + trackStartTime + "\n" + "trackende " + trackStartDateMinusDay);
+	// alert("trackstart " + trackStartTime + "\n" + "trackende " + trackStartDateMinusDay);
 	
 	var lastTrack = baseurl + trackStartDateMinusDay + comma + trackStartTime;
 	
-	alert(lastTrack);
+	// alert(lastTrack);
+	
+	return lastTrack;
 
 }
