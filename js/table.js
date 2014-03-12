@@ -15,8 +15,6 @@ function initTable() {
  */
 function createTable() {
 	try {
-		var query = new Query('measurements');
-		var measurements = query.getData();
 		var myTable     = document.createElement("table");
 		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
@@ -30,122 +28,120 @@ function createTable() {
 		engineload = new Array();
 		rpm = new Array();
 
-		// setTimeout(function() { // TODO
-			//Put Phenomenons in Arrays
-			for (i=0, j=0; i< measurements.length; i++) {
-				
-				for (j=0;j<measurements[i].phenomenons.length;j++) {
-					
-					if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-						consumption.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
-					} 
-					
-					else if (measurements[i].getPhenomenons()[j].name == "CO2") {
-						co2.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);	
-					} 
-					
-					else if (measurements[i].getPhenomenons()[j].name == "Speed") {
-						speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);		
-					} 
-					
-					else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-						engineload.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
-					}
-					
-					else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-						rpm.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);			
-				}
-				}
-			}
+		//Put Phenomenons in Arrays
+		for (i=0, j=0; i< measurements.length; i++) {
 			
-			for (var i=0; i < measurements.length; i++) {					
+			for (j=0;j<measurements[i].phenomenons.length;j++) {
 				
-				//Creating the Headrow of the Table
-				if (i == 0)	{
-					headrow = document.createElement("tr");
-					
-					headcell0 = document.createElement("th");
-					headcell0.setAttribute("id", "idrow");
-					headcell1 = document.createElement("th");
-					headcell2 = document.createElement("th");
-					headcell3 = document.createElement("th");
-					headcell4 = document.createElement("th");
-					headcell5 = document.createElement("th");
-					
-					headtext0 = document.createTextNode("ID");
-					headtext1 = document.createTextNode("Verbrauch");
-					headtext2 = document.createTextNode("CO2");
-					headtext3 = document.createTextNode("Geschwindigkeit");
-					headtext4 = document.createTextNode("Motorlast");
-					headtext5 = document.createTextNode("Umdrehungen");
-					
-					headcell0.appendChild(headtext0);
-					headcell1.appendChild(headtext1);
-					headcell2.appendChild(headtext2);
-					headcell3.appendChild(headtext3);
-					headcell4.appendChild(headtext4);
-					headcell5.appendChild(headtext5);
-					
-					headrow.appendChild(headcell0);
-					headrow.appendChild(headcell1);
-					headrow.appendChild(headcell2);
-					headrow.appendChild(headcell3);
-					headrow.appendChild(headcell4);
-					headrow.appendChild(headcell5);
-					
-					mytablehead.appendChild(headrow);
+				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
+					consumption.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
+				} 
+				
+				else if (measurements[i].getPhenomenons()[j].name == "CO2") {
+					co2.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);	
+				} 
+				
+				else if (measurements[i].getPhenomenons()[j].name == "Speed") {
+					speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);		
+				} 
+				
+				else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
+					engineload.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);		
 				}
-	
-				//Creating the rest of the Table
-				currentRow = document.createElement("tr");
-				var id = document.createAttribute("id"); 
-				id.nodeValue = measurements[i].getId();
-				currentRow.setAttributeNode(id);
-				// currentRow.onclick = openMarkerInfoWindow(id.nodeValue);
 				
-				currentCell0 = document.createElement("td");	
-				currentCell1 = document.createElement("td");
-				currentCell2 = document.createElement("td");
-				currentCell3 = document.createElement("td");
-				currentCell4 = document.createElement("td");
-				currentCell5 = document.createElement("td");
+				else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
+					rpm.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);			
+			}
+			}
+		}
 		
-				//ID-Column
-				currentText0 = document.createTextNode(measurements[i].getId());
+		for (var i=0; i < measurements.length; i++) {					
+			
+			//Creating the Headrow of the Table
+			if (i == 0)	{
+				headrow = document.createElement("tr");
 				
-				//Consumption-Column
-				currentText1 = document.createTextNode(consumption[i]);
+				headcell0 = document.createElement("th");
+				headcell0.setAttribute("id", "idrow");
+				headcell1 = document.createElement("th");
+				headcell2 = document.createElement("th");
+				headcell3 = document.createElement("th");
+				headcell4 = document.createElement("th");
+				headcell5 = document.createElement("th");
 				
-				//CO2-Column
-				currentText2 = document.createTextNode(co2[i]); 
+				headtext0 = document.createTextNode("ID");
+				headtext1 = document.createTextNode("Verbrauch");
+				headtext2 = document.createTextNode("CO2");
+				headtext3 = document.createTextNode("Geschwindigkeit");
+				headtext4 = document.createTextNode("Motorlast");
+				headtext5 = document.createTextNode("Umdrehungen");
 				
-				//Speed-Column
-				currentText3 = document.createTextNode(speed[i]); 
+				headcell0.appendChild(headtext0);
+				headcell1.appendChild(headtext1);
+				headcell2.appendChild(headtext2);
+				headcell3.appendChild(headtext3);
+				headcell4.appendChild(headtext4);
+				headcell5.appendChild(headtext5);
 				
-				//Engine Load-Column
-				currentText4 = document.createTextNode(engineload[i]); 
+				headrow.appendChild(headcell0);
+				headrow.appendChild(headcell1);
+				headrow.appendChild(headcell2);
+				headrow.appendChild(headcell3);
+				headrow.appendChild(headcell4);
+				headrow.appendChild(headcell5);
 				
-				//RPM-Column
-				currentText5 = document.createTextNode(rpm[i]); 
-				
-				currentCell0.appendChild(currentText0);
-				currentCell1.appendChild(currentText1);
-				currentCell2.appendChild(currentText2);
-				currentCell3.appendChild(currentText3);
-				currentCell4.appendChild(currentText4);
-				currentCell5.appendChild(currentText5);
-				
-				currentRow.appendChild(currentCell0);
-				currentRow.appendChild(currentCell1);
-				currentRow.appendChild(currentCell2);
-				currentRow.appendChild(currentCell3);
-				currentRow.appendChild(currentCell4);
-				currentRow.appendChild(currentCell5);
-				
-				mytablebody.appendChild(currentRow);
+				mytablehead.appendChild(headrow);
 			}
 
-		// }, 4000); // TODO
+			//Creating the rest of the Table
+			currentRow = document.createElement("tr");
+			var id = document.createAttribute("id"); 
+			id.nodeValue = measurements[i].getId();
+			currentRow.setAttributeNode(id);
+			// currentRow.onclick = openMarkerInfoWindow(id.nodeValue);
+			
+			currentCell0 = document.createElement("td");	
+			currentCell1 = document.createElement("td");
+			currentCell2 = document.createElement("td");
+			currentCell3 = document.createElement("td");
+			currentCell4 = document.createElement("td");
+			currentCell5 = document.createElement("td");
+	
+			//ID-Column
+			currentText0 = document.createTextNode(measurements[i].getId());
+			
+			//Consumption-Column
+			currentText1 = document.createTextNode(consumption[i]);
+			
+			//CO2-Column
+			currentText2 = document.createTextNode(co2[i]); 
+			
+			//Speed-Column
+			currentText3 = document.createTextNode(speed[i]); 
+			
+			//Engine Load-Column
+			currentText4 = document.createTextNode(engineload[i]); 
+			
+			//RPM-Column
+			currentText5 = document.createTextNode(rpm[i]); 
+			
+			currentCell0.appendChild(currentText0);
+			currentCell1.appendChild(currentText1);
+			currentCell2.appendChild(currentText2);
+			currentCell3.appendChild(currentText3);
+			currentCell4.appendChild(currentText4);
+			currentCell5.appendChild(currentText5);
+			
+			currentRow.appendChild(currentCell0);
+			currentRow.appendChild(currentCell1);
+			currentRow.appendChild(currentCell2);
+			currentRow.appendChild(currentCell3);
+			currentRow.appendChild(currentCell4);
+			currentRow.appendChild(currentCell5);
+			
+			mytablebody.appendChild(currentRow);
+		}
+		
 		myTable.appendChild(mytablehead);
 		myTable.appendChild(mytablebody);
 		myTable.setAttribute("border",1);
