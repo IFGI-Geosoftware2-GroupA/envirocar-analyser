@@ -546,20 +546,20 @@ function clearIdwDisplay(){
 function IDWSelection(){
 	var idw = document.getElementById("idwid");
 	var selected = idw.options[idw.selectedIndex].value;
-	
-	if (selected = "co2") {
+
+	//alert(selected);
+	if (selected == "co2") {
 		showIdwCo2();
 	}
-	else 
-	if (selected = "consumption"){
+	else if (selected == "consumption"){
 		showIdwConsumption();
+
 	}
-	else 
-	if (selected = "speed"){
+	else if (selected == "speed"){
 		showIdwSpeed();
 	}
-	
 }
+	
 
 // Calculates distance between 2 points
 function distance(p1, p2) {
