@@ -408,7 +408,9 @@ function getPolyline(){
 
 // Create a bounding box overlay on the map
 function initBoundingBox(){
+		
 	if (BoundingBox == false) {
+		setRectangleActive();
 		BoundingBox = true;		
 		var p1 = map.getBounds().getNorthEast();
 	    var p2 = map.getBounds().getSouthWest();
@@ -427,6 +429,7 @@ function initBoundingBox(){
 		
 		rectangle.setMap(map);
 	} else {
+		setRectangleNonActive();
 		BoundingBox = false;
 		rectangle.setMap();
 		

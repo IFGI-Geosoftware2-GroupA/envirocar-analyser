@@ -118,7 +118,7 @@
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $getData; ?>" onClick="getSelection();">
+						value="<?php echo $getData; ?>" onClick="getDateTimeBBox();">
 				</form>
 			</div>
 			

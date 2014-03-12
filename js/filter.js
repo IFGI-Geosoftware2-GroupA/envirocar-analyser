@@ -13,7 +13,9 @@ var hyphen = "-";
 var literalT = "T";
 var literalZ = "Z";
 var comma = ",";
+var BBoxPrefix = "&bbox=";
 var doublePoint = ":";
+var rectangleActive = false;
 
 /*
  * getDateTime() This method gets the values from the date-from and date-to boxes using this values building a string. Afterwards it will 
@@ -25,6 +27,10 @@ var doublePoint = ":";
  */
 
 function getDateTime() {
+	
+	// clears the dropdown trackSelectionList element
+	$('#trackSelectionList').empty();
+	
 	// Getting the values of the boxes where datetime is displayed
 	startDate = $('#date-from').val();
 	endDate = $('#date-to').val();
@@ -187,8 +193,9 @@ function getDateTime() {
 		});
 		
 	}
+	
+	return requestURL;
 }
-
 /*
  * getBBox() This method gets the tracks within the user specified bounding box by building string with the use of the bounding box coordinates.
  * Afterwards it will query the envirocar API to get the tracks.
@@ -199,6 +206,10 @@ function getDateTime() {
  */
 
 function getBBox() {
+	
+	// clears the dropdown trackSelectionList element
+	$('#trackSelectionList').empty();
+	
 	pointNorthEast = rectangle.getBounds().getNorthEast();
 	pointSouthWest = rectangle.getBounds().getSouthWest();
 	
@@ -288,4 +299,157 @@ function getBBox() {
 		});
 	
 		// return jsonBBoxTracks;	
+}
+
+function setRectangleActive() {
+	
+	rectangleActive = true;
+	
+	// alert("rectangle is now active");
+	
+}
+
+function setRectangleNonActive() {
+	
+	rectangleActive = false;
+	
+	// alert("rectangle is not active");
+	
+}
+
+function getDT() {
+	
+	startDate = $('#date-from').val();
+	endDate = $('#date-to').val();
+	
+	// Check if a start and end date is specifyed. If not the user gets an alert
+	if (startDate == '' || endDate == '') {
+		if (getParam('lang') == 'en') {
+			alert('No start and / or end date selected');
+		} else {
+			alert('Kein Start- und / oder Endzeitpunkt ausgewählt');
+		}
+	} else {
+		
+		// Storing the value of the date-from box in a variable
+		var startDate = $('#date-from').val();
+		
+		// Storing the value of the date-to box in a variable
+		var endDate = $('#date-to').val();
+		
+		alert("Sie haben den Startzeitpunkt " + startDate + " und den Endzeitpunkt " + endDate + " ausgewählt.");
+		
+		//Getting the literals from the date-from box and start building the first part of the string
+		
+		var year = startDate.charAt(6);
+		var year1 = startDate.charAt(7);
+		var year2 = startDate.charAt(8);
+		var year3 = startDate.charAt(9);
+		
+		var baseurlYear = baseurl.concat(year, year1, year2, year3,hyphen);
+		
+		var month = startDate.charAt(3);
+		var month1 = startDate.charAt(4);
+		
+		var baseurlYearMonth = baseurlYear.concat(month, month1, hyphen);
+		
+		var day = startDate.charAt(0);
+		var day1 = startDate.charAt(1);
+		
+		var baseurlYearMonthDay = baseurlYearMonth.concat(day, day1, literalT);
+		
+		var hour = startDate.charAt(11);
+		var hour1 = startDate.charAt(12);
+		var minute = startDate.charAt(14);
+		var minute1 = startDate.charAt(15);
+		var seconds = "00";
+		
+		var baseurlStartDate = baseurlYearMonthDay.concat(hour, hour1, doublePoint, minute, minute1, doublePoint, seconds,literalZ , comma);
+		//alert(baseurlStartDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,
+		
+		//Getting the literals from the date-to box and start building the second part of the string
+		var endYear = endDate.charAt(6);
+		var endYear1 = endDate.charAt(7);
+		var endYear2 = endDate.charAt(8);
+		var endYear3 = endDate.charAt(9);
+		
+		var baseurlEndDateYear = baseurlStartDate.concat(endYear, endYear1, endYear2, endYear3,hyphen);
+		
+		var endMonth = endDate.charAt(3);
+		var endMonth1 = endDate.charAt(4);
+		
+		var baseurlEndDateYearMonth = baseurlEndDateYear.concat(endMonth, endMonth1, hyphen);
+		
+		var endDay = endDate.charAt(0);
+		var endDay1 = endDate.charAt(1);
+		
+		var baseurlEndDateYearMonthDay = baseurlEndDateYearMonth.concat(endDay, endDay1, literalT);
+		
+		var endHour = endDate.charAt(11);
+		var endHour1 = endDate.charAt(12);
+		var endMinute = endDate.charAt(14);
+		var endMinute1 = endDate.charAt(15);
+		var seconds = "00";
+		
+		//alert(baseurlEndDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
+		var baseurlEndDate = baseurlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
+		
+		return baseurlEndDate;
+	
+	}
+
+}
+
+function getBB() {
+	
+	pointNorthEast = rectangle.getBounds().getNorthEast();
+	pointSouthWest = rectangle.getBounds().getSouthWest();
+	
+	pointNorthEastX = pointNorthEast.lat();
+	pointNorthEastY = pointNorthEast.lng();
+	pointSouthWestX = pointSouthWest.lat();
+	pointSouthWestY = pointSouthWest.lng();
+	
+	
+	var coordBBox = pointSouthWestY + comma + pointSouthWestX + comma +pointNorthEastY + comma + pointNorthEastX;
+	// The URL should look like this: https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
+	
+	return coordBBox;
+}
+
+function getDateTimeBBox() {
+	
+	startDate = $('#date-from').val();
+	endDate = $('#date-to').val();
+	
+	if(startDate != '' && endDate != '' && rectangleActive == true) {
+		
+	var dateTimeURL = getDT();
+	var BBoxString = getBB();
+	
+	var dateTimeBBoxURL = dateTimeURL + BBoxPrefix + BBoxString;
+	
+	alert(dateTimeBBoxURL);
+		
+	}else if(startDate != '' && endDate != '' && rectangleActive == false){
+		
+		var dateTimeURL = getDT();
+		
+		alert(dateTimeURL);
+			
+		return dateTimeURL;
+
+	}else if(startDate == '' && endDate == '' && rectangleActive == true) {
+		
+		var BBoxString = getBB();
+		
+		var BBURL = baseurlBBox + BBoxString;
+		
+		alert(BBURL);
+		
+		return BBURL;
+	}
+	
+	
+	
 }
