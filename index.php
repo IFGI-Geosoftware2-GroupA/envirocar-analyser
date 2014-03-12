@@ -124,18 +124,18 @@
 			
 			<div id ="carModelSelection">
 				<form action="">
-					<select multiple="multiple" size="4" id="duallistbox_phenomenons">
+					<select multiple="multiple" size="4" id="duallistbox_carmodels">
 						<!-- TODO must be filled dynamically -->
-						<option value="co2"><?php echo $co2_emission; ?></option>
+						<!-- <option value="co2"><?php echo $co2_emission; ?></option>
 						<option value="consumption"><?php echo $consumption; ?></option>
 						<option value="engine_load"><?php echo $engine_load; ?></option>
 						<option value="rpm"><?php echo $rpm; ?></option>
-						<option value="speed"><?php echo $speed; ?></option>
+						<option value="speed"><?php echo $speed; ?></option> -->
 					</select>
 					<script>
 						var l = getParam('lang');
 						if (l == "en") {
-							var dlb_phenomenons = $('#duallistbox_phenomenons').bootstrapDualListbox({
+							var duallistbox_carmodels = $('#duallistbox_carmodels').bootstrapDualListbox({
 								nonselectedlistlabel: 'Possible Car Models',
 								selectedlistlabel: 'Selected Car Models',
 								infotext: 'Show all {0}',
@@ -147,7 +147,7 @@
 								moveonselect: true
 							});
 						} else {
-							var dlb_phenomenons = $('#duallistbox_phenomenons').bootstrapDualListbox({
+							var duallistbox_carmodels = $('#duallistbox_carmodels').bootstrapDualListbox({
 								nonselectedlistlabel: 'M&ouml;gliche Automodelle',
 								selectedlistlabel: 'Ausgew&auml;hlte Automodelle',
 								infotext: 'Zeige alle {0}',

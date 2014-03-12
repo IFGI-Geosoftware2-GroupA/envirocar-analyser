@@ -1,6 +1,8 @@
 /**
  * @author Marius Runde, Daniel Sawatzky, Thiemo Gaertner
  */
+var measurements;
+
 // ------------------------
 // --- Phenomenon class ---
 // ------------------------
