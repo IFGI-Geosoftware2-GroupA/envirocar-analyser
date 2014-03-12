@@ -544,15 +544,18 @@ function clearIdwDisplay(){
 }
 
 function IDWSelection(){
-	if (document.getElementById("idwid").value = "co2") {
+	var idw = document.getElementById("idwid");
+	var selected = idw.options[idw.selectedIndex].value;
+	
+	if (selected = "co2") {
 		showIdwco2();
 	}
 	else 
-	if (document.getElementById("idwid").value = "consumption"){
+	if (selected = "consumption"){
 		showIdwConsumption();
 	}
 	else 
-	if (document.getElementById("idwid").value = "speed"){
+	if (selected = "speed"){
 		showIdwSpeed();
 	}
 	
