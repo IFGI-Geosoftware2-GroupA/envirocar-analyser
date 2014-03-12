@@ -548,7 +548,7 @@ function IDWSelection(){
 	var selected = idw.options[idw.selectedIndex].value;
 	
 	if (selected = "co2") {
-		showIdwco2();
+		showIdwCo2();
 	}
 	else 
 	if (selected = "consumption"){
