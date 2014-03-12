@@ -285,6 +285,7 @@ LineChart.prototype.createChartFromTrack = function() {
 	
 	var query = new Query('measurements');
 	measurements = query.getData();
+	loadCarModels();
 	//query data from server and sort phenomenon values to the corresponding arrays
 	for (i=0, j=0; i< measurements.length; i++) {
 		var d = measurements[i].getTimestamp();
