@@ -316,18 +316,33 @@ function toggleTerms() {
 	toggleAnalyserPanel('terms');
 }
 
-// show loading window
+// Load car models into Dual Listbox
+function loadCarModels() {
+	var cars = new Array();
+	var k = 0;
+	for (var i = 0; i < measurements.length; i++) {
+		// Add car model to cars array if it is not contained there yet
+		if ($.inArray(measurements[i].sensors.model, cars) < 0) {
+			cars[k] = measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model;
+			duallistbox_carmodels.append('<option value="' + cars[k] + '">' + cars[k] + '</option>');
+			k++;
+			// alert(cars[k]);
+		}
+	}
+	duallistbox_carmodels.trigger('bootstrapduallistbox.refresh', true);
+}
 
+// Show loading window
 function showProgressAnimation() {      
     $("#loading-div-background").show();
 }
 
+// Hide loading window
 function hideProgressAnimation() { 
 	$("#loading-div-background").hide();
 }
 
-/* cancel an onClick event */
-
+/* Cancel an onClick event */
 function cancelEvent() {
     try {
         var e = window.event;

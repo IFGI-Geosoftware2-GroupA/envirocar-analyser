@@ -168,7 +168,7 @@ function resizeMap() {
  */
 function showMarkers(query) {
 	try {
-		var measurements = query.getData();
+		// measurements = query.getData();
 		// Set timeout to wait for the map to be loaded
 		setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
