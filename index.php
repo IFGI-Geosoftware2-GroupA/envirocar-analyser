@@ -167,6 +167,14 @@
 				<label id="analysisInterpolation-label" for="analysisInterpolation-label"><?php echo $interpolation_label; ?></label>
 				<br/><br/>
 				<a href="#" id="interpolationBtn" onclick="interpolate();" title="Start Interpolation"><img src="img/interpolation.png" width="48px" height="48px" alt="Interpolation"></a>
+				<br><br>
+				<select id="idwid" onchange="IDWSelection()">
+ 					<option value="select"><?php echo $selectIDW; ?></option>
+ 					<option value="co2"><?php echo $selectIDWco2; ?></option>
+ 					<option value="consumption"><?php echo $selectIDWconsumption; ?></option>
+  					<option value="speed"><?php echo $selectIDWspeed; ?></option>
+  				</select>
+  				<input type="button" name"clearidw" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
 			</div>
 			
 			<div id="analysis-mode" >

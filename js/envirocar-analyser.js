@@ -7,6 +7,11 @@ var measurements;
 // --- Phenomenon class ---
 // ------------------------
 // Constructor with limits
+
+var allTracks = "https://envirocar.org/api/stable/tracks/";
+
+var querytestURL;
+
 function Phenomenon(name, unit, lowerLimit, upperLimit) {
 	try {
 		this.name		= new String(name);
@@ -592,10 +597,45 @@ Query.prototype.getData = function() {
 // Get the measurements from an URL and parse the JSON file into a Measurement array
 Query.prototype.getMeasurements = function() {
 	// Create a temporal URL
-	var queryURL = this.url + "measurements";
-	if (this.filter != null) {
-		queryURL += this.filter.createUrlValue();
-	}
+	// var queryURL = this.url + "measurements";
+	// if (this.filter != null) {
+		// queryURL += this.filter.createUrlValue();
+	// }
+	
+	// var testURL = lastTrack();
+	var testURL = 'https://envirocar.org/api/stable/tracks?bbox=7.551546043717394,51.94314001513804,7.71073356228294,51.98424989430131';
+	
+	var json = (function () {
+		var json = null;
+		$.ajax({
+			'async': false,
+			'url': testURL,
+			'dataType': "json",
+			// If request succeeded the callback function stores the requested JSON to var = json 
+			'success': function (data) {json = data;},
+			'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+		});
+				
+				// returns the object
+		return json;
+	})();
+	
+	var testJSON = json;
+	
+	testJSON = JSON.stringify(testJSON);
+	
+	testJSON = jQuery.parseJSON(testJSON);
+	
+	$.each(testJSON.tracks, function (key, value) {
+				trackURL = allTracks.concat(value.id);
+				
+				trackURL = trackURL + "/measurements";
+				
+				querytestURL = trackURL;
+				
+	});
+	
+	var queryURL = querytestURL;
 	
 	var result = [];
 	typeof result === Measurement;

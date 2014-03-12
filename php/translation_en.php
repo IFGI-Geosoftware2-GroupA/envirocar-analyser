@@ -125,4 +125,14 @@ THE SOFTWARE.";
 	
 	$interpolation_label = "Interpolation";
 	
+	$ClearIDW = "Clear";
+	
+	$selectIDW = "Select";
+	
+	$selectIDWco2 = "CO2";
+	
+	$selectIDWconsumption = "Consumption";
+	
+	$selectIDWspeed = "Speed";
+	
 ?>
