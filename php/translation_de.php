@@ -16,7 +16,7 @@
 	                    Genauigkeit oder Vollständigkeit der auf dieser Webseite dargestellten Inhalte, es sei denn der Fehler sei unter 
 	                    Absicht oder aufgrund grober Fahrlässigkeit entstanden. Für Fehler bei der Darstellung oder der 
 	                    Benutzerschnittstelle ist das envirocar-analyser Entwickler-Team verantwortlich. Besitzer der Daten und somit 
-	                    Besitzer der Rechte der Daten ist enviroCar."
+	                    Besitzer der Rechte der Daten ist enviroCar.
 	                    <br />
 	                    <br />
 	                    Betreiber der Webseite:
