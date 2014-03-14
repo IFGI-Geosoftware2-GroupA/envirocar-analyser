@@ -250,19 +250,19 @@
 					</script>
 				</div>
 				
-				<div id="analyser-help" class="top" style="display: none">
+				<div id="analyser-help" class="top blue" style="display: none">
 					<?php echo $help_content; ?>
 				</div>
 				
-				<div id="analyser-contact" class="top" style="display: none">
+				<div id="analyser-contact" class="top blue" style="display: none">
 					<?php echo $contact_content; ?>
 				</div>
 				
-				<div id="analyser-imprint" class="top" style="display: none">
+				<div id="analyser-imprint" class="top blue" style="display: none">
 					<?php echo $imprint_content; ?>
 				</div>
 				
-				<div id="analyser-terms" class="top" style="display: none">
+				<div id="analyser-terms" class="top blue" style="display: none">
 					<?php echo $terms_content; ?>
 				</div>
 			</div>

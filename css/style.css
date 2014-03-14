@@ -127,7 +127,7 @@ body {
 	width: 100%;
 }
 #trackSelectionList {
-	width: 150px;
+	width: 130px;
 }
 
 #streetSelection {
@@ -174,6 +174,38 @@ body {
 	right: 1em;
 }
 
+#analyser-help {
+	padding: 1.5em;
+	height: 70%;
+	width: 49.9%;
+	overflow:auto;
+	bottom: 1.5em;
+}
+
+#analyser-contact{
+	padding: 1.5em;
+	height: 70%;
+	width: 49.9%;
+	overflow:auto;
+	bottom: 1.5em;
+}
+
+#analyser-imprint{
+	padding: 1.5em;
+	height: 70%;
+	width: 49.9%;
+	overflow:auto;
+	bottom: 1.5em;
+}
+
+#analyser-terms{
+	padding: 1.5em;
+	height: 70%;
+	width: 49.9%;
+	overflow:auto;
+	bottom: 1.5em;
+}
+
 #footer{
 	bottom: 0;
     position:fixed;
@@ -187,10 +219,10 @@ body {
 
 /* enviroCar colours for fonts and backgrounds */
 
-#blue { color: #1D83C3; }
-#bblue { background-color: #1D83C3; color: white;}
-#green { color: #92C049; }
-#bgreen { background-color: #92C049; }
+.blue { color: #1D83C3; }
+.bblue { background-color: #1D83C3; color: white;}
+.green { color: #92C049; }
+.bgreen { background-color: #92C049; }
 
 /* Loading window */
 
@@ -468,6 +500,7 @@ body {
 	width: 120px;
 	height: 30px;
 	margin: 0.5em 0 0 1em;
+	outline:none;
 
 }
 
@@ -481,6 +514,7 @@ body {
 
 #interpolationBtn{
 	margin: 2em 0 0 1em;
+	outline:none;
 }
 
 /********************************************************************
@@ -510,4 +544,8 @@ input[type="button"]::-moz-focus-inner {
 } 
 * {
     outline: none;
+}
+
+a {
+    outline: 0;
 }
