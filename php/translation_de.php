@@ -11,10 +11,12 @@
 	                    t_gaer03@uni-muenster.de";
 	
 	$imprint = "Impressum";
-	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Daten der Community 
-	                    Plattform enviroCar. Ausschließlich enviroCar ist als alleiniger Besitzer der Rohdaten für die Richtigkeit 
-	                    der Rohdaten verantwortlich. Für Fehler bei der Darstellung, Berechnung oder der Benutzerschnittstelle ist 
-	                    das envirocar-analyser Entwickler-Team verantwortlich.
+	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
+	                    Plattform enviroCar. Das envirocar-analyzer Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
+	                    Genauigkeit oder Vollständigkeit der auf dieser Webseite dargestellten Inhalte, es sei denn der Fehler sei unter 
+	                    Absicht oder aufgrund grober Fahrlässigkeit entstanden. Für Fehler bei der Darstellung oder der 
+	                    Benutzerschnittstelle ist das envirocar-analyser Entwickler-Team verantwortlich. Besitzer der Daten und somit 
+	                    Besitzer der Rechte der Daten ist enviroCar.
 	                    <br />
 	                    <br />
 	                    Betreiber der Webseite:
