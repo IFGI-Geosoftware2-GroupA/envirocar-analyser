@@ -1,7 +1,10 @@
 <?php
     
 	$contact = "Kontakt";
-	$contact_content = "Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-Mail-Adresse: 
+	$contact_content = "<h1>Kontakt</h1>
+	                    <br/>
+	                    <br/>
+	                    Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-Mail-Adresse: 
 	                    <br />
 	                    <br />
 	                    m_rund02@uni-muenster.de, 
@@ -11,11 +14,13 @@
 	                    t_gaer03@uni-muenster.de";
 	
 	$imprint = "Impressum";
-	$imprint_content = "Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
-	                    Plattform enviroCar. Das envirocar-analyzer Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
+	$imprint_content = "<h1>Impressum</h1>
+	                    <br/>
+	                    Bei envirocar analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
+	                    Plattform enviroCar. Das envirocar analyser Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
 	                    Genauigkeit oder Vollständigkeit der auf dieser Webseite dargestellten Inhalte, es sei denn der Fehler sei unter 
 	                    Absicht oder aufgrund grober Fahrlässigkeit entstanden. Für Fehler bei der Darstellung oder der 
-	                    Benutzerschnittstelle ist das envirocar-analyser Entwickler-Team verantwortlich. Besitzer der Daten und somit 
+	                    Benutzerschnittstelle ist das envirocar analyser Entwickler-Team verantwortlich. Besitzer der Daten und somit 
 	                    Besitzer der Rechte der Daten ist enviroCar.
 	                    <br />
 	                    <br />
@@ -37,26 +42,27 @@
 	
 	$terms = "Nutzungsbedingungen";
 	$terms_content = "The MIT License (MIT)<br />
-<br />
-Copyright (c) 2014 Jens Balmert, Thiemo G&auml;rtner, Mario Gerdes, Jan-Philipp Heine, Marius Runde, Daniel Sawatzky, Axel Virnich<br />
-<br />
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the 'Software'), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:<br />
-<br />
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.<br />
-<br />
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.";
+				  	  <br />
+					  Copyright (c) 2014 Jens Balmert, Thiemo G&auml;rtner, Mario Gerdes, Jan-Philipp Heine, 
+					  Marius Runde, Daniel Sawatzky, Axel Virnich<br />
+					  <br />
+					  Permission is hereby granted, free of charge, to any person obtaining a copy
+					  of this software and associated documentation files (the 'Software'), to deal
+					  in the Software without restriction, including without limitation the rights
+					  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+					  copies of the Software, and to permit persons to whom the Software is
+					  furnished to do so, subject to the following conditions:<br />
+					  <br />
+					  The above copyright notice and this permission notice shall be included in
+					  all copies or substantial portions of the Software.<br />
+					  <br />
+					  THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+					  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+					  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+					  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+					  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+					  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+					  THE SOFTWARE.";
 	
     $on = "An";
 	
@@ -88,7 +94,9 @@ THE SOFTWARE.";
 	
     $help = "Hilfe";
 	
-	$help_content = "Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
+	$help_content = "<h1>Hilfe</h1>
+	                 <br/>
+	                 Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
 	                 anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
 	                 Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
 	                 Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
@@ -96,22 +104,22 @@ THE SOFTWARE.";
 	                 der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
 	                 Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
 	                 reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
-	                 OpenStreepMap-Karte gewählt werden. Möchte man Daten für eine bestimmte Zeit für einen 
+	                 OpenStreepMap-Karte gewählt werden. <br/> Möchte man Daten für eine bestimmte Zeit für einen 
 	                 bestimmten Ort analysieren, so wählt man zunächst unter 'Von:' und 'Bis:' das 
-	                 Zeitintervall aus, in dem man auf die entsprechende Tage und zum Schluss auf 'Zeitraum 
-	                 auswählen' klickt. Anschließend kann man zur Bestimmung des Ortes entweder auf 
+	                 Zeitintervall aus, in dem man auf die entsprechende Tage und zum Schluss auf 'Daten abrufen' 
+	                 klickt. Anschließend kann man zur Bestimmung des Ortes entweder auf 
 	                 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man durch Ziehen des 
 	                 Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. Oder aber durch 
 	                 Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte setzen, um 
-	                 alle Straßensegmente zwischen diesen Punkten auszuwählen. Unter 'Mögliche Phänomene' 
+	                 alle Straßensegmente zwischen diesen Punkten auszuwählen. <br/> Unter 'Mögliche Phänomene' 
 	                 kann man entweder durch Klicken auf die Doppelpfeile alle Phänomene oder durch Klicken 
 	                 auf eines der Phänomene, Phänomene einzeln auswählen. Ebenso kann man unter 'Ausgewählte 
-	                 Phänomene' auch Phänomene wieder abwählen. Um die Daten nun zu Analysieren, klickt man 
+	                 Phänomene' auch Phänomene wieder abwählen. <br/> Um die Daten nun zu Analysieren, klickt man 
 	                 auf das Analysemodus-Feld. Danach erscheint oben der Interpolationsknopf zum 
 	                 Interpolieren der Daten und unten die Grafik und Tabelle. Führt man den Mauszeiger über 
 	                 die Grafik, so erhält man die Informationen zu der jeweiligen Messung. Bei der Tabelle 
 	                 können Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
-	                 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbar an der Seite der 
+	                 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
 	                 Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";
 	
 	$id = "ID";
