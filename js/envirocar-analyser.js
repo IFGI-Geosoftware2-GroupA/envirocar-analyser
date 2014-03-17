@@ -602,10 +602,10 @@ Query.prototype.getMeasurements = function() {
 		// queryURL += this.filter.createUrlValue();
 	// }
 	
-	// var testURL = lastTrack();
+	var testURL = getLastestTracks();
 	
 	// testURL beliebige URL die nur zum Testen da ist
-	var testURL = 'https://envirocar.org/api/stable/tracks?bbox=7.493017392746765,51.92793109730094,7.730158615327127,52.0153604337561';
+	//var testURL = 'https://envirocar.org/api/stable/tracks?bbox=7.493017392746765,51.92793109730094,7.730158615327127,52.0153604337561';
 	
 	// Get the track IDs
 	var json = (function () {
