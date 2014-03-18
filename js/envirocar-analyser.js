@@ -2,13 +2,12 @@
  * @author Marius Runde, Daniel Sawatzky, Thiemo Gaertner
  */
 var measurements;
+var envirocarTrackUrl = "https://envirocar.org/api/stable/tracks/";
 
 // ------------------------
 // --- Phenomenon class ---
 // ------------------------
 // Constructor with limits
-
-var allTracks = "https://envirocar.org/api/stable/tracks/";
 
 var querytestURL;
 
@@ -595,152 +594,297 @@ Query.prototype.getData = function() {
 };
 
 // Get the measurements from an URL and parse the JSON file into a Measurement array
-Query.prototype.getMeasurements = function() {
+Query.prototype.getMeasurements = function(inputUrl) {
 	// Create a temporal URL
 	// var queryURL = this.url + "measurements";
 	// if (this.filter != null) {
 		// queryURL += this.filter.createUrlValue();
 	// }
+	// alert(inputUrl);
 	
-	var testURL = getLastestTracks();
-	
-	// testURL beliebige URL die nur zum Testen da ist
-	//var testURL = 'https://envirocar.org/api/stable/tracks?bbox=7.493017392746765,51.92793109730094,7.730158615327127,52.0153604337561';
-	
-	// Get the track IDs
-	var json = (function () {
-		var json = null;
-		$.ajax({
-			'async': false,
-			'url': testURL,
-			'dataType': "json",
-			// If request succeeded the callback function stores the requested JSON to var = json 
-			'success': function (data) {json = data;},
-			'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
-		});
-				
-		// Return the object
-		return json;
-	})();
-	
-	var testJSON = json;
-	testJSON = JSON.stringify(testJSON);
-	testJSON = jQuery.parseJSON(testJSON);
-	
-	var result = [];
-	
-	// an die envirocar/tracks/ wird die id und measurements rangehängt
-	$.each(testJSON.tracks, function (key, value) {
-		var queryURL = allTracks.concat(value.id) + "/measurements";
+	if(inputUrl == undefined) {
+		// calling the getLatestTracks() function in order to get the URL String for querying the lastest measured 24 hours
+		latestTracks = getLastestTracks();
 		
-		typeof result === Measurement;
-		var tempId,
-		tempPoint,
-		tempTimestamp,
-		tempPhenomenons,
-		tempValues;
-		
-		var stempId,
-		stempModel,
-		stempFuelType,
-		stempManufacturer,
-		stempConstructionYear,
-		stempSensor,
-		stempType;
-		
+		alert(latestTracks);
+		// getting the last measured 24 hours
 		var json = (function () {
-			var requestedJson = null;
+			var json = null;
 			$.ajax({
 				'async': false,
-				// Requesting a local file due to the cross domain constrait explained above
-				'url': queryURL,
+				'url': latestTracks,
 				'dataType': "json",
 				// If request succeeded the callback function stores the requested JSON to var = json 
-				'success': function (data) {requestedJson = data;},
+				'success': function (data) {json = data;},
 				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
 			});
-			return requestedJson;
+					
+			return json;
 		})();
 		
-		$.each(json.features, function(arrayIndex, arrayElement) {
-			$.each(arrayElement, function(key, value) {
-				// Get the geometry of the measurement
-				if (key == "geometry") {
-					$.each(value, function(geomKey, geomValue) {
-						if (geomKey == "coordinates") {
-							var lat = geomValue[1];
-							var lng = geomValue[0];
-							tempPoint = new google.maps.LatLng(lat, lng);
-						}
-					});
-				}
-				// Get the properties of the measurement
-				if (key == "properties") {
-					$.each(value, function(propKey, propValue) {
-						// Get the id of the measurement
-						if (propKey == "id") {
-							tempId = propValue;
-							tempPhenomenons=[];
-							tempValues=[];
-							tempSensors=[];
-							var isCar = false;
-						}
-						// Get the timestamp of the measurement
-						if (propKey == "time") {
-							tempTimestamp = propValue;
-						}
-						// Get the sensor of the measurement
-						if (propKey == "sensor") {
-							$.each(propValue, function(senKey, senValue){
-								if(senKey == "type"){
-									stempType = senValue;
-								}
-								if(senKey == "properties"){
-									$.each(senValue, function(singleSenKey, singleSenValue){
-										if(singleSenKey == "id"){
-											stempId = new String(singleSenValue);
-										}
-										if(singleSenKey == "model"){
-											stempModel = new String(singleSenValue);
-										}
-										if(singleSenKey == "fuelType"){
-								
-											stempFuelType = new String(singleSenValue);
-											
-										}
-										if (singleSenKey == "manufacturer") {
-											stempManufacturer = new String(singleSenValue);
-										}
-										
-										if (singleSenKey == "constructionYear") {
-											stempConstructionYear = new Number(singleSenValue);
-										}
-									});
-									stempSensor = new Sensor(stempType, stempId, stempModel, stempFuelType, stempManufacturer, stempConstructionYear);
-								}
-							});
-						}
-						// Get the phenomenons of the measurement
-						if (propKey == "phenomenons") {
-							$.each(propValue, function(phenKey, phenValue) {
-								var tempName = phenKey;
-								$.each(phenValue, function(singlePhenKey, singlePhenValue) {
-									if (singlePhenKey == "unit") {
-										tempPhenomenons.push(new Phenomenon(tempName, singlePhenValue));
+		tracksJson = JSON.stringify(json);
+		tracksJsonObj = jQuery.parseJSON(tracksJson);
+		
+		var result = [];
+		
+		// Now all tracks within the last measured 24 hours are parsed into a measurement object
+		$.each(tracksJsonObj.tracks, function (key, value) {
+			
+			// building the URL string for querying the measurement data of a specific track
+			var queryURL = envirocarTrackUrl.concat(value.id) + "/measurements";
+			
+			typeof result === Measurement;
+			var tempId,
+			tempPoint,
+			tempTimestamp,
+			tempPhenomenons,
+			tempValues;
+			
+			var stempId,
+			stempModel,
+			stempFuelType,
+			stempManufacturer,
+			stempConstructionYear,
+			stempSensor,
+			stempType;
+			
+			var json = (function () {
+				var requestedJson = null;
+				$.ajax({
+					'async': false,
+					// Requesting a local file due to the cross domain constrait explained above
+					'url': queryURL,
+					'dataType': "json",
+					// If request succeeded the callback function stores the requested JSON to var = json 
+					'success': function (data) {requestedJson = data;},
+					'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+				});
+				return requestedJson;
+			})();
+			
+			$.each(json.features, function(arrayIndex, arrayElement) {
+				$.each(arrayElement, function(key, value) {
+					// Get the geometry of the measurement
+					if (key == "geometry") {
+						$.each(value, function(geomKey, geomValue) {
+							if (geomKey == "coordinates") {
+								var lat = geomValue[1];
+								var lng = geomValue[0];
+								tempPoint = new google.maps.LatLng(lat, lng);
+							}
+						});
+					}
+					// Get the properties of the measurement
+					if (key == "properties") {
+						$.each(value, function(propKey, propValue) {
+							// Get the id of the measurement
+							if (propKey == "id") {
+								tempId = propValue;
+								tempPhenomenons=[];
+								tempValues=[];
+								tempSensors=[];
+								var isCar = false;
+							}
+							// Get the timestamp of the measurement
+							if (propKey == "time") {
+								tempTimestamp = propValue;
+							}
+							// Get the sensor of the measurement
+							if (propKey == "sensor") {
+								$.each(propValue, function(senKey, senValue){
+									if(senKey == "type"){
+										stempType = senValue;
 									}
-									if (singlePhenKey == "value") {
-										tempValues.push(singlePhenValue);
+									if(senKey == "properties"){
+										$.each(senValue, function(singleSenKey, singleSenValue){
+											if(singleSenKey == "id"){
+												stempId = new String(singleSenValue);
+											}
+											if(singleSenKey == "model"){
+												stempModel = new String(singleSenValue);
+											}
+											if(singleSenKey == "fuelType"){
+									
+												stempFuelType = new String(singleSenValue);
+												
+											}
+											if (singleSenKey == "manufacturer") {
+												stempManufacturer = new String(singleSenValue);
+											}
+											
+											if (singleSenKey == "constructionYear") {
+												stempConstructionYear = new Number(singleSenValue);
+											}
+										});
+										stempSensor = new Sensor(stempType, stempId, stempModel, stempFuelType, stempManufacturer, stempConstructionYear);
 									}
 								});
-							});
-						}
-					});
-				}
+							}
+							// Get the phenomenons of the measurement
+							if (propKey == "phenomenons") {
+								$.each(propValue, function(phenKey, phenValue) {
+									var tempName = phenKey;
+									$.each(phenValue, function(singlePhenKey, singlePhenValue) {
+										if (singlePhenKey == "unit") {
+											tempPhenomenons.push(new Phenomenon(tempName, singlePhenValue));
+										}
+										if (singlePhenKey == "value") {
+											tempValues.push(singlePhenValue);
+										}
+									});
+								});
+							}
+						});
+					}
+				});
+				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
 			});
-			result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
 		});
-	});
-	return result;	
+		return result;
+		
+	} else if(inputUrl != undefined){
+		
+		alert(inputUrl);
+		// calling the getLatestTracks() function in order to get the URL String for querying the lastest measured 24 hours
+		// latestTracks = getLastestTracks();
+		
+		// getting the last measured 24 hours
+		var json = (function () {
+			var json = null;
+			$.ajax({
+				'async': false,
+				'url': inputUrl,
+				'dataType': "json",
+				// If request succeeded the callback function stores the requested JSON to var = json 
+				'success': function (data) {json = data;},
+				'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+			});
+					
+			return json;
+		})();
+		
+		tracksJson = JSON.stringify(json);
+		tracksJsonObj = jQuery.parseJSON(tracksJson);
+		
+		var result = [];
+		
+		// Now all tracks within the last measured 24 hours are parsed into a measurement object
+		$.each(tracksJsonObj.tracks, function (key, value) {
+			
+			// building the URL string for querying the measurement data of a specific track
+			var queryURL = envirocarTrackUrl.concat(value.id) + "/measurements";
+			
+			typeof result === Measurement;
+			var tempId,
+			tempPoint,
+			tempTimestamp,
+			tempPhenomenons,
+			tempValues;
+			
+			var stempId,
+			stempModel,
+			stempFuelType,
+			stempManufacturer,
+			stempConstructionYear,
+			stempSensor,
+			stempType;
+			
+			var json = (function () {
+				var requestedJson = null;
+				$.ajax({
+					'async': false,
+					// Requesting a local file due to the cross domain constrait explained above
+					'url': queryURL,
+					'dataType': "json",
+					// If request succeeded the callback function stores the requested JSON to var = json 
+					'success': function (data) {requestedJson = data;},
+					'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
+				});
+				return requestedJson;
+			})();
+			
+			$.each(json.features, function(arrayIndex, arrayElement) {
+				$.each(arrayElement, function(key, value) {
+					// Get the geometry of the measurement
+					if (key == "geometry") {
+						$.each(value, function(geomKey, geomValue) {
+							if (geomKey == "coordinates") {
+								var lat = geomValue[1];
+								var lng = geomValue[0];
+								tempPoint = new google.maps.LatLng(lat, lng);
+							}
+						});
+					}
+					// Get the properties of the measurement
+					if (key == "properties") {
+						$.each(value, function(propKey, propValue) {
+							// Get the id of the measurement
+							if (propKey == "id") {
+								tempId = propValue;
+								tempPhenomenons=[];
+								tempValues=[];
+								tempSensors=[];
+								var isCar = false;
+							}
+							// Get the timestamp of the measurement
+							if (propKey == "time") {
+								tempTimestamp = propValue;
+							}
+							// Get the sensor of the measurement
+							if (propKey == "sensor") {
+								$.each(propValue, function(senKey, senValue){
+									if(senKey == "type"){
+										stempType = senValue;
+									}
+									if(senKey == "properties"){
+										$.each(senValue, function(singleSenKey, singleSenValue){
+											if(singleSenKey == "id"){
+												stempId = new String(singleSenValue);
+											}
+											if(singleSenKey == "model"){
+												stempModel = new String(singleSenValue);
+											}
+											if(singleSenKey == "fuelType"){
+									
+												stempFuelType = new String(singleSenValue);
+												
+											}
+											if (singleSenKey == "manufacturer") {
+												stempManufacturer = new String(singleSenValue);
+											}
+											
+											if (singleSenKey == "constructionYear") {
+												stempConstructionYear = new Number(singleSenValue);
+											}
+										});
+										stempSensor = new Sensor(stempType, stempId, stempModel, stempFuelType, stempManufacturer, stempConstructionYear);
+									}
+								});
+							}
+							// Get the phenomenons of the measurement
+							if (propKey == "phenomenons") {
+								$.each(propValue, function(phenKey, phenValue) {
+									var tempName = phenKey;
+									$.each(phenValue, function(singlePhenKey, singlePhenValue) {
+										if (singlePhenKey == "unit") {
+											tempPhenomenons.push(new Phenomenon(tempName, singlePhenValue));
+										}
+										if (singlePhenKey == "value") {
+											tempValues.push(singlePhenValue);
+										}
+									});
+								});
+							}
+						});
+					}
+				});
+				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
+			});
+		});
+		
+		return result;
+		
+	}
 };
 
 /**

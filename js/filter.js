@@ -497,6 +497,14 @@ function getDateTimeBBox() {
 	
 	// alert(dateTimeBBoxUrl);
 	
+	query = new Query();
+	
+	var inputUrl = dateTimeBBoxUrl;
+	
+	alert(inputUrl);
+	
+	query.getMeasurements(inputUrl);
+	
 	return dateTimeBBoxUrl;
 		
 	// check if the user wants to perform a temporal filtering	
@@ -506,6 +514,12 @@ function getDateTimeBBox() {
 		var dateTimeUrl = getDT();
 		
 		// alert(dateTimeUrl);
+		
+		query = new Query();
+	
+		var inputUrl = dateTimeUrl;
+		
+		query.getMeasurements(inputUrl);
 			
 		return dateTimeUrl;
 		
@@ -518,6 +532,12 @@ function getDateTimeBBox() {
 		var BBUrl = baseUrlBBox + BBoxString;
 		
 		// alert(BBUrl);
+		
+		query = new Query();
+	
+		var inputUrl = BBUrl;
+		
+		query.getMeasurements(inputUrl);
 		
 		return BBUrl;
 	}
@@ -613,4 +633,13 @@ function getLastestTracks() {
 	
 	return lastest24H;
 
+}
+
+function testBla() {
+	
+	query = new Query();
+	
+	test = "test";
+	
+	query.getMeasurements(test);
 }
