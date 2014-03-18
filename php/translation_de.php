@@ -106,8 +106,9 @@
 	                 reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
 	                 OpenStreepMap-Karte gewählt werden. <br/> Möchten Sie Daten für eine bestimmte Zeit 
 	                 analysieren, so wählen Sie zunächst unter 'Von:' und 'Bis:' das Zeitintervall 
-	                 aus, in dem Sie auf die entsprechende Tage klicken. Danach können Sie 
-	                 optional noch ein Gebiet innerhalb NRWs auswählen, indem 
+	                 aus, in dem Sie auf die entsprechende Tage klicken (durch Klicken in die obere linke 
+	                 oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). 
+	                 Danach können Sie optional noch ein Gebiet innerhalb NRWs auswählen, indem 
 	                 Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
 	                 durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. 
 	                 Oder aber durch Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte 
