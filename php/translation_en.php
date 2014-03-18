@@ -96,8 +96,9 @@
 	                 double arrows or select single model by clicking on each of them. In 'Selected Car Models' you 
 	                 can deselect car models in the same way. <br/> Now, to analyse the data, you click on the analyse mode field.
 	                 After that the interpolation button for interpolating the data appears at the top and a diagram as well 
-	                 as a table on the right side of the web page. If you drag the mouse over the diagram you get information
-	                 for each measurement. You can delete and undelete columns of the table by setting and unsetting the
+	                 as a table on the right side of the web page. Below the interpolation button you can choose what you would like to 
+	                 interpolate: CO2, consumption or speed. After that you only need to click on the interpolation button to get the results.
+	                 You can delete and undelete columns of the table by setting and unsetting the
 	                 ticks in the boxes and pushing 'Refresh'. By moving the scroll bar of the table you can also see the
 	                 data below.";
 	

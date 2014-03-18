@@ -117,11 +117,12 @@
 	                 Doppelpfeile alle Phänomene oder durch Klicken auf eines der Automodelle, Automodelle 
 	                 einzeln auswählen. Ebenso können Sie unter 'Ausgewählte Automodelle' auch Automodelle 
 	                 auf die gleiche Weise wieder abwählen. <br/> Um die Daten nun zu Analysieren, 
-	                 klicken Sie auf das Analysemodus-Feld. Danach erscheint oben der Interpolationsknopf zum 
-	                 Interpolieren der Daten und unten die Grafik und Tabelle. Führt man den Mauszeiger über 
-	                 die Grafik, so erhält man die Informationen zu der jeweiligen Messung. Bei der Tabelle 
-	                 können Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
-	                 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
+	                 klicken Sie auf das Feld 'Analyse Modus'. Danach erscheint oben der Interpolationsknopf zum 
+	                 Interpolieren der Daten und unten die Grafik und Tabelle. Unter dem Interpolationsknopf 
+	                 können Sie noch auswählen, was Sie interpolieren möchten: CO2, Verbrauch oder Geschwindigkeit. 
+	                 Danach müssen Sie nur noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten.
+	                 Bei der Tabelle können Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken 
+	                 von 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
 	                 Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";
 	
 	$id = "ID";
