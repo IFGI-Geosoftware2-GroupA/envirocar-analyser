@@ -104,18 +104,20 @@
 	                 der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
 	                 Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
 	                 reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
-	                 OpenStreepMap-Karte gewählt werden. <br/> Möchte man Daten für eine bestimmte Zeit für einen 
-	                 bestimmten Ort analysieren, so wählt man zunächst unter 'Von:' und 'Bis:' das 
-	                 Zeitintervall aus, in dem man auf die entsprechende Tage und zum Schluss auf 'Daten abrufen' 
-	                 klickt. Anschließend kann man zur Bestimmung des Ortes entweder auf 
-	                 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man durch Ziehen des 
-	                 Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. Oder aber durch 
-	                 Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte setzen, um 
-	                 alle Straßensegmente zwischen diesen Punkten auszuwählen. <br/> Unter 'Mögliche Phänomene' 
-	                 kann man entweder durch Klicken auf die Doppelpfeile alle Phänomene oder durch Klicken 
-	                 auf eines der Phänomene, Phänomene einzeln auswählen. Ebenso kann man unter 'Ausgewählte 
-	                 Phänomene' auch Phänomene wieder abwählen. <br/> Um die Daten nun zu Analysieren, klickt man 
-	                 auf das Analysemodus-Feld. Danach erscheint oben der Interpolationsknopf zum 
+	                 OpenStreepMap-Karte gewählt werden. <br/> Möchten Sie Daten für eine bestimmte Zeit 
+	                 analysieren, so wählen Sie zunächst unter 'Von:' und 'Bis:' das Zeitintervall 
+	                 aus, in dem Sie auf die entsprechende Tage klicken. Danach können Sie 
+	                 optional noch ein Gebiet innerhalb NRWs auswählen, indem 
+	                 Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
+	                 durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. 
+	                 Oder aber durch Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte 
+	                 setzen, um alle Straßensegmente zwischen diesen Punkten auszuwählen. Zum Schluss klicken 
+	                 Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes angezeigt 
+	                 zu bekommen. <br/> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
+	                 Doppelpfeile alle Phänomene oder durch Klicken auf eines der Automodelle, Automodelle 
+	                 einzeln auswählen. Ebenso können Sie unter 'Ausgewählte Automodelle' auch Automodelle 
+	                 auf die gleiche Weise wieder abwählen. <br/> Um die Daten nun zu Analysieren, 
+	                 klicken Sie auf das Analysemodus-Feld. Danach erscheint oben der Interpolationsknopf zum 
 	                 Interpolieren der Daten und unten die Grafik und Tabelle. Führt man den Mauszeiger über 
 	                 die Grafik, so erhält man die Informationen zu der jeweiligen Messung. Bei der Tabelle 
 	                 können Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 

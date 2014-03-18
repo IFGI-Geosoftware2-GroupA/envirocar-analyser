@@ -14,10 +14,10 @@
 	                    t_gaer03@uni-muenster.de";
 	
 	$imprint = "Imprint";
-	$imprint_content = "envirocar analyser is a website for displaying and analyzing the environmental data of the 
+	$imprint_content = "envirocar analyser is a web page for displaying and analyzing the environmental data of the 
 	                    community platform envirocar. The envirocar analyser development team does not take any 
 	                    responsibility for the currentness, accuracy, and completeness of the contents displayed 
-	                    on this website, unless the mistake was made on purpose or due to gross negligence. 
+	                    on this web page, unless the mistake was made on purpose or due to gross negligence. 
 	                    The envirocar analyser development team is responsible for mistakes of the displaying and
 	                    for the user interface. Owner of the data and therefore owner of the rights of the data is
 	                    envirocar.
@@ -79,7 +79,7 @@
 	
 	$help_content = "<h1>Help<h1/>
 	                 <br/>
-	                 While opening the website the map will automatically zoom to Münster. You can choose another 
+	                 While opening the web page the map will automatically zoom to Münster. You can choose another 
 	                 location in North Rhine-Westphalia by entering its name in the search field. Only locations 
 	                 within North Rhine-Westphalia can be selected. You can choose a different map section either 
 	                 by clicking on the arrow field or by leaving the left mouse button clicked on the map and 
@@ -87,16 +87,16 @@
 	                 zoom scale or by simply clicking on the zoom scale itself. By clicking on the fields 'Karte',
 	                 'Hybrid' and 'OSM' you can choose between a vector map, a hybrid of a satellite image and 
 	                 street vectors and a map of OpenStreetMaps. <br/> If you want to analyse data of a certain time interval 
-	                 of a certain place you first select the time interval in the 'From:' and the 'To:' field by 
-	                 clicking on the corresponding days and after that on 'Get Data'. After that you can select the area 
-	                 either by clicking on 'Select space segment' to select a segment with a bounding box, whose size can be 
-	                 varied by pulling its edges with the left mouse button pushed. Alternatively you can click on 'Street
+	                 you need to click in the 'From:' and the 'To:' and then on the corresponding days. Optionally, you can select an area
+	                 within NRW in addition either by clicking on 'Select space segment' to select a segment with a bounding box, whose 
+	                 size can be varied by pulling its edges with the left mouse button pushed. Or you can click on 'Street
 	                 Selection' and set several points in the map with the left mouse button to select all street segments 
-	                 between those points. <br/> In 'Possible Phenomenons' you can select all phenomenons by clicking on the 
-	                 double arrows or select single phenomenons by clicking on each of them. In 'Selected Phenomenons' you 
-	                 can deselect phenomenons in the same way. <br/> Now, to analyse the data, you click on the analyse mode field.
+	                 between those points. Finally, you click on 'Get Data' to get the data for that time period and possibly that area. 
+	                 <br/> In 'Possible Car Models' you can select all car models by clicking on the 
+	                 double arrows or select single model by clicking on each of them. In 'Selected Car Models' you 
+	                 can deselect car models in the same way. <br/> Now, to analyse the data, you click on the analyse mode field.
 	                 After that the interpolation button for interpolating the data appears at the top and a diagram as well 
-	                 as a table on the right side of the website. If you drag the mouse over the diagram you get information
+	                 as a table on the right side of the web page. If you drag the mouse over the diagram you get information
 	                 for each measurement. You can delete and undelete columns of the table by setting and unsetting the
 	                 ticks in the boxes and pushing 'Refresh'. By moving the scroll bar of the table you can also see the
 	                 data below.";
