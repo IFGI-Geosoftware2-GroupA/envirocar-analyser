@@ -501,9 +501,8 @@ function getDateTimeBBox() {
 	
 	var inputUrl = dateTimeBBoxUrl;
 	
-	alert(inputUrl);
-	
 	measurements = query.getMeasurements(inputUrl);
+	
 	showMarkers(measurements);
 	
 		
@@ -519,9 +518,9 @@ function getDateTimeBBox() {
 	
 		var inputUrl = dateTimeUrl;
 		
-		query.getMeasurements(inputUrl);
-			
-		return dateTimeUrl;
+		measurements = query.getMeasurements(inputUrl);
+	
+		showMarkers(measurements);
 		
 	// check if the user wants to perform a spatial filtering
 	}else if(startDate == '' && endDate == '' && rectangleActive == true) {
@@ -537,9 +536,9 @@ function getDateTimeBBox() {
 	
 		var inputUrl = BBUrl;
 		
-		query.getMeasurements(inputUrl);
-		
-		return BBUrl;
+		measurements = query.getMeasurements(inputUrl);
+	
+		showMarkers(measurements);
 	}
 	
 	
@@ -547,15 +546,15 @@ function getDateTimeBBox() {
 }
 
 /*
- * getLastestTracks() This function builds a URL String containing the information to query the last measured 24 hours. It gets the JSON from the envirocar API containing all Tracks, stores the track ID of the
+ * getlatestTracks() This function builds a URL String containing the information to query the last measured 24 hours. It gets the JSON from the envirocar API containing all Tracks, stores the track ID of the
  * last measured track, using this track id, it gets the additional information about this track and therefore the time, too. The time is cast to a JS Date Object and 24hours are subtracted. Afterwards the
  * Date Object is cast to string and stored in a var. At least a URL string is build containing the information to a query the envirocar API in order to get the last measured 24 hours.
  * 
- * @return lastest24H String stored in a var containing the information to a query the envirocar API in order to get the last measured 24 hours
+ * @return latest24H String stored in a var containing the information to a query the envirocar API in order to get the last measured 24 hours
  * 
  */
 
-function getLastestTracks() {
+function getlatestTracks() {
 	
 	
 	// getting latest 100 tracks from the envirocar API as JSON
@@ -563,7 +562,8 @@ function getLastestTracks() {
 		var json = null;
 		$.ajax({
 			'async': false,
-			'url': 'envirocar.org/api/stable/tracks?bbox=5.8918,50.3149,9.4608,52.5571',
+			// only requesting tracks within Northrhine-Westfalia
+			'url': "https://envirocar.org/api/dev/tracks?bbox=5.472512722,49.200289241,10.4920501709,52.7186795024",
 			'dataType': "json",
 			// If request succeeded the callback function stores the requested JSON to var = json 
 			'success': function (data) {json = data;},
@@ -629,9 +629,9 @@ function getLastestTracks() {
 	// alert("trackstart " + trackStartTime + "\n" + "trackende " + trackStartDateMinusDay);
 	
 	// combining the baseUrl with the calculated date and the real trackStartTime
-	var lastest24H = baseUrl + trackStartTimeMinus24 + comma + trackStartTime;
+	var latest24H = baseUrl + trackStartTimeMinus24 + comma + trackStartTime;
 	
-	return lastest24H;
+	return latest24H;
 
 }
 
