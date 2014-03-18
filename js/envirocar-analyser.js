@@ -604,7 +604,7 @@ Query.prototype.getMeasurements = function(inputUrl) {
 	
 	if(inputUrl == undefined) {
 		// calling the getLatestTracks() function in order to get the URL String for querying the lastest measured 24 hours
-		latestTracks = getLastestTracks();
+		latestTracks = getLatestTracks();
 		
 		alert(latestTracks);
 		// getting the last measured 24 hours
