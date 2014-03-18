@@ -197,10 +197,11 @@
 				</div>
 				<script type="text/javascript">
 					// display the simple example
-					$(document).ready(function() {
+					// $(document).ready(function() {
 						var q = new Query('measurements');
-						showMarkers(q);
-					});
+						measurements = q.getData();
+						showMarkers(measurements);
+					// });
 				</script>
 				
 				<div class="search-container">	
@@ -228,7 +229,7 @@
 						} 
 						?>
 						lineChart.initChart();
-						lineChart.createChartFromMeasurement(measurement);
+						lineChart.createChartFromMeasurement(measurements);
 					</script>	
 				</div>
 		

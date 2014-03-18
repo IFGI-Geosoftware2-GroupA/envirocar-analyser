@@ -253,9 +253,9 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 		rpmA.sort(chart.compare);
 		// display labels in chosen language
 		if(chart.getLanguage() == 'de'){
-			chart.setTitle('Messungen');
-			chart.setAxisTitle('x', 'Zeit');
-			chart.setAxisTitle('y', 'Werte');
+			this.setTitle('Messungen');
+			this.setAxisTitle('x', 'Zeit');
+			this.setAxisTitle('y', 'Werte');
 			if(speedA.length > 0)			chart.addSeries('Geschwindigkeit(km/h)', true, 'Speed', speedA);
 			if(consumptionA.length > 0)		chart.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
 			if(co2A.length > 0)				chart.addSeries('CO2(g/h)', true, 'CO2',co2A);
@@ -263,9 +263,9 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 			if(rpmA.length > 0)				chart.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);	
 		}
 		else if(chart.getLanguage() == 'en'){
-			chart.setTitle('Measurements');
-			chart.setAxisTitle('x', 'Time');
-			chart.setAxisTitle('y', 'Values');
+			this.setTitle('Measurements');
+			this.setAxisTitle('x', 'Time');
+			this.setAxisTitle('y', 'Values');
 			if(speedA.length > 0)			chart.addSeries('Speed(km/h)', true, 'Speed', speedA);
 			if(consumptionA.length > 0)		chart.addSeries('Consumption(l/h)', true, 'Consumption', consumptionA);
 			if(co2A.length > 0)				chart.addSeries('CO2(g/h)', true, 'CO2', co2A);
@@ -273,9 +273,9 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 			if(rpmA.length > 0)				chart.addSeries('Revolutions(u/min)', true, 'Rpm', rpmA);	
 		}	
 		else{
-			chart.setTitle('Messungen');
-			chart.setAxisTitle('x', 'Zeit');
-			chart.setAxisTitle('y', 'Werte');
+			this.setTitle('Messungen');
+			this.setAxisTitle('x', 'Zeit');
+			this.setAxisTitle('y', 'Werte');
 			if(speedA.length > 0)			chart.addSeries('Geschwindigkeit(km/h)', true, 'Speed', speedA);
 			if(consumptionA.length > 0)		chart.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
 			if(co2A.length > 0)				chart.addSeries('CO2(g/h)', true, 'CO2', sort(co2A));
