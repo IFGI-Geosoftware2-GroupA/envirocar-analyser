@@ -503,9 +503,9 @@ function getDateTimeBBox() {
 	
 	alert(inputUrl);
 	
-	query.getMeasurements(inputUrl);
+	measurements = query.getMeasurements(inputUrl);
+	showMarkers(measurements);
 	
-	return dateTimeBBoxUrl;
 		
 	// check if the user wants to perform a temporal filtering	
 	}else if(startDate != '' && endDate != '' && rectangleActive == false){
@@ -563,7 +563,7 @@ function getLastestTracks() {
 		var json = null;
 		$.ajax({
 			'async': false,
-			'url': envirocarTrackUrl,
+			'url': 'envirocar.org/api/stable/tracks?bbox=5.8918,50.3149,9.4608,52.5571',
 			'dataType': "json",
 			// If request succeeded the callback function stores the requested JSON to var = json 
 			'success': function (data) {json = data;},
