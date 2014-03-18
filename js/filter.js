@@ -4,26 +4,28 @@
  * This class contains methods for creating the REST requests which queries the envirocar API. Spatial and temporal querying is contained.
  */
 
-var startDate;
-var endDate;
-var baseurl = "https://envirocar.org/api/stable/tracks?during="; //Global variable specifying the URL for the temporal filter contributed by the envirocar API
-var allTracks = "https://envirocar.org/api/stable/tracks/";
-var baseurlBBox = "https://envirocar.org/api/stable/tracks?bbox=";
+var startDate;	// Global variable containing the startDate based on the date-from element
+var endDate;	// Global variable containing the endDate base on the date-to element
+var baseUrl = "https://envirocar.org/api/stable/tracks?during=";	//Global variable specifying the URL for the temporal filter contributed by the envirocar API
+var envirocarTrackUrl = "https://envirocar.org/api/stable/tracks/";	// Global variable specifying the URL which returns all recorded tracks by the envirocar API
+var baseUrlBBox = "https://envirocar.org/api/stable/tracks?bbox=";	// Global variable specifying the URL for the spatial filter contributed by the envirocar API
 var hyphen = "-";
 var literalT = "T";
 var literalZ = "Z";
 var comma = ",";
 var BBoxPrefix = "&bbox=";
 var doublePoint = ":";
-var rectangleActive = false;
+var rectangleActive = false;	// Global variable which contains the boolean if a the rectangle is active or not
 
 /*
- * getDateTime() This method gets the values from the date-from and date-to boxes using this values building a string. Afterwards it will 
+ * getDateTime() This method gets the values from the date-from and date-to element. These values are used for building the string in order to start a temporal query. Afterwards it will 
  * query the envirocar API to get the tracks.
  * Additionally it is parsing the requested information, and the Car Model and track ID is displayed in the trackSelectionList element.
  * On change an alert will appear which displays additional information.
  * 
- * @return JSON
+ * This method is NOT implemented
+ * 
+ * @return This method returns the requestUrlTemporal for a temporal query
  */
 
 function getDateTime() {
@@ -31,7 +33,7 @@ function getDateTime() {
 	// clears the dropdown trackSelectionList element
 	$('#trackSelectionList').empty();
 	
-	// Getting the values of the boxes where datetime is displayed
+	// Getting the values of the date-x element where the date and the time is displayed
 	startDate = $('#date-from').val();
 	endDate = $('#date-to').val();
 	
@@ -52,51 +54,60 @@ function getDateTime() {
 		
 		alert("Sie haben den Startzeitpunkt " + startDate + " und den Endzeitpunkt " + endDate + " ausgewählt.");
 		
-		//Getting the literals from the date-from box and start building the first part of the string
+		// Getting the literals from the date-from box and start building the first part of the string
+		// If used this unusual way to get the date and time because the functions contributed by the jQuery framework not worked properly for me
 		
+		// storing the literals for the start year
 		var year = startDate.charAt(6);
 		var year1 = startDate.charAt(7);
 		var year2 = startDate.charAt(8);
 		var year3 = startDate.charAt(9);
 		
-		var baseurlYear = baseurl.concat(year, year1, year2, year3,hyphen);
+		// combining the baseUrl with the year
+		var baseUrlYear = baseUrl.concat(year, year1, year2, year3,hyphen);
 		
+		// storing the literals for the start month
 		var month = startDate.charAt(3);
 		var month1 = startDate.charAt(4);
 		
-		var baseurlYearMonth = baseurlYear.concat(month, month1, hyphen);
+		// combining the baseUrlYear with the month
+		var baseUrlYearMonth = baseUrlYear.concat(month, month1, hyphen);
 		
+		// storing the literals for the start day
 		var day = startDate.charAt(0);
 		var day1 = startDate.charAt(1);
 		
-		var baseurlYearMonthDay = baseurlYearMonth.concat(day, day1, literalT);
+		//combining the baseUrlYearMonth with the day
+		var baseUrlYearMonthDay = baseUrlYearMonth.concat(day, day1, literalT);
 		
+		// storing the literals for the start hour, minute and second
 		var hour = startDate.charAt(11);
 		var hour1 = startDate.charAt(12);
 		var minute = startDate.charAt(14);
 		var minute1 = startDate.charAt(15);
 		var seconds = "00";
 		
-		var baseurlStartDate = baseurlYearMonthDay.concat(hour, hour1, doublePoint, minute, minute1, doublePoint, seconds,literalZ , comma);
-		//alert(baseurlStartDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,
+		// combining the baseUrlYearMonthDay with hour, minute and second
+		var baseUrlStartDate = baseUrlYearMonthDay.concat(hour, hour1, doublePoint, minute, minute1, doublePoint, seconds,literalZ , comma);
+		// alert(baseUrlStartDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,
 		
-		//Getting the literals from the date-to box and start building the second part of the string
+		//Getting the literals from the date-to box and start building the string for the endDate. Building the endDate follows the same schema used for building the startDate string
 		var endYear = endDate.charAt(6);
 		var endYear1 = endDate.charAt(7);
 		var endYear2 = endDate.charAt(8);
 		var endYear3 = endDate.charAt(9);
 		
-		var baseurlEndDateYear = baseurlStartDate.concat(endYear, endYear1, endYear2, endYear3,hyphen);
+		var baseUrlEndDateYear = baseUrlStartDate.concat(endYear, endYear1, endYear2, endYear3,hyphen);
 		
 		var endMonth = endDate.charAt(3);
 		var endMonth1 = endDate.charAt(4);
 		
-		var baseurlEndDateYearMonth = baseurlEndDateYear.concat(endMonth, endMonth1, hyphen);
+		var baseUrlEndDateYearMonth = baseUrlEndDateYear.concat(endMonth, endMonth1, hyphen);
 		
 		var endDay = endDate.charAt(0);
 		var endDay1 = endDate.charAt(1);
 		
-		var baseurlEndDateYearMonthDay = baseurlEndDateYearMonth.concat(endDay, endDay1, literalT);
+		var baseUrlEndDateYearMonthDay = baseUrlEndDateYearMonth.concat(endDay, endDay1, literalT);
 		
 		var endHour = endDate.charAt(11);
 		var endHour1 = endDate.charAt(12);
@@ -104,18 +115,17 @@ function getDateTime() {
 		var endMinute1 = endDate.charAt(15);
 		var seconds = "00";
 		
-		//alert(baseurlEndDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
-		var baseurlEndDate = baseurlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
+		//alert(baseUrlEndDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
+		var baseUrlEndDate = baseUrlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
 		
-		var requestURL = baseurlEndDate;
+		var requestUrlTemporal = baseUrlEndDate;
 				
-		// Requesting the JSON File from envirocar
-		
+		// Requesting the temporal-filtered JSON File from the envirocar API with the use of the 		
 		var json = (function () {
 			var json = null;
 			$.ajax({
 				'async': false,
-				'url': requestURL,
+				'url': requestUrlTemporal,
 				'dataType': "json",
 				'beforeSend': function(){showProgressAnimation();},
 				'complete': function(){hideProgressAnimation();},
@@ -130,12 +140,11 @@ function getDateTime() {
 		})();
 			
 		// stores the returned object in the variable JSONFile.
-		var JSONFile = json;
+		var jsonTemporal = json;
 		
-		// Loops through the requested JSONFile and gets with the use of the trackID the additional information for all specified tracks
-					
-		$.each(JSONFile.tracks, function (key, value) {
-			trackURL = allTracks.concat(value.id);
+		// Loops through the requested JSONFile and gets with the use of the trackID the additional information for all specified tracks					
+		$.each(jsonTemporal.tracks, function (key, value) {
+			trackURL = envirocarTrackUrl.concat(value.id);
 			
 			var json = (function () {
 				var json = null;
@@ -164,7 +173,7 @@ function getDateTime() {
 		
 		// onChange alert with more specific car data
 		$('#trackSelectionList').change(function () {
-			trackURL = allTracks.concat($(this).val());
+			trackURL = envirocarTrackUrl.concat($(this).val());
 			
 			var json = (function () {
 				var json = null;
@@ -182,8 +191,10 @@ function getDateTime() {
 				return json;
 			})();
 			
+			// The requested JSON File is cast to a string
 			var jsonTrackData = JSON.stringify(json);
 			
+			// The JSON File is now parsed and could be entered
 			var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
 			
 			alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
@@ -194,13 +205,15 @@ function getDateTime() {
 		
 	}
 	
-	return requestURL;
+	return requestUrlTemporal;
 }
 /*
- * getBBox() This method gets the tracks within the user specified bounding box by building string with the use of the bounding box coordinates.
+ * getBBox() This method gets the tracks within the user specified bounding box by building string with the use of the bounding box coordinates contributed by the Google Maps API v3.
  * Afterwards it will query the envirocar API to get the tracks.
- * Additionally it is parsing the requested information, and the Car Model and track ID is displayed in the trackSelectionList element. On change
- * an alert will appear which displays additional information.
+ * Additionally it is parsing the requested information, and the Car Model and track ID is displayed in the trackSelectionList element. 
+ * On change an alert will appear which displays additional information.
+ * 
+ * This method is NOT implemented.
  * 
  * @return JSON
  */
@@ -210,23 +223,26 @@ function getBBox() {
 	// clears the dropdown trackSelectionList element
 	$('#trackSelectionList').empty();
 	
+	// Get the coordinates of the BoundingBox
 	pointNorthEast = rectangle.getBounds().getNorthEast();
 	pointSouthWest = rectangle.getBounds().getSouthWest();
 	
+	// Store the x and y coordinates to a variable
 	pointNorthEastX = pointNorthEast.lat();
 	pointNorthEastY = pointNorthEast.lng();
 	pointSouthWestX = pointSouthWest.lat();
 	pointSouthWestY = pointSouthWest.lng();
 	
 	
-	var BBoxURL = baseurlBBox.concat(pointSouthWestY, comma, pointSouthWestX, comma, pointNorthEastY, comma, pointNorthEastX);
-	// The URL should look like this: https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
+	var BBoxUrl = baseUrlBBox.concat(pointSouthWestY, comma, pointSouthWestX, comma, pointNorthEastY, comma, pointNorthEastX);
+	// alert(BBoxUrl) should look like this: https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
 	
+	// Requesting the spatial-filtered JSON File from the envirocar API with the use of the 
 	var json = (function () {
 			var json = null;
 			$.ajax({
 				'async': false,
-				'url': BBoxURL,
+				'url': BBoxUrl,
 				'dataType': "json",
 				// If request succeeded the callback function stores the requested JSON to var = json 
 				'success': function (data) {json = data;},
@@ -237,17 +253,18 @@ function getBBox() {
 			return json;
 		})();
 		
-		// stores the returned object in the variable JSONFile.
+		// stores the returned object in the variable jsonBBoxTracks.
 		var jsonBBoxTracks = json;
 		
+		// Loops through the requested JSON File and gets with the use of the trackID the additional information for all specified tracks	
 		$.each(jsonBBoxTracks.tracks, function (key, value) {
-			trackURL = allTracks.concat(value.id);
+			trackUrl = envirocarTrackUrl.concat(value.id);
 			
 			var json = (function () {
 				var json = null;
 				$.ajax({
 					'async': false,
-					'url': trackURL,
+					'url': trackUrl,
 					'dataType': "json",
 					// If request succeeded the callback function stores the requested JSON to var = json 
 					'success': function (data) {json = data;},
@@ -270,14 +287,14 @@ function getBBox() {
 		
 		// onChange alert with more specific car data
 		$('#trackSelectionList').change(function () {
-			trackURL = allTracks.concat($(this).val());
+			trackUrl = envirocarTrackUrl.concat($(this).val());
 			
 			var json = (function () {
 				var json = null;
 				$.ajax({
 					'async': false,
 					// Requesting a local file due to the cross domain constrait explained above
-					'url': trackURL,
+					'url': trackUrl,
 					'dataType': "json",
 					// If request succeeded the callback function stores the requested JSON to var = json 
 					'success': function (data) {json = data;},
@@ -288,10 +305,13 @@ function getBBox() {
 				return json;
 			})();
 			
+			// The JSON File is now parsed and could be entered
 			var jsonTrackData = JSON.stringify(json);
 			
+			// The requested JSON File is cast to a string
 			var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
 			
+			// If another element from the trackSelectionList is selected, an alert will popup embodying the information of the selected track
 			alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
 			+ "ModelType: " + jsonTrackDataObj.properties.sensor.properties.model + "\n"
 			+ "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
@@ -301,24 +321,38 @@ function getBBox() {
 		// return jsonBBoxTracks;	
 }
 
+/*
+ * setRectangleActive() This method sets the global variable rectangleActive to true if the user has selected the spatial filtering.
+ *
+ */
+
 function setRectangleActive() {
 	
 	rectangleActive = true;
 	
-	// alert("rectangle is now active");
-	
 }
+
+/*
+ * setRectangleNonActive() This method sets the global variable rectangleActive to false if the user has deselected the spatial filtering.
+ *
+ */
 
 function setRectangleNonActive() {
 	
 	rectangleActive = false;
-	
-	// alert("rectangle is not active");
-	
+
 }
+
+/*
+ * getDT() This method is a modification of the getDateTime() method. It gets the values from the date-from and date-to element. These values are used for building the string in order to start a temporal query. 
+ * It only builds the URL for the temporal filtering.
+ * 
+ * @return This method returns the requestUrlTemporal for a temporal query.
+ */
 
 function getDT() {
 	
+	// storing the value of the date-from and date-to element to a variable
 	startDate = $('#date-from').val();
 	endDate = $('#date-to').val();
 	
@@ -339,51 +373,60 @@ function getDT() {
 		
 		alert("Sie haben den Startzeitpunkt " + startDate + " und den Endzeitpunkt " + endDate + " ausgewählt.");
 		
-		//Getting the literals from the date-from box and start building the first part of the string
+		// Getting the literals from the date-from box and start building the first part of the string
+		// If used this unusual way to get the date and time because the functions contributed by the jQuery framework not worked properly for me
 		
+		// storing the literals for the start year
 		var year = startDate.charAt(6);
 		var year1 = startDate.charAt(7);
 		var year2 = startDate.charAt(8);
 		var year3 = startDate.charAt(9);
+
+		// combining the baseUrl with the year		
+		var baseUrlYear = baseUrl.concat(year, year1, year2, year3,hyphen);
 		
-		var baseurlYear = baseurl.concat(year, year1, year2, year3,hyphen);
-		
+		// storing the literals for the start month
 		var month = startDate.charAt(3);
 		var month1 = startDate.charAt(4);
 		
-		var baseurlYearMonth = baseurlYear.concat(month, month1, hyphen);
+		// combining the baseUrlYear with the month
+		var baseUrlYearMonth = baseUrlYear.concat(month, month1, hyphen);
 		
+		// storing the literals for the start day
 		var day = startDate.charAt(0);
 		var day1 = startDate.charAt(1);
 		
-		var baseurlYearMonthDay = baseurlYearMonth.concat(day, day1, literalT);
+		//combining the baseUrlYearMonth with the day
+		var baseUrlYearMonthDay = baseUrlYearMonth.concat(day, day1, literalT);
 		
+		// storing the literals for the start hour, minute and second
 		var hour = startDate.charAt(11);
 		var hour1 = startDate.charAt(12);
 		var minute = startDate.charAt(14);
 		var minute1 = startDate.charAt(15);
 		var seconds = "00";
 		
-		var baseurlStartDate = baseurlYearMonthDay.concat(hour, hour1, doublePoint, minute, minute1, doublePoint, seconds,literalZ , comma);
-		//alert(baseurlStartDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,
+		// combining the baseUrlYearMonthDay with hour, minute and second
+		var baseUrlStartDate = baseUrlYearMonthDay.concat(hour, hour1, doublePoint, minute, minute1, doublePoint, seconds,literalZ , comma);
+		//alert(baseUrlStartDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,
 		
-		//Getting the literals from the date-to box and start building the second part of the string
+		//Getting the literals from the date-to box and start building the string for the endDate. Building the endDate follows the same schema used for building the startDate string
 		var endYear = endDate.charAt(6);
 		var endYear1 = endDate.charAt(7);
 		var endYear2 = endDate.charAt(8);
 		var endYear3 = endDate.charAt(9);
 		
-		var baseurlEndDateYear = baseurlStartDate.concat(endYear, endYear1, endYear2, endYear3,hyphen);
+		var baseUrlEndDateYear = baseUrlStartDate.concat(endYear, endYear1, endYear2, endYear3,hyphen);
 		
 		var endMonth = endDate.charAt(3);
 		var endMonth1 = endDate.charAt(4);
 		
-		var baseurlEndDateYearMonth = baseurlEndDateYear.concat(endMonth, endMonth1, hyphen);
+		var baseUrlEndDateYearMonth = baseUrlEndDateYear.concat(endMonth, endMonth1, hyphen);
 		
 		var endDay = endDate.charAt(0);
 		var endDay1 = endDate.charAt(1);
 		
-		var baseurlEndDateYearMonthDay = baseurlEndDateYearMonth.concat(endDay, endDay1, literalT);
+		var baseUrlEndDateYearMonthDay = baseUrlEndDateYearMonth.concat(endDay, endDay1, literalT);
 		
 		var endHour = endDate.charAt(11);
 		var endHour1 = endDate.charAt(12);
@@ -391,20 +434,30 @@ function getDT() {
 		var endMinute1 = endDate.charAt(15);
 		var seconds = "00";
 		
-		//alert(baseurlEndDate) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
-		var baseurlEndDate = baseurlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
+		var requestUrlTemporal = baseUrlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
+		//alert(requestUrlTemporal) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
 		
-		return baseurlEndDate;
+		return requestUrlTemporal;
 	
 	}
 
 }
 
+/*
+ * getBB() This method is a modification of getBBox(). This function gets the tracks within the user specified bounding box by building string with the use of the bounding box coordinates contributed by the Google Maps API v3.
+ * It only builds a string containing the BoundingBox coordinates used for the spatial filtering.
+ * 
+ * @return String containing the coordinates from the user-specified BoundingBox
+ * 
+ */
+
 function getBB() {
 	
+	// Get the coordinates of the BoundingBox
 	pointNorthEast = rectangle.getBounds().getNorthEast();
 	pointSouthWest = rectangle.getBounds().getSouthWest();
 	
+	// Store the x and y coordinates to a variable
 	pointNorthEastX = pointNorthEast.lat();
 	pointNorthEastY = pointNorthEast.lng();
 	pointSouthWestX = pointSouthWest.lat();
@@ -412,57 +465,105 @@ function getBB() {
 	
 	
 	var coordBBox = pointSouthWestY + comma + pointSouthWestX + comma +pointNorthEastY + comma + pointNorthEastX;
-	// The URL should look like this: https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
+	// alert(coordBBox) should look like https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
 	
 	return coordBBox;
 }
 
+/*
+ * getDateTimeBBox() This function is called by clicking on the "Daten abrufen / Select Time" button. First this function will check what type of filtering the user wants to use (solved by using a if-clause).
+ * Afterwards it will call the getDT() and getBB() methods in order to create a string for the temporal-,spatial- or temporal-spatial- filter. 
+ * 
+ * @return dateTimeUrl, BBUrl, dateTimeBBoxUrl strings containing the URL which is used to query the envirocar API
+ * 
+ */
+
 function getDateTimeBBox() {
 	
+	// Storing the value of the date-from and date-to element in a string
 	startDate = $('#date-from').val();
 	endDate = $('#date-to').val();
 	
+	// check if the user wants to perform a temporal-spatial filtering
 	if(startDate != '' && endDate != '' && rectangleActive == true) {
 		
-	var dateTimeURL = getDT();
+	// calling getDT() in order to get the URL String for the temporal filter	
+	var dateTimeUrl = getDT();
+	// calling getBB() in order to get the bounding box coordinates
 	var BBoxString = getBB();
 	
-	var dateTimeBBoxURL = dateTimeURL + BBoxPrefix + BBoxString;
+	// creating the URL for the query
+	var dateTimeBBoxUrl = dateTimeUrl + BBoxPrefix + BBoxString;
 	
-	alert(dateTimeBBoxURL);
+	// alert(dateTimeBBoxUrl);
+	
+	query = new Query();
+	
+	var inputUrl = dateTimeBBoxUrl;
+	
+	alert(inputUrl);
+	
+	query.getMeasurements(inputUrl);
+	
+	return dateTimeBBoxUrl;
 		
+	// check if the user wants to perform a temporal filtering	
 	}else if(startDate != '' && endDate != '' && rectangleActive == false){
 		
-		var dateTimeURL = getDT();
+		// calling getDT() in order to get the URL string for the temporal filter
+		var dateTimeUrl = getDT();
 		
-		alert(dateTimeURL);
+		// alert(dateTimeUrl);
+		
+		query = new Query();
+	
+		var inputUrl = dateTimeUrl;
+		
+		query.getMeasurements(inputUrl);
 			
-		return dateTimeURL;
-
+		return dateTimeUrl;
+		
+	// check if the user wants to perform a spatial filtering
 	}else if(startDate == '' && endDate == '' && rectangleActive == true) {
 		
+		// calling getBB() in order to get the bounding box coordiantes
 		var BBoxString = getBB();
 		
-		var BBURL = baseurlBBox + BBoxString;
+		var BBUrl = baseUrlBBox + BBoxString;
 		
-		alert(BBURL);
+		// alert(BBUrl);
 		
-		return BBURL;
+		query = new Query();
+	
+		var inputUrl = BBUrl;
+		
+		query.getMeasurements(inputUrl);
+		
+		return BBUrl;
 	}
 	
 	
 	
 }
 
-function lastTrack() {
+/*
+ * getLastestTracks() This function builds a URL String containing the information to query the last measured 24 hours. It gets the JSON from the envirocar API containing all Tracks, stores the track ID of the
+ * last measured track, using this track id, it gets the additional information about this track and therefore the time, too. The time is cast to a JS Date Object and 24hours are subtracted. Afterwards the
+ * Date Object is cast to string and stored in a var. At least a URL string is build containing the information to a query the envirocar API in order to get the last measured 24 hours.
+ * 
+ * @return lastest24H String stored in a var containing the information to a query the envirocar API in order to get the last measured 24 hours
+ * 
+ */
+
+function getLastestTracks() {
 	
-	envirocarTrackURL = "https://envirocar.org/api/stable/tracks/";
 	
+	// getting latest 100 tracks from the envirocar API as JSON
 	var json = (function () {
 		var json = null;
 		$.ajax({
 			'async': false,
-			'url': envirocarTrackURL,
+			'url': envirocarTrackUrl,
 			'dataType': "json",
 			// If request succeeded the callback function stores the requested JSON to var = json 
 			'success': function (data) {json = data;},
@@ -473,14 +574,19 @@ function lastTrack() {
 		return json;
 	})();
 	
-	var envirocarTracks = JSON.stringify(json);
+	// casting the object to a string
+	var envirocarLatestTracks = JSON.stringify(json);
 	
-	var envirocarTracksObj = jQuery.parseJSON(envirocarTracks);
+	// parsing the JSON object
+	var envirocarTracksLatestObj = jQuery.parseJSON(envirocarLatestTracks);
 	
-	var trackId = JSON.stringify(envirocarTracksObj.tracks[0].id);
+	// getting the track ID from the zeroth track
+	var trackId = JSON.stringify(envirocarTracksLatestObj.tracks[0].id);
 	
-	var trackIdUrl = envirocarTrackURL + trackId.slice(1,25);
+	// building the URL to query the specific track information
+	var trackIdUrl = envirocarTrackUrl + trackId.slice(1,25);
 	
+	// getting the specific track information in order to get the date and time of the track
 	var json = (function () {
 		var json = null;
 		$.ajax({
@@ -496,28 +602,44 @@ function lastTrack() {
 		return json;
 	})();
 	
+	// casting the object to a string	
 	var trackInformation = JSON.stringify(json);
 	
+	// parsing the JSON object
 	var trackObj = jQuery.parseJSON(trackInformation);
 
+	// storing the start time in a variable
 	var trackStartTime = JSON.stringify(trackObj.features[0].properties.time);
 	
+	// getting the date of the track by slicing the year, month and day information
 	trackStartTime = trackStartTime.slice(1,21);
 	
+	// creating a JS date object
 	var trackStartTimeDateFormat = new Date(trackStartTime);
 	
-	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 24);
+	// trackStartTimeDateFormat - 24 hours
+	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 48);
 	
-	var testingDate = jQuery.datepicker.formatDate('yy-mm-dd',trackStartTimeDateFormat);
+	// casting the JS date object to a string
+	var lastDateMinus24 = jQuery.datepicker.formatDate('yy-mm-dd',trackStartTimeDateFormat);
 	
-	var trackStartDateMinusDay = testingDate + trackStartTime.slice(10,21);
+	// adding the hours, minutes and seconds to the date
+	var trackStartTimeMinus24 = lastDateMinus24 + trackStartTime.slice(10,21);
 	
 	// alert("trackstart " + trackStartTime + "\n" + "trackende " + trackStartDateMinusDay);
 	
-	var lastTrack = baseurl + trackStartDateMinusDay + comma + trackStartTime;
+	// combining the baseUrl with the calculated date and the real trackStartTime
+	var lastest24H = baseUrl + trackStartTimeMinus24 + comma + trackStartTime;
 	
-	// alert(lastTrack);
-	
-	return lastTrack;
+	return lastest24H;
 
+}
+
+function testBla() {
+	
+	query = new Query();
+	
+	test = "test";
+	
+	query.getMeasurements(test);
 }

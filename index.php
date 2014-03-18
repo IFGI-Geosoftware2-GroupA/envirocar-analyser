@@ -228,7 +228,7 @@
 						} 
 						?>
 						lineChart.initChart();
-						lineChart.createChartFromTrack();
+						lineChart.createChartFromMeasurement(measurement);
 					</script>	
 				</div>
 		
