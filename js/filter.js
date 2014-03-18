@@ -554,7 +554,7 @@ function getDateTimeBBox() {
  * 
  */
 
-function getlatestTracks() {
+function getLatestTracks() {
 	
 	
 	// getting latest 100 tracks from the envirocar API as JSON
@@ -618,7 +618,7 @@ function getlatestTracks() {
 	var trackStartTimeDateFormat = new Date(trackStartTime);
 	
 	// trackStartTimeDateFormat - 24 hours
-	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 48);
+	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 168);
 	
 	// casting the JS date object to a string
 	var lastDateMinus24 = jQuery.datepicker.formatDate('yy-mm-dd',trackStartTimeDateFormat);
