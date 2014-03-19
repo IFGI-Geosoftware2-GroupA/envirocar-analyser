@@ -87,7 +87,8 @@
 	                 zoom scale or by simply clicking on the zoom scale itself. By clicking on the fields 'Karte',
 	                 'Hybrid' and 'OSM' you can choose between a vector map, a hybrid of a satellite image and 
 	                 street vectors and a map of OpenStreetMaps. <br/> If you want to analyse data of a certain time interval 
-	                 you need to click in the 'From:' and the 'To:' and then on the corresponding days. Optionally, you can select an area
+	                 you need to click in the 'From:' and the 'To:' and then on the corresponding days (by clicking on the top left or 
+	                 right corner of the calendar window you can go back and forth in time). Optionally, you can select an area
 	                 within NRW in addition either by clicking on 'Select space segment' to select a segment with a bounding box, whose 
 	                 size can be varied by pulling its edges with the left mouse button pushed. Or you can click on 'Street
 	                 Selection' and set several points in the map with the left mouse button to select all street segments 
