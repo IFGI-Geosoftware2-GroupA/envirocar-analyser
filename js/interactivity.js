@@ -39,9 +39,7 @@ function changeMode() {
 		document.getElementById('map-container').style.display = "block";
 		document.getElementById('map-container').style.width = "100%";
 		resizeMap();
-		document.getElementById('analyser-panel').style.display = "none";
-		document.getElementById('analyser-chart').style.display = "none";
-		document.getElementById('analyser-table').style.display = "none";
+		$("#analyser-panel").hide();
 		
 		/*document.getElementById('header-nav').style.background = "#fff";*/
 		
@@ -60,9 +58,7 @@ function changeMode() {
 		document.getElementById('map-container').style.width = "50%";
 		resizeMap();
 		
-		document.getElementById('analyser-panel').style.display = "block";
-		document.getElementById('analyser-chart').style.display = "block";
-		document.getElementById('analyser-table').style.display = "block";
+		$("#analyser-panel").show(200);
 	
 		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
 		

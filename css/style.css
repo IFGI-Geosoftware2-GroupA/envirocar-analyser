@@ -9,8 +9,9 @@
 * Content:  1. General styles and calibration
 *		 	2. enviroCar analyser styles
 *				2.1 Map styles
-* 				2.2 Chart styles
-* 				2.3 Table styles
+* 				2.2 View Dropdown styles
+* 				2.3 Chart styles
+* 				2.4 Table styles
 * 			3. Google Maps styles
 *			4. Button styles
 * 			5. Style fixes
@@ -282,63 +283,115 @@ body {
 }
 
 /********************************************************************
-	2.2 enviroCar analyser chart styles
+	2.3 enviroCar analyser view dropdown styles
+********************************************************************/
+
+#analyser-switcher {
+	font-size: 14px;
+	position: absolute;
+	top: 11em;
+	margin : 1em;
+	z-index: 500;
+}
+
+#analyser-switcher ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.analyser-switcher-topmenu a {
+	float: left;
+	width: 130px;
+	text-align: center;
+}
+
+.analyser-switcher-topmenu ul {
+	display: none;
+}
+
+.analyser-switcher-topmenu a, .analyser-switcher-submenu a {
+	padding: 5px 5px;
+	border: 1px solid #000;
+	border-collapse: collapse;
+	color: #000;
+	font-weight: bold;
+	font-size: large;
+	text-decoration: none;
+	background-color: #FFF;
+	margin: 0;
+}
+
+.analyser-switcher-submenu a {
+	padding: 5px;
+	font-size: large;
+	width: 130px;
+	position: relative;
+}
+
+.analyser-switcher-submenu a:hover {
+	background-color: #00FFFF !important;
+}
+
+.analyser-switcher-topmenu:hover ul {
+	display: block;
+	z-index: 500;
+}
+
+/********************************************************************
+	2.3 enviroCar analyser chart styles
 ********************************************************************/
 
 #analyser-panel {
 	float: right;
-	width:50%;
-	display: none;
+	width: 50%;
 	border-left: 1px solid #888888;
 	z-index: 10;
 }
 
 #analyser-chart{
-	position: absolute;
-	width:50%;
-	height: 40%;
+	position: relative;
+	width: 100%;
 	border: none;
 }
 
 .top {
 	position: absolute;
-	top: 10em;
-	
+	top: 14em;
 }
 
+
 /********************************************************************
-	2.3 enviroCar analyser table styles
+	2.4 enviroCar analyser table styles
 ********************************************************************/
 
 #analyser-table{
-	position: absolute;
+	position: relative;
 	overflow: auto;
-	padding: 0 1em 0 1em;
 	margin-right: 1em;
-	width: 50%;
-	height: 35%;
+	width: 100%;
 	border: none;
 }
+
 .bottom {
-	bottom: 1.4em;
-	
+	bottom: 1.4em;	
 }
 
 @media (max-height: 720px) {
 	#analyser-table{
-		height: 30%;
+		height: 80%;
 	}
 }
 
 @media (max-height: 600px) {
 	#analyser-table{
-		height: 25%;
+		height: 75%;
 	}
 }
 
 @media (max-height: 500px) {
 	#analyser-table{
-		height: 20%;
+		height: 70%;
 	}
 }
 /********************************************************************

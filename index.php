@@ -1,12 +1,12 @@
-<?php 
-	if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
-		include 'php/translation_en.php';
-		$other_lang = 'de';
-	} else {
-		include 'php/translation_de.php';
-		$lang = 'de';
-		$other_lang = 'en';
-	}
+<?php
+if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
+	include 'php/translation_en.php';
+	$other_lang = 'de';
+} else {
+	include 'php/translation_de.php';
+	$lang = 'de';
+	$other_lang = 'en';
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +76,37 @@
 	<script src="js/boundaries.js"></script>
 	
 	<!-- SmartInfoWindow -->
-	<script src="js/smartinfowindow.js"></script> 
+	<script src="js/smartinfowindow.js"></script>
+	
+	<!-- JQuery Functions used when changing the view of the table or/and the chart -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#analyser-panel").height($("#map").height() * 2 / 3);
+// 			Executed when table and chart are requested
+			$("#dualView").click(function() {
+				$("#analyser-chart").show(200);
+				$("#analyser-table").show(200);
+				$('.dataTables_scrollBody').css('height', 200);
+				$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 4.5);
+			});
+// 			Executed when only the table is requested
+			$("#tableView").click(function() {
+				if ($("#analyser-table").is(":hidden") || $("#analyser-chart").is(":visible")) {
+					$("#analyser-chart").hide(200);
+					$("#analyser-table").height();
+					$('.dataTables_scrollBody').css('height', 0);
+					$('.dataTables_scrollBody').css('height', $("#analyser-panel").height());
+					$("#analyser-table").show(200);
+				}
+			});
+// 			Executed when only the chart is requested
+			$("#chartView").click(function() {
+				$("#analyser-chart").show(200);
+				$("#analyser-table").hide(200);
+			});
+		});
+	</script>	
+	
 		
 </head>
 
@@ -136,27 +166,27 @@
 						var l = getParam('lang');
 						if (l == "en") {
 							var duallistbox_carmodels = $('#duallistbox_carmodels').bootstrapDualListbox({
-								nonselectedlistlabel: 'Possible Car Models',
-								selectedlistlabel: 'Selected Car Models',
-								infotext: 'Show all {0}',
-								infotextfiltered: '{0} of {1}',
-								infotextempty: 'No entries',
-								filterplaceholder: 'Search for car model...',
-								filtertextclear: 'Show all',
-								preserveselectiononmove: 'moved',
-								moveonselect: true
+								nonselectedlistlabel : 'Possible Car Models',
+								selectedlistlabel : 'Selected Car Models',
+								infotext : 'Show all {0}',
+								infotextfiltered : '{0} of {1}',
+								infotextempty : 'No entries',
+								filterplaceholder : 'Search for car model...',
+								filtertextclear : 'Show all',
+								preserveselectiononmove : 'moved',
+								moveonselect : true
 							});
 						} else {
 							var duallistbox_carmodels = $('#duallistbox_carmodels').bootstrapDualListbox({
-								nonselectedlistlabel: 'M&ouml;gliche Automodelle',
-								selectedlistlabel: 'Ausgew&auml;hlte Automodelle',
-								infotext: 'Zeige alle {0}',
-								infotextfiltered: '{0} von {1}',
-								infotextempty: 'Keine Eintr&auml;ge',
-								filterplaceholder: 'Suche nach Automodell...',
-								filtertextclear: 'Zeige alle',
-								preserveselectiononmove: 'moved',
-								moveonselect: true
+								nonselectedlistlabel : 'M&ouml;gliche Automodelle',
+								selectedlistlabel : 'Ausgew&auml;hlte Automodelle',
+								infotext : 'Zeige alle {0}',
+								infotextfiltered : '{0} von {1}',
+								infotextempty : 'Keine Eintr&auml;ge',
+								filterplaceholder : 'Suche nach Automodell...',
+								filtertextclear : 'Zeige alle',
+								preserveselectiononmove : 'moved',
+								moveonselect : true
 							});
 						}
 					</script>
@@ -198,9 +228,9 @@
 				<script type="text/javascript">
 					// display the simple example
 					// $(document).ready(function() {
-						var q = new Query('measurements');
-						measurements = q.getData();
-						showMarkers(measurements);
+					var q = new Query('measurements');
+					measurements = q.getData();
+					showMarkers(measurements);
 					// });
 				</script>
 				
@@ -215,25 +245,44 @@
 			</div>
 			
 			<div id="analyser-panel">
+				<!-- Contains the Dropdown Menu with the View Selection -->
+				<div id="analyser-switcher" class="top2">
+					<ul>
+						<li class="analyser-switcher-topmenu">
+							<a href="">Anzeige</a>
+							<ul>
+								<li class="analyser-switcher-submenu">
+									<a id="tableView" href="#">Tabelle</a>
+								</li>
+								<li class="analyser-switcher-submenu">
+									<a id="chartView" href="#">Graph</a>
+								</li>
+								<li class="analyser-switcher-submenu">
+									<a id="dualView" href="#">Graph und Tabelle</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 				<div id="analyser-chart" class="top">
-					<script type="text/javascript">
-						<?php
-						if (isset($_GET['lang'])) {
-							if ($_GET['lang'] == 'en') {
-								echo 'var lineChart = new LineChart("en");';
-							} else {
-								echo 'var lineChart = new LineChart("en");';
-							}	
+					<script type="text/javascript"><?php
+					if (isset($_GET['lang'])) {
+						if ($_GET['lang'] == 'en') {
+							echo 'var lineChart = new LineChart("en");';
 						} else {
-							echo 'var lineChart = new LineChart("de");';
-						} 
+							echo 'var lineChart = new LineChart("en");';
+						}
+					} else {
+						echo 'var lineChart = new LineChart("de");';
+					}
 						?>
-						lineChart.initChart();
-						lineChart.createChartFromMeasurement(measurements);
+							lineChart.initChart();
+							lineChart.createChartFromMeasurement(measurements);
 					</script>	
+					
 				</div>
 		
-				<div id="analyser-table" class="bottom">
+				<div id="analyser-table" class="top">
 					<form name="checkbox">
 						   <p>
 							 <input type="checkbox" name="id" checked> <?php echo $id; ?>
@@ -267,6 +316,11 @@
 					<?php echo $terms_content; ?>
 				</div>
 			</div>
+			<!-- Hides Analysis Panel and Chart right after they are created -->
+			<script type="text/javascript">
+				$("#analyser-panel").hide();
+				$("#analyser-chart").hide();
+			</script>
 			
 			<!-- loading window -->
 			<div id="loading-div-background" class="transparent">
@@ -282,12 +336,11 @@
 		<div id="footer" >
 			<span>
 				<?php
-					if(isset($_GET['lang']) && $_GET['lang'] == 'en'){
-						echo '<a href="index.php"><img src="./img/blank.png" class="flag flag-de" alt="deutsch"></a> &middot';	
-					}
-					else{
-						echo '<a href="index.php?lang=en"><img src="./img/blank.png" class="flag flag-gb" alt="english"></a> &middot;';	
-					}
+				if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
+					echo '<a href="index.php"><img src="./img/blank.png" class="flag flag-de" alt="deutsch"></a> &middot';
+				} else {
+					echo '<a href="index.php?lang=en"><img src="./img/blank.png" class="flag flag-gb" alt="english"></a> &middot;';
+				}
 				?>
 								
 				&copy 2014 &middot; enviroCar &middot; <a href="#" onclick="toggleContact();"><?php echo $contact ?></a> 
