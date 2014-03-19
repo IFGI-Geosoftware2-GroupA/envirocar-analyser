@@ -249,7 +249,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<div id="analyser-switcher" class="top2">
 					<ul>
 						<li class="analyser-switcher-topmenu">
-							<a href="">Anzeige</a>
+							<a href="#">Anzeige</a>
 							<ul>
 								<li class="analyser-switcher-submenu">
 									<a id="tableView" href="#">Tabelle</a>
