@@ -133,26 +133,9 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				</div>
 				<br>
 				<div id="trackSelection">
-					<select id="trackSelectionList" size="1">
+					<select id="trackSelectionList" onchange="focusTrack()" size="1">
 					</select>
 				</div>
-				<script type="text/javascript">
-				function setTrackSelection(){
-					var select = document.getElementById('trackSelectionList');
-					var tracks = new Array();
-					for(var i = 0; i < measurements.length; i++){
-						if(tracks.indexOf(measurements[i].getTrackId()) == -1){
-							tracks.push(measurements[i].getTrackId());	
-						}
-					}
-					for(var x = 0; x < tracks.length; x++){
-						var opt = document.createElement('option');
-					    opt.value = tracks[x];
-					    opt.innerHTML = tracks[x];
-					    select.appendChild(opt);
-					}	
-				}
-				</script>
 			</div>
 			
 			<div id="timeSelection">
@@ -245,12 +228,13 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				</div>
 				<script type="text/javascript">
 					// display the simple example
-					// $(document).ready(function() {
 					var q = new Query('measurements');
 					measurements = q.getData();
-					showMarkers(measurements);
-					loadCarModels();
-					// });
+					$(document).ready(function() {
+						redrawData();
+					// showMarkers(measurements);
+					// loadCarModels();
+					});
 				</script>
 				
 				<div class="search-container">	

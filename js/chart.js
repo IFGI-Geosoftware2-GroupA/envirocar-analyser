@@ -264,7 +264,7 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 			if(consumptionA.length > 0)		this.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
 			if(co2A.length > 0)				this.addSeries('CO2(g/h)', true, 'CO2',co2A);
 			if(engineLoadA.length > 0)		this.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
-			if(rpmA.length > 0)				this.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);	
+			if(rpmA.length > 0)				this.addSeries('Umdrehungen(u/min)', false, 'Rpm', rpmA);	
 		}
 		else if(this.getLanguage() == 'en'){
 			this.setTitle('Measurements');
@@ -274,7 +274,7 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 			if(consumptionA.length > 0)		this.addSeries('Consumption(l/h)', true, 'Consumption', consumptionA);
 			if(co2A.length > 0)				this.addSeries('CO2(g/h)', true, 'CO2', co2A);
 			if(engineLoadA.length > 0)		this.addSeries('Engine Load(%)', true, 'EngineLoad', engineLoadA);
-			if(rpmA.length > 0)				this.addSeries('Revolutions(u/min)', true, 'Rpm', rpmA);	
+			if(rpmA.length > 0)				this.addSeries('Revolutions(u/min)', false, 'Rpm', rpmA);	
 		}	
 		else{
 			this.setTitle('Messungen');
@@ -284,7 +284,7 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 			if(consumptionA.length > 0)		this.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
 			if(co2A.length > 0)				this.addSeries('CO2(g/h)', true, 'CO2', sort(co2A));
 			if(engineLoadA.length > 0)		this.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
-			if(rpmA.length > 0)				this.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);	
+			if(rpmA.length > 0)				this.addSeries('Umdrehungen(u/min)', false, 'Rpm', rpmA);	
 		}
 };
 
