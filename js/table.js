@@ -6,23 +6,20 @@
 // -----------------------------
 // Initialize the table
 function initTable() {
-	node = document.getElementById("analyser-table");
-	if (typeof(myTable) !== "undefined") {
-		
-		tbl=document.getElementById('tableID');
-		while(tbl.rows.length>0) {
-    		tbl.deleteRow(0);
-  		}
-	}
-	
+	node = document.getElementById("analyser-table");	
 	node.appendChild(createTable());
 }
 
 /**
  * Create the Table on the basis of the json File
  */
-function createTable() {
+function createTable() {	
 	try {
+		if (typeof(myTable) !== "undefined") {		
+			tbl=document.getElementById('tableID');
+			tbl.parentNode.removeChild(tbl);
+		}
+		else {
 		var myTable = document.createElement("table");
 		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
@@ -48,9 +45,9 @@ function createTable() {
 				} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
 					speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
 				} else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-					engineload.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);
+					engineload.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
 				} else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-					rpm.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);
+					rpm.push((Number(measurements[i].getValues()[j]).toFixed(0)) + " " + measurements[i].getPhenomenons()[j].unit);
 				}
 			}
 		}
@@ -147,6 +144,7 @@ function createTable() {
 		myTable.setAttribute("border", 1);
 
 		return myTable;
+	}
 	} catch(e) {
 		alert(e.message);
 	}
