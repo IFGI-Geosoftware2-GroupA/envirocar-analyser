@@ -7,7 +7,6 @@
 // Initialize the table
 function initTable() {
 	node = document.getElementById("analyser-table");
-	node.appendChild(createTable());
 	if (typeof(myTable) !== "undefined") {
 		
 		tbl=document.getElementById('tableID');
@@ -15,6 +14,8 @@ function initTable() {
     		tbl.deleteRow(0);
   		}
 	}
+	
+	node.appendChild(createTable());
 }
 
 /**
