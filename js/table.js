@@ -9,17 +9,18 @@ function initTable() {
 	node = document.getElementById("analyser-table");	
 	node.appendChild(createTable());
 }
-
 /**
  * Create the Table on the basis of the json File
  */
 function createTable() {	
 	try {
-		if (typeof(myTable) !== "undefined") {		
-			tbl=document.getElementById('tableID');
-			tbl.parentNode.removeChild(tbl);
+		if (typeof(myTable) != "undefined") {		
+			$(document).ready(function() {
+  				$("tableID").remove();
+  				refreshTable();
+			});
 		}
-		else {
+		
 		var myTable = document.createElement("table");
 		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
@@ -32,7 +33,7 @@ function createTable() {
 		//maf = Array();
 		engineload = new Array();
 		rpm = new Array();
-
+	alert(measurements.length);
 		//Put Phenomenons in Arrays
 		for ( i = 0, j = 0; i < measurements.length; i++) {
 
@@ -144,7 +145,7 @@ function createTable() {
 		myTable.setAttribute("border", 1);
 
 		return myTable;
-	}
+		
 	} catch(e) {
 		alert(e.message);
 	}

@@ -156,7 +156,7 @@ function redrawData(){
 	showMarkers();
 	lineChart.clearSeries();
 	lineChart.createChartFromMeasurement(measurements);
-	initTable();
+	createTable();
 }
 
 // Delete all the markers on the map
