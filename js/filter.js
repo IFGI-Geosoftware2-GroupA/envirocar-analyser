@@ -503,7 +503,7 @@ function getDateTimeBBox() {
 	
 	measurements = query.getMeasurements(inputUrl);
 	
-	showMarkers(measurements);
+	redrawData();
 	
 		
 	// check if the user wants to perform a temporal filtering	
@@ -520,7 +520,7 @@ function getDateTimeBBox() {
 		
 		measurements = query.getMeasurements(inputUrl);
 	
-		showMarkers(measurements);
+		redrawData();
 		
 	// check if the user wants to perform a spatial filtering
 	}else if(startDate == '' && endDate == '' && rectangleActive == true) {
@@ -538,7 +538,7 @@ function getDateTimeBBox() {
 		
 		measurements = query.getMeasurements(inputUrl);
 	
-		showMarkers(measurements);
+		redrawData();
 	}
 	
 	
@@ -618,7 +618,7 @@ function getLatestTracks() {
 	var trackStartTimeDateFormat = new Date(trackStartTime);
 	
 	// trackStartTimeDateFormat - 24 hours
-	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 168);
+	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 24);
 	
 	// casting the JS date object to a string
 	var lastDateMinus24 = jQuery.datepicker.formatDate('yy-mm-dd',trackStartTimeDateFormat);
@@ -633,13 +633,4 @@ function getLatestTracks() {
 	
 	return latest24H;
 
-}
-
-function testBla() {
-	
-	query = new Query();
-	
-	test = "test";
-	
-	query.getMeasurements(test);
 }

@@ -165,6 +165,7 @@ function clearOverlays() {
     markers[i].setMap(null);
   }
   markers.length = 0;
+  if(typeof(mc) != 'undefined')	mc.clearMarkers();
 }
 
 /*
@@ -470,9 +471,9 @@ function initBoundingBox(){
  */
 function interpolate() {
 	var query = new Query('measurements');
-			measurements = query.getData();
+	measurements = query.getData();
 	// Check wether bounding box is activated or not and trim the polyexport so that only measurements
-		// in the bounding box are present
+	// in the bounding box are present
 	if(BoundingBox == true){
 			polyexport.clear();
 		//Get all points in the boundingbox
