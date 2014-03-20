@@ -157,6 +157,7 @@ function redrawData(){
 	lineChart.clearSeries();
 	lineChart.createChartFromMeasurement(measurements);
 	initTable();
+	alert("Markers Cleared!");
 }
 
 // Delete all the markers on the map
@@ -165,6 +166,7 @@ function clearOverlays() {
     markers[i].setMap(null);
   }
   markers.length = 0;
+  if(typeof(mc) != 'undefined')	mc.clearMarkers();
 }
 
 /*
@@ -187,7 +189,7 @@ function showMarkers(query) {
 	try {
 		// measurements = query.getData();
 		// Set timeout to wait for the map to be loaded
-		setTimeout(function() {
+		// setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
 				// Create marker for each measurement
 				var marker = new google.maps.Marker({
@@ -212,7 +214,7 @@ function showMarkers(query) {
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
 			}
-		}, 500);
+		// }, 500);
 	} catch(e) {
 		alert(e.message);
 	}
@@ -470,9 +472,9 @@ function initBoundingBox(){
  */
 function interpolate() {
 	var query = new Query('measurements');
-			measurements = query.getData();
+	measurements = query.getData();
 	// Check wether bounding box is activated or not and trim the polyexport so that only measurements
-		// in the bounding box are present
+	// in the bounding box are present
 	if(BoundingBox == true){
 			polyexport.clear();
 		//Get all points in the boundingbox
