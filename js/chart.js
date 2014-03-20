@@ -109,6 +109,12 @@ LineChart.prototype.addSeries = function(title, visible, id, data) {
 	this.chart.addSeries(options);
 };
 
+// remove all series displayed
+LineChart.prototype.clearSeries = function(){
+	while(this.chart.series.length > 0)
+ 		this.chart.series[0].remove();
+};
+
 // returns all the series of the chart as array
 LineChart.prototype.getAllSeries = function() {
 	return this.chart.series;

@@ -150,6 +150,23 @@ function initMap() {
 	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true,strokeColor: "#CC33FF"});
 }
 
+// redraws markers, chart and table
+function redrawData(){
+	clearOverlays();
+	showMarkers();
+	lineChart.clearSeries();
+	lineChart.createChartFromMeasurement(measurements);
+	initTable();
+}
+
+// Delete all the markers on the map
+function clearOverlays() {
+  for (var i = 0; i < markers.length; i++ ) {
+    markers[i].setMap(null);
+  }
+  markers.length = 0;
+}
+
 /*
   * Called when the map is resized
   * Bounds will be changed to contain all markers in the viewport
