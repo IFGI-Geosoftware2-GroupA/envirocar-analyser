@@ -137,7 +137,7 @@
 	
 	// $maf = "MAF";
 	
-	$rpm = "revolut./minute";
+	$rpm = "Revolut./Minute";
 	
 	// $throttle_position = "Throttle Position";
 	
