@@ -158,6 +158,7 @@ function redrawData(){
 	lineChart.createChartFromMeasurement(measurements);
 	setTrackSelection();
 	initTable();
+	tablestyle();
 }
 
 // Delete all the markers on the map

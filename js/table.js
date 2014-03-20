@@ -5,21 +5,19 @@
 // --- Methods for the table ---
 // -----------------------------
 // Initialize the table
-function initTable() {
-	node = document.getElementById("analyser-table");	
+function initTable() {	
+
+	node = document.getElementById("analyser-table");
 	node.appendChild(createTable());
 }
-
 /**
  * Create the Table on the basis of the json File
  */
 function createTable() {	
 	try {
-		if (typeof(myTable) !== "undefined") {		
-			tbl=document.getElementById('tableID');
-			tbl.parentNode.removeChild(tbl);
+		if (document.getElementById("tableID") != null) {
+			deleteTable();
 		}
-		else {
 		var myTable = document.createElement("table");
 		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
@@ -65,14 +63,27 @@ function createTable() {
 				headcell3 = document.createElement("th");
 				headcell4 = document.createElement("th");
 				headcell5 = document.createElement("th");
-
-				headtext0 = document.createTextNode("ID");
-				headtext1 = document.createTextNode("Verbrauch");
-				headtext2 = document.createTextNode("CO2");
-				headtext3 = document.createTextNode("Geschwindigkeit");
-				headtext4 = document.createTextNode("Motorlast");
-				headtext5 = document.createTextNode("Umdrehungen");
-
+				
+				var l = getParam('lang');
+						if (l == "en") {
+							
+							headtext0 = document.createTextNode("ID");
+							headtext1 = document.createTextNode("Consumption");
+							headtext2 = document.createTextNode("CO2");
+							headtext3 = document.createTextNode("Speed");
+							headtext4 = document.createTextNode("Engine Load");
+							headtext5 = document.createTextNode("Revolut./Minute");
+						}
+						else {		
+				
+							headtext0 = document.createTextNode("ID");
+							headtext1 = document.createTextNode("Verbrauch");
+							headtext2 = document.createTextNode("CO2");
+							headtext3 = document.createTextNode("Geschwindigkeit");
+							headtext4 = document.createTextNode("Motorlast");
+							headtext5 = document.createTextNode("Umdrehungen");
+						}
+		
 				headcell0.appendChild(headtext0);
 				headcell1.appendChild(headtext1);
 				headcell2.appendChild(headtext2);
@@ -144,10 +155,21 @@ function createTable() {
 		myTable.setAttribute("border", 1);
 
 		return myTable;
-	}
+		
 	} catch(e) {
 		alert(e.message);
 	}
+}
+
+
+function deleteTable(){
+	var tbl = document.getElementById("tableID");
+       	tbl.parentNode.removeChild(tbl);
+       	
+       	if (document.getElementById("tableID_wrapper") != null) {
+			var div = document.getElementById("tableID_wrapper");
+			div.parentNode.removeChild(div);
+		}
 }
 
 /**
@@ -166,8 +188,8 @@ function openMarkerInfoWindow(id) {
  * Use the existing HTML Table and changes some style parameters
  */
 function tablestyle() {
-	$(document).ready(function() {
-		var table = $('#tableID').dataTable({
+	//$(document).ready(function() {
+		$('#tableID').dataTable({
 			"sPaginationType" : "full_numbers",
 			"sScrollY" : "0px",
 			"bPaginate" : false,
@@ -180,7 +202,7 @@ function tablestyle() {
 		});
 // 		Scrollable Area is determined dynamically when loading the page initially
 		$('.dataTables_scrollBody').css('height', $("#map").height() * 2/3);
-	});
+	//});
 
 }
 
