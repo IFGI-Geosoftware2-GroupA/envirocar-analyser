@@ -8,6 +8,13 @@
 function initTable() {
 	node = document.getElementById("analyser-table");
 	node.appendChild(createTable());
+	if (typeof(myTable) !== "undefined") {
+		
+		tbl=document.getElementById('tableID');
+		while(tbl.rows.length>0) {
+    		tbl.deleteRow(0);
+  		}
+	}
 }
 
 /**
