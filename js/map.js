@@ -152,8 +152,9 @@ function initMap() {
 
 // redraws markers, chart and table
 function redrawData(){
-	clearOverlays();
-	showMarkers();
+	mc.clearMarkers();
+	// clearOverlays();
+	// showMarkers();
 	lineChart.clearSeries();
 	lineChart.createChartFromMeasurement(measurements);
 	initTable();

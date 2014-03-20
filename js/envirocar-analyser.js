@@ -1,5 +1,5 @@
 /**
- * @author Marius Runde, Daniel Sawatzky, Thiemo Gaertner
+ * @author Marius Runde, Daniel Sawatzky, Thiemo Gaertner, Jan-Philipp Heine
  */
 var measurements;
 var envirocarTrackUrl = "https://envirocar.org/api/stable/tracks/";
@@ -593,7 +593,9 @@ Query.prototype.getData = function() {
 	}
 };
 
-// Get the measurements from an URL and parse the JSON file into a Measurement array
+/**
+ * Get the measurements from an URL and parse the JSON file into a Measurement array
+ */
 Query.prototype.getMeasurements = function(inputUrl) {
 	// Create a temporal URL
 	// var queryURL = this.url + "measurements";
@@ -741,14 +743,14 @@ Query.prototype.getMeasurements = function(inputUrl) {
 			});
 		});
 		return result;
-		
+	
 	} else if(inputUrl != undefined){
-		
-		alert(inputUrl);
-		// calling the getLatestTracks() function in order to get the URL String for querying the lastest measured 24 hours
-		// latestTracks = getLastestTracks();
-		
-		// getting the last measured 24 hours
+		// if a inputUrl is passed to the function. It will get the tracks from the user specified url
+		// it clears the array where the old markers are stored	and 	
+		clearOverlays();
+		redrawData();
+
+		// getting the JSON track file from the envirocar API
 		var json = (function () {
 			var json = null;
 			$.ajax({
@@ -764,11 +766,12 @@ Query.prototype.getMeasurements = function(inputUrl) {
 		})();
 		
 		tracksJson = JSON.stringify(json);
+		// the JSON file can now be entered
 		tracksJsonObj = jQuery.parseJSON(tracksJson);
 		
 		var result = [];
 		
-		// Now all tracks within the last measured 24 hours are parsed into a measurement object
+		// Now all track information is parsed into a measurement object
 		$.each(tracksJsonObj.tracks, function (key, value) {
 			
 			// building the URL string for querying the measurement data of a specific track
@@ -793,10 +796,8 @@ Query.prototype.getMeasurements = function(inputUrl) {
 				var requestedJson = null;
 				$.ajax({
 					'async': false,
-					// Requesting a local file due to the cross domain constrait explained above
 					'url': queryURL,
 					'dataType': "json",
-					// If request succeeded the callback function stores the requested JSON to var = json 
 					'success': function (data) {requestedJson = data;},
 					'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
 				});
