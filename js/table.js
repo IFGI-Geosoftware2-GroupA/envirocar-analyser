@@ -6,15 +6,21 @@
 // -----------------------------
 // Initialize the table
 function initTable() {
-	node = document.getElementById("analyser-table");
+	node = document.getElementById("analyser-table");	
 	node.appendChild(createTable());
 }
-
 /**
  * Create the Table on the basis of the json File
  */
-function createTable() {
+function createTable() {	
 	try {
+		if (typeof(myTable) != "undefined") {		
+			$(document).ready(function() {
+  				$("tableID").remove();
+  				refreshTable();
+			});
+		}
+		
 		var myTable = document.createElement("table");
 		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
@@ -27,7 +33,7 @@ function createTable() {
 		//maf = Array();
 		engineload = new Array();
 		rpm = new Array();
-
+	alert(measurements.length);
 		//Put Phenomenons in Arrays
 		for ( i = 0, j = 0; i < measurements.length; i++) {
 
@@ -40,9 +46,9 @@ function createTable() {
 				} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
 					speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
 				} else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-					engineload.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);
+					engineload.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
 				} else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-					rpm.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);
+					rpm.push((Number(measurements[i].getValues()[j]).toFixed(0)) + " " + measurements[i].getPhenomenons()[j].unit);
 				}
 			}
 		}
@@ -139,6 +145,7 @@ function createTable() {
 		myTable.setAttribute("border", 1);
 
 		return myTable;
+		
 	} catch(e) {
 		alert(e.message);
 	}

@@ -150,6 +150,24 @@ function initMap() {
 	 poly = new google.maps.Polyline({ map: map, editable: true, geodesic: true,strokeColor: "#CC33FF"});
 }
 
+// redraws markers, chart and table
+function redrawData(){
+	clearOverlays();
+	showMarkers();
+	lineChart.clearSeries();
+	lineChart.createChartFromMeasurement(measurements);
+	createTable();
+}
+
+// Delete all the markers on the map
+function clearOverlays() {
+  for (var i = 0; i < markers.length; i++ ) {
+    markers[i].setMap(null);
+  }
+  markers.length = 0;
+  if(typeof(mc) != 'undefined')	mc.clearMarkers();
+}
+
 /*
   * Called when the map is resized
   * Bounds will be changed to contain all markers in the viewport
@@ -453,9 +471,9 @@ function initBoundingBox(){
  */
 function interpolate() {
 	var query = new Query('measurements');
-			measurements = query.getData();
+	measurements = query.getData();
 	// Check wether bounding box is activated or not and trim the polyexport so that only measurements
-		// in the bounding box are present
+	// in the bounding box are present
 	if(BoundingBox == true){
 			polyexport.clear();
 		//Get all points in the boundingbox
