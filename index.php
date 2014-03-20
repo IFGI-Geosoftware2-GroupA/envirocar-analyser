@@ -249,6 +249,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					var q = new Query('measurements');
 					measurements = q.getData();
 					showMarkers(measurements);
+					loadCarModels();
 					// });
 				</script>
 				

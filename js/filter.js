@@ -618,7 +618,7 @@ function getLatestTracks() {
 	var trackStartTimeDateFormat = new Date(trackStartTime);
 	
 	// trackStartTimeDateFormat - 24 hours
-	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 24);
+	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 100);
 	
 	// casting the JS date object to a string
 	var lastDateMinus24 = jQuery.datepicker.formatDate('yy-mm-dd',trackStartTimeDateFormat);

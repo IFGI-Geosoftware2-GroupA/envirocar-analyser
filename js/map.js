@@ -154,6 +154,7 @@ function initMap() {
 function redrawData(){
 	clearOverlays();
 	showMarkers();
+	loadCarModels();
 	lineChart.clearSeries();
 	lineChart.createChartFromMeasurement(measurements);
 	setTrackSelection();
