@@ -119,7 +119,9 @@
 	                 einzeln auswählen. Ebenso können Sie unter 'Ausgewählte Automodelle' auch Automodelle 
 	                 auf die gleiche Weise wieder abwählen. <br/> Um die Daten nun zu Analysieren, 
 	                 klicken Sie auf das Feld 'Analyse Modus'. Danach erscheint oben der Interpolationsknopf zum 
-	                 Interpolieren der Daten und unten die Grafik und Tabelle. Unter dem Interpolationsknopf 
+	                 Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
+	                 der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
+	                 Graph oder Graph und Tabelle gewählt werden. Unter dem Interpolationsknopf 
 	                 können Sie noch auswählen, was Sie interpolieren möchten: CO2, Verbrauch oder Geschwindigkeit. 
 	                 Danach müssen Sie nur noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten.
 	                 Bei der Tabelle können Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken 
@@ -199,5 +201,13 @@
 	$selectIDWconsumption = "Verbrauch";
 	
 	$selectIDWspeed = "Geschwindigkeit";
+	
+	$display = "Anzeige";
+	
+	$table = "Tabelle";
+	
+	$chart = "Graph";
+	
+	$chartAndTable = "Graph und Tabelle";
 	
 ?>

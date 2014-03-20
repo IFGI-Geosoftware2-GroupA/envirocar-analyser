@@ -249,16 +249,16 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<div id="analyser-switcher" class="top2">
 					<ul>
 						<li class="analyser-switcher-topmenu">
-							<a href="#">Anzeige</a>
+							<a href="#"><?php echo $display; ?></a>
 							<ul>
 								<li class="analyser-switcher-submenu">
-									<a id="tableView" href="#">Tabelle</a>
+									<a id="tableView" href="#"><?php echo $table; ?></a>
 								</li>
 								<li class="analyser-switcher-submenu">
-									<a id="chartView" href="#">Graph</a>
+									<a id="chartView" href="#"><?php echo $chart; ?></a>
 								</li>
 								<li class="analyser-switcher-submenu">
-									<a id="dualView" href="#">Graph und Tabelle</a>
+									<a id="dualView" href="#"><?php echo $chartAndTable; ?></a>
 								</li>
 							</ul>
 						</li>
