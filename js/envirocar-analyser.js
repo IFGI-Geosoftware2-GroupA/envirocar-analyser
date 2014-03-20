@@ -747,8 +747,6 @@ Query.prototype.getMeasurements = function(inputUrl) {
 	} else if(inputUrl != undefined){
 		// if a inputUrl is passed to the function. It will get the tracks from the user specified url
 		// it clears the array where the old markers are stored	and 	
-		clearOverlays();
-		redrawData();
 
 		// getting the JSON track file from the envirocar API
 		var json = (function () {

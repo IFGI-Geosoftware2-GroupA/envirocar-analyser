@@ -188,7 +188,7 @@ function showMarkers(query) {
 	try {
 		// measurements = query.getData();
 		// Set timeout to wait for the map to be loaded
-		// setTimeout(function() {
+		setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
 				// Create marker for each measurement
 				var marker = new google.maps.Marker({
@@ -213,7 +213,7 @@ function showMarkers(query) {
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
 			}
-		// }, 500);
+		}, 500);
 	} catch(e) {
 		alert(e.message);
 	}
