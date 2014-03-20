@@ -156,6 +156,7 @@ function redrawData(){
 	showMarkers();
 	lineChart.clearSeries();
 	lineChart.createChartFromMeasurement(measurements);
+	setTrackSelection();
 	initTable();
 }
 

@@ -270,7 +270,7 @@ Sensor.prototype.parseJSON = function(json) {
 // --- Measurement class ---
 // -------------------------
 // Constructor
-function Measurement(id, point, timestamp, phenomenons, values, sensors) {
+function Measurement(id, point, timestamp, phenomenons, values, sensors, trackId) {
 	try {
 		this.id				= new String(id);
 		this.point			= point;
@@ -278,6 +278,7 @@ function Measurement(id, point, timestamp, phenomenons, values, sensors) {
 		this.phenomenons	= phenomenons;
 		this.values			= values;
 		this.sensors		= sensors;
+		this.trackId		= trackId;
 	} catch(e) {
 		alert("Could not create Measurement. This is the error message: " + e.message);
 	}
@@ -290,6 +291,7 @@ Measurement.prototype.timestamp;
 Measurement.prototype.phenomenons;
 Measurement.prototype.values;
 Measurement.prototype.sensors;
+Measurement.prototype.trackId;
 
 // --- Getter ---
 Measurement.prototype.getId 			= function() { return this.id; };
@@ -298,6 +300,7 @@ Measurement.prototype.getTimestamp 		= function() { return this.timestamp; };
 Measurement.prototype.getPhenomenons	= function() { return this.phenomenons; };
 Measurement.prototype.getValues			= function() { return this.values; };
 Measurement.prototype.getSensors		= function() { return this.sensors;};
+Measurement.prototype.getTrackId		= function() { return this.trackId;};
 // --- End of getter ---
 
 // --- Setter ---
@@ -341,6 +344,13 @@ Measurement.prototype.setSensors = function(sensors) {
 		this.sensors = sensors;
 	} catch(e) {
 		alert("Could not change sensors. This is the error message: " + e.message);
+	}
+};
+Measurement.prototype.setTrackId = function(trackId){
+	try {
+		this.trackId = trackId;
+	} catch(e) {
+		alert("Could not change trackId. This is the error message: " + e.message);
 	}
 };
 // --- End of setter ---
@@ -641,6 +651,8 @@ Query.prototype.getMeasurements = function(inputUrl) {
 			tempTimestamp,
 			tempPhenomenons,
 			tempValues;
+
+			var trackId = value.id;
 			
 			var stempId,
 			stempModel,
@@ -739,7 +751,7 @@ Query.prototype.getMeasurements = function(inputUrl) {
 						});
 					}
 				});
-				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
+				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor, trackId));
 			});
 		});
 		return result;
@@ -782,6 +794,8 @@ Query.prototype.getMeasurements = function(inputUrl) {
 			tempPhenomenons,
 			tempValues;
 			
+			var trackId = value.id;
+
 			var stempId,
 			stempModel,
 			stempFuelType,
@@ -877,7 +891,7 @@ Query.prototype.getMeasurements = function(inputUrl) {
 						});
 					}
 				});
-				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor));
+				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor, trackId));
 			});
 		});
 		
