@@ -63,14 +63,27 @@ function createTable() {
 				headcell3 = document.createElement("th");
 				headcell4 = document.createElement("th");
 				headcell5 = document.createElement("th");
-
-				headtext0 = document.createTextNode("ID");
-				headtext1 = document.createTextNode("Verbrauch");
-				headtext2 = document.createTextNode("CO2");
-				headtext3 = document.createTextNode("Geschwindigkeit");
-				headtext4 = document.createTextNode("Motorlast");
-				headtext5 = document.createTextNode("Umdrehungen");
-
+				
+				var l = getParam('lang');
+						if (l == "en") {
+							
+							headtext0 = document.createTextNode("ID");
+							headtext1 = document.createTextNode("Consumption");
+							headtext2 = document.createTextNode("CO2");
+							headtext3 = document.createTextNode("Speed");
+							headtext4 = document.createTextNode("Engine Load");
+							headtext5 = document.createTextNode("Revolut./Minute");
+						}
+						else {		
+				
+							headtext0 = document.createTextNode("ID");
+							headtext1 = document.createTextNode("Verbrauch");
+							headtext2 = document.createTextNode("CO2");
+							headtext3 = document.createTextNode("Geschwindigkeit");
+							headtext4 = document.createTextNode("Motorlast");
+							headtext5 = document.createTextNode("Umdrehungen");
+						}
+		
 				headcell0.appendChild(headtext0);
 				headcell1.appendChild(headtext1);
 				headcell2.appendChild(headtext2);
