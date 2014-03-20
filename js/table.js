@@ -5,8 +5,9 @@
 // --- Methods for the table ---
 // -----------------------------
 // Initialize the table
-function initTable() {
-	node = document.getElementById("analyser-table");	
+function initTable() {	
+
+	node = document.getElementById("analyser-table");
 	node.appendChild(createTable());
 }
 /**
@@ -14,13 +15,9 @@ function initTable() {
  */
 function createTable() {	
 	try {
-		if (typeof(myTable) != "undefined") {		
-			$(document).ready(function() {
-  				$("tableID").remove();
-  				refreshTable();
-			});
+		if (document.getElementById("tableID") != null) {
+			deleteTable();
 		}
-		
 		var myTable = document.createElement("table");
 		var mytablehead = document.createElement("thead");
 		var mytablebody = document.createElement("tbody");
@@ -33,7 +30,7 @@ function createTable() {
 		//maf = Array();
 		engineload = new Array();
 		rpm = new Array();
-	alert(measurements.length);
+
 		//Put Phenomenons in Arrays
 		for ( i = 0, j = 0; i < measurements.length; i++) {
 
@@ -151,6 +148,17 @@ function createTable() {
 	}
 }
 
+
+function deleteTable(){
+	var tbl = document.getElementById("tableID");
+       	tbl.parentNode.removeChild(tbl);
+       	
+       	if (document.getElementById("tableID_wrapper") != null) {
+			var div = document.getElementById("tableID_wrapper");
+			div.parentNode.removeChild(div);
+		}
+}
+
 /**
  * Open the marker info window of the belonging measurement
  * by triggering the 'click' event
@@ -167,8 +175,8 @@ function openMarkerInfoWindow(id) {
  * Use the existing HTML Table and changes some style parameters
  */
 function tablestyle() {
-	$(document).ready(function() {
-		var table = $('#tableID').dataTable({
+	//$(document).ready(function() {
+		$('#tableID').dataTable({
 			"sPaginationType" : "full_numbers",
 			"sScrollY" : "0px",
 			"bPaginate" : false,
@@ -181,7 +189,7 @@ function tablestyle() {
 		});
 // 		Scrollable Area is determined dynamically when loading the page initially
 		$('.dataTables_scrollBody').css('height', $("#map").height() * 2/3);
-	});
+	//});
 
 }
 
