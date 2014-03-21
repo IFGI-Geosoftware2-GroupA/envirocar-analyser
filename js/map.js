@@ -325,9 +325,23 @@ function buildInfoWindow(marker, map, measurements) {
 		}
 
 		// Add Phenomenons and values to the infoWindow
+		
 		for ( i = 0; i < measurements.phenomenons.length; i++) {
-			content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+
+				if (measurements.getPhenomenons()[i].name == "Consumption") {
+					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "CO2") {
+					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "Speed") {
+					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "Engine Load") {
+					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "Rpm") {
+					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				}
+		
 		}
+		
 		content = content + '</div>';
 
 		// Open the InfoWindow when a marker is clicked and
