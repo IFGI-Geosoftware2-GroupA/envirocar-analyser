@@ -37,7 +37,7 @@ function createTable() {
 			for ( j = 0; j < measurements[i].phenomenons.length; j++) {
 
 				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-					consumption.push((Number(measurements[i].getValues()[j]).toFixed(6)) + " " + measurements[i].getPhenomenons()[j].unit);
+					consumption.push((Number(measurements[i].getValues()[j]).toFixed(3)) + " " + measurements[i].getPhenomenons()[j].unit);
 				} else if (measurements[i].getPhenomenons()[j].name == "CO2") {
 					co2.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
 				} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
@@ -170,6 +170,12 @@ function deleteTable(){
 			var div = document.getElementById("tableID_wrapper");
 			div.parentNode.removeChild(div);
 		}
+}
+
+function deleteRows(value){
+		
+		var index = value;
+		document.getElementById("tableID").deleteRow(index);
 }
 
 /**
