@@ -320,7 +320,7 @@ function loadCarModels() {
 		// Add car model to cars array if it is not contained there yet
 		if ($.inArray(measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model, cars) < 0) {
 			cars[k] = measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model;
-			duallistbox_carmodels.append('<option value="' + cars[k] + '">' + cars[k] + '</option>');
+			duallistbox_carmodels.append('<option value="' + cars[k] + '" selected>' + cars[k] + '</option>');
 			k++;
 			// alert(cars[k]);
 		}
