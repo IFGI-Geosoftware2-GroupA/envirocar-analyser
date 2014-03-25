@@ -4,6 +4,7 @@
  * @author Axel Virnich
  */
 
+ 
 $json_string = $_POST['json'];
 $json = json_decode(trim($json_string));
 //if JSON is malformed, an error message is returned 
@@ -11,32 +12,14 @@ if ($json === null) {
 	echo 'JSON File Validation Failed';
 } else {
 	//Amount of Measurements
-	$jsonSize = sizeof($json -> features);
-
+	$jsonSize = sizeof($json -> Speed);
+	
 	// Arrays of measured phenomenons
 	$co2 = array();
-	// $calMaf = array();
 	$speed = array();
 	$consumption = array();
 	$engineLoad = array();
-	// $gpsAccuracy = array();
-	// $gpsAltitude = array();
-	// $gpsBearing = array();
-	// $gpsHDOP = array();
-	// $gpsPDOP = array();
-	// $gpsSpeed = array();
-	// $gpsVDOP = array();
-	// $intakePressure = array();
-	// $maf = array();
-	// $intakeTemperature = array();
 	$rpm = array();
-	// $throttlePosition = array();
-	// $longTermFuelTrim = array();
-	// $o2Current = array();
-	// $o2CurrentER = array();
-	// $o2Voltage = array();
-	// $o2VoltageER = array();
-	// $shortTermFuelTrim = array();
 
 	//arrays to save the names and the data of the phenomenons
 	$m_names = array('CO2', 'Consumption', 'Engine Load', 'Rpm', 'Speed');
@@ -47,12 +30,16 @@ if ($json === null) {
 
 	// iterate through json file and sort values to arrays
 	for($x = 0; $x < $jsonSize; $x++){
-		$current = $json -> features[$x] -> properties -> phenomenons;
-		for($i = 0; $i < $number_phenomenons; $i++){
-			if(isset($current -> $m_names[$i])){
-				array_push($m_arrays[$i], $current -> $m_names[$i] -> value);
-			}
-		}
+		if(isset($json -> CO2[$x]))
+			array_push($m_arrays[0], $json -> CO2[$x]);
+		if(isset($json -> Consumption[$x]))
+			array_push($m_arrays[1], $json -> Consumption[$x]);
+		if(isset($json -> EngineLoad[$x]))
+			array_push($m_arrays[2], $json -> EngineLoad[$x]);
+		if(isset($json -> Rpm[$x]))
+			array_push($m_arrays[3], $json -> Rpm[$x]);
+		if(isset($json -> Speed[$x]))
+			array_push($m_arrays[4], $json -> Speed[$x]);
 	}
 
 	// 	return Minimum

@@ -145,8 +145,7 @@ function redrawData() {
 	clearOverlays();
 	showMarkers();
 	loadCarModels();
-	lineChart.clearSeries();
-	lineChart.createChartFromMeasurement(measurements);
+	setChart('line');
 	setTrackSelection();
 	initTable();
 	tablestyle();
@@ -213,8 +212,7 @@ function focusTrack(){
 		clearOverlays();
 		showMarkers();
 		loadCarModels();
-		lineChart.clearSeries();
-		lineChart.createChartFromMeasurement(measurements);
+		setChart('line');
 		initTable();
 		tablestyle();
 		// copy data back to measurements array

@@ -69,6 +69,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	<!-- Functions of the map, table, chart and filter -->
 	<script src="js/chart.js"></script>
 	<script src="js/map.js"></script>
+	<script src="js/aggregation.js"></script>
 	<script src="js/table.js"></script>
 	<script src="js/filter.js"></script>
 	
@@ -268,19 +269,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					</ul>
 				</div>
 				<div id="analyser-chart" class="top">
-					<script type="text/javascript"><?php
-					if (isset($_GET['lang'])) {
-						if ($_GET['lang'] == 'en') {
-							echo 'var lineChart = new LineChart("en");';
-						} else {
-							echo 'var lineChart = new LineChart("en");';
-						}
-					} else {
-						echo 'var lineChart = new LineChart("de");';
-					}
-						?>
-							lineChart.initChart();
-							lineChart.createChartFromMeasurement(measurements);
+					<script type="text/javascript">
+						setChart('line');
 					</script>	
 					
 				</div>

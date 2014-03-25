@@ -4,6 +4,29 @@
 // -----------------------------
 // --- Methods for the chart ---
 // -----------------------------
+// global chart variables
+var lineChart;
+var barChart;
+
+// global function to set the chart needed
+function setChart(type, json){
+	if(type == 'line'){
+		if(getParam() == 'en')
+			lineChart = new LineChart('en');
+		else
+			lineChart = new LineChart('de');
+		lineChart.initChart();
+		lineChart.createChartFromMeasurement(measurements);
+	}
+	else if(type == 'bar'){
+		if(getParam() == 'en')
+			barChart = new BarChart('en');
+		else
+			barChart = new BarChart('de');
+		barChart.initChart();
+		barChart.createChartFromAggregation(json);
+	}
+}
 
 // -------------------
 // - LineChart class -
@@ -462,61 +485,71 @@ BarChart.prototype.createChartFromAggregation = function(json){
 	var engineLoad = new Array();
 	
 	//sort the values to the arrays
-	co2.push(json[0]['CO2']['Mean']);
-	co2.push(json[0]['CO2']['Standard Error']);
-	co2.push(json[0]['CO2']['Min']);
-	co2.push(json[0]['CO2']['Max']);
+	if(json[0]['CO2']['Mean'] != 'No Data'){
+		co2.push(json[0]['CO2']['Mean']);
+		co2.push(json[0]['CO2']['Standard Error']);
+		co2.push(json[0]['CO2']['Min']);
+		co2.push(json[0]['CO2']['Max']);	
+	}
 	
-	consumption.push(json[1]['Consumption']['Mean']);
-	consumption.push(json[1]['Consumption']['Standard Error']);
-	consumption.push(json[1]['Consumption']['Min']);
-	consumption.push(json[1]['Consumption']['Max']);
+	if(json[1]['Consumption']['Mean'] != 'No Data'){
+		consumption.push(json[1]['Consumption']['Mean']);
+		consumption.push(json[1]['Consumption']['Standard Error']);
+		consumption.push(json[1]['Consumption']['Min']);
+		consumption.push(json[1]['Consumption']['Max']);	
+	}
 	
-	engineLoad.push(json[2]['Engine Load']['Mean']);
-	engineLoad.push(json[2]['Engine Load']['Standard Error']);
-	engineLoad.push(json[2]['Engine Load']['Min']);
-	engineLoad.push(json[2]['Engine Load']['Max']);
+	if(json[2]['Engine Load']['Mean'] != 'No Data'){
+		engineLoad.push(json[2]['Engine Load']['Mean']);
+		engineLoad.push(json[2]['Engine Load']['Standard Error']);
+		engineLoad.push(json[2]['Engine Load']['Min']);
+		engineLoad.push(json[2]['Engine Load']['Max']);	
+	}
 	
-	rpm.push(json[3]['Rpm']['Mean']);
-	rpm.push(json[3]['Rpm']['Standard Error']);
-	rpm.push(json[3]['Rpm']['Min']);
-	rpm.push(json[3]['Rpm']['Max']);
+	if(json[3]['Rpm']['Mean'] != 'No Data'){
+		rpm.push(json[3]['Rpm']['Mean']);
+		rpm.push(json[3]['Rpm']['Standard Error']);
+		rpm.push(json[3]['Rpm']['Min']);
+		rpm.push(json[3]['Rpm']['Max']);	
+	}
 	
-	speed.push(json[4]['Speed']['Mean']);
-	speed.push(json[4]['Speed']['Standard Error']);
-	speed.push(json[4]['Speed']['Min']);
-	speed.push(json[4]['Speed']['Max']);
+	if(json[4]['Speed']['Mean'] != 'No Data'){
+		speed.push(json[4]['Speed']['Mean']);
+		speed.push(json[4]['Speed']['Standard Error']);
+		speed.push(json[4]['Speed']['Min']);
+		speed.push(json[4]['Speed']['Max']);	
+	}
 	
 	//add information in the language selected
 	if(this.getLanguage() == 'en'){
 		this.setTitle('Aggregation Results');
 		this.setAxisTitle('y', 'Values');
 		this.setAxisCategories('x', ['Mean', 'Standard Error', 'Minimum', 'Maximum']);
-		this.addSeries('CO2(g/h)', true, co2);
-		this.addSeries('Speed(km/h)', true, speed);
-		this.addSeries('Consumption(l/h)', true, consumption);
-		this.addSeries('Rpm(u/min)', true, rpm);
-		this.addSeries('Engine Load(%)', true, engineLoad);	
+		if(co2.length > 0) 			this.addSeries('CO2(g/h)', true, co2);
+		if(speed.length > 0) 		this.addSeries('Speed(km/h)', true, speed);
+		if(consumption.length > 0) 	this.addSeries('Consumption(l/h)', true, consumption);
+		if(rpm.length > 0)		 	this.addSeries('Rpm(u/min)', true, rpm);
+		if(engineLoad.length > 0) 	this.addSeries('Engine Load(%)', true, engineLoad);	
 	}
 	else if(this.getLanguage() == 'de'){
 		this.setTitle('Aggregation Ergebnisse');
 		this.setAxisTitle('y', 'Werte');
 		this.setAxisCategories('x', ['Durchschnitt', 'Standardfehler', 'Minimum', 'Maximum']);
-		this.addSeries('CO2(g/h)', true, co2);
-		this.addSeries('Geschwindigkeit(km/h)', true, speed);
-		this.addSeries('Verbrauch(l/h)', true, consumption);
-		this.addSeries('Umdrehungen(u/min)', true, rpm);
-		this.addSeries('Motorlast(%)', true, engineLoad);	
+		if(co2.length > 0)			this.addSeries('CO2(g/h)', true, co2);
+		if(speed.length > 0)		this.addSeries('Geschwindigkeit(km/h)', true, speed);
+		if(consumption.length > 0)	this.addSeries('Verbrauch(l/h)', true, consumption);
+		if(rpm.length > 0)			this.addSeries('Umdrehungen(u/min)', true, rpm);
+		if(engineLoad.length > 0)	this.addSeries('Motorlast(%)', true, engineLoad);	
 	}
 	else{
 		this.setTitle('Aggregation Ergebnisse');
 		this.setAxisTitle('y', 'Werte');
 		this.setAxisCategories('x', ['Durchschnitt', 'Standardfehler', 'Minimum', 'Maximum']);
-		this.addSeries('CO2(g/h)', true, co2);
-		this.addSeries('Geschwindigkeit(km/h)', true, speed);
-		this.addSeries('Verbrauch(l/h)', true, consumption);
-		this.addSeries('Umdrehungen(u/min)', true, rpm);
-		this.addSeries('Motorlast(%)', true, engineLoad);
+		if(co2.length > 0)			this.addSeries('CO2(g/h)', true, co2);
+		if(speed.length > 0)		this.addSeries('Geschwindigkeit(km/h)', true, speed);
+		if(consumption.length > 0)	this.addSeries('Verbrauch(l/h)', true, consumption);
+		if(rpm.length > 0)			this.addSeries('Umdrehungen(u/min)', true, rpm);
+		if(engineLoad.length > 0)	this.addSeries('Motorlast(%)', true, engineLoad);
 	}
 };
 
