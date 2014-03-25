@@ -177,34 +177,39 @@ body {
 
 #analyser-help {
 	padding: 1.5em;
-	height: 70%;
+	height: 75%;
 	width: 49.9%;
 	overflow:auto;
 	bottom: 1.5em;
+	margin-top: -4em;
+
 }
 
 #analyser-contact{
 	padding: 1.5em;
-	height: 70%;
+	height: 75%;
 	width: 49.9%;
 	overflow:auto;
 	bottom: 1.5em;
+	margin-top: -4em;
 }
 
 #analyser-imprint{
 	padding: 1.5em;
-	height: 70%;
+	height: 75%;
 	width: 49.9%;
 	overflow:auto;
 	bottom: 1.5em;
+	margin-top: -4em;
 }
 
 #analyser-terms{
 	padding: 1.5em;
-	height: 70%;
+	height: 75%;
 	width: 49.9%;
 	overflow:auto;
 	bottom: 1.5em;
+	margin-top: -4em;
 }
 
 #footer{
@@ -330,12 +335,13 @@ body {
 }
 
 .analyser-switcher-submenu a:hover {
-	background-color: #00FFFF !important;
+	background-color: #1D83C3 !important;
+	color: #fff;
 }
 
 .analyser-switcher-topmenu:hover ul {
 	display: block;
-	z-index: 500;
+	z-index: 49;
 }
 
 /********************************************************************
