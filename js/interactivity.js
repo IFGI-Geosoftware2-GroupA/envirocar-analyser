@@ -14,7 +14,6 @@ var alerted = false;
 // Enable or disable the help, contact, imprint or terms of usage in the analyser-panel
 var toggled = false;
 var lastContent = '';
-var hidden = false;
 	
 // Screen resolution
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
@@ -272,6 +271,7 @@ function toggleAnalyserPanel(id) {
 		// Then display the analyser content
 		document.getElementById('analyser-chart').style.display = 'block';
 		document.getElementById('analyser-table').style.display = 'block';
+		document.getElementById("analyser-switcher").style.visibility = 'visible';
 		
 		// Last change the toggled variable
 		toggled = false;
@@ -279,6 +279,7 @@ function toggleAnalyserPanel(id) {
 		// First hide the analyser content
 		document.getElementById('analyser-chart').style.display = 'none';
 		document.getElementById('analyser-table').style.display = 'none';
+		document.getElementById("analyser-switcher").style.visibility = 'hidden';
 		
 		// Then display the expected content
 		for (var i = 0; i < possibleIDs.length; i++) {
@@ -297,13 +298,6 @@ function toggleAnalyserPanel(id) {
 // Enable or disable the help content in the analyser-panel
 function toggleHelp() {
 	toggleAnalyserPanel('help');
-	if (hidden == false){
-		document.getElementById("analyser-switcher").style.visibility = 'hidden';
-		hidden = true;
-	} else {
-		document.getElementById("analyser-switcher").style.visibility = 'visible';
-		hidden = false;
-	}
 }
 
 // Enable or disable the contact content in the analyser-panel
