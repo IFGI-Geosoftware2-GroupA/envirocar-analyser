@@ -213,7 +213,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
  					<option value="consumption"><?php echo $selectIDWconsumption; ?></option>
   					<option value="speed"><?php echo $selectIDWspeed; ?></option>
   				</select>
-  				<input type="button" name"clearidw" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
+  				<input type="button" id="clearidw" name"clearidw" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
 			</div>
 			
 			<div id="analysis-mode" >

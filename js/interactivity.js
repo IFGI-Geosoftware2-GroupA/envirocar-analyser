@@ -64,6 +64,9 @@ function changeMode() {
 		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
 		
 		document.getElementById('analysisInterpolation').style.display = "block";
+		
+		document.getElementById("clearidw").style.display = "none";
+		document.getElementById("idwid").style.display = "none";
 	}
 }
 

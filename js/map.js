@@ -560,6 +560,9 @@ function interpolate() {
 			co2markers = interpolatePhen("CO2");
 			consumptionmarkers = interpolatePhen("Consumption");
 			alert("Interpolation succeeded. showIdwSpeed(), showIdwConsumption(), showIdwCo2(), clearIdwDisplay() will show the results.");
+			document.getElementById("clearidw").style.display = "block";
+			document.getElementById("idwid").style.display = "block";
+			
 		} catch(e) {
 			alert("Could not perform Interpolation. This is the error message: " + e.message);
 		}
@@ -630,6 +633,8 @@ function clearIdwDisplay() {
 	} catch(e) {
 		alert(e.message);
 	}
+	document.getElementById("clearidw").style.display = "none";
+	document.getElementById("idwid").style.display = "none";
 }
 
 function IDWSelection() {
