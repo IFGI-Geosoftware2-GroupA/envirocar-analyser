@@ -274,6 +274,7 @@ function toggleAnalyserPanel(id) {
 		// Then display the analyser content
 		document.getElementById('analyser-chart').style.display = 'block';
 		document.getElementById('analyser-table').style.display = 'block';
+		document.getElementById("analyser-switcher").style.visibility = 'visible';
 		
 		// Last change the toggled variable
 		toggled = false;
@@ -281,6 +282,7 @@ function toggleAnalyserPanel(id) {
 		// First hide the analyser content
 		document.getElementById('analyser-chart').style.display = 'none';
 		document.getElementById('analyser-table').style.display = 'none';
+		document.getElementById("analyser-switcher").style.visibility = 'hidden';
 		
 		// Then display the expected content
 		for (var i = 0; i < possibleIDs.length; i++) {

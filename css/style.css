@@ -291,7 +291,7 @@ body {
 	position: absolute;
 	top: 11em;
 	margin : 1em;
-	z-index: 500;
+	z-index: 90;
 }
 
 #analyser-switcher ul {

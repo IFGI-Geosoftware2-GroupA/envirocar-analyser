@@ -7,7 +7,7 @@
 	                    Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-Mail-Adresse: 
 	                    <br />
 	                    <br />
-	                    m_rund02@uni-muenster.de, 
+	                    marius.runde@uni-muenster.de, 
 	                    <br />
 	                    axelvirnich@uni-muenster.de, 
 	                    <br />
@@ -16,7 +16,7 @@
 	$imprint = "Impressum";
 	$imprint_content = "<h1>Impressum</h1>
 	                    <br/>
-	                    Bei envirocar analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
+	                    Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
 	                    Plattform enviroCar. Das envirocar analyser Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
 	                    Genauigkeit oder Vollständigkeit der auf dieser Webseite dargestellten Inhalte, es sei denn der Fehler sei unter 
 	                    Absicht oder aufgrund grober Fahrlässigkeit entstanden. Für Fehler bei der Darstellung oder der 
@@ -34,7 +34,7 @@
 	                    <br />
 	                    Jan-Philipp Heine
 	                    <br />
-	                    Marius Maria Runde
+	                    Marius Runde
 	                    <br />
 	                    Daniel Sawatzky
 	                    <br />
@@ -96,6 +96,7 @@
 	
 	$help_content = "<h1>Hilfe</h1>
 	                 <br/>
+	                 <h2>Kartenausschnitt</h2>
 	                 Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
 	                 anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
 	                 Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
@@ -104,7 +105,10 @@
 	                 der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
 	                 Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
 	                 reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
-	                 OpenStreepMap-Karte gewählt werden. <br/> Möchten Sie Daten für eine bestimmte Zeit 
+	                 OpenStreepMap-Karte gewählt werden. 
+	                 <br/> 
+	                 <h2>Daten abrufen</h2>
+	                 Möchten Sie Daten für eine bestimmte Zeit 
 	                 analysieren, so wählen Sie zunächst unter 'Von:' und 'Bis:' das Zeitintervall 
 	                 aus, in dem Sie auf die entsprechende Tage klicken (durch Klicken in die obere linke 
 	                 oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). 
@@ -117,15 +121,17 @@
 	                 zu bekommen. <br/> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
 	                 Doppelpfeile alle Phänomene oder durch Klicken auf eines der Automodelle, Automodelle 
 	                 einzeln auswählen. Ebenso können Sie unter 'Ausgewählte Automodelle' auch Automodelle 
-	                 auf die gleiche Weise wieder abwählen. <br/> Um die Daten nun zu Analysieren, 
+	                 auf die gleiche Weise wieder abwählen. <br/> 
+	                 <h2>Interpolation</h2>
+	                 Um die Daten nun zu Analysieren, 
 	                 klicken Sie auf das Feld 'Analyse Modus'. Danach erscheint oben der Interpolationsknopf zum 
 	                 Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
 	                 der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
-	                 Graph oder Graph und Tabelle gewählt werden. Unter dem Interpolationsknopf 
-	                 können Sie noch auswählen, was Sie interpolieren möchten: CO2, Verbrauch oder Geschwindigkeit. 
-	                 Danach müssen Sie nur noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten.
-	                 Bei der Tabelle können Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken 
-	                 von 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
+	                 Graph oder Graph und Tabelle gewählt werden. Unter dem Interpolationsknopf können Sie auswählen, 
+	                 was Sie genau interpolieren möchten: CO2, Verbrauch oder Geschwindigkeit. Danach müssen Sie nur 
+	                 noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten. Bei der Tabelle können 
+	                 Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
+	                 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
 	                 Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";
 	
 	$id = "ID";

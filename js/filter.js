@@ -27,7 +27,6 @@ var rectangleActive = false;	// Global variable which contains the boolean if a 
  * 
  * @return This method returns the requestUrlTemporal for a temporal query
  */
-
 function getDateTime() {
 	
 	// clears the dropdown trackSelectionList element
@@ -202,9 +201,7 @@ function getDateTime() {
 			+ "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
 			+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
 		});
-		
 	}
-	
 	return requestUrlTemporal;
 }
 /*
@@ -217,7 +214,6 @@ function getDateTime() {
  * 
  * @return JSON
  */
-
 function getBBox() {
 	
 	// clears the dropdown trackSelectionList element
@@ -325,22 +321,16 @@ function getBBox() {
  * setRectangleActive() This method sets the global variable rectangleActive to true if the user has selected the spatial filtering.
  *
  */
-
 function setRectangleActive() {
-	
 	rectangleActive = true;
-	
 }
 
 /*
  * setRectangleNonActive() This method sets the global variable rectangleActive to false if the user has deselected the spatial filtering.
  *
  */
-
 function setRectangleNonActive() {
-	
 	rectangleActive = false;
-
 }
 
 /*
@@ -349,7 +339,6 @@ function setRectangleNonActive() {
  * 
  * @return This method returns the requestUrlTemporal for a temporal query.
  */
-
 function getDT() {
 	
 	// storing the value of the date-from and date-to element to a variable
@@ -438,9 +427,7 @@ function getDT() {
 		//alert(requestUrlTemporal) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
 		
 		return requestUrlTemporal;
-	
 	}
-
 }
 
 /*
@@ -450,7 +437,6 @@ function getDT() {
  * @return String containing the coordinates from the user-specified BoundingBox
  * 
  */
-
 function getBB() {
 	
 	// Get the coordinates of the BoundingBox
@@ -477,7 +463,6 @@ function getBB() {
  * @return dateTimeUrl, BBUrl, dateTimeBBoxUrl strings containing the URL which is used to query the envirocar API
  * 
  */
-
 function getDateTimeBBox() {
 	
 	// Storing the value of the date-from and date-to element in a string
@@ -540,9 +525,6 @@ function getDateTimeBBox() {
 	
 		redrawData();
 	}
-	
-	
-	
 }
 
 /*
@@ -553,9 +535,7 @@ function getDateTimeBBox() {
  * @return latest24H String stored in a var containing the information to a query the envirocar API in order to get the last measured 24 hours
  * 
  */
-
 function getLatestTracks() {
-	
 	
 	// getting latest 100 tracks from the envirocar API as JSON
 	var json = (function () {
@@ -569,8 +549,8 @@ function getLatestTracks() {
 			'success': function (data) {json = data;},
 			'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
 		});
-				
-				// returns the object
+		
+		// returns the object
 		return json;
 	})();
 	
@@ -631,6 +611,8 @@ function getLatestTracks() {
 	// combining the baseUrl with the calculated date and the real trackStartTime
 	var latest24H = baseUrl + trackStartTimeMinus24 + comma + trackStartTime;
 	
-	return latest24H;
-
+	// adding bounding box to URL
+	var latestTracksURL = latest24H + '&bbox=5.472512722,49.200289241,10.4920501709,52.7186795024';
+	
+	return latestTracksURL;
 }
