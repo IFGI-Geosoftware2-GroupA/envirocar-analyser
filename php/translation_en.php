@@ -7,14 +7,14 @@
 	                    In case of problems or questions you can contact us via the following email addresses: 
 	                    <br />
 	                    <br />
-	                    m_rund02@uni-muenster.de, 
+	                    marius.runde@uni-muenster.de, 
 	                    <br />
 	                    axelvirnich@uni-muenster.de, 
 	                    <br />
 	                    t_gaer03@uni-muenster.de";
 	
 	$imprint = "Imprint";
-	$imprint_content = "envirocar analyser is a web page for displaying and analyzing the environmental data of the 
+	$imprint_content = "envirocar-analyser is a web page for displaying and analyzing the environmental data of the 
 	                    community platform envirocar. The envirocar analyser development team does not take any 
 	                    responsibility for the currentness, accuracy, and completeness of the contents displayed 
 	                    on this web page, unless the mistake was made on purpose or due to gross negligence. 

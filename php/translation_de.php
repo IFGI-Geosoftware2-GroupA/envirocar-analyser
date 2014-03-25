@@ -7,7 +7,7 @@
 	                    Bei Problemen und Fragen zu unserer Webseite erreichen Sie uns unter den folgenden E-Mail-Adresse: 
 	                    <br />
 	                    <br />
-	                    m_rund02@uni-muenster.de, 
+	                    marius.runde@uni-muenster.de, 
 	                    <br />
 	                    axelvirnich@uni-muenster.de, 
 	                    <br />
@@ -16,7 +16,7 @@
 	$imprint = "Impressum";
 	$imprint_content = "<h1>Impressum</h1>
 	                    <br/>
-	                    Bei envirocar analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
+	                    Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
 	                    Plattform enviroCar. Das envirocar analyser Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
 	                    Genauigkeit oder Vollständigkeit der auf dieser Webseite dargestellten Inhalte, es sei denn der Fehler sei unter 
 	                    Absicht oder aufgrund grober Fahrlässigkeit entstanden. Für Fehler bei der Darstellung oder der 
@@ -34,7 +34,7 @@
 	                    <br />
 	                    Jan-Philipp Heine
 	                    <br />
-	                    Marius Maria Runde
+	                    Marius Runde
 	                    <br />
 	                    Daniel Sawatzky
 	                    <br />
