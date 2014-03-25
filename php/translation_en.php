@@ -77,7 +77,7 @@
 	
 	$help = "Help";
 	
-	$help_content = "<h1>Help<h1/>
+	$help_content = "<h1>Help</h1>
 	                 <br/>
 	                 While opening the web page the map will automatically zoom to Münster. You can choose another 
 	                 location in North Rhine-Westphalia by entering its name in the search field. Only locations 
