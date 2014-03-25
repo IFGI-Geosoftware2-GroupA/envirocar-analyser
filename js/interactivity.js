@@ -14,6 +14,7 @@ var alerted = false;
 // Enable or disable the help, contact, imprint or terms of usage in the analyser-panel
 var toggled = false;
 var lastContent = '';
+var hidden = false;
 	
 // Screen resolution
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
@@ -296,6 +297,13 @@ function toggleAnalyserPanel(id) {
 // Enable or disable the help content in the analyser-panel
 function toggleHelp() {
 	toggleAnalyserPanel('help');
+	if (hidden == false){
+		document.getElementById("analyser-switcher").style.visibility = 'hidden';
+		hidden = true;
+	} else {
+		document.getElementById("analyser-switcher").style.visibility = 'visible';
+		hidden = false;
+	}
 }
 
 // Enable or disable the contact content in the analyser-panel
