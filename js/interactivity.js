@@ -6,6 +6,7 @@
 var wHeight = getWindowHeight();
 var wWidth = getWindowWidth();
 var pos = getScrollXY();
+var viewMode = "table";
 
 var streetmode = false;
 var alerted = false;

@@ -39,7 +39,8 @@ function LineChart(language) {
 		chart : {
 			renderTo : 'analyser-chart',
 			type : 'line',
-			zoomType : 'xy'
+			zoomType : 'xy',
+			reflow: true
 		},
 		// title : {
 			// x : -20
@@ -309,6 +310,8 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 			if(engineLoadA.length > 0)		this.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
 			if(rpmA.length > 0)				this.addSeries('Umdrehungen(u/min)', false, 'Rpm', rpmA);	
 		}
+		if(viewMode == "chart")	lineChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
+		if(viewMode == "dual")	lineChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
 };
 
 
@@ -551,6 +554,8 @@ BarChart.prototype.createChartFromAggregation = function(json){
 		if(rpm.length > 0)			this.addSeries('Umdrehungen(u/min)', true, rpm);
 		if(engineLoad.length > 0)	this.addSeries('Motorlast(%)', true, engineLoad);
 	}
+	if(viewMode == "chart")	barChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
+	if(viewMode == "dual")	barChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
 };
 
 // returns all the series of the chart as array

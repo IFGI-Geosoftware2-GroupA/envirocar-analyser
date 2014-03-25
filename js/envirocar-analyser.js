@@ -617,10 +617,9 @@ Query.prototype.getMeasurements = function(inputUrl) {
 	
 	if(inputUrl == undefined) {
 		// calling the getLatestTracks() function in order to get the URL String for querying the lastest measured 24 hours
-		// latestTracks = getLatestTracks();
-		latestTracks = 'https://envirocar.org/api/stable/tracks?bbox=7.542497,51.934659,7.675485,51.995803&during=2014-01-01T00:00:00Z,2014-01-03T00:00:00Z';
+		latestTracks = getLatestTracks();
 		
-		alert(latestTracks);
+		console.log(latestTracks);
 		// getting the last measured 24 hours
 		var json = (function () {
 			var json = null;

@@ -82,28 +82,35 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	<!-- JQuery Functions used when changing the view of the table or/and the chart -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#analyser-panel").height($("#map").height() * 2 / 3);
+			$("#analyser-chart").width($("#map").width());
 // 			Executed when table and chart are requested
 			$("#dualView").click(function() {
+				viewMode = 'dual';
+				if(typeof(lineChart) != 'undefined') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
+				if(typeof(barChart) != 'undefined') barChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
 				$("#analyser-chart").show(200);
 				$("#analyser-table").show(200);
 				$('.dataTables_scrollBody').css('height', 200);
-				$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 4.5);
+				$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 3);
 			});
 // 			Executed when only the table is requested
 			$("#tableView").click(function() {
+				viewMode = 'table';
 				if ($("#analyser-table").is(":hidden") || $("#analyser-chart").is(":visible")) {
 					$("#analyser-chart").hide(200);
-					$("#analyser-table").height();
 					$('.dataTables_scrollBody').css('height', 0);
-					$('.dataTables_scrollBody').css('height', $("#analyser-panel").height());
+					$('.dataTables_scrollBody').css('height', $("#map").height() * 3/5);
 					$("#analyser-table").show(200);
 				}
 			});
 // 			Executed when only the chart is requested
 			$("#chartView").click(function() {
+				viewMode = 'chart';
+				if(typeof(lineChart) != 'undefined') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
+				if(typeof(barChart) != 'undefined') barChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
 				$("#analyser-chart").show(200);
 				$("#analyser-table").hide(200);
+				
 			});
 		});
 	</script>	
@@ -232,9 +239,9 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					var q = new Query('measurements');
 					measurements = q.getData();
 					$(document).ready(function() {
-						redrawData();
-					// showMarkers(measurements);
-					// loadCarModels();
+						setTimeout(function(){
+							redrawData();
+						}, 2000);
 					});
 				</script>
 				
@@ -270,7 +277,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				</div>
 				<div id="analyser-chart" class="top">
 					<script type="text/javascript">
-						setChart('line');
+						// setChart('line');
 					</script>	
 					
 				</div>
@@ -288,8 +295,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 						   </p>
 					</form>
 					<script type="text/javascript">
-						initTable();
-						tablestyle();
+						// initTable();
+						// tablestyle();
 					</script>
 				</div>
 				
@@ -311,8 +318,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</div>
 			<!-- Hides Analysis Panel and Chart right after they are created -->
 			<script type="text/javascript">
-				$("#analyser-panel").hide();
 				$("#analyser-chart").hide();
+				$("#analyser-panel").hide();	
 			</script>
 			
 			<!-- loading window -->

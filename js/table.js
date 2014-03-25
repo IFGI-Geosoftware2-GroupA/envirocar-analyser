@@ -207,7 +207,8 @@ function tablestyle() {
 			}
 		});
 // 		Scrollable Area is determined dynamically when loading the page initially
-		$('.dataTables_scrollBody').css('height', $("#map").height() * 2/3);
+		if(viewMode == "table")	$('.dataTables_scrollBody').css('height', $("#map").height() * 3/5);
+		if(viewMode == "dual")	$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 3);
 	//});
 
 }
