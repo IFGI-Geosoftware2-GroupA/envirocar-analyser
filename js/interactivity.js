@@ -44,6 +44,7 @@ function changeMode() {
 		
 		document.getElementById('analysisInterpolation').style.display = "none";
 		document.getElementById('limit-filter').style.display = "none";
+		document.getElementById('aggregation').style.display = "none";
 		document.getElementById("analyser-switcher").style.display = "none";
 		
 	} else {
@@ -63,6 +64,7 @@ function changeMode() {
 		
 		document.getElementById('analysisInterpolation').style.display = "block";
 		document.getElementById('limit-filter').style.display = "block";
+		document.getElementById('aggregation').style.display = "block";
 		
 		document.getElementById("clearidw").style.display = "none";
 		document.getElementById("idwid").style.display = "none";
