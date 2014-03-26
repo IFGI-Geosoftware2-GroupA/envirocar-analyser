@@ -7,6 +7,7 @@
 // global chart variables
 var lineChart;
 var barChart;
+var activeChart = 'line';
 
 // global function to set the chart needed
 function setChart(type, json){
@@ -17,6 +18,7 @@ function setChart(type, json){
 			lineChart = new LineChart('de');
 		lineChart.initChart();
 		lineChart.createChartFromMeasurement(measurements);
+		activeChart = 'line';
 	}
 	else if(type == 'bar'){
 		if(getParam() == 'en')
@@ -25,6 +27,7 @@ function setChart(type, json){
 			barChart = new BarChart('de');
 		barChart.initChart();
 		barChart.createChartFromAggregation(json);
+		activeChart = 'bar';
 	}
 }
 

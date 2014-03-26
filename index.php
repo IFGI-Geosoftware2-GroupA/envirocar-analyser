@@ -87,8 +87,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 // 			Executed when table and chart are requested
 			$("#dualView").click(function() {
 				viewMode = 'dual';
-				if(typeof(lineChart) != 'undefined') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
-				if(typeof(barChart) != 'undefined') barChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
+				if(activeChart == 'line') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
+				if(activeChart == 'bar') barChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
 				$("#analyser-chart").show(200);
 				$("#analyser-chart").css('top', $("#header-nav").height() * 1.3);
 				$("#analyser-table").show(200);
@@ -110,8 +110,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 // 			Executed when only the chart is requested
 			$("#chartView").click(function() {
 				viewMode = 'chart';
-				if(typeof(lineChart) != 'undefined') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
-				if(typeof(barChart) != 'undefined') barChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
+				if(activeChart == 'line') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
+				if(activeChart == 'bar') barChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
 				$("#analyser-chart").show(200);
 				$("#analyser-table").hide(200);
 				
