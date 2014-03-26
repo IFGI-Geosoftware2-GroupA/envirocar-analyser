@@ -13,6 +13,7 @@ var polyexport = new google.maps.MVCArray();
 var removepoints = [];
 var idwmarkers = [];
 var rectangle, measurements;
+carModelsExists = false; // added
 /**
  * Initialize the map
  */
@@ -144,7 +145,17 @@ function initMap() {
 function redrawData() {
 	clearOverlays();
 	showMarkers();
-	loadCarModels();
+	// added
+	// if no car Models Objects exists one is created
+	if(carModelsExists == false){
+		carModels = new loadCarModels();
+		carModelsExists = true;
+	// if a Object exists the array and the duallistbox should be cleared	
+	}else{
+		duallistbox_carmodels.empty();
+		carModels.clearArray();
+	}
+	// added off
 	setChart('line');
 	setTrackSelection();
 	initTable();
