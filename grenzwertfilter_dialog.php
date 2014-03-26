@@ -35,12 +35,11 @@
 				border: 1px solid black;
 			}
 			.confirm-button{
-				margin: auto 100px;
 				padding: 5px;
 				font-size: large;
 				font-weight: bold;
 				text-align: center;
-				width: 290px;
+				width: 245px;
 			}
 			input:hover{
 				background-color: #33FF00;
@@ -51,6 +50,52 @@
 		</style>
 
 		<script type="text/javascript">
+			// variables to save the limits chosen
+			var speedMin = 0;
+			var speedMax = 120;
+			var engineLoadMin = 10;
+			var engineLoadMax = 20;
+			var consumptionMin = 6;
+			var consumptionMax = 10;
+			var co2Min = 110;
+			var co2Max = 150;
+			var rpmMin = 1000;
+			var rpmMax = 4000;
+			// function to change the values when using the slider
+			function setValue(phen,value){
+				switch(phen){
+					case 'speedMin':
+						speedMin = value;
+						break;
+					case 'speedMax':
+						speedMax = value;
+						break;
+					case 'engineLoadMin':
+						engineLoadMin = value;
+						break;
+					case 'engineLoadMax':
+						engineLoadMax = value;
+						break;
+					case 'consumptionMin':
+						consumptionMin = value;
+						break;
+					case 'consumptionMax':
+						consumptionMax = value;
+						break;
+					case 'co2Min':
+						co2Min = value;
+						break;
+					case 'co2Max':
+						co2Max = value;
+						break;
+					case 'rpmMin':
+						rpmMin = value;
+						break;
+					case 'rpmMax':
+						rpmMax = value;
+						break;
+				}
+			}
 // 			JQuery Functions to only show the filter selected
 			$(document).ready(function() {
 				$("#consumption-div").hide();
@@ -106,9 +151,11 @@
 					range : true,
 					min : 0,
 					max : 300,
-					values : [0, 120],
+					values : [speedMin, speedMax],
 					slide : function(event, ui) {
 						$("#amount-speed").val(ui.values[0] + " km/h - " + ui.values[1] + " km/h");
+						setValue("speedMin", ui.values[0]);
+						setValue("speedMax", ui.values[1]);
 					}
 				});
 				$("#amount-speed").val($("#slider-range-speed").slider("values", 0) + " km/h - " + $("#slider-range-speed").slider("values", 1) + " km/h");
@@ -118,9 +165,11 @@
 					range : true,
 					min : 0,
 					max : 30,
-					values : [6, 10],
+					values : [consumptionMin, consumptionMax],
 					slide : function(event, ui) {
 						$("#amount-consumption").val(ui.values[0] + " l/h - " + ui.values[1] + " l/h");
+						setValue("consumptionMin", ui.values[0]);
+						setValue("consumptionMax", ui.values[1]);
 					}
 				});
 				$("#amount-consumption").val($("#slider-range-consumption").slider("values", 0) + " l/h - " + $("#slider-range-consumption").slider("values", 1) + " l/h");
@@ -130,9 +179,11 @@
 					range : true,
 					min : 0,
 					max : 100,
-					values : [10, 20],
+					values : [engineLoadMin, engineLoadMax],
 					slide : function(event, ui) {
 						$("#amount-engineLoad").val(ui.values[0] + " % - " + ui.values[1] + " %");
+						setValue("engineLoadMin", ui.values[0]);
+						setValue("engineLoadMax", ui.values[1]);
 					}
 				});
 				$("#amount-engineLoad").val($("#slider-range-engineLoad").slider("values", 0) + " % - " + $("#slider-range-engineLoad").slider("values", 1) + " %");
@@ -141,10 +192,12 @@
 				$("#slider-range-rpm").slider({
 					range : true,
 					min : 0,
-					max : 30000,
-					values : [1000, 4000],
+					max : 10000,
+					values : [rpmMin, rpmMax],
 					slide : function(event, ui) {
 						$("#amount-rpm").val(ui.values[0] + " u/min - " + ui.values[1] + " u/min");
+						setValue("rpmMin", ui.values[0]);
+						setValue("rpmMax", ui.values[1]);
 					}
 				});
 				$("#amount-rpm").val($("#slider-range-rpm").slider("values", 0) + " u/min - " + $("#slider-range-rpm").slider("values", 1) + " u/min");
@@ -154,9 +207,11 @@
 					range : true,
 					min : 0,
 					max : 400,
-					values : [110, 150],
+					values : [co2Min, co2Max],
 					slide : function(event, ui) {
 						$("#amount-co2").val(ui.values[0] + " g/h - " + ui.values[1] + " g/h");
+						setValue("co2Min", ui.values[0]);
+						setValue("co2Max", ui.values[1]);
 					}
 				});
 				$("#amount-co2").val($("#slider-range-co2").slider("values", 0) + " g/h - " + $("#slider-range-co2").slider("values", 1) + " g/h");
@@ -190,7 +245,12 @@
 			<div class="infobox">
 				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
 			</div>
-			<input align="center" class="confirm-button" type="button" value="Geschwindigkeit filtern" onclick="" />
+			<table>
+				<tr>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Geschwindigkeit filtern" onclick="window.opener.applyLimitFilter('Speed', speedMin, speedMax)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+				</tr>
+			</table>
 		</div>
 		
 		<!-- Container containing the Consumption filter -->
@@ -203,7 +263,12 @@
 			<div class="infobox">
 				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
 			</div>
-			<input align="center" class="confirm-button" type="button" value="Verbrauch filtern" onclick="" />
+			<table>
+				<tr>
+					<td style="width: 30%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Verbrauch filtern" onclick="window.opener.applyLimitFilter('Consumption', consumptionMin, consumptionMax)" /></td>
+					<td style="width: 30%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+				</tr>
+			</table>
 		</div>
 		
 		<!-- Container containing the Engine Load filter -->
@@ -216,7 +281,12 @@
 			<div class="infobox">
 				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
 			</div>
-			<input align="center" class="confirm-button" type="button" value="Motorlast filtern" onclick="" />
+			<table>
+				<tr>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Motorlast filtern" onclick="window.opener.applyLimitFilter('Engine Load', engineLoadMin, engineLoadMax)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+				</tr>
+			</table>
 		</div>
 		
 		<!-- Container containing the Rpm filter -->
@@ -229,7 +299,12 @@
 			<div class="infobox">
 				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
 			</div>
-			<input align="center" class="confirm-button" type="button" value="Umdrehungen filtern" onclick="" />
+			<table>
+				<tr>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Umdrehungen filtern" onclick="window.opener.applyLimitFilter('Rpm', rpmMin, rpmMax)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+				</tr>
+			</table>
 		</div>
 		
 		<!-- Container containing the CO2 filter -->
@@ -242,7 +317,12 @@
 			<div class="infobox">
 				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
 			</div>
-			<input align="center" class="confirm-button" type="button" value="CO2 filtern" onclick="" />
+			<table>
+				<tr>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="CO2 filtern" onclick="window.opener.applyLimitFilter('CO2', co2Min, co2Max)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+				</tr>
+			</table>		
 		</div>
 	</body>
 </html>

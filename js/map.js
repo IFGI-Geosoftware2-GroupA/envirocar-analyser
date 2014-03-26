@@ -142,9 +142,11 @@ function initMap() {
 }
 
 // redraws markers, chart and table
-function redrawData() {
-	clearOverlays();
-	showMarkers();
+function redrawData(marker, chart, table, tracks) {
+	if(marker){
+		clearOverlays();
+		showMarkers();	
+	}
 	// added
 	// if no car Models Objects exists one is created
 	if(carModelsExists == false){
@@ -156,10 +158,14 @@ function redrawData() {
 		carModels.clearArray();
 	}
 	// added off
-	setChart('line');
-	setTrackSelection();
-	initTable();
-	tablestyle();
+	if(chart)
+		setChart('line');
+	if(tracks)
+		setTrackSelection();
+	if(table){
+		initTable();
+		tablestyle();	
+	}
 }
 
 // Delete all the markers on the map
@@ -200,6 +206,30 @@ function setTrackSelection() {
 	}
 }
 
+// apply all Filter to map, chart and table( !!! Car Selection is missing !!! )
+function applyAllFilter(){
+	var measurementsTemp = measurements.slice();
+	if(trackSelectionActive()){
+		focusTrack();	
+	}
+	if(limitfilterActive){
+		executeLimitFilter();
+	}
+	redrawData(true,true,true,false);
+	measurements = measurementsTemp.slice();
+}
+
+// check if a track is selected or if all tracks shall be displayed
+function trackSelectionActive(){
+	var select = document.getElementById('trackSelectionList');
+	var selectedOption = select.options[select.selectedIndex].value;
+	
+	//show all tracks
+	if(selectedOption === 'Tracks'){
+		return false;
+	}
+	else return true;	
+}
 
 // called up whenever a track in the Track Selection List is selected
 function focusTrack(){
@@ -207,29 +237,49 @@ function focusTrack(){
 	var selectedOption = select.options[select.selectedIndex].value;
 	
 	//show all tracks
-	if(selectedOption === 'Tracks'){
-		redrawData();
-	}
-	else{
-		// copy measurement in temporal array
-		measurementsTemp = measurements.slice();
-		measurements.length = 0;
-		// sort related measurements back to measurements array
-		for(var i = 0; i < measurementsTemp.length; i++){
-			if(measurementsTemp[i].getTrackId() == selectedOption){
-				measurements.push(measurementsTemp[i]);
+	if(trackSelectionActive()){
+		// delete all measurement objects which don't belong to the chosen track
+		for(var i = 0; i < measurements.length; i++){
+			if(measurements[i].getTrackId() != selectedOption){
+				measurements.splice(i,1);
+				i--;
 			}
 		}
-		// reload map, chart and table
-		clearOverlays();
-		showMarkers();
-		loadCarModels();
-		setChart('line');
-		initTable();
-		tablestyle();
-		// copy data back to measurements array
-		measurements = measurementsTemp.slice();
 	}	
+}
+
+// take over settings from the limit filter popup and close popup
+function applyLimitFilter(phen, minValue, maxValue){
+	limitFilterSettings[0] = phen;
+	limitFilterSettings[1] = minValue;
+	limitFilterSettings[2] = maxValue;
+	fenster1.close();
+	if(phen != "reset") limitfilterActive = true;
+	applyAllFilter();
+}
+
+// delete all objects from measurement array which do not fit the filter
+function executeLimitFilter(){	
+	if(limitFilterSettings[0] != 'reset'){
+		limitfilterActive = true;
+		// sort related measurements back to measurements array
+		for (var i = 0; i < measurements.length; i++) {
+			for (var j = 0 ; j < measurements[i].phenomenons.length ; j++) {				
+				if (measurements[i].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[i].getValues()[j] < limitFilterSettings[1] || measurements[i].getValues()[j] > limitFilterSettings[2])) {
+					measurements.splice(i,1);
+					if(i > 0) i--;
+				}			
+			}
+		}
+		for (var j = 0 ; j < measurements[0].phenomenons.length ; j++) {				
+			if (measurements[0].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[0].getValues()[j] < limitFilterSettings[1] || measurements[0].getValues()[j] > limitFilterSettings[2])) {
+				measurements.splice(0,1);
+			}			
+		}	
+	}
+	else{
+		limitfilterActive = false;
+	}
 }
 
 /*
