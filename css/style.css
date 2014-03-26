@@ -158,7 +158,7 @@ body {
 }
 
 #limit-filter {
-	margin-left: 2em;
+	margin-left: 1em;
 	display: none;
 
 }
@@ -282,6 +282,7 @@ body {
 	overflow: hidden;
 	top: 10em;
 	bottom: 1.4em;
+	border-right: 1px solid #888888;
 }
 
 #map-container i {
@@ -373,7 +374,6 @@ body {
 #analyser-panel {
 	float: right;
 	width: 50%;
-	border-left: 1px solid #888888;
 	z-index: 10;
 }
 
@@ -388,6 +388,10 @@ body {
 	top: 14em;
 }
 
+.top2 {
+	position: absolute;
+	top: 11em;
+}
 
 /********************************************************************
 	2.4 enviroCar analyser table styles
@@ -400,6 +404,7 @@ body {
 	margin: 1.5em;
 	width: 97%;
 	border: none;
+
 }
 
 .bottom {
@@ -598,6 +603,12 @@ body {
 	margin: 2em 0 0 1em;
 	outline:none;
 }
+
+#filterBtn{
+	margin: 2em 0 0 1.5em;
+	outline:none;
+}
+
 
 /********************************************************************
 	5. Style fixes

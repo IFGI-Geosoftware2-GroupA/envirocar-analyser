@@ -83,21 +83,25 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#analyser-chart").width($("#map").width());
+			$("#analyser-table").css('top', $("#header-nav").height());
 // 			Executed when table and chart are requested
 			$("#dualView").click(function() {
 				viewMode = 'dual';
 				if(typeof(lineChart) != 'undefined') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
 				if(typeof(barChart) != 'undefined') barChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
 				$("#analyser-chart").show(200);
+				$("#analyser-chart").css('top', $("#header-nav").height() * 1.3);
 				$("#analyser-table").show(200);
+				$("#analyser-table").css('top', $("#header-nav").height() * 1.3);
 				$('.dataTables_scrollBody').css('height', 200);
-				$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 3);
+				$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 4);
 			});
 // 			Executed when only the table is requested
 			$("#tableView").click(function() {
 				viewMode = 'table';
 				if ($("#analyser-table").is(":hidden") || $("#analyser-chart").is(":visible")) {
 					$("#analyser-chart").hide(200);
+					$("#analyser-table").css('top', $("#header-nav").height());
 					$('.dataTables_scrollBody').css('height', 0);
 					$('.dataTables_scrollBody').css('height', $("#map").height() * 3/5);
 					$("#analyser-table").show(200);

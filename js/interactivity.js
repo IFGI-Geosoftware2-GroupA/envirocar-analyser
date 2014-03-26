@@ -42,8 +42,6 @@ function changeMode() {
 		resizeMap();
 		$("#analyser-panel").hide();
 		
-		/*document.getElementById('header-nav').style.background = "#fff";*/
-		
 		document.getElementById('analysisInterpolation').style.display = "none";
 		document.getElementById('limit-filter').style.display = "none";
 		document.getElementById("analyser-switcher").style.display = "none";
@@ -62,8 +60,6 @@ function changeMode() {
 		resizeMap();
 		
 		$("#analyser-panel").show(200);
-	
-		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
 		
 		document.getElementById('analysisInterpolation').style.display = "block";
 		document.getElementById('limit-filter').style.display = "block";
