@@ -45,6 +45,8 @@ function changeMode() {
 		/*document.getElementById('header-nav').style.background = "#fff";*/
 		
 		document.getElementById('analysisInterpolation').style.display = "none";
+		document.getElementById('limit-filter').style.display = "none";
+		document.getElementById("analyser-switcher").style.display = "none";
 		
 	} else {
 		if (toggled) {
@@ -64,9 +66,12 @@ function changeMode() {
 		/*document.getElementById('header-nav').style.background = "#DCE3E7";*/
 		
 		document.getElementById('analysisInterpolation').style.display = "block";
+		document.getElementById('limit-filter').style.display = "block";
 		
 		document.getElementById("clearidw").style.display = "none";
 		document.getElementById("idwid").style.display = "none";
+		document.getElementById("analyser-switcher").style.display = "block";
+		
 	}
 }
 
@@ -252,6 +257,7 @@ function toggleAnalyserPanel(id) {
 	document.getElementById('map-container').style.width = '50%';
 	resizeMap();
 	document.getElementById('analyser-panel').style.display = 'block';
+	
 	if (toggled) {
 		// First hide all other content
 		document.getElementById('analyser-help').style.display = 'none';

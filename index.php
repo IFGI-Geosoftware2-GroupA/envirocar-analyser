@@ -163,14 +163,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			
 			<div id ="carModelSelection">
 				<form action="">
-					<select multiple="multiple" size="4" id="duallistbox_carmodels">
-						<!-- TODO must be filled dynamically -->
-						<!-- <option value="co2"><?php echo $co2_emission; ?></option>
-						<option value="consumption"><?php echo $consumption; ?></option>
-						<option value="engine_load"><?php echo $engine_load; ?></option>
-						<option value="rpm"><?php echo $rpm; ?></option>
-						<option value="speed"><?php echo $speed; ?></option> -->
-					</select>
+					<select multiple="multiple" size="4" id="duallistbox_carmodels"></select>
 					<script>
 						var l = getParam('lang');
 						if (l == "en") {
@@ -213,13 +206,39 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
  					<option value="consumption"><?php echo $selectIDWconsumption; ?></option>
   					<option value="speed"><?php echo $selectIDWspeed; ?></option>
   				</select>
-  				<input type="button" id="clearidw" name"clearidw" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
+  				<input type="button" id="clearidw" name"clearidw" class="spaceButton" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
+			</div>
+			
+			<div id="limit-filter">
+				<label id="limitFilter-label" for="limitFilter-label"><?php echo $filter_label; ?></label>
+				<br/><br/>
+				<a href="#" id="filterBtn" onclick="" title="Limit Filter"><img src="img/limitfilter.png" width="48px" height="48px" alt="Limit Filter"></a>
 			</div>
 			
 			<div id="analysis-mode" >
 				<label id="analysis-mode-label" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
 				<br/>
 				<input type="button" class="left" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
+			</div>
+			
+			<!-- Contains the Dropdown Menu with the View Selection -->
+			<div id="analyser-switcher" >
+				<ul>
+					<li class="analyser-switcher-topmenu">
+						<a href="#"><?php echo $display; ?></a>
+						<ul>
+							<li class="analyser-switcher-submenu">
+								<a id="tableView" href="#"><?php echo $table; ?></a>
+							</li>
+							<li class="analyser-switcher-submenu">
+								<a id="chartView" href="#"><?php echo $chart; ?></a>
+							</li>
+							<li class="analyser-switcher-submenu">
+								<a id="dualView" href="#"><?php echo $chartAndTable; ?></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 			
 			<div id="helpButton" >
@@ -256,25 +275,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</div>
 			
 			<div id="analyser-panel">
-				<!-- Contains the Dropdown Menu with the View Selection -->
-				<div id="analyser-switcher" class="top2">
-					<ul>
-						<li class="analyser-switcher-topmenu">
-							<a href="#"><?php echo $display; ?></a>
-							<ul>
-								<li class="analyser-switcher-submenu">
-									<a id="tableView" href="#"><?php echo $table; ?></a>
-								</li>
-								<li class="analyser-switcher-submenu">
-									<a id="chartView" href="#"><?php echo $chart; ?></a>
-								</li>
-								<li class="analyser-switcher-submenu">
-									<a id="dualView" href="#"><?php echo $chartAndTable; ?></a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+
 				<div id="analyser-chart" class="top">
 					<script type="text/javascript">
 						// setChart('line');
