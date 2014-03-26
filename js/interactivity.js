@@ -322,19 +322,38 @@ function toggleTerms() {
 
 // Load car models into Dual Listbox
 function loadCarModels() {
-	var cars = new Array();
+	this.cars = new Array();
 	var k = 0;
 	for (var i = 0; i < measurements.length; i++) {
 		// Add car model to cars array if it is not contained there yet
-		if ($.inArray(measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model, cars) < 0) {
-			cars[k] = measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model;
-			duallistbox_carmodels.append('<option value="' + cars[k] + '" selected>' + cars[k] + '</option>');
+		if ($.inArray(measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model, this.cars) < 0) {
+			this.cars[k] = measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model;
+			duallistbox_carmodels.append('<option value="' + this.cars[k] + '" selected>' + this.cars[k] + '</option>');
 			k++;
 			// alert(cars[k]);
 		}
 	}
 	duallistbox_carmodels.trigger('bootstrapduallistbox.refresh', true);
-}
+	
+	// added
+	// Clears the array and empties the duallistbox
+	this.clearArray = function() {
+		this.cars.length = 0;
+		console.log(this.cars);
+		var k = 0;
+		for (var i = 0; i < measurements.length; i++) {
+			// Add car model to cars array if it is not contained there yet
+			if ($.inArray(measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model, this.cars) < 0) {
+				this.cars[k] = measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model;
+				duallistbox_carmodels.append('<option value="' + this.cars[k] + '" selected>' + this.cars[k] + '</option>');
+				console.log(this.cars[k]);
+				k++;
+			}	
+		}
+		duallistbox_carmodels.trigger('bootstrapduallistbox.refresh', true);
+	};
+	// added off 
+};
 
 // Show loading window
 function showProgressAnimation() {      
