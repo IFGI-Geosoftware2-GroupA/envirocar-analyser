@@ -80,7 +80,9 @@
 	$help_content = "<h1>Help</h1> <br>
     				<a href='#analyser-help-mapview' id='maphelp'>Map Section</a><br>
     				<a href='#analyser-help-getdata' id='getdatahelp'>Call Up Data</a><br>
-    				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a>
+    				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
+    				<a href='#analyser-help-aggregation' id='interpolationhelp'>Aggregation</a><br>
+    				<a href='#analyser-help-filter' id='interpolationhelp'>Filter</a>
     				";
 	
 	$help_mapview = "
@@ -125,6 +127,25 @@
 	                CO2, consumption or speed. As last step you only need to click on the interpolation button to get the results.
 	                You can delete and undelete columns of the table by setting and unsetting the ticks in the boxes and pushing 
 	                'Refresh'. By moving the scroll bar of the table you can also see the data below.";
+					
+	    $help_aggregation = "
+					<h1>Aggregation</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Aggregation</h2>
+					<br>
+		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
+		            aggregieren, um so Maximum, Minimum, Durchschnitt und Standardabweichung zu erhalten.";    
+		            
+        $help_filter = "
+					<h1>Filter</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Filter</h2>
+					<br>
+		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
+		            (Verbrauch, CO2, Geschwindigkeit, Motorlast, Umdrehungen) auswählen und selbst mit Hilfe des Schiebereglers 
+		            Grenzwerte festlegen und so sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
+		            Einschätzungshilfe werden im Info-Fenster einige typische Grenzwerte angezeigt.";       
+                 
 					         
 	$id = "ID";
 	
@@ -211,5 +232,9 @@
 	$filter_label = "Limit Filter";
 	
 	$aggregation_label = "Aggregation";
+	
+	$help_aggregation = "Aggregation";
+	
+	$help_filter = "Filter";
 	
 ?>

@@ -90,14 +90,16 @@
 	
 	$streets_off = "Straßenauswahl Aus";
 	
-	$analysis_mode_label = "Analyse Modus";
+	$analysis_mode_label = "Analyse-Modus";
 	
     $help = "Hilfe";
     
     $help_content = "<h1>Hilfe</h1> <br>
     				<a href='#analyser-help-mapview' id='maphelp'>Kartenausschnitt</a><br>
     				<a href='#analyser-help-getdata' id='getdatahelp'>Daten abrufen</a><br>
-    				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a>
+    				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
+    				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
+    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a>
     				";
 	
 	$help_mapview = "
@@ -142,7 +144,7 @@
 					<h2>Interpolation</h2>
 					<br>
 		            Um die Daten nun zu Analysieren, 
-		            klicken Sie auf das Feld 'Analyse Modus'. Danach erscheint oben der Interpolationsknopf zum 
+		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint oben der Interpolationsknopf zum 
 		            Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
 		            der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
 		            Graph oder Graph und Tabelle gewählt werden. Unter dem Interpolationsknopf können Sie auswählen, 
@@ -150,7 +152,25 @@
 		            noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten. Bei der Tabelle können 
 		            Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
 		            'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
-		            Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";            
+		            Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";   
+		            
+    $help_aggregation = "
+					<h1>Aggregation</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Aggregation</h2>
+					<br>
+		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
+		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten.";    
+		            
+        $help_filter = "
+					<h1>Filter</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Filter</h2>
+					<br>
+		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
+		            (Verbrauch, CO2, Geschwindigkeit, Motorlast, Umdrehungen) auswählen und selbst mit Hilfe des Schiebereglers 
+		            Grenzwerte festlegen und so sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
+		            Einschätzungshilfe werden im Info-Fenster einige typische Grenzwerte angezeigt.";       
                  
 	$id = "ID";
 	
@@ -237,5 +257,9 @@
 	$filter_label = "Filter";
 	
 	$aggregation_label = "Aggregation";
+	
+	$help_aggregation = "Aggregation";
+	
+	$help_filter = "Filter";
 	
 ?>
