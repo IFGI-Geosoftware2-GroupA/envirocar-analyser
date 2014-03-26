@@ -309,6 +309,18 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<?php echo $help_content; ?>
 				</div>
 				
+				<div id="analyser-help-mapview" class="top blue" style="display: none">
+					<?php echo $help_mapview; ?>
+				</div>
+				
+				<div id="analyser-help-getdata" class="top blue" style="display: none">
+					<?php echo $help_getdata; ?>
+				</div>
+				
+				<div id="analyser-help-interpolation" class="top blue" style="display: none">
+					<?php echo $help_interpolation; ?>
+				</div>
+				
 				<div id="analyser-contact" class="top blue" style="display: none">
 					<?php echo $contact_content; ?>
 				</div>
@@ -321,6 +333,34 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<?php echo $terms_content; ?>
 				</div>
 			</div>
+			
+			<script>
+				$(document).ready(function() {
+					$("#analyser-help-mapview").hide(200);
+					
+					$("#maphelp").click(function() {
+						$("#analyser-help-mapview").show(200);
+						$("#analyser-help").hide(200);			
+					});
+					
+					$("#getdatahelp").click(function() {
+						$("#analyser-help-getdata").show(200);
+						$("#analyser-help").hide(200);			
+					});
+					
+					$("#interpolationhelp").click(function() {
+						$("#analyser-help-interpolation").show(200);
+						$("#analyser-help").hide(200);			
+					});
+					
+					$(".back").click(function() {
+						$("#analyser-help").show(200);	
+						$("#analyser-help-mapview").hide(200);
+						$("#analyser-help-getdata").hide(200);
+						$("#analyser-help-interpolation").hide(200);		
+					});
+				});
+			</script>
 			<!-- Hides Analysis Panel and Chart right after they are created -->
 			<script type="text/javascript">
 				$("#analyser-chart").hide();

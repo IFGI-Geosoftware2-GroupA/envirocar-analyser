@@ -93,47 +93,65 @@
 	$analysis_mode_label = "Analyse Modus";
 	
     $help = "Hilfe";
+    
+    $help_content = "<h1>Hilfe</h1> <br>
+    				<a href='#analyser-help-mapview' id='maphelp'>Kartenausschnitt</a><br>
+    				<a href='#analyser-help-getdata' id='getdatahelp'>Daten abrufen</a><br>
+    				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a>
+    				";
 	
-	$help_content = "<h1>Hilfe</h1>
-	                 <br/>
-	                 <h2>Kartenausschnitt</h2>
-	                 Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
-	                 anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
-	                 Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
-	                 Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
-	                 Kartenausschnitt ausgewählt werden. Durch Klicken auf das Plus- und das Minussymbol 
-	                 der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
-	                 Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
-	                 reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
-	                 OpenStreepMap-Karte gewählt werden. 
-	                 <br/> 
-	                 <h2>Daten abrufen</h2>
-	                 Möchten Sie Daten für eine bestimmte Zeit 
-	                 analysieren, so wählen Sie zunächst unter 'Von:' und 'Bis:' das Zeitintervall 
-	                 aus, in dem Sie auf die entsprechende Tage klicken (durch Klicken in die obere linke 
-	                 oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). 
-	                 Danach können Sie optional noch ein Gebiet innerhalb NRWs auswählen, indem 
-	                 Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
-	                 durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. 
-	                 Oder aber durch Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte 
-	                 setzen, um alle Straßensegmente zwischen diesen Punkten auszuwählen. Zum Schluss klicken 
-	                 Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes angezeigt 
-	                 zu bekommen. <br/> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
-	                 Doppelpfeile alle Phänomene oder durch Klicken auf eines der Automodelle, Automodelle 
-	                 einzeln auswählen. Ebenso können Sie unter 'Ausgewählte Automodelle' auch Automodelle 
-	                 auf die gleiche Weise wieder abwählen. <br/> 
-	                 <h2>Interpolation</h2>
-	                 Um die Daten nun zu Analysieren, 
-	                 klicken Sie auf das Feld 'Analyse Modus'. Danach erscheint oben der Interpolationsknopf zum 
-	                 Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
-	                 der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
-	                 Graph oder Graph und Tabelle gewählt werden. Unter dem Interpolationsknopf können Sie auswählen, 
-	                 was Sie genau interpolieren möchten: CO2, Verbrauch oder Geschwindigkeit. Danach müssen Sie nur 
-	                 noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten. Bei der Tabelle können 
-	                 Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
-	                 'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
-	                 Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";
+	$help_mapview = "
+					<h1>Hilfe</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Kartenausschnitt</h2>
+	                <br>
+		         	Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
+		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
+		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
+		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
+		            Kartenausschnitt ausgewählt werden. Durch Klicken auf das Plus- und das Minussymbol 
+		            der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
+		            Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
+		            reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
+		            OpenStreepMap-Karte gewählt werden. 
+		            <br/> ";
 	
+	$help_getdata ="
+					<h1>Hilfe</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Daten abrufen</h2>
+					<br>
+		            Möchten Sie Daten für eine bestimmte Zeit 
+		            analysieren, so wählen Sie zunächst unter 'Von:' und 'Bis:' das Zeitintervall 
+		            aus, in dem Sie auf die entsprechende Tage klicken (durch Klicken in die obere linke 
+		            oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). 
+		            Danach können Sie optional noch ein Gebiet innerhalb NRWs auswählen, indem 
+		            Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
+		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. 
+		            Oder aber durch Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte 
+		            setzen, um alle Straßensegmente zwischen diesen Punkten auszuwählen. Zum Schluss klicken 
+		            Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes angezeigt 
+		            zu bekommen. <br/> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
+		            Doppelpfeile alle Phänomene oder durch Klicken auf eines der Automodelle, Automodelle 
+		            einzeln auswählen. Ebenso können Sie unter 'Ausgewählte Automodelle' auch Automodelle 
+		            auf die gleiche Weise wieder abwählen. <br/> ";
+	            
+	$help_interpolation = "
+					<h1>Hilfe</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Interpolation</h2>
+					<br>
+		            Um die Daten nun zu Analysieren, 
+		            klicken Sie auf das Feld 'Analyse Modus'. Danach erscheint oben der Interpolationsknopf zum 
+		            Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
+		            der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
+		            Graph oder Graph und Tabelle gewählt werden. Unter dem Interpolationsknopf können Sie auswählen, 
+		            was Sie genau interpolieren möchten: CO2, Verbrauch oder Geschwindigkeit. Danach müssen Sie nur 
+		            noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten. Bei der Tabelle können 
+		            Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
+		            'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
+		            Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";            
+                 
 	$id = "ID";
 	
 	$consumption = "Verbrauch";

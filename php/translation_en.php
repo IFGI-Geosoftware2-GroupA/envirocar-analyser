@@ -76,39 +76,56 @@
 	$analysis_mode_label = "Analysis Mode";
 	
 	$help = "Help";
+	                 
+	$help_content = "<h1>Help</h1> <br>
+    				<a href='#analyser-help-mapview' id='maphelp'>Map Section</a><br>
+    				<a href='#analyser-help-getdata' id='getdatahelp'>Call Up Data</a><br>
+    				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a>
+    				";
 	
-	$help_content = "<h1>Help</h1>
-	                 <br/>
-	                 <h2>Map Section</h2>
-	                 While opening the web page the map will automatically zoom to Münster. You can choose another 
-	                 location in North Rhine-Westphalia by entering its name in the search field. Only locations 
-	                 within North Rhine-Westphalia can be selected. You can choose a different map section either 
-	                 by clicking on the arrow field or by leaving the left mouse button clicked on the map and 
-	                 moving the mouse. You can zoom in and out by either clicking on the plus and minus symbol of the 
-	                 zoom scale or by simply clicking on the zoom scale itself. By clicking on the fields 'Karte',
-	                 'Hybrid' and 'OSM' you can choose between a vector map, a hybrid of a satellite image and 
-	                 street vectors and a map of OpenStreetMaps. 
-	                 <br/> 
-	                 <h2>Call Up Data</h2>
-	                 If you want to analyse data of a certain time interval 
-	                 you need to click in the 'From:' and the 'To:' and then on the corresponding days (by clicking on the top left or 
-	                 right corner of the calendar window you can go back and forth in time). Optionally, you can select an area
-	                 within NRW in addition either by clicking on 'Select space segment' to select a segment with a bounding box, whose 
-	                 size can be varied by pulling its edges with the left mouse button pushed. Or you can click on 'Street
-	                 Selection' and set several points in the map with the left mouse button to select all street segments 
-	                 between those points. Finally, you click on 'Get Data' to get the data for that time period and possibly that area. 
-	                 In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model by 
-	                 clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way. 
-	                 <br/> 
-	                 <h2>Interpolation</h2>
-	                 Now, to analyse the data, you click on the analyse mode field. After that the interpolation button for 
-	                 interpolating the data appears at the top and a table on the right side of the web page. 
-	                 If you pull the mouse over the field 'Display' you can choose if you would like to see the data in a table, 
-	                 chart or chart and table. Below the interpolation button you can choose what you would like to interpolate: 
-	                 CO2, consumption or speed. As last step you only need to click on the interpolation button to get the results.
-	                 You can delete and undelete columns of the table by setting and unsetting the ticks in the boxes and pushing 
-	                 'Refresh'. By moving the scroll bar of the table you can also see the data below.";
+	$help_mapview = "
+					<h1>Help</h1> <br>
+					<a href='#analyser-help' class='back'>Back</a><br>
+					<h2>Map Section</h2>
+	                <br>
+		         	While opening the web page the map will automatically zoom to Münster. You can choose another 
+	                location in North Rhine-Westphalia by entering its name in the search field. Only locations 
+	                within North Rhine-Westphalia can be selected. You can choose a different map section either 
+	                by clicking on the arrow field or by leaving the left mouse button clicked on the map and 
+	                moving the mouse. You can zoom in and out by either clicking on the plus and minus symbol of the 
+	                zoom scale or by simply clicking on the zoom scale itself. By clicking on the fields 'Karte',
+	                'Hybrid' and 'OSM' you can choose between a vector map, a hybrid of a satellite image and 
+	                street vectors and a map of OpenStreetMaps.  
+		            <br/> ";
 	
+	$help_getdata ="
+					<h1>Help</h1> <br>
+					<a href='#analyser-help' class='back'>Back</a><br>
+					<h2>Call Up Data</h2>
+					<br>
+		            If you want to analyse data of a certain time interval 
+	                you need to click in the 'From:' and the 'To:' and then on the corresponding days (by clicking on the top left or 
+	                right corner of the calendar window you can go back and forth in time). Optionally, you can select an area
+	                within NRW in addition either by clicking on 'Select space segment' to select a segment with a bounding box, whose 
+	                size can be varied by pulling its edges with the left mouse button pushed. Or you can click on 'Street
+	                Selection' and set several points in the map with the left mouse button to select all street segments 
+	                between those points. Finally, you click on 'Get Data' to get the data for that time period and possibly that area. 
+	                In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model by 
+	                clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way.  <br/> ";
+	            
+	$help_interpolation = "
+					<h1>Help</h1> <br>
+					<a href='#analyser-help' class='back'>Back</a><br>
+					<h2>Interpolation</h2>
+					<br>
+		            Now, to analyse the data, you click on the analyse mode field. After that the interpolation button for 
+	                interpolating the data appears at the top and a table on the right side of the web page. 
+	                If you pull the mouse over the field 'Display' you can choose if you would like to see the data in a table, 
+	                chart or chart and table. Below the interpolation button you can choose what you would like to interpolate: 
+	                CO2, consumption or speed. As last step you only need to click on the interpolation button to get the results.
+	                You can delete and undelete columns of the table by setting and unsetting the ticks in the boxes and pushing 
+	                'Refresh'. By moving the scroll bar of the table you can also see the data below.";
+					         
 	$id = "ID";
 	
 	$consumption = "Consumption";
