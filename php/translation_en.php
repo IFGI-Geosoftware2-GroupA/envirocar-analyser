@@ -191,4 +191,8 @@
 	
 	$chartAndTable = "Chart and Table";
 	
+	$filter_label = "Limit Filter";
+	
+	$aggregation_label = "Aggregation";
+	
 ?>

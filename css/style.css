@@ -157,6 +157,16 @@ body {
 	margin-bottom: 5em;
 }
 
+#limit-filter {
+	margin-left: 2em;
+	display: none;
+
+}
+
+#limitFilter-label {
+	margin-bottom: 5em;
+}
+
 #analysis-mode {
 	position: absolute;
 	right: 6em;
@@ -288,15 +298,18 @@ body {
 }
 
 /********************************************************************
-	2.3 enviroCar analyser view dropdown styles
+	2.2 enviroCar analyser view dropdown styles
 ********************************************************************/
 
 #analyser-switcher {
-	font-size: 14px;
+	font-size: 10px;
 	position: absolute;
-	top: 11em;
-	margin : 1em;
-	z-index: 90;
+	top: 8em;
+	margin : 0;
+	z-index: 49;
+	text-decoration: none;
+	right: 10.3em;
+	display: none;
 }
 
 #analyser-switcher ul {
@@ -305,10 +318,16 @@ body {
 	padding: 0px;
 }
 
+.analyser-switcher-topmenu a:hover, a:focus {
+	color: #1D83C3;
+	text-decoration: none;
+}
+
 .analyser-switcher-topmenu a {
 	float: left;
-	width: 130px;
+	width: 120px;
 	text-align: center;
+	text-decoration: none;
 }
 
 .analyser-switcher-topmenu ul {
@@ -325,18 +344,21 @@ body {
 	text-decoration: none;
 	background-color: #FFF;
 	margin: 0;
+
 }
 
 .analyser-switcher-submenu a {
 	padding: 5px;
 	font-size: large;
-	width: 130px;
+	width: 120px;
 	position: relative;
+	text-decoration: none;
 }
 
 .analyser-switcher-submenu a:hover {
 	background-color: #1D83C3 !important;
 	color: #fff;
+	text-decoration: none;
 }
 
 .analyser-switcher-topmenu:hover ul {
@@ -375,7 +397,8 @@ body {
 	position: relative;
 	overflow: auto;
 	margin-right: 1em;
-	width: 100%;
+	margin: 1.5em;
+	width: 97%;
 	border: none;
 }
 
