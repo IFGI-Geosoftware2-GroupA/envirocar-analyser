@@ -87,8 +87,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 // 			Executed when table and chart are requested
 			$("#dualView").click(function() {
 				viewMode = 'dual';
-				if(activeChart == 'line') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
-				if(activeChart == 'bar') barChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
+				if(activeChart == 'line') lineChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
+				if(activeChart == 'bar') barChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
 				$("#analyser-chart").show(200);
 				$("#analyser-chart").css('top', $("#header-nav").height() * 1.3);
 				$("#analyser-table").show(200);
@@ -216,7 +216,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<div id="limit-filter">
 				<label id="limitFilter-label" for="limitFilter-label"><?php echo $filter_label; ?></label>
 				<br/><br/>
-				<a href="#" id="filterBtn" onclick="" title="Limit Filter"><img src="img/limitfilter.png" width="48px" height="48px" alt="Limit Filter"></a>
+				<a href="#" id="filterBtn" onclick="limitFilter()" title="Limit Filter"><img src="img/limitfilter.png" width="48px" height="48px" alt="Limit Filter"></a>
 			</div>
 			
 			<div id="analysis-mode" >

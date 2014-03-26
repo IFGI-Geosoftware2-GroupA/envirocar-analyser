@@ -161,7 +161,7 @@ LineChart.prototype.getSeries = function(name) {
 LineChart.prototype.highlight = function(id){
 	var series = this.getAllSeries();
 	for(var i = 0; i < series.length; i++){
-		if(this.chart.get(series[i].options.id).visible)
+		if(this.chart.get(series[i].options.id).visible && this.getChart().get(series[i].options.id + id) != null)
 			this.getChart().get(series[i].options.id + id).select(true,true);
 	}
 };
