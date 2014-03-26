@@ -148,13 +148,26 @@ body {
 
 #analysisInterpolation {
 	
-	margin-left: 2em;
+	margin-left: 1.5em;
 	display: none;
 	
 }
 
 #analysisInterpolation-label {
 	margin-bottom: 5em;
+	font-size: 14px;
+	text-align: center;
+}
+
+#aggregation {
+	margin-left: 1em;
+	display: none;
+}
+
+#aggregation-label {
+	margin-bottom: 5em;
+	font-size: 14px;
+	text-align: center;
 }
 
 #limit-filter {
@@ -165,11 +178,14 @@ body {
 
 #limitFilter-label {
 	margin-bottom: 5em;
+	margin-left: 1.5em;
+	font-size: 14px;
+	text-align: center;
 }
 
 #analysis-mode {
 	position: absolute;
-	right: 6em;
+	right: 5em;
 	width: 9em;
 }
 
@@ -339,7 +355,7 @@ body {
 	margin : 0;
 	z-index: 49;
 	text-decoration: none;
-	right: 10.3em;
+	right: 8.9em;
 	display: none;
 }
 
@@ -630,15 +646,19 @@ body {
 
 
 #interpolationBtn{
-	margin: 2em 0 0 1em;
+	margin: 1em 0 0 1em;
 	outline:none;
 }
 
 #filterBtn{
-	margin: 2em 0 0 1.5em;
+	margin: 1em 0 0 1em;
 	outline:none;
 }
 
+#aggregationBtn{
+	margin: 1em 0 0 1em;
+	outline:none;
+}
 
 /********************************************************************
 	5. Style fixes

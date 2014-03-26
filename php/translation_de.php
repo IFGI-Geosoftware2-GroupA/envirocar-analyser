@@ -234,7 +234,7 @@
 	
 	$chartAndTable = "Graph und Tabelle";
 	
-	$filter_label = "Grenzwert Filter";
+	$filter_label = "Filter";
 	
 	$aggregation_label = "Aggregation";
 	

@@ -202,7 +202,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<div id="analysisInterpolation">
 				<label id="analysisInterpolation-label" for="analysisInterpolation-label"><?php echo $interpolation_label; ?></label>
 				<br/><br/>
-				<a href="#" id="interpolationBtn" onclick="interpolate();" title="Start Interpolation"><img src="img/interpolation.png" width="48px" height="48px" alt="Interpolation"></a>
+				<a href="#" id="interpolationBtn" onclick="interpolate();" title="Start Interpolation"><img src="img/interpolationIcon.png" width="48px" height="48px" alt="Interpolation"></a>
 				<br><br>
 				<select id="idwid" onchange="IDWSelection()">
  					<option value="select"><?php echo $selectIDW; ?></option>
@@ -213,10 +213,16 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
   				<input type="button" id="clearidw" name"clearidw" class="spaceButton" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
 			</div>
 			
+			<div id="aggregation">
+				<label id="aggregation-label" for="aggregation-label"><?php echo $aggregation_label; ?></label>
+				<br/><br/>
+				<a href="#" id="aggregationBtn" onclick="" title="Aggregation"><img src="img/aggregationIcon.png" width="48px" height="48px" alt="Aggreation"></a>
+			</div>
+			
 			<div id="limit-filter">
 				<label id="limitFilter-label" for="limitFilter-label"><?php echo $filter_label; ?></label>
 				<br/><br/>
-				<a href="#" id="filterBtn" onclick="limitFilter()" title="Limit Filter"><img src="img/limitfilter.png" width="48px" height="48px" alt="Limit Filter"></a>
+				<a href="#" id="filterBtn" onclick="limitFilter()" title="Limit Filter"><img src="img/limitFilterIcon.png" width="48px" height="48px" alt="Limit Filter"></a>
 			</div>
 			
 			<div id="analysis-mode" >
