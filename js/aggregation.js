@@ -65,6 +65,8 @@ function displayAggregationResults() {
 			alert("Aggregation failed. JSON File is malformed!");
 		} else {
 			setChart('bar', req.responseText);
+			initAggregationTable(req.responseText);
+			tablestyle();
 		}
 	}
 }

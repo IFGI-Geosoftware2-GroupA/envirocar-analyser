@@ -185,10 +185,12 @@ function clearOverlays() {
 function setTrackSelection() {
 	var select = document.getElementById('trackSelectionList');
 	var tracks = new Array();
+	var tracksHTML = new Array();
 	// collect all tracks
 	for (var i = 0; i < measurements.length; i++) {
-		if (tracks.indexOf(measurements[i].getTrackId() + ' (' + measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model + ')') == -1) {
-			tracks.push(measurements[i].getTrackId() + ' (' + measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model + ')');
+		if (tracks.indexOf(measurements[i].getTrackId()) == -1) {
+			tracksHTML.push(measurements[i].getTrackId() + ' (' + measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model + ')');
+			tracks.push(measurements[i].getTrackId());
 		}
 	}
 	// remove tracks of former requests
@@ -203,7 +205,7 @@ function setTrackSelection() {
 	for (var x = 0; x < tracks.length; x++) {
 		var opt = document.createElement('option');
 		opt.value =  tracks[x];
-		opt.innerHTML = tracks[x];
+		opt.innerHTML = tracksHTML[x];
 		select.appendChild(opt);
 	}
 }

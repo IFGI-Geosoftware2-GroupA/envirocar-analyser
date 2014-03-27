@@ -294,7 +294,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				</div>
 		
 				<div id="analyser-table" class="top">
-					<form name="checkbox">
+					<form id="analyser-table-checkbox" name="checkbox">
 						   <p>
 							 <input type="checkbox" name="id" checked> <?php echo $id; ?>
 							 <input type="checkbox" name="verbrauch" checked> <?php echo $consumption; ?>

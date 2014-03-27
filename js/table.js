@@ -11,6 +11,170 @@ function initTable() {
 	node.appendChild(createTable());
 }
 
+// Initialize special table for Aggregation Results
+function initAggregationTable(json){
+	node = document.getElementById('analyser-table');
+	node.appendChild(createAggregationTable(json));	
+}
+
+// create Table displaying only the aggregation results
+function createAggregationTable(json){
+	try{
+		if (document.getElementById("tableID") != null) {
+			deleteTable();
+		}
+		var json = JSON.parse(json);
+		// hide the checkbox selection used for the 'normal' table
+		if ($("#analyser-table-checkbox").is(":visible") ) {
+			$("#analyser-table-checkbox").hide();
+		}
+		var myTable = document.createElement("table");
+		var mytablehead = document.createElement("thead");
+		var mytablebody = document.createElement("tbody");
+
+		myTable.setAttribute("id", "tableID");
+		
+		//Creating the Headrow of the Table
+		headrow = document.createElement("tr");
+
+		headcell0 = document.createElement("th");
+		headcell0.setAttribute("id", "idrow");
+		headcell1 = document.createElement("th");
+		headcell2 = document.createElement("th");
+		headcell3 = document.createElement("th");
+		headcell4 = document.createElement("th");
+		headcell5 = document.createElement("th");
+
+		var l = getParam('lang');
+		if (l == "en") {
+			headtext0 = document.createTextNode("Value");
+			headtext1 = document.createTextNode("Consumption");
+			headtext2 = document.createTextNode("CO2");
+			headtext3 = document.createTextNode("Speed");
+			headtext4 = document.createTextNode("Engine Load");
+			headtext5 = document.createTextNode("Revolut./Minute");
+		} else {
+			headtext0 = document.createTextNode("Wert");
+			headtext1 = document.createTextNode("Verbrauch");
+			headtext2 = document.createTextNode("CO2");
+			headtext3 = document.createTextNode("Geschwindigkeit");
+			headtext4 = document.createTextNode("Motorlast");
+			headtext5 = document.createTextNode("Umdrehungen/Minute");
+		}
+
+		headcell0.appendChild(headtext0);
+		headcell1.appendChild(headtext1);
+		headcell2.appendChild(headtext2);
+		headcell3.appendChild(headtext3);
+		headcell4.appendChild(headtext4);
+		headcell5.appendChild(headtext5);
+
+		headrow.appendChild(headcell0);
+		headrow.appendChild(headcell1);
+		headrow.appendChild(headcell2);
+		headrow.appendChild(headcell3);
+		headrow.appendChild(headcell4);
+		headrow.appendChild(headcell5);
+
+		mytablehead.appendChild(headrow);
+		
+		var temp, text1, text2, text3, text4, text5;
+		for(var i = 0; i < 4; i++){
+			//Creating the rest of the Table
+			currentRow = document.createElement("tr");
+
+			currentCell0 = document.createElement("th");
+			currentCell1 = document.createElement("td");
+			currentCell2 = document.createElement("td");
+			currentCell3 = document.createElement("td");
+			currentCell4 = document.createElement("td");
+			currentCell5 = document.createElement("td");
+			console.log(i);
+			//Value-Column
+			switch(i){
+				case 0: 
+					if(l == "en") temp = "Mean";
+					else temp = "Durchschnitt";
+					text1 = json[0]['CO2']['Mean'];
+					text2 = json[1]['Consumption']['Mean'];
+					text3 = json[2]['Engine Load']['Mean'];
+					text4 = json[3]['Rpm']['Mean'];
+					text5 = json[4]['Speed']['Mean'];
+					break;
+				case 1: 
+					if(l == "en") temp = "Standard Error";
+					else temp = "Standardfehler";
+					text1 = json[0]['CO2']['Standard Error'];
+					text2 = json[1]['Consumption']['Standard Error'];
+					text3 = json[2]['Engine Load']['Standard Error'];
+					text4 = json[3]['Rpm']['Standard Error'];
+					text5 = json[4]['Speed']['Standard Error'];
+					break;
+				case 2: 
+					if(l == "en") temp = "Minimum";
+					else temp = "Minimum";
+					text1 = json[0]['CO2']['Min'];
+					text2 = json[1]['Consumption']['Min'];
+					text3 = json[2]['Engine Load']['Min'];
+					text4 = json[3]['Rpm']['Min'];
+					text5 = json[4]['Speed']['Min'];
+					break;
+				case 3: 
+					if(l == "en") temp = "Maximum";
+					else temp = "Maximum";
+					text1 = json[0]['CO2']['Max'];
+					text2 = json[1]['Consumption']['Max'];
+					text3 = json[2]['Engine Load']['Max'];
+					text4 = json[3]['Rpm']['Max'];
+					text5 = json[4]['Speed']['Max'];
+					break;
+			}
+			currentText0 = document.createTextNode(temp);
+
+			//Consumption-Column
+			currentText1 = document.createTextNode(text1);
+
+			//CO2-Column
+			currentText2 = document.createTextNode(text2);
+
+			//Speed-Column
+			currentText3 = document.createTextNode(text3);
+
+			//Engine Load-Column
+			currentText4 = document.createTextNode(text4);
+
+			//RPM-Column
+			currentText5 = document.createTextNode(text5);
+
+			currentCell0.appendChild(currentText0);
+			currentCell1.appendChild(currentText1);
+			currentCell2.appendChild(currentText2);
+			currentCell3.appendChild(currentText3);
+			currentCell4.appendChild(currentText4);
+			currentCell5.appendChild(currentText5);
+
+			currentRow.appendChild(currentCell0);
+			currentRow.appendChild(currentCell1);
+			currentRow.appendChild(currentCell2);
+			currentRow.appendChild(currentCell3);
+			currentRow.appendChild(currentCell4);
+			currentRow.appendChild(currentCell5);
+
+			mytablebody.appendChild(currentRow);
+		}
+		
+		myTable.appendChild(mytablehead);
+		myTable.appendChild(mytablebody);
+		myTable.setAttribute("border", 1);
+
+		return myTable;
+		
+	}
+	catch(e){
+		alert(e.message);
+	}
+}
+
 /**
  * Create the Table on the basis of the json File
  */
@@ -18,6 +182,9 @@ function createTable() {
 	try {
 		if (document.getElementById("tableID") != null) {
 			deleteTable();
+		}
+		if ($("#analyser-table-checkbox").is(":hidden") ) {
+			$("#analyser-table-checkbox").show();
 		}
 		var myTable = document.createElement("table");
 		var mytablehead = document.createElement("thead");
