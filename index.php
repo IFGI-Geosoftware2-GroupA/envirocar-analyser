@@ -327,6 +327,14 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<?php echo $help_interpolation; ?>
 				</div>
 				
+				<div id="analyser-help-aggregation" class="top blue" style="display: none">
+					<?php echo $help_aggregation; ?>
+				</div>
+				
+				<div id="analyser-help-filter" class="top blue" style="display: none">
+					<?php echo $help_filter; ?>
+				</div>
+				
 				<div id="analyser-contact" class="top blue" style="display: none">
 					<?php echo $contact_content; ?>
 				</div>
@@ -359,11 +367,23 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 						$("#analyser-help").hide(200);			
 					});
 					
+					$("#aggregationhelp").click(function() {
+						$("#analyser-help-aggregation).show(200);
+						$("#analyser-help").hide(200);			
+					});
+					
+					$("#filterhelp").click(function() {
+						$("#analyser-help-filter").show(200);
+						$("#analyser-help").hide(200);			
+					});
+					
 					$(".back").click(function() {
 						$("#analyser-help").show(200);	
 						$("#analyser-help-mapview").hide(200);
 						$("#analyser-help-getdata").hide(200);
-						$("#analyser-help-interpolation").hide(200);		
+						$("#analyser-help-interpolation").hide(200);
+						$("#analyser-help-aggregation").hide(200);
+						$("#analyser-help-filter").hide(200);		
 					});
 				});
 			</script>
