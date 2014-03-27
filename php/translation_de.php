@@ -131,7 +131,8 @@
 		            Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
 		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. 
 		            Oder aber durch Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte 
-		            setzen, um alle Straßensegmente zwischen diesen Punkten auszuwählen. Zum Schluss klicken 
+		            setzen, um alle Straßensegmente zwischen diesen Punkten auszuwählen. <br/> Unter 'Tracks' 
+		            können Sie auch noch einzelne gefahrene Pfade auswählen. Zum Schluss klicken 
 		            Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes angezeigt 
 		            zu bekommen. <br/> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
 		            Doppelpfeile alle Phänomene oder durch Klicken auf eines der Automodelle, Automodelle 
@@ -160,7 +161,7 @@
 					<h2>Aggregation</h2>
 					<br>
 		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
-		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten.";    
+		            aggregieren, um so Minimum, Maximum, Durchschnitt und Standardfehler zu erhalten.";    
 		            
     $help_filter2 = "
 					<h1>Hilfe/h1> <br>
