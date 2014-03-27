@@ -187,8 +187,8 @@ function setTrackSelection() {
 	var tracks = new Array();
 	// collect all tracks
 	for (var i = 0; i < measurements.length; i++) {
-		if (tracks.indexOf(measurements[i].getTrackId()) == -1) {
-			tracks.push(measurements[i].getTrackId());
+		if (tracks.indexOf(measurements[i].getTrackId() + ' (' + measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model + ')') == -1) {
+			tracks.push(measurements[i].getTrackId() + ' (' + measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model + ')');
 		}
 	}
 	// remove tracks of former requests
@@ -202,7 +202,7 @@ function setTrackSelection() {
 	// add all tracks requested
 	for (var x = 0; x < tracks.length; x++) {
 		var opt = document.createElement('option');
-		opt.value = tracks[x];
+		opt.value =  tracks[x];
 		opt.innerHTML = tracks[x];
 		select.appendChild(opt);
 	}
@@ -272,7 +272,6 @@ function applyCarSelection(){
 		}
 		if(!keep){
 			measurements.splice(i,1);
-			console.log("removed");
 			i--;
 		} 
 	}
@@ -305,10 +304,13 @@ function executeLimitFilter(){
 				}			
 			}
 		}
-		for (var j = 0 ; j < measurements[0].phenomenons.length ; j++) {				
+		if(typeof(measurements[0]) == "undefined") return;
+		else{
+			for (var j = 0 ; j < measurements[0].phenomenons.length ; j++) {				
 			if (measurements[0].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[0].getValues()[j] < limitFilterSettings[1] || measurements[0].getValues()[j] > limitFilterSettings[2])) {
 				measurements.splice(0,1);
 			}			
+			}	
 		}	
 	}
 }
