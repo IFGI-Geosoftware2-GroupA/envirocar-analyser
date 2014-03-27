@@ -112,7 +112,7 @@
 		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
 		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
 		            Kartenausschnitt ausgewählt werden. <br><br>
-		            Durch Benutzung des Scrollrades der Maus (ausgenommen IE), 
+		            Durch Benutzung des Scrollrades der Maus (ausgenommen Internet Explorer), 
 		            durch Klicken auf das Plus- und das Minussymbol der Zoomskala oder durch Klicken auf selbige, 
 		            kann hinein und herausgezoomt werden. <br><br>
 		            Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
@@ -132,9 +132,8 @@
 		            Danach können Sie optional noch ein Gebiet innerhalb NRWs auswählen, indem 
 		            Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
 		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. <br><br>
-		            Zum Schluss klicken 
-		            Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes angezeigt 
-		            zu bekommen.";
+		            Zum Schluss klicken Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes 
+		            angezeigt zu bekommen.";
 	            
 	$help_interpolation = "
 					<h1>Hilfe</h1> <br>
@@ -152,9 +151,8 @@
 		            Bei dem Graph können ebenfalls Phänomene an der rechten Seite durch an- und abwählen hinzugefügt bzw. entfernt werden.
 		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomed werden und durch
 		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>
-		            Durch drücken des Interpolationsknopfes werden die Werte
-		            für CO2, Verbrauch und Geschwindigkeit interpoliert. Daraufhin erscheint ein Dropdown-Menü, bei dem Sie auswählen
-		            können, welches Resultat Ihnen angezeigt werden soll.";   
+		            Durch drücken des Interpolationsknopfes werden die Werte für CO2, Verbrauch und Geschwindigkeit interpoliert. 
+		            Daraufhin erscheint ein Drop-down-Menü, bei dem Sie auswählen können, welches Resultat Ihnen angezeigt werden soll.";   
 		            
     $help_aggregation2 = "
 					<h1>Hilfe</h1> <br>

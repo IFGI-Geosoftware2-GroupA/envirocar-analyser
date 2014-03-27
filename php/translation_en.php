@@ -94,10 +94,12 @@
 	                location in North Rhine-Westphalia by entering its name in the search field. Only locations 
 	                within North Rhine-Westphalia can be selected. You can choose a different map section either 
 	                by clicking on the arrow field or by leaving the left mouse button clicked on the map and 
-	                moving the mouse. You can zoom in and out by either clicking on the plus and minus symbol of the 
-	                zoom scale or by simply clicking on the zoom scale itself. By clicking on the fields 'Karte',
-	                'Hybrid' and 'OSM' you can choose between a vector map, a hybrid of a satellite image and 
-	                street vectors and a map of OpenStreetMaps.";
+	                moving the mouse. <br><br>
+	                You can zoom in and out either by using the scroll wheel of the mouse (except 
+	                for Internet Explorer), clicking on the plus and minus symbol of the zoom scale or by simply clicking 
+	                on the zoom scale itself. <br><br>
+	                By clicking on the fields 'Karte', 'Hybrid' and 'OSM' you can choose between 
+	                a vector map, a hybrid of a satellite image and street vectors and a map of OpenStreetMaps.";
 	
 	$help_getdata ="
 					<h1>Help</h1> <br>
@@ -106,14 +108,13 @@
 					<br>
 		            If you want to analyse data of a certain time interval 
 	                you need to click in the 'From:' and the 'To:' and then on the corresponding days (by clicking on the top left or 
-	                right corner of the calendar window you can go back and forth in time). Optionally, you can select an area
+	                right corner of the calendar window you can go back and forth in time). <br><br>
+	                Optionally, you can select an area
 	                within NRW in addition either by clicking on 'Select space segment' to select a segment with a bounding box, whose 
 	                size can be varied by pulling its edges with the left mouse button pushed. Or you can click on 'Street
 	                Selection' and set several points in the map with the left mouse button to select all street segments 
-	                between those points. In 'Tracks' you can choose particular paths driven by a car. Finally, you 
-	                click on 'Get Data' to get the data for that time period and possibly that area. In 'Possible Car Models' 
-	                you can select all car models by clicking on the double arrows or select single model by 
-	                clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way.";
+	                between those points. In 'Tracks' you can choose particular paths driven by a car. <br><br>
+	                Finally, you click on 'Get Data' to get the data for that time period and possibly that area.";
 	            
 	$help_interpolation = "
 					<h1>Help</h1> <br>
@@ -123,10 +124,13 @@
 		            Now, to analyse the data, you click on the analyse mode field. After that the interpolation button for 
 	                interpolating the data appears at the top and a table on the right side of the web page. 
 	                If you pull the mouse over the field 'Display' you can choose if you would like to see the data in a table, 
-	                chart or chart and table. Below the interpolation button you can choose what you would like to interpolate: 
-	                CO2, consumption or speed. As last step you only need to click on the interpolation button to get the results.
-	                You can delete and undelete columns of the table by setting and unsetting the ticks in the boxes and pushing 
-	                'Refresh'. By moving the scroll bar of the table you can also see the data below.";
+	                chart or chart and table. <br><br>
+	                For the table, phenomena can be added and deleted as columns by putting ticks in the boxes and pushing 'Refresh'.
+	                <br><br>
+	                For the charts, phenomena can be added and deleted by selecting and deselecting, too. By letting the left mouse button clicked
+	                and pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming.
+	                By clicking on the interpolation button, the values for CO2, consumption, and speed get interpolated. After that, a drop-down 
+	                menu appears with which you can choose which result shall be displayed for you.";
 					
 	    $help_aggregation2 = "
 					<h1>Help</h1> <br>
@@ -134,13 +138,15 @@
 					<h2>Aggregation</h2>
 					<br>
 		            After you clicked on the field 'Analysis Mode' you can aggregate the data with clicking on 'Aggregation' to 
-		            get minimum, maximum, mean, and standard error.";    
+		            get minimum, maximum, mean, and standard error. Those will be displayed as chart and as table.";    
 		            
         $help_filter2 = "
 					<h1>Help</h1> <br>
 					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2>Filter</h2>
 					<br>
+					In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model 
+					by clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way.  <br><br>
 		            After you clicked on the field 'Analysis Mode' you can use the filter for limits to choose a phenomenon 
 		            (consumption, CO2, speed, engine load, revolut./minute) and set a limit with the slider bar by yourself. 
 		            This way you can see which measurements are over and which are below the set limit. The info window will 
