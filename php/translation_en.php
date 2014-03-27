@@ -133,18 +133,18 @@
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Aggregation</h2>
 					<br>
-		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
-		            aggregieren, um so Maximum, Minimum, Durchschnitt und Standardabweichung zu erhalten.";    
+		            After you clicked on the field 'Analysis Mode' you can aggregate the data with clicking on 'Aggregation' to 
+		            get maximum, minimum, average, and standard error.";    
 		            
         $help_filter2 = "
 					<h1>Filter</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
 					<br>
-		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
-		            (Verbrauch, CO2, Geschwindigkeit, Motorlast, Umdrehungen) auswählen und selbst mit Hilfe des Schiebereglers 
-		            Grenzwerte festlegen und so sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
-		            Einschätzungshilfe werden im Info-Fenster einige typische Grenzwerte angezeigt.";       
+		            After you clicked on the field 'Analysis Mode' you can use the filter for limits to choose a phenomenon 
+		            (consumption, CO2, speed, engine load, revolut./minute) and set a limit with the slider bar by yourself. 
+		            This way you can see which measurements are over and which are below the set limit. The info window will 
+		            show some typical limits as valuation help.";       
                  
 					         
 	$id = "ID";
