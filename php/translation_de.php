@@ -116,8 +116,7 @@
 					<h2>Kartenausschnitt</h2>
 	                <br>
 	                <img src='img/help/suchenVerschieben.jpg' width='190' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		         	<p> Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. 
-		         	Durch Eingabe eines 
+		         	<p> Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
 		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
 		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
 		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 

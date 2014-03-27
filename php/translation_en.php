@@ -107,7 +107,7 @@
 	                <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
 	                <p> You can zoom in and out either by using the scroll wheel of the mouse (except 
 	                for Internet Explorer), clicking on the plus and minus symbol of the zoom scale or by simply clicking 
-	                on the zoom scale itself. <br><br>  </p>
+	                on the zoom scale itself. <br><br> <br><br>  </p>
 	                <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
 	                <p> By clicking on the fields 'Karte', 'Hybrid' and 'OSM' you can choose between 
 	                a vector map, a hybrid of a satellite image and street vectors and a map of OpenStreetMaps. </p>";
@@ -140,8 +140,8 @@
 	                chart or chart and table. <br><br>  </p>
 	                For the table, phenomena can be added and deleted as columns by putting ticks in the boxes and pushing 'Refresh'. <br><br>
 	                <img src='img/help/kästchen.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
-	                <p> For the charts, phenomena can be added and deleted by selecting and deselecting, too. By letting the left mouse button clicked
-	                and pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming. </p>
+	                <p> For the charts, phenomena can be added and deleted by selecting and deselecting, too. By letting the left mouse button clicked and 
+	                pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming. <br><br> </p>
 	                <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 	                <p> By clicking on the interpolation button, the values for CO2, consumption, and speed get interpolated. After that, a drop-down 
 	                menu appears with which you can choose which result shall be displayed for you.  </p>";
@@ -161,7 +161,7 @@
 					<h2>Filter</h2>
 					<br>
 					<img src='img/help/cars.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-					<p> In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model 
+					<p> <br/> In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model 
 					by clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way. <br><br>  </p>
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p>After you clicked on the field 'Analysis Mode' you can use the filter for limits to choose a phenomenon 
