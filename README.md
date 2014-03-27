@@ -37,7 +37,7 @@ Es gibt bereits eine Liste [bekannter Bugs :warning:](https://github.com/IFGI-Ge
 Internet application to explore and visualise spatio-temporal measurements from vehicles.
 
 :exclamation:
-[To the application](http://giv-geosoft2a.uni-muenster.de/)
+[To the application](http://giv-geosoft2a.uni-muenster.de/?lang=en)
 :exclamation:
 
 We use the [Google Maps API :earth_africa:](https://developers.google.com/maps/?hl=en) and [jQuery](http://jquery.com/) as external libraries.
