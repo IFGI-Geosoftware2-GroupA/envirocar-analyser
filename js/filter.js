@@ -51,8 +51,6 @@ function getDateTime() {
 		// Storing the value of the date-to box in a variable
 		var endDate = $('#date-to').val();
 		
-		alert("Sie haben den Startzeitpunkt " + startDate + " und den Endzeitpunkt " + endDate + " ausgewählt.");
-		
 		// Getting the literals from the date-from box and start building the first part of the string
 		// If used this unusual way to get the date and time because the functions contributed by the jQuery framework not worked properly for me
 		
