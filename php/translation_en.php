@@ -97,8 +97,7 @@
 	                moving the mouse. You can zoom in and out by either clicking on the plus and minus symbol of the 
 	                zoom scale or by simply clicking on the zoom scale itself. By clicking on the fields 'Karte',
 	                'Hybrid' and 'OSM' you can choose between a vector map, a hybrid of a satellite image and 
-	                street vectors and a map of OpenStreetMaps.  
-		            <br/> ";
+	                street vectors and a map of OpenStreetMaps.";
 	
 	$help_getdata ="
 					<h1>Help</h1> <br>
@@ -113,7 +112,7 @@
 	                Selection' and set several points in the map with the left mouse button to select all street segments 
 	                between those points. Finally, you click on 'Get Data' to get the data for that time period and possibly that area. 
 	                In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model by 
-	                clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way.  <br/> ";
+	                clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way.";
 	            
 	$help_interpolation = "
 					<h1>Help</h1> <br>
@@ -130,7 +129,7 @@
 					
 	    $help_aggregation2 = "
 					<h1>Help</h1> <br>
-					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2>Aggregation</h2>
 					<br>
 		            After you clicked on the field 'Analysis Mode' you can aggregate the data with clicking on 'Aggregation' to 
@@ -138,7 +137,7 @@
 		            
         $help_filter2 = "
 					<h1>Help</h1> <br>
-					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2>Filter</h2>
 					<br>
 		            After you clicked on the field 'Analysis Mode' you can use the filter for limits to choose a phenomenon 
