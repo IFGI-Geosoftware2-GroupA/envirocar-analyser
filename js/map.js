@@ -306,14 +306,20 @@ function executeLimitFilter(){
 				}			
 			}
 		}
-		if(typeof(measurements[0]) == "undefined") return;
-		else{
-			for (var j = 0 ; j < measurements[0].phenomenons.length ; j++) {				
-			if (measurements[0].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[0].getValues()[j] < limitFilterSettings[1] || measurements[0].getValues()[j] > limitFilterSettings[2])) {
-				measurements.splice(0,1);
-			}			
+		try{
+			if(typeof(measurements[0]) == "undefined"){
+			}
+			else{
+				for (var j = 0 ; j < measurements[0].phenomenons.length ; j++) {				
+				if (measurements[0].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[0].getValues()[j] < limitFilterSettings[1] || measurements[0].getValues()[j] > limitFilterSettings[2])) {
+					measurements.splice(0,1);
+				}			
+				}	
 			}	
-		}	
+		}
+		catch(e){
+			console.log("Measurement could not be filtered! Error Message: " + e.message);
+		}
 	}
 }
 
