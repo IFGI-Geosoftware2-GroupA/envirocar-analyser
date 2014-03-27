@@ -128,7 +128,7 @@
 	                You can delete and undelete columns of the table by setting and unsetting the ticks in the boxes and pushing 
 	                'Refresh'. By moving the scroll bar of the table you can also see the data below.";
 					
-	    $help_aggregation = "
+	    $help_aggregation2 = "
 					<h1>Aggregation</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Aggregation</h2>
@@ -136,7 +136,7 @@
 		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
 		            aggregieren, um so Maximum, Minimum, Durchschnitt und Standardabweichung zu erhalten.";    
 		            
-        $help_filter = "
+        $help_filter2 = "
 					<h1>Filter</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>

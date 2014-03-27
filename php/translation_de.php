@@ -154,7 +154,7 @@
 		            'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
 		            Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";   
 		            
-    $help_aggregation = "
+    $help_aggregation2 = "
 					<h1>Aggregation</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Aggregation</h2>
@@ -162,7 +162,7 @@
 		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
 		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten.";    
 		            
-        $help_filter = "
+    $help_filter2 = "
 					<h1>Filter</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>

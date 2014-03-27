@@ -328,11 +328,11 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				</div>
 				
 				<div id="analyser-help-aggregation" class="top blue" style="display: none">
-					<?php echo $help_aggregation; ?>
+					<?php echo $help_aggregation2; ?>
 				</div>
 				
 				<div id="analyser-help-filter" class="top blue" style="display: none">
-					<?php echo $help_filter; ?>
+					<?php echo $help_filter2; ?>
 				</div>
 				
 				<div id="analyser-contact" class="top blue" style="display: none">
@@ -368,7 +368,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					});
 					
 					$("#aggregationhelp").click(function() {
-						$("#analyser-help-aggregation).show(200);
+						$("#analyser-help-aggregation").show(200);
 						$("#analyser-help").hide(200);			
 					});
 					
