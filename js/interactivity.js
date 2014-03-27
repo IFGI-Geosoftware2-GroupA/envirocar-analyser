@@ -13,7 +13,6 @@ var alerted = false;
 
 // Enable or disable the help, contact, imprint or terms of usage in the analyser-panel
 var toggled = false;
-var analyserStarted = false;
 var lastContent = '';
 	
 // Screen resolution
@@ -32,7 +31,7 @@ function changeMode() {
 	
 	var mapWidth = document.getElementById('map-container').style.width;
 
-	if (mapWidth == "50%" && lastContent == '') {
+	if (mapWidth == "50%") {
 		document.getElementById('analyseModeBtn').value = off;
 		document.getElementById('analyseModeBtn').style.color = "#1D83C3";
 		document.getElementById('analyseModeBtn').style.border = "1px solid #1D83C3";
@@ -48,7 +47,6 @@ function changeMode() {
 		document.getElementById('aggregation').style.display = "none";
 		document.getElementById("analyser-switcher").style.display = "none";
 		
-		analyserStarted = false;
 	} else {
 		if (toggled) {
 			toggleAnalyserPanel('');
@@ -61,8 +59,8 @@ function changeMode() {
 		
 		document.getElementById('map-container').style.width = "50%";
 		resizeMap();
+		
 		$("#analyser-panel").show(200);
-		$("#dualView").click();
 		
 		document.getElementById('analysisInterpolation').style.display = "block";
 		document.getElementById('limit-filter').style.display = "block";
@@ -72,7 +70,6 @@ function changeMode() {
 		document.getElementById("idwid").style.display = "none";
 		document.getElementById("analyser-switcher").style.display = "block";
 		
-		analyserStarted = true;
 	}
 }
 
@@ -274,43 +271,30 @@ function toggleAnalyserPanel(id) {
 		document.getElementById('analyser-imprint').style.display = 'none';
 		document.getElementById('analyser-terms').style.display = 'none';
 		
-		// Check whether the analyser has been displayed before
-		if (analyserStarted) {
-			changeMode();
-			$("#dualView").click();
+		// Change the analyser status button
+		var on;
+		if (getParam('lang') == 'en') {
+			on = 'On';
 		} else {
-			// Hide the whole content in the analyser window
-			document.getElementById('map-container').style.display = "block";
-			document.getElementById('map-container').style.width = "100%";
-			resizeMap();
-			$("#analyser-panel").hide();
-			
-			lastContent = '';
+			on = 'An';
 		}
+		document.getElementById('analyseModeBtn').value = on;
+		document.getElementById('analyseModeBtn').style.color = '#fff';
+		document.getElementById('analyseModeBtn').style.border = '#990000';
+		document.getElementById('analyseModeBtn').style.background = '#990000';
+		
+		// Then display the analyser content
+		document.getElementById('analyser-chart').style.display = 'block';
+		document.getElementById('analyser-table').style.display = 'block';
+		document.getElementById("analyser-switcher").style.visibility = 'visible';
 		
 		// Last change the toggled variable
 		toggled = false;
 	} else {
-		var off;
-		if (getParam('lang') == 'en') {
-			off = 'Off';
-		} else {
-			off = 'Aus';
-		}
-		document.getElementById('analyseModeBtn').value = off;
-		document.getElementById('analyseModeBtn').style.color = "#1D83C3";
-		document.getElementById('analyseModeBtn').style.border = "1px solid #1D83C3";
-		document.getElementById('analyseModeBtn').style.background = "#fff";
-		
 		// First hide the analyser content
-		document.getElementById('analysisInterpolation').style.display = "none";
-		document.getElementById('limit-filter').style.display = "none";
-		document.getElementById('aggregation').style.display = "none";
-		document.getElementById('analyser-switcher').style.display = "none";
-		document.getElementById('analyser-chart').style.display = "none";
-		document.getElementById('analyser-table').style.display = "none";
-		document.getElementById('clearidw').style.display = "none";
-		document.getElementById('idwid').style.display = "none";
+		document.getElementById('analyser-chart').style.display = 'none';
+		document.getElementById('analyser-table').style.display = 'none';
+		document.getElementById("analyser-switcher").style.visibility = 'hidden';
 		
 		// Then display the expected content
 		for (var i = 0; i < possibleIDs.length; i++) {
