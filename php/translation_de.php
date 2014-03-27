@@ -131,15 +131,8 @@
 		            oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). <br><br>
 		            Danach können Sie optional noch ein Gebiet innerhalb NRWs auswählen, indem 
 		            Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
-<<<<<<< HEAD
-		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. 
-		            Oder aber durch Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte 
-		            setzen, um alle Straßensegmente zwischen diesen Punkten auszuwählen. <br/> Unter 'Tracks' 
-		            können Sie auch noch einzelne gefahrene Pfade auswählen. Zum Schluss klicken 
-=======
 		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. <br><br>
 		            Zum Schluss klicken 
->>>>>>> e8c41d83fcd26429039d648d16da1d5095cec90f
 		            Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes angezeigt 
 		            zu bekommen.";
 	            
@@ -169,12 +162,8 @@
 					<h2>Aggregation</h2>
 					<br>
 		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
-<<<<<<< HEAD
-		            aggregieren, um so Minimum, Maximum, Durchschnitt und Standardfehler zu erhalten.";    
-=======
 		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten. Diese werden sowohl
 		            in Form eines Graphen, als auch in Tabellenform dargestellt.";    
->>>>>>> e8c41d83fcd26429039d648d16da1d5095cec90f
 		            
     $help_filter2 = "
 					<h1>Hilfe</h1> <br>
