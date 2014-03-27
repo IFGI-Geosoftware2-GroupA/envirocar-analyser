@@ -155,7 +155,7 @@
 		            Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";   
 		            
     $help_aggregation2 = "
-					<h1>Aggregation</h1> <br>
+					<h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Aggregation</h2>
 					<br>
@@ -163,7 +163,7 @@
 		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten.";    
 		            
     $help_filter2 = "
-					<h1>Filter</h1> <br>
+					<h1>Hilfe/h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
 					<br>

@@ -81,8 +81,8 @@
     				<a href='#analyser-help-mapview' id='maphelp'>Map Section</a><br>
     				<a href='#analyser-help-getdata' id='getdatahelp'>Call Up Data</a><br>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
-    				<a href='#analyser-help-aggregation' id='interpolationhelp'>Aggregation</a><br>
-    				<a href='#analyser-help-filter' id='interpolationhelp'>Filter</a>
+    				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
+    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a>
     				";
 	
 	$help_mapview = "
@@ -129,7 +129,7 @@
 	                'Refresh'. By moving the scroll bar of the table you can also see the data below.";
 					
 	    $help_aggregation2 = "
-					<h1>Aggregation</h1> <br>
+					<h1>Help</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Aggregation</h2>
 					<br>
@@ -137,7 +137,7 @@
 		            aggregieren, um so Maximum, Minimum, Durchschnitt und Standardabweichung zu erhalten.";    
 		            
         $help_filter2 = "
-					<h1>Filter</h1> <br>
+					<h1>Help</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
 					<br>
