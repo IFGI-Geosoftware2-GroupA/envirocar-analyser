@@ -11,7 +11,15 @@
 	                    <br />
 	                    axelvirnich@uni-muenster.de, 
 	                    <br />
-	                    t_gaer03@uni-muenster.de";
+	                    t_gaer03@uni-muenster.de
+	                    <br />
+	                    d_sawa02@uni-muenster.de
+	                    <br />
+	                    j_balm01@uni-muenster.de
+	                    <br />
+	                    j_hein25@uni-muenster.de
+	                    <br />
+	                    m_gerd06@uni-muenster.de";
 	
 	$imprint = "Impressum";
 	$imprint_content = "<h1>Impressum</h1>
