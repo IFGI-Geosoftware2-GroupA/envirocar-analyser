@@ -223,6 +223,7 @@ function applyAllFilter(){
 		applyCarSelection();
 	}
 	redrawData(true, false, true,true,false);
+	analyserMeasurements = measurements.slice();
 	measurements = measurementsTemp.slice();
 }
 

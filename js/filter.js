@@ -306,10 +306,10 @@ function getBBox() {
 			var jsonTrackDataObj = jQuery.parseJSON(jsonTrackData);
 			
 			// If another element from the trackSelectionList is selected, an alert will popup embodying the information of the selected track
-			alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
-			+ "ModelType: " + jsonTrackDataObj.properties.sensor.properties.model + "\n"
-			+ "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
-			+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
+			// alert("Manufacturer: " + jsonTrackDataObj.properties.sensor.properties.manufacturer + "\n"
+			// + "ModelType: " + jsonTrackDataObj.properties.sensor.properties.model + "\n"
+			// + "FuelType: " + jsonTrackDataObj.properties.sensor.properties.fuelType + "\n"
+			// + "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
 		});
 	
 		// return jsonBBoxTracks;	
@@ -357,8 +357,7 @@ function getDT() {
 		
 		// Storing the value of the date-to box in a variable
 		var endDate = $('#date-to').val();
-		
-		alert("Sie haben den Startzeitpunkt " + startDate + " und den Endzeitpunkt " + endDate + " ausgewählt.");
+	
 		
 		// Getting the literals from the date-from box and start building the first part of the string
 		// If used this unusual way to get the date and time because the functions contributed by the jQuery framework not worked properly for me
@@ -462,7 +461,6 @@ function getBB() {
  * 
  */
 function getDateTimeBBox() {
-	
 	// Storing the value of the date-from and date-to element in a string
 	startDate = $('#date-from').val();
 	endDate = $('#date-to').val();
@@ -486,6 +484,8 @@ function getDateTimeBBox() {
 	
 	measurements = query.getMeasurements(inputUrl);
 	
+	analyserMeasurements = measurements.slice();
+	hideProgressAnimation();
 	redrawData(true,true,true,true,true);
 	
 		
@@ -502,7 +502,9 @@ function getDateTimeBBox() {
 		var inputUrl = dateTimeUrl;
 		
 		measurements = query.getMeasurements(inputUrl);
-	
+		
+		analyserMeasurements = measurements.slice();
+		hideProgressAnimation();
 		redrawData(true,true,true,true,true);
 		
 	// check if the user wants to perform a spatial filtering
@@ -520,7 +522,9 @@ function getDateTimeBBox() {
 		var inputUrl = BBUrl;
 		
 		measurements = query.getMeasurements(inputUrl);
-	
+
+		analyserMeasurements = measurements.slice();
+		hideProgressAnimation();
 		redrawData(true,true,true,true,true);
 	}
 }

@@ -9,9 +9,9 @@ Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten F
 [Zur Applikation](http://giv-geosoft2a.uni-muenster.de/)
 :exclamation:
 
-Wir verwenden dabei die [Google Maps API :earth_africa:](https://developers.google.com/maps/?hl=de) und [jQuery](http://jquery.com/) als externe Libraries.
+Wir verwenden dabei die [Google Maps API V3 :earth_africa:](https://developers.google.com/maps/?hl=de) und [jQuery](http://jquery.com/) als externe Libraries.
 
-Die Daten stammen aus dem [enviroCar-Projekt](https://envirocar.org/)
+Die Daten stammen aus dem [enviroCar-Projekt](https://envirocar.org/).
 
 Eine erweiterte Dokumentation findest du in unserem [Wiki :book:](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/wiki).
 
@@ -40,9 +40,9 @@ Internet application to explore and visualise spatio-temporal measurements from 
 [To the application](http://giv-geosoft2a.uni-muenster.de/?lang=en)
 :exclamation:
 
-We use the [Google Maps API :earth_africa:](https://developers.google.com/maps/?hl=en) and [jQuery](http://jquery.com/) as external libraries.
+We use the [Google Maps API V3 :earth_africa:](https://developers.google.com/maps/?hl=en) and [jQuery](http://jquery.com/) as external libraries.
 
-The data source is the [enviroCar-Project](https://envirocar.org/)
+The data source is the [enviroCar-Project](https://envirocar.org/).
 
 Further documentation can be found in our [wiki :book:](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/wiki).
 
@@ -57,6 +57,6 @@ Developers:
  * Daniel Sawatzky ([@dsawatzky](https://github.com/dsawatzky))
  * Axel Virnich ([@avi92](https://github.com/avi92))
 
-If you find any bugs, please report it to us [here](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/issues/new). Thanks in advance! :+1:
+If you find any bugs, please report them to us [here](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/issues/new). Thanks in advance! :+1:
 
 There is a list of [known bugs :warning:](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/wiki/Known-Bugs) so please take a look at them before you create a new issue.

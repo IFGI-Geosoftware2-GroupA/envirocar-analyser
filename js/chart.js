@@ -492,38 +492,38 @@ BarChart.prototype.createChartFromAggregation = function(json){
 	
 	//sort the values to the arrays
 	if(json[0]['CO2']['Mean'] != 'No Data'){
-		co2.push(json[0]['CO2']['Mean']);
-		co2.push(json[0]['CO2']['Standard Error']);
-		co2.push(json[0]['CO2']['Min']);
-		co2.push(json[0]['CO2']['Max']);	
+		co2.push(parseFloat(json[0]['CO2']['Mean'].toFixed(2)));
+		co2.push(parseFloat(json[0]['CO2']['Standard Error'].toFixed(2)));
+		co2.push(parseFloat(json[0]['CO2']['Min'].toFixed(2)));
+		co2.push(parseFloat(json[0]['CO2']['Max'].toFixed(2)));	
 	}
 	
 	if(json[1]['Consumption']['Mean'] != 'No Data'){
-		consumption.push(json[1]['Consumption']['Mean']);
-		consumption.push(json[1]['Consumption']['Standard Error']);
-		consumption.push(json[1]['Consumption']['Min']);
-		consumption.push(json[1]['Consumption']['Max']);	
+		consumption.push(parseFloat(json[1]['Consumption']['Mean'].toFixed(2)));
+		consumption.push(parseFloat(json[1]['Consumption']['Standard Error'].toFixed(2)));
+		consumption.push(parseFloat(json[1]['Consumption']['Min'].toFixed(2)));
+		consumption.push(parseFloat(json[1]['Consumption']['Max'].toFixed(2)));	
 	}
 	
 	if(json[2]['Engine Load']['Mean'] != 'No Data'){
-		engineLoad.push(json[2]['Engine Load']['Mean']);
-		engineLoad.push(json[2]['Engine Load']['Standard Error']);
-		engineLoad.push(json[2]['Engine Load']['Min']);
-		engineLoad.push(json[2]['Engine Load']['Max']);	
+		engineLoad.push(parseFloat(json[2]['Engine Load']['Mean'].toFixed(2)));
+		engineLoad.push(parseFloat(json[2]['Engine Load']['Standard Error'].toFixed(2)));
+		engineLoad.push(parseFloat(json[2]['Engine Load']['Min'].toFixed(2)));
+		engineLoad.push(parseFloat(json[2]['Engine Load']['Max'].toFixed(2)));	
 	}
 	
 	if(json[3]['Rpm']['Mean'] != 'No Data'){
-		rpm.push(json[3]['Rpm']['Mean']);
-		rpm.push(json[3]['Rpm']['Standard Error']);
-		rpm.push(json[3]['Rpm']['Min']);
-		rpm.push(json[3]['Rpm']['Max']);	
+		rpm.push(parseFloat(json[3]['Rpm']['Mean'].toFixed(2)));
+		rpm.push(parseFloat(json[3]['Rpm']['Standard Error'].toFixed(2)));
+		rpm.push(parseFloat(json[3]['Rpm']['Min'].toFixed(2)));
+		rpm.push(parseFloat(json[3]['Rpm']['Max'].toFixed(2)));	
 	}
 	
 	if(json[4]['Speed']['Mean'] != 'No Data'){
-		speed.push(json[4]['Speed']['Mean']);
-		speed.push(json[4]['Speed']['Standard Error']);
-		speed.push(json[4]['Speed']['Min']);
-		speed.push(json[4]['Speed']['Max']);	
+		speed.push(parseFloat(json[4]['Speed']['Mean'].toFixed(2)));
+		speed.push(parseFloat(json[4]['Speed']['Standard Error'].toFixed(2)));
+		speed.push(parseFloat(json[4]['Speed']['Min'].toFixed(2)));
+		speed.push(parseFloat(json[4]['Speed']['Max'].toFixed(2)));	
 	}
 	
 	//add information in the language selected

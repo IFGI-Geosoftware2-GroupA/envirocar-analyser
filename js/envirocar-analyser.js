@@ -2,6 +2,7 @@
  * @author Marius Runde, Daniel Sawatzky, Thiemo Gaertner, Jan-Philipp Heine
  */
 var measurements;
+var analyserMeasurements;
 var envirocarTrackUrl = "https://envirocar.org/api/stable/tracks/";
 var limitFilterSettings = new Array('reset', 0, 0);
 
@@ -616,6 +617,7 @@ Query.prototype.getMeasurements = function(inputUrl) {
 	// alert(inputUrl);
 	
 	if(inputUrl == undefined) {
+		showProgressAnimation();
 		// calling the getLatestTracks() function in order to get the URL String for querying the lastest measured 24 hours
 		latestTracks = getLatestTracks();
 		
@@ -755,6 +757,7 @@ Query.prototype.getMeasurements = function(inputUrl) {
 				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor, trackId));
 			});
 		});
+		hideProgressAnimation();
 		return result;
 	
 	} else if(inputUrl != undefined){

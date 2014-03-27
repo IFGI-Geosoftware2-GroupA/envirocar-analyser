@@ -1,7 +1,7 @@
 /**
  * @author Daniel Sawatzky, Marius Runde
  */
- 
+
 // Global variables
 var wHeight = getWindowHeight();
 var wWidth = getWindowWidth();
@@ -14,7 +14,7 @@ var alerted = false;
 // Enable or disable the help, contact, imprint or terms of usage in the analyser-panel
 var toggled = false;
 var lastContent = '';
-	
+
 // Screen resolution
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
 
@@ -28,7 +28,7 @@ function changeMode() {
 		on = 'An';
 		off = 'Aus';
 	}
-	
+
 	var mapWidth = document.getElementById('map-container').style.width;
 
 	if (mapWidth == "50%") {
@@ -36,45 +36,45 @@ function changeMode() {
 		document.getElementById('analyseModeBtn').style.color = "#1D83C3";
 		document.getElementById('analyseModeBtn').style.border = "1px solid #1D83C3";
 		document.getElementById('analyseModeBtn').style.background = "#fff";
-		
+
 		document.getElementById('map-container').style.display = "block";
 		document.getElementById('map-container').style.width = "100%";
 		resizeMap();
 		$("#analyser-panel").hide();
-		
+
 		document.getElementById('analysisInterpolation').style.display = "none";
 		document.getElementById('limit-filter').style.display = "none";
 		document.getElementById('aggregation').style.display = "none";
 		document.getElementById("analyser-switcher").style.display = "none";
-		
+
 	} else {
 		if (toggled) {
 			toggleAnalyserPanel('');
 		}
-		
+
 		document.getElementById('analyseModeBtn').value = on;
 		document.getElementById('analyseModeBtn').style.color = "#fff";
 		document.getElementById('analyseModeBtn').style.border = "#990000";
 		document.getElementById('analyseModeBtn').style.background = "#990000";
-		
+
 		document.getElementById('map-container').style.width = "50%";
 		resizeMap();
-		
+
 		$("#analyser-panel").show(200);
-		
+
 		document.getElementById('analysisInterpolation').style.display = "block";
 		document.getElementById('limit-filter').style.display = "block";
 		document.getElementById('aggregation').style.display = "block";
-		
+
 		document.getElementById("clearidw").style.display = "none";
 		document.getElementById("idwid").style.display = "none";
 		document.getElementById("analyser-switcher").style.display = "block";
-		
+
 	}
 }
 
 /**
- * jQuery-Function to select a time range 
+ * jQuery-Function to select a time range
  * additonal: datepicker in german language and timepicker
  */
 $(function() {
@@ -114,127 +114,130 @@ $(function() {
 			dayNamesMin : ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
 			weekHeader : 'Wo',
 			weekStatus : 'Woche des Monats',
-		ampm : false
+			ampm : false
 		};
 		$.timepicker.setDefaults($.timepicker.regional['de']);
-	}	
-	
+	}
+
 	$("#date-from").datetimepicker({
-		minDate: new Date(2013,5,8),
-		maxDate: "+0",
-		changeMonth: false,
-		changeYear: false,
-		numberOfMonths: 3,
-		showWeek: false,
-		dateFormat: "dd-mm-yy"
+		minDate : new Date(2013, 5, 8),
+		maxDate : "+0",
+		changeMonth : false,
+		changeYear : false,
+		numberOfMonths : 3,
+		showWeek : false,
+		dateFormat : "dd-mm-yy"
 	});
-	
+
 	$("#date-to").datetimepicker({
-		changeMonth: false,
-		changeYear: false,
-		numberOfMonths: 3,
-		showWeek: false,
-		dateFormat: "dd-mm-yy",
-		onClose: function( selectedDate ) {
+		changeMonth : false,
+		changeYear : false,
+		numberOfMonths : 3,
+		showWeek : false,
+		dateFormat : "dd-mm-yy",
+		onClose : function(selectedDate) {
 			$("#date-from").datepicker("option", "maxDate", selectedDate);
 		},
-		beforeShow: function (selectedDate) {
+		beforeShow : function(selectedDate) {
 			var min = $("#date-from").datepicker("getDate");
-			$("#date-to").datepicker("option","minDate", min);
-			$("#date-to").datepicker("option","maxDate", "+0");
+			$("#date-to").datepicker("option", "minDate", min);
+			$("#date-to").datepicker("option", "maxDate", "+0");
 		}
 	});
 });
 
-
 /**
  * Window functions (height, width, scroll position)
- * Author: Daniel Sawatzky 
+ * Author: Daniel Sawatzky
  */
-function getWindowWidth(){
+function getWindowWidth() {
 	var value;
 	try {
 		value = document.body.clientWidth;
 	} catch(e) {
 		value = window.innerWidth;
 	}
-	return value; //window.innerWidth;
+	return value;
+	//window.innerWidth;
 }
-function getWindowHeight(){
+
+function getWindowHeight() {
 	var value;
 	try {
 		value = document.body.clientHeight;
 	} catch(e) {
 		value = window.innerHeight;
 	}
-	return value; //window.innerHeight;
+	return value;
+	//window.innerHeight;
 }
 
 function getScrollXY() {
 	var scrOfX = 0, scrOfY = 0;
-	if ( typeof( window.pageYOffset ) == 'number' ) {
+	if ( typeof (window.pageYOffset ) == 'number') {
 		//Netscape compliant
 		scrOfY = window.pageYOffset;
 		scrOfX = window.pageXOffset;
-	} else if ( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
+	} else if (document.body && (document.body.scrollLeft || document.body.scrollTop )) {
 		//DOM compliant
 		scrOfY = document.body.scrollTop;
 		scrOfX = document.body.scrollLeft;
-	} else if ( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
+	} else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop )) {
 		//IE6 standards compliant mode
 		scrOfY = document.documentElement.scrollTop;
 		scrOfX = document.documentElement.scrollLeft;
 	}
-	return [ scrOfX, scrOfY ];
+	return [scrOfX, scrOfY];
 }
 
 // Enable or disable the street selection mode
-function streetMode(){
-  	if (map.getMapTypeId() == "OSM") {
-  		var l = getParam('lang');
+function streetMode() {
+	if (map.getMapTypeId() == "OSM") {
+		var l = getParam('lang');
 		if (l == "en") {
 			alert("Change map layer to a google map.");
 		} else {
 			alert("Bitte ändern Sie die Karte zu einer Google-Karte.");
-	    }
-  	} else {
-  		if (alerted == false) {
-  			var l = getParam('lang');
+		}
+	} else {
+		if (alerted == false) {
+			var l = getParam('lang');
 			if (l == "en") {
 				alert("Remove the last points with 'rightclick' somewhere on the map, but not on a point.");
 			} else {
-  				alert("Entfernen Sie den letzten Punkt mit Rechtsklick auf einen beliebigen Ort auf der Karte, aber nicht auf einen Punkt.");
-  		}
-  			alerted =true;
-  		}
-  		if (streetmode == false) { 
-  			// Call enableStreetmode() function
-  			enableStreetmode();
-  		} else if (streetmode == true) {
-  			// Call disableStreetmode() function for clearing the overlay and removing Listener
-  			disableStreetmode();
-  		}
-}}
+				alert("Entfernen Sie den letzten Punkt mit Rechtsklick auf einen beliebigen Ort auf der Karte, aber nicht auf einen Punkt.");
+			}
+			alerted = true;
+		}
+		if (streetmode == false) {
+			// Call enableStreetmode() function
+			enableStreetmode();
+		} else if (streetmode == true) {
+			// Call disableStreetmode() function for clearing the overlay and removing Listener
+			disableStreetmode();
+		}
+	}
+}
 
 /* Click Handler Styles */
 $(document).ready(function() {
 	$("#boundingBoxBtn").click(function() {
 		if (BoundingBox == true) {
-		  $(this).css("color","#fff");	
-		  $(this).css("background","#92C049");	
+			$(this).css("color", "#fff");
+			$(this).css("background", "#92C049");
 		} else {
-		  $(this).css("color","#92C049");	
-		  $(this).css("background","#fff");
+			$(this).css("color", "#92C049");
+			$(this).css("background", "#fff");
 		}
 	});
-	
+
 	$("#streetSelectionBtn").click(function() {
 		if (streetmode == true) {
-		  $(this).css("color","#fff");	
-		  $(this).css("background","#92C049");	
+			$(this).css("color", "#fff");
+			$(this).css("background", "#92C049");
 		} else {
-		  $(this).css("color","#92C049");	
-		  $(this).css("background","#fff");	
+			$(this).css("color", "#92C049");
+			$(this).css("background", "#fff");
 		}
 	});
 });
@@ -246,7 +249,7 @@ $(document).ready(function() {
  */
 function toggleAnalyserPanel(id) {
 	var possibleIDs = ['help', 'contact', 'imprint', 'terms'];
-	
+
 	if (lastContent == '' || lastContent != id) {
 		toggled = false;
 	}
@@ -263,14 +266,14 @@ function toggleAnalyserPanel(id) {
 	document.getElementById('map-container').style.width = '50%';
 	resizeMap();
 	document.getElementById('analyser-panel').style.display = 'block';
-	
+
 	if (toggled) {
 		// First hide all other content
 		document.getElementById('analyser-help').style.display = 'none';
 		document.getElementById('analyser-contact').style.display = 'none';
 		document.getElementById('analyser-imprint').style.display = 'none';
 		document.getElementById('analyser-terms').style.display = 'none';
-		
+
 		// Change the analyser status button
 		var on;
 		if (getParam('lang') == 'en') {
@@ -282,12 +285,12 @@ function toggleAnalyserPanel(id) {
 		document.getElementById('analyseModeBtn').style.color = '#fff';
 		document.getElementById('analyseModeBtn').style.border = '#990000';
 		document.getElementById('analyseModeBtn').style.background = '#990000';
-		
+
 		// Then display the analyser content
 		document.getElementById('analyser-chart').style.display = 'block';
 		document.getElementById('analyser-table').style.display = 'block';
 		document.getElementById("analyser-switcher").style.visibility = 'visible';
-		
+
 		// Last change the toggled variable
 		toggled = false;
 	} else {
@@ -295,7 +298,7 @@ function toggleAnalyserPanel(id) {
 		document.getElementById('analyser-chart').style.display = 'none';
 		document.getElementById('analyser-table').style.display = 'none';
 		document.getElementById("analyser-switcher").style.visibility = 'hidden';
-		
+
 		// Then display the expected content
 		for (var i = 0; i < possibleIDs.length; i++) {
 			if (id == possibleIDs[i]) {
@@ -304,7 +307,7 @@ function toggleAnalyserPanel(id) {
 				document.getElementById('analyser-' + possibleIDs[i]).style.display = 'none';
 			}
 		}
-		
+
 		// Last change the toggled variable
 		toggled = true;
 	}
@@ -344,7 +347,7 @@ function loadCarModels() {
 		}
 	}
 	duallistbox_carmodels.trigger('bootstrapduallistbox.refresh', true);
-	
+
 	// added
 	// Clears the array and empties the duallistbox
 	this.clearArray = function() {
@@ -358,35 +361,41 @@ function loadCarModels() {
 				duallistbox_carmodels.append('<option value="' + this.cars[k] + '" selected>' + this.cars[k] + '</option>');
 				console.log(this.cars[k]);
 				k++;
-			}	
+			}
 		}
 		duallistbox_carmodels.trigger('bootstrapduallistbox.refresh', true);
 	};
-	// added off 
+	// added off
 };
 
 // Show loading window
-function showProgressAnimation() {      
-    $("#loading-div-background").show();
+function showProgressAnimation() {
+	$("#loading-div-background").show();
+	
+	window.setTimeout(function() {
+		getDateTimeBBox();
+	}, 50);
 }
 
 // Hide loading window
-function hideProgressAnimation() { 
+function hideProgressAnimation() {
 	$("#loading-div-background").hide();
 }
 
 /* Cancel an onClick event */
 function cancelEvent() {
-    try {
-        var e = window.event;
-        if(!e) e = window.Event;
-        if(e) {
-            e.returnValue = false;
-            e.cancelBubble = true;
-            e.stopPropagation();
-        }
-    } catch(c) {}
-    return false;
+	try {
+		var e = window.event;
+		if (!e)
+			e = window.Event;
+		if (e) {
+			e.returnValue = false;
+			e.cancelBubble = true;
+			e.stopPropagation();
+		}
+	} catch(c) {
+	}
+	return false;
 }
 
 // create a popup window at the center of the screen

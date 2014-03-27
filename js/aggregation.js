@@ -10,18 +10,18 @@ function startAggregation() {
 	var rpmAgg = new Array();
 	var consumptionAgg = new Array();
 	// build JSON from measurement object
-	for (var i = 0; i < measurements.length; i++) {
-		for ( j = 0; j < measurements[i].phenomenons.length; j++) {
-			if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-				consumptionAgg.push(measurements[i].getValues()[j]);
-			} else if (measurements[i].getPhenomenons()[j].name == "CO2") {
-				co2Agg.push(measurements[i].getValues()[j]);
-			} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
-				speedAgg.push(measurements[i].getValues()[j]);
-			} else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-				engineLoadAgg.push(measurements[i].getValues()[j]);
-			} else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-				rpmAgg.push(measurements[i].getValues()[j]);
+	for (var i = 0; i < analyserMeasurements.length; i++) {
+		for ( j = 0; j < analyserMeasurements[i].phenomenons.length; j++) {
+			if (analyserMeasurements[i].getPhenomenons()[j].name == "Consumption") {
+				consumptionAgg.push(analyserMeasurements[i].getValues()[j]);
+			} else if (analyserMeasurements[i].getPhenomenons()[j].name == "CO2") {
+				co2Agg.push(analyserMeasurements[i].getValues()[j]);
+			} else if (analyserMeasurements[i].getPhenomenons()[j].name == "Speed") {
+				speedAgg.push(analyserMeasurements[i].getValues()[j]);
+			} else if (analyserMeasurements[i].getPhenomenons()[j].name == "Engine Load") {
+				engineLoadAgg.push(analyserMeasurements[i].getValues()[j]);
+			} else if (analyserMeasurements[i].getPhenomenons()[j].name == "Rpm") {
+				rpmAgg.push(analyserMeasurements[i].getValues()[j]);
 			}
 		}
 	}
