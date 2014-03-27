@@ -57,6 +57,6 @@ Developers:
  * Daniel Sawatzky ([@dsawatzky](https://github.com/dsawatzky))
  * Axel Virnich ([@avi92](https://github.com/avi92))
 
-If you find any bugs, please report it to us [here](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/issues/new). Thanks in advance! :+1:
+If you find any bugs, please report them to us [here](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/issues/new). Thanks in advance! :+1:
 
 There is a list of [known bugs :warning:](https://github.com/IFGI-Geosoftware2-GroupA/envirocar-analyser/wiki/Known-Bugs) so please take a look at them before you create a new issue.
