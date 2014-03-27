@@ -167,7 +167,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			
 			<div id ="carModelSelection">
 				<form action="">
-					<select multiple="multiple" size="4" id="duallistbox_carmodels"></select>
+					<select multiple="multiple" size="4" onchange="applyAllFilter()" id="duallistbox_carmodels"></select>
 					<script>
 						var l = getParam('lang');
 						if (l == "en") {
@@ -192,7 +192,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 								filterplaceholder : 'Suche nach Automodell...',
 								filtertextclear : 'Zeige alle',
 								preserveselectiononmove : 'moved',
-								moveonselect : true
+								moveonselect : true,
 							});
 						}
 					</script>
@@ -269,7 +269,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					measurements = q.getData();
 					$(document).ready(function() {
 						setTimeout(function(){
-							redrawData(true,true,true,true);
+							redrawData(true,true,true,true,true);
 						}, 2000);
 					});
 				</script>

@@ -141,23 +141,25 @@ function initMap() {
 	});
 }
 
-// redraws markers, chart and table
-function redrawData(marker, chart, table, tracks) {
+// redraws markers, carSelection, chart, table and trackSelection
+function redrawData(marker, cars, chart, table, tracks) {
 	if(marker){
 		clearOverlays();
 		showMarkers();	
 	}
-	// added
-	// if no car Models Objects exists one is created
-	if(carModelsExists == false){
-		carModels = new loadCarModels();
-		carModelsExists = true;
-	// if a Object exists the array and the duallistbox should be cleared	
-	}else{
-		duallistbox_carmodels.empty();
-		carModels.clearArray();
+	if(cars){
+		// added
+		// if no car Models Objects exists one is created
+		if(carModelsExists == false){
+			carModels = new loadCarModels();
+			carModelsExists = true;
+		// if a Object exists the array and the duallistbox should be cleared	
+		}else{
+			duallistbox_carmodels.empty();
+			carModels.clearArray();
+		}
+		// added off	
 	}
-	// added off
 	if(chart)
 		setChart('line');
 	if(tracks)
@@ -206,16 +208,19 @@ function setTrackSelection() {
 	}
 }
 
-// apply all Filter to map, chart and table( !!! Car Selection is missing !!! )
+// apply all Filter to map, chart and table
 function applyAllFilter(){
 	var measurementsTemp = measurements.slice();
 	if(trackSelectionActive()){
 		focusTrack();	
 	}
-	if(limitfilterActive){
+	if(limitFilterActive()){
 		executeLimitFilter();
 	}
-	redrawData(true,true,true,false);
+	if(carSelectionActive()){
+		applyCarSelection();
+	}
+	redrawData(true, false, true,true,false);
 	measurements = measurementsTemp.slice();
 }
 
@@ -248,20 +253,49 @@ function focusTrack(){
 	}	
 }
 
+// check if car filtering is necessary, returns true if measurements have to be filtered by car models
+function carSelectionActive(){
+	var nonselection = document.getElementById('bootstrap-duallistbox-nonselected-list_').options;
+	if(nonselection.length == 0) return false;
+	else return true;	
+}
+
+// filter measurements by car models selected
+function applyCarSelection(){
+	if(!carSelectionActive()) return;
+	var selection = document.getElementById('bootstrap-duallistbox-selected-list_').options;
+	for(var i = 0; i < measurements.length; i++){
+		var carmodel = measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model;
+		var keep = false;
+		for(var x = 0; x < selection.length; x++){
+			if(carmodel == selection[x].value) keep = true;
+		}
+		if(!keep){
+			measurements.splice(i,1);
+			console.log("removed");
+			i--;
+		} 
+	}
+}
+
+// check if there is a filtering option active, return true if this is the case
+function limitFilterActive(){
+	if(limitFilterSettings[0] == "reset") return false;
+	else return true;	
+}
+
 // take over settings from the limit filter popup and close popup
 function applyLimitFilter(phen, minValue, maxValue){
 	limitFilterSettings[0] = phen;
 	limitFilterSettings[1] = minValue;
 	limitFilterSettings[2] = maxValue;
 	fenster1.close();
-	if(phen != "reset") limitfilterActive = true;
 	applyAllFilter();
 }
 
 // delete all objects from measurement array which do not fit the filter
 function executeLimitFilter(){	
-	if(limitFilterSettings[0] != 'reset'){
-		limitfilterActive = true;
+	if(limitFilterActive()){
 		// sort related measurements back to measurements array
 		for (var i = 0; i < measurements.length; i++) {
 			for (var j = 0 ; j < measurements[i].phenomenons.length ; j++) {				
@@ -276,9 +310,6 @@ function executeLimitFilter(){
 				measurements.splice(0,1);
 			}			
 		}	
-	}
-	else{
-		limitfilterActive = false;
 	}
 }
 
