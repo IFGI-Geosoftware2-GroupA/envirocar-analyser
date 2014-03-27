@@ -165,7 +165,7 @@
 					by clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way. <br><br>  </p>
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p>After you clicked on the field 'Analysis Mode' you can use the filter for limits to choose a phenomenon 
-		            (consumption, CO2, speed, engine load, revolut./minute) and set a limit with the slider bar by yourself. 
+		            (Consumption, CO2, Speed, Engine Load, Revolut./Minute) and set a limit with the slider bar by yourself. 
 		            This way you can see which measurements are over and which are below the set limit. The info window will 
 		            show some typical limits as valuation help.  </p>";       
                  
