@@ -107,18 +107,22 @@
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Kartenausschnitt</h2>
 	                <br>
-		         	Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. Durch Eingabe eines 
+	                <img src='img/help/suchenVerschieben.jpg' width='190' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
+		         	<p> Beim Öffnen der Webseite wird automatisch auf Münster gezoomt. 
+		         	Durch Eingabe eines 
 		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
 		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
 		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
-		            Kartenausschnitt ausgewählt werden. <br><br>
-		            Durch Benutzung des Scrollrades der Maus (ausgenommen Internet Explorer), 
+		            Kartenausschnitt ausgewählt werden. <br><br>  </p>
+		            <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
+		            <p> Durch Benutzung des Scrollrades der Maus (ausgenommen Internet Explorer), 
 		            durch Klicken auf das Plus- und das Minussymbol der Zoomskala oder durch Klicken auf selbige, 
-		            kann hinein und herausgezoomt werden. <br><br>
-		            Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
+		            kann hinein und herausgezoomt werden. <br><br> <br><br>  </p>
+		            <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
+		            <p> Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
 		            reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
 		            OpenStreepMap-Karte gewählt werden. 
-		            <br/> ";
+		            <br/> </p>";
 	
 	$help_getdata ="
 					<h1>Hilfe</h1> <br>
