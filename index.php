@@ -16,8 +16,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 	Remove this if you use the .htaccess -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	
+	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+		
 	<title>envirocar-analyser</title>
 	<meta name="description" content="Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten" />
 	<meta name="author" content="Marius Runde, Daniel Sawatzky, Jens Balmert" />
