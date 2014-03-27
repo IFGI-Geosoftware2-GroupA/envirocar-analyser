@@ -254,7 +254,15 @@ function toggleAnalyserPanel(id) {
 		toggled = false;
 	}
 	lastContent = id;
-
+	
+	// Hide all content of the help submenus
+	document.getElementById('analyser-help').style.display = 'none';
+	document.getElementById('analyser-help-mapview').style.display = 'none';
+	document.getElementById('analyser-help-getdata').style.display = 'none';
+	document.getElementById('analyser-help-interpolation').style.display = 'none';
+	document.getElementById('analyser-help-aggregation').style.display = 'none';
+	document.getElementById('analyser-help-filter').style.display = 'none';
+	
 	document.getElementById('map-container').style.width = '50%';
 	resizeMap();
 	document.getElementById('analyser-panel').style.display = 'block';

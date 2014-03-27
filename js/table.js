@@ -203,15 +203,15 @@ function createTable() {
 		for ( i = 0, j = 0; i < measurements.length; i++) {
 			for ( j = 0; j < measurements[i].phenomenons.length; j++) {
 				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-					consumption.push((Number(measurements[i].getValues()[j]).toFixed(3)) + " " + measurements[i].getPhenomenons()[j].unit);
+					consumption.push((Number(measurements[i].getValues()[j]).toFixed(3)));
 				} else if (measurements[i].getPhenomenons()[j].name == "CO2") {
-					co2.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
+					co2.push((Number(measurements[i].getValues()[j]).toFixed(2)));
 				} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
-					speed.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
+					speed.push((Number(measurements[i].getValues()[j]).toFixed(2)));
 				} else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-					engineload.push((Number(measurements[i].getValues()[j]).toFixed(2)) + " " + measurements[i].getPhenomenons()[j].unit);
+					engineload.push((Number(measurements[i].getValues()[j]).toFixed(2)));
 				} else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-					rpm.push((Number(measurements[i].getValues()[j]).toFixed(0)) + " " + measurements[i].getPhenomenons()[j].unit);
+					rpm.push((Number(measurements[i].getValues()[j]).toFixed(0)));
 				}
 			}
 			
@@ -248,19 +248,19 @@ function createTable() {
 		if (l == "en") {
 
 			headtext0 = document.createTextNode("ID");
-			headtext1 = document.createTextNode("Consumption");
-			headtext2 = document.createTextNode("CO2");
-			headtext3 = document.createTextNode("Speed");
-			headtext4 = document.createTextNode("Engine Load");
-			headtext5 = document.createTextNode("Revolut./Minute");
+			headtext1 = document.createTextNode("Consumption (l/h)");
+			headtext2 = document.createTextNode("CO2 (kg/h)");
+			headtext3 = document.createTextNode("Speed (km/h)");
+			headtext4 = document.createTextNode("Engine Load (%)");
+			headtext5 = document.createTextNode("Revolut./Minute (u/min)");
 		} else {
 
 			headtext0 = document.createTextNode("ID");
-			headtext1 = document.createTextNode("Verbrauch");
-			headtext2 = document.createTextNode("CO2");
-			headtext3 = document.createTextNode("Geschwindigkeit");
-			headtext4 = document.createTextNode("Motorlast");
-			headtext5 = document.createTextNode("Umdrehungen");
+			headtext1 = document.createTextNode("Verbrauch (l/h)");
+			headtext2 = document.createTextNode("CO2 (kg/h)");
+			headtext3 = document.createTextNode("Geschwindigkeit (km/h)");
+			headtext4 = document.createTextNode("Motorlast (%)");
+			headtext5 = document.createTextNode("Umdrehungen (u/min)");
 		}
 
 		headcell0.appendChild(headtext0);
@@ -377,6 +377,7 @@ function tablestyle() {
 	if (getParam('lang') == 'en') {
 		$('#tableID').dataTable({
 			"sPaginationType" : "full_numbers",
+			"aaSorting": [],
 			"sScrollY" : "0px",
 			"bPaginate" : false,
 			"oLanguage" : {
@@ -390,6 +391,7 @@ function tablestyle() {
 	} else {
 		$('#tableID').dataTable({
 			"sPaginationType" : "full_numbers",
+			"aaSorting": [],
 			"sScrollY" : "0px",
 			"bPaginate" : false,
 			"oLanguage" : {

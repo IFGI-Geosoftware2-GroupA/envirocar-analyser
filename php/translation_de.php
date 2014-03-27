@@ -111,8 +111,10 @@
 		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
 		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
 		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
-		            Kartenausschnitt ausgewählt werden. Durch Klicken auf das Plus- und das Minussymbol 
-		            der Zoomskala oder durch Klicken auf selbige, kann hinein und herausgezoomt werden. 
+		            Kartenausschnitt ausgewählt werden. <br><br>
+		            Durch Benutzung des Scrollrades der Maus (ausgenommen IE), 
+		            durch Klicken auf das Plus- und das Minussymbol der Zoomskala oder durch Klicken auf selbige, 
+		            kann hinein und herausgezoomt werden. <br><br>
 		            Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen einer 
 		            reinen Vektorkarte, einem Hybrid aus Satellitenfoto und Straßenvektoren und einer 
 		            OpenStreepMap-Karte gewählt werden. 
@@ -126,17 +128,13 @@
 		            Möchten Sie Daten für eine bestimmte Zeit 
 		            analysieren, so wählen Sie zunächst unter 'Von:' und 'Bis:' das Zeitintervall 
 		            aus, in dem Sie auf die entsprechende Tage klicken (durch Klicken in die obere linke 
-		            oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). 
+		            oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). <br><br>
 		            Danach können Sie optional noch ein Gebiet innerhalb NRWs auswählen, indem 
 		            Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
-		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. 
-		            Oder aber durch Klicken des Feldes 'Straßenauswahl' mit linker Maustaste mehrere Punkte 
-		            setzen, um alle Straßensegmente zwischen diesen Punkten auszuwählen. Zum Schluss klicken 
+		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. <br><br>
+		            Zum Schluss klicken 
 		            Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes angezeigt 
-		            zu bekommen. <br/> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
-		            Doppelpfeile alle Phänomene oder durch Klicken auf eines der Automodelle, Automodelle 
-		            einzeln auswählen. Ebenso können Sie unter 'Ausgewählte Automodelle' auch Automodelle 
-		            auf die gleiche Weise wieder abwählen. <br/> ";
+		            zu bekommen.";
 	            
 	$help_interpolation = "
 					<h1>Hilfe</h1> <br>
@@ -147,29 +145,37 @@
 		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint oben der Interpolationsknopf zum 
 		            Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
 		            der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
-		            Graph oder Graph und Tabelle gewählt werden. Unter dem Interpolationsknopf können Sie auswählen, 
-		            was Sie genau interpolieren möchten: CO2, Verbrauch oder Geschwindigkeit. Danach müssen Sie nur 
-		            noch auf den Interpolationsknopf drücken, um die Resultate zu erhalten. Bei der Tabelle können 
+		            Graph oder Graph und Tabelle gewählt werden.<br><br>
+		            Bei der Tabelle können Phänomene in Form von  
 		            Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
-		            'Aktualisieren' entfernt und hinzugefügt werden. Mit der Scrollbalken an der Seite der 
-		            Tabelle können auch die weiter unten liegenden Daten eingesehen werden.";   
+		            'Aktualisieren' entfernt und hinzugefügt werden. <br><br>
+		            Bei dem Graph können ebenfalls Phänomene an der rechten Seite durch an- und abwählen hinzugefügt bzw. entfernt werden.
+		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomed werden und durch
+		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>
+		            Durch drücken des Interpolationsknopfes werden die Werte
+		            für CO2, Verbrauch und Geschwindigkeit interpoliert. Daraufhin erscheint ein Dropdown-Menü, bei dem Sie auswählen
+		            können, welches Resultat Ihnen angezeigt werden soll.";   
 		            
     $help_aggregation2 = "
-					<h1>Aggregation</h1> <br>
+					<h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Aggregation</h2>
 					<br>
 		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
-		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten.";    
+		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten. Diese werden sowohl
+		            in Form eines Graphen, als auch in Tabellenform dargestellt.";    
 		            
     $help_filter2 = "
-					<h1>Filter</h1> <br>
+					<h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
 					<br>
+					Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
+		            Doppelpfeile alle Modelle auswählen oder gezielt nur einzelne. Ebenso können Sie auch Automodelle 
+		            auf die gleiche Weise wieder abwählen. <br><br>
 		            Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
 		            (Verbrauch, CO2, Geschwindigkeit, Motorlast, Umdrehungen) auswählen und selbst mit Hilfe des Schiebereglers 
-		            Grenzwerte festlegen und so sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
+		            Grenzwerte festlegen, um somit zu sehen welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
 		            Einschätzungshilfe werden im Info-Fenster einige typische Grenzwerte angezeigt.";       
                  
 	$id = "ID";
