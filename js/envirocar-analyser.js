@@ -4,8 +4,6 @@
 var measurements;
 var envirocarTrackUrl = "https://envirocar.org/api/stable/tracks/";
 var limitFilterSettings = new Array('reset', 0, 0);
-var limitfilterActive = false;
-var carSelectionActive = false;
 
 // ------------------------
 // --- Phenomenon class ---
@@ -897,8 +895,7 @@ Query.prototype.getMeasurements = function(inputUrl) {
 				result.push(new Measurement(tempId, tempPoint, tempTimestamp, tempPhenomenons, tempValues, stempSensor, trackId));
 			});
 		});
-		limitfilterActive = false;
-		carSelectionActive = false;
+		limitFilterSettings[0] = "reset";
 		return result;
 		
 	}

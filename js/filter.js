@@ -488,7 +488,7 @@ function getDateTimeBBox() {
 	
 	measurements = query.getMeasurements(inputUrl);
 	
-	redrawData(true,true,true,true);
+	redrawData(true,true,true,true,true);
 	
 		
 	// check if the user wants to perform a temporal filtering	
@@ -505,7 +505,7 @@ function getDateTimeBBox() {
 		
 		measurements = query.getMeasurements(inputUrl);
 	
-		redrawData(true,true,true,true);
+		redrawData(true,true,true,true,true);
 		
 	// check if the user wants to perform a spatial filtering
 	}else if(startDate == '' && endDate == '' && rectangleActive == true) {
@@ -523,7 +523,7 @@ function getDateTimeBBox() {
 		
 		measurements = query.getMeasurements(inputUrl);
 	
-		redrawData(true,true,true,true);
+		redrawData(true,true,true,true,true);
 	}
 }
 
