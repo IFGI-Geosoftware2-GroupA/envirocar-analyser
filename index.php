@@ -161,7 +161,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $getData; ?>" onClick="getDateTimeBBox();">
+						value="<?php echo $getData; ?>" onClick="showProgressAnimation();">
 				</form>
 			</div>
 			
@@ -267,6 +267,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					// display the simple example
 					var q = new Query('measurements');
 					measurements = q.getData();
+					analyserMeasurements = measurements.slice();
 					$(document).ready(function() {
 						setTimeout(function(){
 							redrawData(true,true,true,true,true);
