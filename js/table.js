@@ -201,9 +201,7 @@ function createTable() {
 
 		//Put Phenomenons in Arrays
 		for ( i = 0, j = 0; i < measurements.length; i++) {
-
 			for ( j = 0; j < measurements[i].phenomenons.length; j++) {
-
 				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
 					consumption.push((Number(measurements[i].getValues()[j]).toFixed(3)) + " " + measurements[i].getPhenomenons()[j].unit);
 				} else if (measurements[i].getPhenomenons()[j].name == "CO2") {
@@ -215,6 +213,24 @@ function createTable() {
 				} else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
 					rpm.push((Number(measurements[i].getValues()[j]).toFixed(0)) + " " + measurements[i].getPhenomenons()[j].unit);
 				}
+			}
+			
+			// If values are not measured,
+			// this will make sure that there is a value entered in the corresponding arrays
+			if (consumption[i] == undefined) {
+				consumption[i] = '-';
+			}
+			if (co2[i] == undefined) {
+				co2[i] = '-';
+			}
+			if (speed[i] == undefined) {
+				speed[i] = '-';
+			}
+			if (engineload[i] == undefined) {
+				engineload[i] = '-';
+			}
+			if (rpm[i] == undefined) {
+				rpm[i] = '-';
 			}
 		}
 		//Creating the Headrow of the Table
@@ -358,24 +374,39 @@ function openMarkerInfoWindow(id) {
  */
 function tablestyle() {
 	//$(document).ready(function() {
-	$('#tableID').dataTable({
-		"sPaginationType" : "full_numbers",
-		"sScrollY" : "0px",
-		"bPaginate" : false,
-		"oLanguage" : {
-			"sZeroRecords" : "Keine Einträge gefunden",
-			"sInfo" : "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
-			"sInfoEmpty" : "Zeige 0 bis 0 von 0 Einträgen",
-			"sSearch" : "Suche:"
-		}
-	});
+	if (getParam('lang') == 'en') {
+		$('#tableID').dataTable({
+			"sPaginationType" : "full_numbers",
+			"sScrollY" : "0px",
+			"bPaginate" : false,
+			"oLanguage" : {
+				"sZeroRecords" : "No entries found",
+				"sInfo" : "Show _TOTAL_ entries",
+				"sInfoEmpty" : "Show no entries",
+				"sInfoFiltered": "(filtered from _MAX_ total records)",
+				"sSearch" : "Search:"
+			}
+		});
+	} else {
+		$('#tableID').dataTable({
+			"sPaginationType" : "full_numbers",
+			"sScrollY" : "0px",
+			"bPaginate" : false,
+			"oLanguage" : {
+				"sZeroRecords" : "Keine Eintr&auml;ge gefunden",
+				"sInfo" : "Zeige _TOTAL_ Eintr&auml;ge",
+				"sInfoEmpty" : "Zeige keine Eintr&auml;ge",
+				"sInfoFiltered": "(gefiltert aus _MAX_ Eintr&auml;gen insgesamt)",
+				"sSearch" : "Suche:"
+			}
+		});
+	}
 	// 		Scrollable Area is determined dynamically when loading the page initially
 	if (viewMode == "table")
 		$('.dataTables_scrollBody').css('height', $("#map").height() * 3 / 5);
 	if (viewMode == "dual")
 		$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 3);
 	//});
-
 }
 
 /**
