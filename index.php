@@ -145,7 +145,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				</div>
 				<br>
 				<div id="trackSelection">
-					<select id="trackSelectionList" onchange="focusTrack()" size="1">
+					<select id="trackSelectionList" onchange="applyAllFilter()" size="1">
 					</select>
 				</div>
 			</div>
@@ -216,7 +216,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<div id="aggregation">
 				<label id="aggregation-label" for="aggregation-label"><?php echo $aggregation_label; ?></label>
 				<br/><br/>
-				<a href="#" id="aggregationBtn" onclick="" title="Aggregation"><img src="img/aggregationIcon.png" width="48px" height="48px" alt="Aggreation"></a>
+				<a href="#" id="aggregationBtn" onclick="startAggregation();" title="Aggregation"><img src="img/aggregationIcon.png" width="48px" height="48px" alt="Aggreation"></a>
 			</div>
 			
 			<div id="limit-filter">
@@ -269,7 +269,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					measurements = q.getData();
 					$(document).ready(function() {
 						setTimeout(function(){
-							redrawData();
+							redrawData(true,true,true,true);
 						}, 2000);
 					});
 				</script>

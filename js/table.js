@@ -5,15 +5,16 @@
 // --- Methods for the table ---
 // -----------------------------
 // Initialize the table
-function initTable() {	
+function initTable() {
 
 	node = document.getElementById("analyser-table");
 	node.appendChild(createTable());
 }
+
 /**
  * Create the Table on the basis of the json File
  */
-function createTable() {	
+function createTable() {
 	try {
 		if (document.getElementById("tableID") != null) {
 			deleteTable();
@@ -49,57 +50,53 @@ function createTable() {
 				}
 			}
 		}
+		//Creating the Headrow of the Table
+		headrow = document.createElement("tr");
+
+		headcell0 = document.createElement("th");
+		headcell0.setAttribute("id", "idrow");
+		headcell1 = document.createElement("th");
+		headcell2 = document.createElement("th");
+		headcell3 = document.createElement("th");
+		headcell4 = document.createElement("th");
+		headcell5 = document.createElement("th");
+
+		var l = getParam('lang');
+		if (l == "en") {
+
+			headtext0 = document.createTextNode("ID");
+			headtext1 = document.createTextNode("Consumption");
+			headtext2 = document.createTextNode("CO2");
+			headtext3 = document.createTextNode("Speed");
+			headtext4 = document.createTextNode("Engine Load");
+			headtext5 = document.createTextNode("Revolut./Minute");
+		} else {
+
+			headtext0 = document.createTextNode("ID");
+			headtext1 = document.createTextNode("Verbrauch");
+			headtext2 = document.createTextNode("CO2");
+			headtext3 = document.createTextNode("Geschwindigkeit");
+			headtext4 = document.createTextNode("Motorlast");
+			headtext5 = document.createTextNode("Umdrehungen");
+		}
+
+		headcell0.appendChild(headtext0);
+		headcell1.appendChild(headtext1);
+		headcell2.appendChild(headtext2);
+		headcell3.appendChild(headtext3);
+		headcell4.appendChild(headtext4);
+		headcell5.appendChild(headtext5);
+
+		headrow.appendChild(headcell0);
+		headrow.appendChild(headcell1);
+		headrow.appendChild(headcell2);
+		headrow.appendChild(headcell3);
+		headrow.appendChild(headcell4);
+		headrow.appendChild(headcell5);
+
+		mytablehead.appendChild(headrow);
 
 		for (var i = 0; i < measurements.length; i++) {
-
-			//Creating the Headrow of the Table
-			if (i == 0) {
-				headrow = document.createElement("tr");
-
-				headcell0 = document.createElement("th");
-				headcell0.setAttribute("id", "idrow");
-				headcell1 = document.createElement("th");
-				headcell2 = document.createElement("th");
-				headcell3 = document.createElement("th");
-				headcell4 = document.createElement("th");
-				headcell5 = document.createElement("th");
-				
-				var l = getParam('lang');
-						if (l == "en") {
-							
-							headtext0 = document.createTextNode("ID");
-							headtext1 = document.createTextNode("Consumption");
-							headtext2 = document.createTextNode("CO2");
-							headtext3 = document.createTextNode("Speed");
-							headtext4 = document.createTextNode("Engine Load");
-							headtext5 = document.createTextNode("Revolut./Minute");
-						}
-						else {		
-				
-							headtext0 = document.createTextNode("ID");
-							headtext1 = document.createTextNode("Verbrauch");
-							headtext2 = document.createTextNode("CO2");
-							headtext3 = document.createTextNode("Geschwindigkeit");
-							headtext4 = document.createTextNode("Motorlast");
-							headtext5 = document.createTextNode("Umdrehungen");
-						}
-		
-				headcell0.appendChild(headtext0);
-				headcell1.appendChild(headtext1);
-				headcell2.appendChild(headtext2);
-				headcell3.appendChild(headtext3);
-				headcell4.appendChild(headtext4);
-				headcell5.appendChild(headtext5);
-
-				headrow.appendChild(headcell0);
-				headrow.appendChild(headcell1);
-				headrow.appendChild(headcell2);
-				headrow.appendChild(headcell3);
-				headrow.appendChild(headcell4);
-				headrow.appendChild(headcell5);
-
-				mytablehead.appendChild(headrow);
-			}
 
 			//Creating the rest of the Table
 			currentRow = document.createElement("tr");
@@ -155,27 +152,26 @@ function createTable() {
 		myTable.setAttribute("border", 1);
 
 		return myTable;
-		
+
 	} catch(e) {
 		alert(e.message);
 	}
 }
 
-
-function deleteTable(){
+function deleteTable() {
 	var tbl = document.getElementById("tableID");
-       	tbl.parentNode.removeChild(tbl);
-       	
-       	if (document.getElementById("tableID_wrapper") != null) {
-			var div = document.getElementById("tableID_wrapper");
-			div.parentNode.removeChild(div);
-		}
+	tbl.parentNode.removeChild(tbl);
+
+	if (document.getElementById("tableID_wrapper") != null) {
+		var div = document.getElementById("tableID_wrapper");
+		div.parentNode.removeChild(div);
+	}
 }
 
-function deleteRows(value){
-		
-		var index = value;
-		document.getElementById("tableID").deleteRow(index);
+function deleteRows(value) {
+
+	var index = value;
+	document.getElementById("tableID").deleteRow(index);
 }
 
 /**
@@ -195,20 +191,22 @@ function openMarkerInfoWindow(id) {
  */
 function tablestyle() {
 	//$(document).ready(function() {
-		$('#tableID').dataTable({
-			"sPaginationType" : "full_numbers",
-			"sScrollY" : "0px",
-			"bPaginate" : false,
-			"oLanguage" : {
-				"sZeroRecords" : "Keine Einträge gefunden",
-				"sInfo" : "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
-				"sInfoEmpty" : "Zeige 0 bis 0 von 0 Einträgen",
-				"sSearch" : "Suche:"
-			}
-		});
-// 		Scrollable Area is determined dynamically when loading the page initially
-		if(viewMode == "table")	$('.dataTables_scrollBody').css('height', $("#map").height() * 3/5);
-		if(viewMode == "dual")	$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 3);
+	$('#tableID').dataTable({
+		"sPaginationType" : "full_numbers",
+		"sScrollY" : "0px",
+		"bPaginate" : false,
+		"oLanguage" : {
+			"sZeroRecords" : "Keine Einträge gefunden",
+			"sInfo" : "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
+			"sInfoEmpty" : "Zeige 0 bis 0 von 0 Einträgen",
+			"sSearch" : "Suche:"
+		}
+	});
+	// 		Scrollable Area is determined dynamically when loading the page initially
+	if (viewMode == "table")
+		$('.dataTables_scrollBody').css('height', $("#map").height() * 3 / 5);
+	if (viewMode == "dual")
+		$('.dataTables_scrollBody').css('height', $("#map").height() * 1 / 3);
 	//});
 
 }
