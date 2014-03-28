@@ -284,4 +284,10 @@
 	
 	$help_filter = "Filter";
 	
+	$limit_filter = "Grenzwert-Filter";
+	
+	$filter_speed = "Geschwindigkeit filtern";
+	
+	$reset_filter = "Filter zurücksetzen";
+	
 ?>

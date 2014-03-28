@@ -260,4 +260,10 @@
 	
 	$help_filter = "Filter";
 	
+	$limit_filter = "Limit Filter";
+	
+	$filter_speed = "Filter by Speed";
+	
+	$reset_filter = "Filter Reset";
+	
 ?>
