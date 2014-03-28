@@ -348,7 +348,6 @@ function loadCarModels() {
 	}
 	duallistbox_carmodels.trigger('bootstrapduallistbox.refresh', true);
 
-	// added
 	// Clears the array and empties the duallistbox
 	this.clearArray = function() {
 		this.cars.length = 0;
@@ -365,7 +364,6 @@ function loadCarModels() {
 		}
 		duallistbox_carmodels.trigger('bootstrapduallistbox.refresh', true);
 	};
-	// added off
 };
 
 // Show loading window

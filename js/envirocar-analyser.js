@@ -760,9 +760,8 @@ Query.prototype.getMeasurements = function(inputUrl) {
 		hideProgressAnimation();
 		return result;
 	
-	} else if(inputUrl != undefined){
-		// if a inputUrl is passed to the function. It will get the tracks from the user specified url
-		// it clears the array where the old markers are stored	and 	
+	} else if(inputUrl != undefined && inputUrl.slice(45,54) != "undefined"){
+		// if a inputUrl is passed to the function. It will get the tracks from the user specified url and check if the BBox isnt to big
 
 		// getting the JSON track file from the envirocar API
 		var json = (function () {
