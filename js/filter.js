@@ -9,6 +9,7 @@ var endDate;	// Global variable containing the endDate base on the date-to eleme
 var baseUrl = "https://envirocar.org/api/stable/tracks?during=";	//Global variable specifying the URL for the temporal filter contributed by the envirocar API
 var envirocarTrackUrl = "https://envirocar.org/api/stable/tracks/";	// Global variable specifying the URL which returns all recorded tracks by the envirocar API
 var baseUrlBBox = "https://envirocar.org/api/stable/tracks?bbox=";	// Global variable specifying the URL for the spatial filter contributed by the envirocar API
+var bboxNRW = '&bbox=5.472512722,49.200289241,10.4920501709,52.7186795024';
 var hyphen = "-";
 var literalT = "T";
 var literalZ = "Z";
@@ -17,7 +18,7 @@ var BBoxPrefix = "&bbox=";
 var doublePoint = ":";
 var rectangleActive = false;	// Global variable which contains the boolean if a the rectangle is active or not
 
-/*
+/**
  * getDateTime() This method gets the values from the date-from and date-to element. These values are used for building the string in order to start a temporal query. Afterwards it will 
  * query the envirocar API to get the tracks.
  * Additionally it is parsing the requested information, and the Car Model and track ID is displayed in the trackSelectionList element.
@@ -202,7 +203,7 @@ function getDateTime() {
 	}
 	return requestUrlTemporal;
 }
-/*
+/**
  * getBBox() This method gets the tracks within the user specified bounding box by building string with the use of the bounding box coordinates contributed by the Google Maps API v3.
  * Afterwards it will query the envirocar API to get the tracks.
  * Additionally it is parsing the requested information, and the Car Model and track ID is displayed in the trackSelectionList element. 
@@ -315,7 +316,7 @@ function getBBox() {
 		// return jsonBBoxTracks;	
 }
 
-/*
+/**
  * setRectangleActive() This method sets the global variable rectangleActive to true if the user has selected the spatial filtering.
  *
  */
@@ -323,7 +324,7 @@ function setRectangleActive() {
 	rectangleActive = true;
 }
 
-/*
+/**
  * setRectangleNonActive() This method sets the global variable rectangleActive to false if the user has deselected the spatial filtering.
  *
  */
@@ -331,11 +332,11 @@ function setRectangleNonActive() {
 	rectangleActive = false;
 }
 
-/*
+/**
  * getDT() This method is a modification of the getDateTime() method. It gets the values from the date-from and date-to element. These values are used for building the string in order to start a temporal query. 
  * It only builds the URL for the temporal filtering.
  * 
- * @return This method returns the requestUrlTemporal for a temporal query.
+ * @return requestUrlTemporal This method returns the requestUrlTemporal for a temporal query.
  */
 function getDT() {
 	
@@ -427,7 +428,7 @@ function getDT() {
 	}
 }
 
-/*
+/**
  * getBB() This method is a modification of getBBox(). This function gets the tracks within the user specified bounding box by building string with the use of the bounding box coordinates contributed by the Google Maps API v3.
  * It only builds a string containing the BoundingBox coordinates used for the spatial filtering.
  * 
@@ -455,7 +456,7 @@ function getBB() {
 	
 }
 
-/*
+/**
  * getDateTimeBBox() This function is called by clicking on the "Daten abrufen / Select Time" button. First this function will check what type of filtering the user wants to use (solved by using a if-clause).
  * Afterwards it will call the getDT() and getBB() methods in order to create a string for the temporal-,spatial- or temporal-spatial- filter. 
  * 
@@ -478,8 +479,6 @@ function getDateTimeBBox() {
 	
 	// creating the URL for the query
 	var dateTimeBBoxUrl = dateTimeUrl + BBoxPrefix + BBoxString;
-	
-	// alert(dateTimeBBoxUrl);
 	
 	query = new Query();
 	
@@ -539,7 +538,7 @@ function getDateTimeBBox() {
 	} */
 }
 
-/*
+/**
  * getlatestTracks() This function builds a URL String containing the information to query the last measured 24 hours. It gets the JSON from the envirocar API containing all Tracks, stores the track ID of the
  * last measured track, using this track id, it gets the additional information about this track and therefore the time, too. The time is cast to a JS Date Object and 24hours are subtracted. Afterwards the
  * Date Object is cast to string and stored in a var. At least a URL string is build containing the information to a query the envirocar API in order to get the last measured 24 hours.
@@ -554,7 +553,7 @@ function getLatestTracks() {
 		var json = null;
 		$.ajax({
 			'async': false,
-			// only requesting tracks within Northrhine-Westfalia
+			// only requesting tracks within North-Rhine-Westfalia
 			'url': "https://envirocar.org/api/dev/tracks?bbox=5.472512722,49.200289241,10.4920501709,52.7186795024",
 			'dataType': "json",
 			// If request succeeded the callback function stores the requested JSON to var = json 
@@ -610,6 +609,7 @@ function getLatestTracks() {
 	var trackStartTimeDateFormat = new Date(trackStartTime);
 	
 	// trackStartTimeDateFormat - 24 hours
+	//TODO set to 24
 	trackStartTimeDateFormat.setHours(trackStartTimeDateFormat.getHours() - 100);
 	
 	// casting the JS date object to a string
@@ -624,7 +624,9 @@ function getLatestTracks() {
 	var latest24H = baseUrl + trackStartTimeMinus24 + comma + trackStartTime;
 	
 	// adding bounding box to URL
-	var latestTracksURL = latest24H + '&bbox=5.472512722,49.200289241,10.4920501709,52.7186795024';
+	var latestTracksUrl = latest24H + bboxNRW;
 	
-	return latestTracksURL;
+	console.log(latestTracksUrl);
+	
+	return latestTracksUrl;
 }
