@@ -13,8 +13,12 @@
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
 		<script src="js/lib/jquery-ui.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.css">
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<!-- Style Elements of the Dialog -->
 		<style type="text/css">
+			body {
+				font-family: 'Roboto', sans-serif;
+			}
 			.t_element a {
 				padding: 5px;
 				margin: 1px;
@@ -26,7 +30,7 @@
 				display: block;
 			}
 			.t_element a:hover {
-				background-color: #00FFFF;
+				background-color: #1D83C3;
 			}
 			.infobox{
 				margin: 15px auto;
@@ -42,7 +46,7 @@
 				width: 245px;
 			}
 			input:hover{
-				background-color: #33FF00;
+				background-color: #92C049;
 			}
 			p input:hover{
 				background-color: #FFF;

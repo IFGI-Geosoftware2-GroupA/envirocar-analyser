@@ -282,7 +282,11 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				
 				<!-- map shadows -->
 				<i class="map-top"></i>
+				<i class="map-right"></i>
 				<i class="map-bottom"></i>
+				<i class="map-left"></i>
+			
+				
 			</div>
 			
 			<div id="analyser-panel">
@@ -395,9 +399,9 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</script>
 			
 			<!-- loading window -->
-			<div id="loading-div-background" class="transparent">
+			<div id="loading-div-background" >
 			    <div id="loading-div">
-			      <img style="height:16px;margin:30px;" src="img/loading.gif" alt="Loading..."/>
+			      <span id="spinnerSpan"><img id="spinnerImg" style="height:16px;margin:30px;" src="img/loading.gif" alt="Loading..."/></span>
 			      <h4 style="color:gray;font-weight:normal;"><?php echo $wait; ?></h4>
 			      <button id="hideLoadingWindowBtn" onClick="hideProgressAnimation(); return cancelEvent()"><?php echo $cancel; ?></button>
 			    </div>

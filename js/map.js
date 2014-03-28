@@ -148,7 +148,6 @@ function redrawData(marker, cars, chart, table, tracks) {
 		showMarkers();	
 	}
 	if(cars){
-		// added
 		// if no car Models Objects exists one is created
 		if(carModelsExists == false){
 			carModels = new loadCarModels();
@@ -158,7 +157,6 @@ function redrawData(marker, cars, chart, table, tracks) {
 			duallistbox_carmodels.empty();
 			carModels.clearArray();
 		}
-		// added off	
 	}
 	if(chart)
 		setChart('line');
@@ -596,7 +594,9 @@ function getPolyline() {
 	}
 }
 
-// Create a bounding box overlay on the map
+/**
+ * Function for creating a bounding box overlay on the map
+ */
 function initBoundingBox() {
 
 	if (BoundingBox == false) {
@@ -611,10 +611,17 @@ function initBoundingBox() {
 		rectangle = new google.maps.Rectangle({
 			bounds : bounds,
 			editable : true,
-			draggable : true
+			draggable : true,
 		});
+		
 
 		rectangle.setMap(map);
+		
+		showSize();
+		
+		//Eventlistener for changing the size of the BoundingBox
+		google.maps.event.addListener(rectangle, 'bounds_changed', showSize);
+		
 	} else {
 		setRectangleNonActive();
 		BoundingBox = false;
@@ -625,6 +632,47 @@ function initBoundingBox() {
 		 } else {
 		 alert('Die Boundingbox wurde erfolgreich gespeichert!');
 		 }*/
+	}
+}
+
+/**
+ * Function for the Eventlistener of the BoundingBox
+ */
+function showSize(event){
+
+	// Get the coordinates of the BoundingBox
+	pointNorthEast = rectangle.getBounds().getNorthEast();
+	pointSouthWest = rectangle.getBounds().getSouthWest();
+
+	// Store the x and y coordinates to a variable
+	pointNorthEastX = pointNorthEast.lat();
+	pointNorthEastY = pointNorthEast.lng();
+	pointSouthWestX = pointSouthWest.lat();
+	pointSouthWestY = pointSouthWest.lng();
+	
+	//Investigates whether the BoundinBox is bigger than our defined size and changes
+	//eventually the color of the Box and in conjunction with this hides or shows the 'Get Data' Button
+	if((pointNorthEastX - pointSouthWestX) > 0.06 || (pointNorthEastY-pointSouthWestY) > 0.12 ){
+
+		rectangle.setOptions({
+			strokeColor: '#FF0000',
+   			strokeOpacity: 0.8,
+    		strokeWeight: 2,
+    		fillColor: '#FF0000',
+    		fillOpacity: 0.35,
+		});
+		
+		document.getElementById('selectTimeBtn').style.visibility = 'hidden';
+	} else {
+		rectangle.setOptions({	
+			strokeColor: '#008800',
+   			strokeOpacity: 0.8,
+    		strokeWeight: 2,
+    		fillColor: '#00FF00',
+    		fillOpacity: 0.35,
+		});
+    		
+		document.getElementById('selectTimeBtn').style.visibility = 'visible';
 	}
 }
 
