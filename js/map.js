@@ -635,8 +635,8 @@ function initBoundingBox() {
  * Helper/Starter Method for the interpolation
  */
 function interpolate() {
-	var query = new Query('measurements');
-	measurements = query.getData();
+	// var query = new Query('measurements');
+	// measurements = query.getData();
 	// Check wether bounding box is activated or not and trim the polyexport so that only measurements
 	// in the bounding box are present
 	if (BoundingBox == true) {
@@ -659,9 +659,20 @@ function interpolate() {
 
 		try {
 			// Stores every interpolation into an extra array for switching between selected interpolated phenomenon
-			speedmarkers = interpolatePhen("Speed");
-			co2markers = interpolatePhen("CO2");
-			consumptionmarkers = interpolatePhen("Consumption");
+			for(var i=0;i<measurements[0].phenomenons.length;i++){
+				if(measurements[0].phenomenons[i].name == "Speed"){
+					speedmarkers = interpolatePhen("Speed");
+					alert("Speed interpolated");
+				}
+				else if(measurements[0].phenomenons[i].name == "CO2"){
+					co2markers = interpolatePhen("CO2");
+					alert("CO2 interpolated");
+				}
+				else if(measurements[0].phenomenons[i].name == "Consumption"){
+					consumptionmarkers = interpolatePhen("Consumption");
+					alert("consumption interpolated");
+				}
+			}
 			alert("Interpolation succeeded. showIdwSpeed(), showIdwConsumption(), showIdwCo2(), clearIdwDisplay() will show the results.");
 			document.getElementById("clearidw").style.display = "block";
 			document.getElementById("idwid").style.display = "block";
@@ -675,63 +686,96 @@ function interpolate() {
 
 function showIdwSpeed() {
 	try {
-		for (var i = 0; i < consumptionmarkers.length; i++) {
-			consumptionmarkers[i].setMap(null);
+		if(typeof(consumptionmarkers) != "undefined"){
+			for (var i = 0; i < consumptionmarkers.length; i++) {
+				consumptionmarkers[i].setMap(null);
+			}	
 		}
-		for (var i = 0; i < co2markers.length; i++) {
-			co2markers[i].setMap(null);
+		if(typeof(co2markers) != "undefined"){
+			for (var i = 0; i < co2markers.length; i++) {
+				co2markers[i].setMap(null);
+			}
 		}
-		for (var i = 0; i < speedmarkers.length; i++) {
-			speedmarkers[i].setMap(map);
+		if(typeof(speedmarkers) != "undefined"){
+			for (var i = 0; i < speedmarkers.length; i++) {
+				speedmarkers[i].setMap(map);
+			}
+		}
+		else if(typeof(speedmarkers)== "undefined"){
+			alert("Probably no Speed Data available.")
 		}
 	} catch(e) {
-		alert(e.message);
+		alert("Probably no Speed Data available. This is the error message: " + e.message);
 	}
 }
 
 function showIdwCo2() {
 	try {
-		for (var i = 0; i < consumptionmarkers.length; i++) {
-			consumptionmarkers[i].setMap(null);
+		if(typeof(consumptionmarkers) != "undefined"){
+			for (var i = 0; i < consumptionmarkers.length; i++) {
+				consumptionmarkers[i].setMap(null);
+			}	
 		}
-		for (var i = 0; i < speedmarkers.length; i++) {
+		if(typeof(speedmarkers) != "undefined"){
+			for (var i = 0; i < speedmarkers.length; i++) {
 			speedmarkers[i].setMap(null);
+			}
 		}
-		for (var i = 0; i < co2markers.length; i++) {
-			co2markers[i].setMap(map);
+		if(typeof(co2markers) != "undefined"){
+			for (var i = 0; i < co2markers.length; i++) {
+				co2markers[i].setMap(map);
+			}
+		}
+		else if(typeof(co2markers)== "undefined"){
+			alert("Probably no CO2 Data available.")
 		}
 	} catch(e) {
-		alert(e.message);
+		alert("Probably no CO2 Data available. This is the error message: " + e.message);
 	}
 
 }
 
 function showIdwConsumption() {
 	try {
-		for (var i = 0; i < co2markers.length; i++) {
-			co2markers[i].setMap(null);
+		if(typeof(co2markers) != "undefined"){
+			for (var i = 0; i < co2markers.length; i++) {
+				co2markers[i].setMap(null);
+			}
 		}
-		for (var i = 0; i < speedmarkers.length; i++) {
+		if(typeof(speedmarkers) != "undefined"){
+			for (var i = 0; i < speedmarkers.length; i++) {
 			speedmarkers[i].setMap(null);
+			}
 		}
-		for (var i = 0; i < consumptionmarkers.length; i++) {
-			consumptionmarkers[i].setMap(map);
+		if(typeof(consumptionmarkers) != "undefined"){
+			for (var i = 0; i < consumptionmarkers.length; i++) {
+				consumptionmarkers[i].setMap(map);
+			}
+		}
+		else if(typeof(consumptionmarkers)== "undefined"){
+			alert("Probably no Consumption Data available.")
 		}
 	} catch(e) {
-		alert(e.message);
+		alert("Probably no Consumption Data available. This is the error message: " + e.message);
 	}
 }
 
 function clearIdwDisplay() {
 	try {
-		for (var i = 0; i < co2markers.length; i++) {
-			co2markers[i].setMap(null);
+		if(typeof(co2markers) != "undefined"){
+			for (var i = 0; i < co2markers.length; i++) {
+				co2markers[i].setMap(null);
+			}
 		}
-		for (var i = 0; i < speedmarkers.length; i++) {
+		if(typeof(speedmarkers) != "undefined"){
+			for (var i = 0; i < speedmarkers.length; i++) {
 			speedmarkers[i].setMap(null);
+			}
 		}
-		for (var i = 0; i < consumptionmarkers.length; i++) {
-			consumptionmarkers[i].setMap(null);
+		if(typeof(consumptionmarkers) != "undefined"){
+			for (var i = 0; i < consumptionmarkers.length; i++) {
+				consumptionmarkers[i].setMap(null);
+			}	
 		}
 	} catch(e) {
 		alert(e.message);
@@ -779,23 +823,26 @@ function interpolatePhen(idwkey) {
 	for (var i = 0, k = 1; k < getPolyline().length; i++, k++) {
 		var origin = getPolylineAt(i);
 		var destination = getPolylineAt(k);
-		for (var j = 1; j <= 10; j++) {
-			var step = (1 / 10);
+		for (var j = 1; j <= 5; j++) {
+			var step = (1 / 5);
 			var interpolated = google.maps.geometry.spherical.interpolate(origin, destination, step * j);
 			var numerator = 0;
 			var denominator = 0;
 			// Define numerator of IDW
 			for (var m = 0; m < measurements.length; m++) {
-				var n = 0;
-				while (measurements[m].phenomenons[n].name != idwkey) {
-					n++;
+				for(var n = 0; n < measurements[m].phenomenons.length; n++){
+					if(measurements[m].phenomenons[n].name == idwkey){
+						var alpha = measurements[m].values[n];
+						var p1 = measurements[m].getPoint();
+						var p2 = interpolated;
+						var beta = Math.pow(distance(p1, p2), 2);
+						var gamma = (alpha / beta);
+						numerator = (numerator + gamma);
+						// console.log("numerator: " + numerator);
+					}
 				}
-				var alpha = measurements[m].values[n];
-				var p1 = measurements[m].getPoint();
-				var p2 = interpolated;
-				var beta = Math.pow(distance(p1, p2), 2);
-				var gamma = (alpha / beta);
-				numerator = (numerator + gamma);
+				
+				
 			}
 			// Define denominator of IDW
 			for (var m = 0; m < measurements.length; m++) {
@@ -805,10 +852,11 @@ function interpolatePhen(idwkey) {
 				var beta = Math.pow(distance(p1, p2), 2);
 				var gamma = (alpha / beta);
 				denominator = (denominator + gamma);
+				// console.log("denominator: " + denominator);
 			}
 			// Calculate IDW Value for the actual marker
 			var interpolatedValues = (numerator / denominator);
-			console.log(interpolatedValues);
+			// console.log(interpolatedValues);
 			// Decides in which class the value lies and return the corresponding color
 			var getColor = function() {
 				for (var i = 0; i < classarray.length; i++ || i <= 0) {
@@ -852,11 +900,12 @@ function classifyValues(measurements, idwkey) {
 	var mean = 0, sd = 0, total = 0, idwvalues = [];
 	// Store values of the phenomenon in an extra Array
 	for (var i = 0; i < measurements.length; i++) {
-		n = 0;
-		while (measurements[i].phenomenons[n].name != idwkey) {
-			n++;
-		}
-		idwvalues.push(measurements[i].values[n]);
+		
+		for(var n = 0; n < measurements[i].phenomenons.length; n++){
+			if (measurements[i].phenomenons[n].name == idwkey){
+				idwvalues.push(measurements[i].values[n]);
+			}
+		}	
 	}
 	// Sort Array
 	idwvalues.sort(numSort);
