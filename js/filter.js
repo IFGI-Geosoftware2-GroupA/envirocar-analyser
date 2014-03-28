@@ -450,13 +450,9 @@ function getBB() {
 	var coordBBox = pointSouthWestY + comma + pointSouthWestX + comma +pointNorthEastY + comma + pointNorthEastX;
 	// alert(coordBBox) should look like https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
 
-	if(pointNorthEastX - pointSouthWestX > 0.08 || pointNorthEastY-pointSouthWestY > 0.07 ){
-		alert("Bounding Box ist zu groß! Bitte verkleinern!");
-		cancelEvent();
-		hideProgressAnimation();
-	} else{
+	
 	return coordBBox;
-	}
+	
 }
 
 /*
