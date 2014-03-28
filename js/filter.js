@@ -533,7 +533,14 @@ function getDateTimeBBox() {
 		analyserMeasurements = measurements.slice();
 		hideProgressAnimation();
 		redrawData(true,true,true,true,true);
-	}
+	} /*else if(startDate == '' && endDate == '' && rectangleActive == false){
+		hideProgressAnimation();
+		if (l == "en") {
+				alert('Choose period of time, spatial or temporal-spatial filtering!');
+			} else {
+				alert('Zeitraum, räumlichen oder raum-zeitlichen Filter auswählen!');
+		}
+	} */
 }
 
 /*

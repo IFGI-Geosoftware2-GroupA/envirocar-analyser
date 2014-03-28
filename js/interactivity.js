@@ -371,10 +371,13 @@ function loadCarModels() {
 // Show loading window
 function showProgressAnimation() {
 	$("#loading-div-background").show();
+	$("#loading-div").show();
+	/*$("#loading-div").show().setTimeout();*/
 	
 	window.setTimeout(function() {
 		getDateTimeBBox();
 	}, 50);
+	
 }
 
 // Hide loading window
