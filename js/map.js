@@ -148,7 +148,6 @@ function redrawData(marker, cars, chart, table, tracks) {
 		showMarkers();	
 	}
 	if(cars){
-		// added
 		// if no car Models Objects exists one is created
 		if(carModelsExists == false){
 			carModels = new loadCarModels();
@@ -158,7 +157,6 @@ function redrawData(marker, cars, chart, table, tracks) {
 			duallistbox_carmodels.empty();
 			carModels.clearArray();
 		}
-		// added off	
 	}
 	if(chart)
 		setChart('line');
@@ -613,6 +611,7 @@ function initBoundingBox() {
 			editable : true,
 			draggable : true
 		});
+		
 
 		rectangle.setMap(map);
 	} else {
