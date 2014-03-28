@@ -18,6 +18,9 @@ var BBoxPrefix = "&bbox=";
 var doublePoint = ":";
 var rectangleActive = false;	// Global variable which contains the boolean if a the rectangle is active or not
 
+// Variable to check if this is the first request
+var appStarted = true;
+
 /**
  * getDateTime() This method gets the values from the date-from and date-to element. These values are used for building the string in order to start a temporal query. Afterwards it will 
  * query the envirocar API to get the tracks.
@@ -473,38 +476,32 @@ function getDateTimeBBox() {
 	endDate = $('#date-to').val();
 	
 	// check if the user wants to perform a temporal-spatial filtering
-	if(startDate != '' && endDate != '' && rectangleActive == true) {
+	if (startDate != '' && endDate != '' && rectangleActive == true) {
+		// calling getDT() in order to get the URL String for the temporal filter	
+		var dateTimeUrl = getDT();
+		// calling getBB() in order to get the bounding box coordinates
+		var BBoxString = getBB();
 		
-	// calling getDT() in order to get the URL String for the temporal filter	
-	var dateTimeUrl = getDT();
-	// calling getBB() in order to get the bounding box coordinates
-	var BBoxString = getBB();
-
-	
-	// creating the URL for the query
-	var dateTimeBBoxUrl = dateTimeUrl + BBoxPrefix + BBoxString;
-	
-	query = new Query();
-	
-	var inputUrl = dateTimeBBoxUrl;
-	
-	measurements = query.getMeasurements(inputUrl);
-	
-	analyserMeasurements = measurements.slice();
-	hideProgressAnimation();
-	redrawData(true,true,true,true,true);
-	
+		// creating the URL for the query
+		var dateTimeBBoxUrl = dateTimeUrl + BBoxPrefix + BBoxString;
+		
+		query = new Query();
+		
+		var inputUrl = dateTimeBBoxUrl;
+		
+		measurements = query.getMeasurements(inputUrl);
+		
+		analyserMeasurements = measurements.slice();
+		hideProgressAnimation();
+		redrawData(true,true,true,true,true);
 		
 	// check if the user wants to perform a temporal filtering	
-	}else if(startDate != '' && endDate != '' && rectangleActive == false){
-		
+	} else if (startDate != '' && endDate != '' && rectangleActive == false) {
 		// calling getDT() in order to get the URL string for the temporal filter
 		var dateTimeUrl = getDT();
 		
-		// alert(dateTimeUrl);
-		
 		query = new Query();
-	
+		
 		var inputUrl = dateTimeUrl;
 		
 		measurements = query.getMeasurements(inputUrl);
@@ -514,32 +511,41 @@ function getDateTimeBBox() {
 		redrawData(true,true,true,true,true);
 		
 	// check if the user wants to perform a spatial filtering
-	}else if(startDate == '' && endDate == '' && rectangleActive == true) {
+	} else if (startDate == '' && endDate == '' && rectangleActive == true) {
+		// Display an alert to the user to inform him about a possible long time to perform the request
+		if (l == 'en') {
+			alert('If you want to get data without any temporal criteria, it may need a long time to collect all data depending on the used bounding box!');
+		} else {
+			alert('Wenn du die Daten ohne zeitliche Einschränkung abrufst, kann es abhängig von der Boundingbox sehr lange dauern, die Daten abzurufen!');
+		}
 		
 		// calling getBB() in order to get the bounding box coordiantes
 		var BBoxString = getBB();
 		
 		var BBUrl = baseUrlBBox + BBoxString;
 		
-		// alert(BBUrl);
-		
 		query = new Query();
-	
+		
 		var inputUrl = BBUrl;
 		
 		measurements = query.getMeasurements(inputUrl);
-
+		
 		analyserMeasurements = measurements.slice();
 		hideProgressAnimation();
 		redrawData(true,true,true,true,true);
-	} /*else if(startDate == '' && endDate == '' && rectangleActive == false){
+	} else if (startDate == '' && endDate == '' && rectangleActive == false) {
 		hideProgressAnimation();
-		if (l == "en") {
-				alert('Choose period of time, spatial or temporal-spatial filtering!');
-			} else {
-				alert('Zeitraum, räumlichen oder raum-zeitlichen Filter auswählen!');
+		// Ignore missing filter when app is started
+		if (appStarted) {
+			appStarted = false;
+		} else {
+			if (l == "en") {
+					alert('Please choose a period of time, spatial or temporal-spatial filter before you get the data!');
+				} else {
+					alert('Bitte wähle einen Zeitraum, räumlichen oder raum-zeitlichen Filter aus, bevor du Daten abrufst!');
+			}
 		}
-	} */
+	}
 }
 
 /**
@@ -593,7 +599,7 @@ function getLatestTracks() {
 			'error': function(jqXHR, textStatus, errorThrown) {alert('Error ' + errorThrown);}
 		});
 				
-				// returns the object
+		// returns the object
 		return json;
 	})();
 	
