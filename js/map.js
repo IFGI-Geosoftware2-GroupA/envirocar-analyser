@@ -681,12 +681,27 @@ function showSize(event){
 // ------------------------------------
 /**
  * Helper/Starter Method for the interpolation
+ * Checks which interpolation should be used and which parameters are set
+ * Applies the filter to the measurement array
  */
 function interpolate() {
 	// var query = new Query('measurements');
 	// measurements = query.getData();
 	// Check wether bounding box is activated or not and trim the polyexport so that only measurements
 	// in the bounding box are present
+	
+	var measurementsTemp = measurements.slice();
+	if(trackSelectionActive()){
+		focusTrack();
+		insertTrack();
+	}
+	if(limitFilterActive()){
+		executeLimitFilter();
+	}
+	if(carSelectionActive()){
+		applyCarSelection();
+	}
+	
 	if (BoundingBox == true) {
 		polyexport.clear();
 		//Get all points in the boundingbox
@@ -730,8 +745,22 @@ function interpolate() {
 		}
 
 	}
+	measurements = measurementsTemp.slice();	
 }
-
+/**
+ * Inserts the Track into the interpolation array polyexport
+ * Only called when Track selection is active 
+ */
+function insertTrack(){
+	for(var i=0; i<measurements.length; i++){
+			polyexport.push(measurements[i].getPoint());
+		}
+}
+/**
+ * Displays the result of the Speed interpolation if there was speed data
+ * if not function will throw an alert to inform the user that no speed data is available for his selection
+ * Removes the overlays of the other Phenomenons CO2 and consumption if available
+ */
 function showIdwSpeed() {
 	try {
 		if(typeof(consumptionmarkers) != "undefined"){
@@ -756,7 +785,11 @@ function showIdwSpeed() {
 		alert("Probably no Speed Data available. This is the error message: " + e.message);
 	}
 }
-
+/**
+ * Displays the result of the CO2 interpolation if there is CO2 data
+ * if not function will throw an alert to inform the user that no CO2 data is available for his selection
+ * Removes the overlays of the other Phenomenons speed and consumption if available
+ */
 function showIdwCo2() {
 	try {
 		if(typeof(consumptionmarkers) != "undefined"){
@@ -782,7 +815,11 @@ function showIdwCo2() {
 	}
 
 }
-
+/**
+ * Displays the result of the Consumpotion interpolation if there is Consumption data
+ * if not function will throw an alert to inform the user that no consumption data is available for his selection
+ * Removes the overlays of the other Phenomenons speed and CO2 if available
+ */
 function showIdwConsumption() {
 	try {
 		if(typeof(co2markers) != "undefined"){
@@ -807,7 +844,9 @@ function showIdwConsumption() {
 		alert("Probably no Consumption Data available. This is the error message: " + e.message);
 	}
 }
-
+/**
+ * Removes all available interpolation overlays 
+ */
 function clearIdwDisplay() {
 	try {
 		if(typeof(co2markers) != "undefined"){
@@ -831,7 +870,9 @@ function clearIdwDisplay() {
 	document.getElementById("clearidw").style.display = "none";
 	document.getElementById("idwid").style.display = "none";
 }
-
+/**
+ * Helper Method for the selection
+ */
 function IDWSelection() {
 	var idw = document.getElementById("idwid");
 	var selected = idw.options[idw.selectedIndex].value;
@@ -847,7 +888,9 @@ function IDWSelection() {
 	}
 }
 
-// Calculates distance between 2 points
+/**
+ * Calculates distance between 2 points
+ */ 
 function distance(p1, p2) {
 	var dist = google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
 	return dist;
@@ -871,8 +914,8 @@ function interpolatePhen(idwkey) {
 	for (var i = 0, k = 1; k < getPolyline().length; i++, k++) {
 		var origin = getPolylineAt(i);
 		var destination = getPolylineAt(k);
-		for (var j = 1; j <= 5; j++) {
-			var step = (1 / 5);
+		for (var j = 1; j <=25; j++) {
+			var step = (1 / 25);
 			var interpolated = google.maps.geometry.spherical.interpolate(origin, destination, step * j);
 			var numerator = 0;
 			var denominator = 0;
@@ -905,36 +948,48 @@ function interpolatePhen(idwkey) {
 			// Calculate IDW Value for the actual marker
 			var interpolatedValues = (numerator / denominator);
 			// console.log(interpolatedValues);
-			// Decides in which class the value lies and return the corresponding color
+			
+			/**
+			 * Decides in which class the value lies and returns the corresponding color
+			 * Chooses the corresponding classes folder depending on the number of classes
+			 * to show better differences 
+			 */
 			var getColor = function() {
-				for (var i = 0; i < classarray.length; i++ || i <= 0) {
-					if (interpolatedValues < classarray[i]) {
-						var color = i.toString();
+				for (var i = 0, n = classarray.length; i < classarray.length; i++ || i <= 0) {
+					if (interpolatedValues <= classarray[i]) {
+						var color = n.toString()+'/' + i.toString();
 						return color;
 					} else if (interpolatedValues > classarray[classarray.length - 1]) {
-						var color = "max";
+						var color = n.toString() + '/' + "max";
 						return color;
 					} else {
 						continue;
 					}
-
 					return color;
 				}
 			};
 			// bind the color to the marker specific to it's value'
 			var color = getColor();
+			// refers to the corresponding classes folder and builds the referer(uri) to the icon
 			var idwicon = 'img/interpolated/' + color + '.png';
-			var idwmarker = new google.maps.Marker({
+			// if color "undefined" is returned the interpolated Value is "NaN" and that is the case
+			// for all points where the interpolated value is on exactly the same location as the measurement point
+			// and no marker is needed and won't be created
+			if(typeof(color)!= "undefined"){
+				
+				var idwmarker = new google.maps.Marker({
 				position : interpolated,
 				icon : idwicon
-			});
-			// Create a info window for the marker to see the specific value
-			// bound to the marker
-			buildSmallInfoWindow(idwmarker, map, interpolatedValues);
+				});
+				// Create a info window for the marker to see the specific value
+				// bound to the marker
+				buildSmallInfoWindow(idwmarker, map, interpolatedValues);
 
-			idwmarkers.push(idwmarker);
+				idwmarkers.push(idwmarker);
+			}
 		}
 	}
+	// return the interpolated marker array
 	return idwmarkers;
 }
 
@@ -991,7 +1046,9 @@ function classifyValues(measurements, idwkey) {
 function numSort(a, b) {
 	return (a - b);
 }
-
+/**
+ * Creates a small infoWindow for a marker to display the interpolated value 
+ */
 function buildSmallInfoWindow(idwmarker, map, interpolatedValues) {
 	var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + interpolatedValues + '</div>' + '</div>';
 	var infowindow = new google.maps.InfoWindow({
