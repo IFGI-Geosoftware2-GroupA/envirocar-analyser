@@ -251,8 +251,7 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 	var co2A = new Array();	
 	
 	for (i=0, j=0; i< measurements.length; i++) {
-			var d = measurements[i].getTimestamp();
-			var utc = Date.UTC(d.getYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds());
+			var utc = measurements[i].getTimestamp();
 			var measurementId = measurements[i].getId() + '';
 			for (j=0;j<measurements[i].phenomenons.length;j++) {
 				
@@ -265,7 +264,7 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 				} 
 				
 				else if (measurements[i].getPhenomenons()[j].name == "Speed") {
-					speedA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Speed' +  measurementId});	
+					speedA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Speed' +  measurementId, color : this.setColorByClassification(measurements[i].getValues()[j],'Speed')});	
 				} 
 				
 				else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
@@ -315,6 +314,19 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 		}
 		if(viewMode == "chart")	lineChart.getChart().setSize($("#map").width(), $("#map").height() / 1.5);
 		if(viewMode == "dual")	lineChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
+};
+
+//determine the color of the chart points if a classification is made
+LineChart.prototype.setColorByClassification = function(value, phenomenon){
+	if(phenomenon == limitFilterSettings[0]){
+		var tolerance = (limitFilterSettings[2] - limitFilterSettings[1]) * 1/4;
+		if(value > limitFilterSettings[2] || value < limitFilterSettings[1]) return "#FF0000";
+		else if(value < limitFilterSettings[2]-tolerance && value > limitFilterSettings[1]+tolerance) return "#32CD32";
+		else return "#FFD700";
+	}
+	else{
+		return null;
+	}
 };
 
 

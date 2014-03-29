@@ -214,17 +214,21 @@ function applyAllFilter(){
 	if(trackSelectionActive()){
 		focusTrack();	
 	}
-	if(limitFilterActive()){
-		executeLimitFilter();
-	}
 	if(carSelectionActive()){
 		applyCarSelection();
 	}
-	redrawData(true, false, true,true,false);
-	analyserMeasurements = measurements.slice();
+	if(limitFilterActive()){
+		// executeLimitFilter();
+		redrawData(false, false, true,true,false);
+		showMarkersClassified();	
+	}
+	if(!limitFilterActive()){
+		redrawData(true, false, true,true,false);
+		analyserMeasurements = measurements.slice();
+	}
 	setTimeout(function(){
 		measurements = measurementsTemp.slice();
-	}, 100);
+	}, 100);	
 }
 
 // check if a track is selected or if all tracks shall be displayed
@@ -337,6 +341,89 @@ function resizeMap() {
 		// center of North-Rhine-Westphalia))
 	}
 }
+
+/**
+ *Show filtered measurements classified on the map 
+ */
+function showMarkersClassified(){
+	try {
+		var measurementsTemp = measurements.slice();
+		if(trackSelectionActive()){
+			focusTrack();	
+		}
+		if(carSelectionActive()){
+			applyCarSelection();
+		}
+		clearOverlays();
+		// Set timeout to wait for the map to be loaded
+		setTimeout(function() {
+			for (var i = 0; i < measurements.length; i++) {
+				// Create marker for each measurement
+				if(limitFilterSettings[0] == 'reset'){
+					var marker = new google.maps.Marker({
+						position : measurements[i].getPoint(),
+						icon : 'img/circle.png'
+					});	
+					marker.id = '' + measurements[i].getId() + '';
+					markers.push(marker);
+					console.log("Nothing to filter here!");
+				}
+				else{
+					var markerAdded = false;	
+					var range = limitFilterSettings[2] - limitFilterSettings[1];
+					var tolerance = range * 1/4;
+					for (var j = 0 ; j < measurements[i].phenomenons.length ; j++) {			
+						if (measurements[i].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[i].getValues()[j] < limitFilterSettings[1] || measurements[i].getValues()[j] > limitFilterSettings[2])) {
+							var marker = new google.maps.Marker({
+								position : measurements[i].getPoint(),
+								icon : 'img/circle.png'
+							});	
+							markerAdded = true;
+							marker.id = '' + measurements[i].getId() + '';
+							markers.push(marker);
+						}
+						else if(measurements[i].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[i].getValues()[j] < limitFilterSettings[1]+tolerance || measurements[i].getValues()[j] > limitFilterSettings[2]-tolerance)){
+							var marker = new google.maps.Marker({
+								position : measurements[i].getPoint(),
+								icon : 'img/circle_yellow.png'
+							});	
+							markerAdded = true;
+							marker.id = '' + measurements[i].getId() + '';
+							markers.push(marker);
+						}									
+					}
+					if(!markerAdded){
+						var marker = new google.maps.Marker({
+							position : measurements[i].getPoint(),
+							icon : 'img/circle_green.png'
+						});
+						markerAdded = true;
+						marker.id = '' + measurements[i].getId() + '';
+						markers.push(marker);
+					}	
+				}
+				createListenerForMarkers(markers[i]);
+				markersBounds.extend(measurements[i].getPoint());
+
+				// Create infowindow for marker[i]/measurement[i]
+				buildInfoWindow(markers[i], map, measurements[i]);	
+			}
+
+			var mcOptions = {
+				gridSize : 50,
+				maxZoom : maxZoomLevelForClusterer
+			};
+			mc = new MarkerClusterer(map, markers, mcOptions);
+			// Only change the bounds when measurements have been collected
+			if (measurements.length > 0) {
+				map.fitBounds(markersBounds);
+			}
+		}, 50);
+	} catch(e) {
+		alert(e.message);
+	}	
+}
+
 
 /**
  * Show measurements as markers on the map

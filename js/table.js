@@ -48,18 +48,18 @@ function createAggregationTable(json){
 		var l = getParam('lang');
 		if (l == "en") {
 			headtext0 = document.createTextNode("Value");
-			headtext1 = document.createTextNode("Consumption");
-			headtext2 = document.createTextNode("CO2");
-			headtext3 = document.createTextNode("Speed");
-			headtext4 = document.createTextNode("Engine Load");
-			headtext5 = document.createTextNode("Revolut./Minute");
+			headtext1 = document.createTextNode("CO2");
+			headtext2 = document.createTextNode("Consumption");
+			headtext3 = document.createTextNode("Engine Load");
+			headtext4 = document.createTextNode("Revolut./Minute");
+			headtext5 = document.createTextNode("Speed");
 		} else {
 			headtext0 = document.createTextNode("Wert");
-			headtext1 = document.createTextNode("Verbrauch");
-			headtext2 = document.createTextNode("CO2");
-			headtext3 = document.createTextNode("Geschwindigkeit");
-			headtext4 = document.createTextNode("Motorlast");
-			headtext5 = document.createTextNode("Umdrehungen/Minute");
+			headtext1 = document.createTextNode("CO2");
+			headtext2 = document.createTextNode("Verbrauch");
+			headtext3 = document.createTextNode("Engine Load");
+			headtext4 = document.createTextNode("Umdrehungen/Minute");
+			headtext5 = document.createTextNode("Geschwindigkeit");
 		}
 
 		headcell0.appendChild(headtext0);
@@ -89,7 +89,7 @@ function createAggregationTable(json){
 			currentCell3 = document.createElement("td");
 			currentCell4 = document.createElement("td");
 			currentCell5 = document.createElement("td");
-			console.log(i);
+			
 			//Value-Column
 			switch(i){
 				case 0: 
