@@ -161,7 +161,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<input type="text" id="date-to" class="controls" size="12">
 					<br>
 					<input type="button" name="selectTimeBtn" id="selectTimeBtn" 
-						value="<?php echo $getData; ?>" onClick="showProgressAnimation();">
+						value="<?php echo $getData; ?>" onClick="getDateTimeBBox();">
 				</form>
 			</div>
 			
@@ -271,7 +271,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					$(document).ready(function() {
 						setTimeout(function(){
 							redrawData(true,true,true,true,true);
-						}, 2000);
+						}, 500);
 					});
 				</script>
 				
@@ -401,9 +401,23 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<!-- loading window -->
 			<div id="loading-div-background" >
 			    <div id="loading-div">
-			      <span id="spinnerSpan"><img id="spinnerImg" style="height:16px;margin:30px;" src="img/loading.gif" alt="Loading..."/></span>
+			      <div style="width: 250px;">
+					<span id="ladebalken" style="position: absolute; left: 25px; top: 100px; width: 0px; display: block; background: green; border: 1px solid black; height: 30px;">
+					</span>
+					<span style="position: absolute; left: 25px; top: 100px; text-align: center; width: 250px; border: 1px solid black; height: 30px;">
+						<span id="loading-div-trackText">Tracks:</span> 
+						<span id="currentTrack">
+							0
+						</span>
+						<span id="loading-div-backslash">/</span>
+						<span id="amountTracks">
+							30
+						</span>
+					</span>
+				</div>
 			      <h4 style="color:gray;font-weight:normal;"><?php echo $wait; ?></h4>
-			      <button id="hideLoadingWindowBtn" onClick="hideProgressAnimation(); return cancelEvent()"><?php echo $cancel; ?></button>
+			      <span id="spinnerSpan"><img id="spinnerImg" style="height:16px;margin:30px;" src="img/loading.gif" alt="Loading..."/></span>
+			      <!-- <button id="hideLoadingWindowBtn" onClick="hideProgressAnimation(); return cancelEvent()"><?php echo $cancel; ?></button> -->
 			    </div>
 			</div>
 			
