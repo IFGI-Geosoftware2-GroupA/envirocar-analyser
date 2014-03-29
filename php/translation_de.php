@@ -166,7 +166,7 @@
 		            Bei der Tabelle können Phänomene in Form von  
 		            Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
 		            'Aktualisieren' entfernt und hinzugefügt werden. <br><br>
-		            <img src='img/help/kästchen.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <img src='img/help/kaestchen.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Bei dem Graph können ebenfalls Phänomene an der rechten Seite durch an- und abwählen hinzugefügt bzw. entfernt werden.
 		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomed werden und dies durch
 		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>  </p>
