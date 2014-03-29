@@ -28,8 +28,7 @@
 	                    on this web page, unless the mistake was made on purpose or due to gross negligence. 
 	                    The envirocar analyser development team is responsible for mistakes of the displaying and
 	                    for the user interface. Owner of the data and therefore owner of the rights of the data is
-	                    envirocar.
-	                    ";
+	                    envirocar.";
 	
 	$terms = "Terms of Use";
 	$terms_content = "The MIT License (MIT)<br />
