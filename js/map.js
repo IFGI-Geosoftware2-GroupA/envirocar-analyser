@@ -122,16 +122,6 @@ function initMap() {
 		searchBox.setBounds(bounds);
 	});
 
-	// Create the DIV to hold the streetmode control and call the collectStreets() constructor
-	// passing in this DIV.
-	/*
-	var streetControlDiv = document.createElement('div');
-	var streetcontrol = new collectStreets(streetControlDiv, map);
-
-	streetControlDiv.index = 1;
-	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(streetControlDiv);
-	*/
-
 	// Creates the polyline to hold the waypoints for displaying the overlay streetsegment selection
 	poly = new google.maps.Polyline({
 		map : map,
@@ -715,8 +705,10 @@ function interpolate() {
 	// in the bounding box are present
 	
 	var measurementsTemp = measurements.slice();
+	// Check if trackSelection is active and edit the polyexport that only the track will be interpolated
 	if(trackSelectionActive()){
 		focusTrack();
+		polyexport.clear();
 		insertTrack();
 	}
 	if(limitFilterActive()){
@@ -728,7 +720,7 @@ function interpolate() {
 	
 	if (BoundingBox == true) {
 		polyexport.clear();
-		//Get all points in the boundingbox
+		// Changes the polyexport, that it represents the measurements in the boundingbox
 		for (var i = 0; i < measurements.length; i++) {
 			if (rectangle.getBounds().contains(measurements[i].getPoint()) == true) {
 				polyexport.push(measurements[i].getPoint());
