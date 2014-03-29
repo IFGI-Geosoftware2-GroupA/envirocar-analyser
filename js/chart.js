@@ -256,11 +256,11 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 			for (j=0;j<measurements[i].phenomenons.length;j++) {
 				
 				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-					consumptionA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(5)), name: measurementId, id: 'Consumption' +  measurementId});	
+					consumptionA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(5)), name: measurementId, id: 'Consumption' +  measurementId, color : this.setColorByClassification(measurements[i].getValues()[j],'Consumption')});	
 				} 
 				
 				else if (measurements[i].getPhenomenons()[j].name == "CO2") {
-					co2A.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'CO2' +  measurementId});
+					co2A.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'CO2' +  measurementId, color : this.setColorByClassification(measurements[i].getValues()[j],'CO2')});
 				} 
 				
 				else if (measurements[i].getPhenomenons()[j].name == "Speed") {
@@ -268,11 +268,11 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 				} 
 				
 				else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-					engineLoadA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'EngineLoad' +  measurementId});	
+					engineLoadA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'EngineLoad' +  measurementId, color : this.setColorByClassification(measurements[i].getValues()[j],'Engine Load')});	
 				}
 				
 				else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-					rpmA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Rpm' +  measurementId});			
+					rpmA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Rpm' +  measurementId, color : this.setColorByClassification(measurements[i].getValues()[j],'Rpm')});			
 				}
 			}
 		}

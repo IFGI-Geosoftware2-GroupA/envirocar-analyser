@@ -344,11 +344,13 @@ function showMarkersClassified(){
 		if(carSelectionActive()){
 			applyCarSelection();
 		}
+		// clear 'old' markers
 		clearOverlays();
 		// Set timeout to wait for the map to be loaded
 		setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
 				// Create marker for each measurement
+				// if there is no filter set, all markers will be displayed as usual
 				if(limitFilterSettings[0] == 'reset'){
 					var marker = new google.maps.Marker({
 						position : measurements[i].getPoint(),
@@ -359,8 +361,10 @@ function showMarkersClassified(){
 					console.log("Nothing to filter here!");
 				}
 				else{
+					// if there is a filter active, the points will be classified and colored in green, red or yellow
 					var markerAdded = false;	
 					var range = limitFilterSettings[2] - limitFilterSettings[1];
+					// the tolerance used for classification
 					var tolerance = range * 1/4;
 					for (var j = 0 ; j < measurements[i].phenomenons.length ; j++) {			
 						if (measurements[i].getPhenomenons()[j].name == limitFilterSettings[0] && (measurements[i].getValues()[j] < limitFilterSettings[1] || measurements[i].getValues()[j] > limitFilterSettings[2])) {
@@ -414,6 +418,96 @@ function showMarkersClassified(){
 	}	
 }
 
+// shows the measurements classified by their co2 emission in relation to the speed measured
+// measurements which do not provide co2 and speed values are displayed as usual
+function displayCoSpeedRatioMarkers(){
+	try {
+		var measurementsTemp = measurements.slice();
+		if(trackSelectionActive()){
+			focusTrack();	
+		}
+		if(carSelectionActive()){
+			applyCarSelection();
+		}
+		// clear 'old' markers
+		clearOverlays();
+		// Set timeout to wait for the map to be loaded
+		setTimeout(function() {
+			for (var i = 0; i < measurements.length; i++) {
+				var speedTemp;
+				var co2Temp = null;
+				var ratio = null;
+				for (var j = 0 ; j < measurements[i].phenomenons.length ; j++) {			
+					if(measurements[i].getPhenomenons()[j].name == "Speed"){
+						speedTemp = measurements[i].getValues()[j];
+					}
+					if(measurements[i].getPhenomenons()[j].name == "CO2"){
+						co2Temp = measurements[i].getValues()[j];
+					}											
+				}
+				
+				if(speedTemp == null || co2Temp == null){
+					var marker = new google.maps.Marker({
+						position : measurements[i].getPoint(),
+						icon : 'img/circle.png'
+					});	
+					marker.id = '' + measurements[i].getId() + '';
+					markers.push(marker);	
+				}
+				else{
+					// set speed minimum to 1
+					if(speedTemp == 0) speedTemp += 1;
+					// calculate ratio
+					ratio = speedTemp / co2Temp;
+					
+					// display the measurements as green, red or yellow star
+					if(ratio <= 3){
+						var marker = new google.maps.Marker({
+							position : measurements[i].getPoint(),
+							icon : 'img/star_red.png'
+						});	
+						marker.id = '' + measurements[i].getId() + '';
+						markers.push(marker);	
+					}
+					else if(ratio > 3 && ratio <= 6){
+						var marker = new google.maps.Marker({
+							position : measurements[i].getPoint(),
+							icon : 'img/star_yellow.png'
+						});	
+						marker.id = '' + measurements[i].getId() + '';
+						markers.push(marker);	
+					}
+					else{
+						var marker = new google.maps.Marker({
+							position : measurements[i].getPoint(),
+							icon : 'img/star_green.png'
+						});	
+						marker.id = '' + measurements[i].getId() + '';
+						markers.push(marker);	
+					}
+					createListenerForMarkers(markers[i]);
+					markersBounds.extend(measurements[i].getPoint());
+	
+					// Create infowindow for marker[i]/measurement[i]
+					buildInfoWindow(markers[i], map, measurements[i]);
+				}
+									
+			}
+
+			var mcOptions = {
+				gridSize : 50,
+				maxZoom : maxZoomLevelForClusterer
+			};
+			mc = new MarkerClusterer(map, markers, mcOptions);
+			// Only change the bounds when measurements have been collected
+			if (measurements.length > 0) {
+				map.fitBounds(markersBounds);
+			}
+		}, 50);
+	} catch(e) {
+		alert(e.message);
+	}	
+}
 
 /**
  * Show measurements as markers on the map
