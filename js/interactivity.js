@@ -386,12 +386,7 @@ function loadCarModels() {
 function showProgressAnimation() {
 	$("#loading-div-background").show();
 	$("#loading-div").show();
-	/*$("#loading-div").show().setTimeout();*/
-	
-	window.setTimeout(function() {
-		getDateTimeBBox();
-	}, 50);
-	
+	/*$("#loading-div").show().setTimeout();*/	
 }
 
 // Hide loading window
@@ -425,4 +420,47 @@ function popupwindow(url, title, w, h) {
 // open the popup window with the filter selection
 function limitFilter() {
 	fenster1 = popupwindow("grenzwertfilter_dialog.php", "Grenzwert-Filter", 630, 430);
+}
+
+// set Loading Screen Options when starting to request data
+function setLoadingScreenValues(max){
+	ladebalken.style.width = "0px";
+	document.getElementById('amountTracks').innerHTML = max;
+	document.getElementById('currentTrack').innerHTML = "0";
+	document.getElementById('loading-div-trackText').innerHTML = "Tracks";
+	document.getElementById('loading-div-backslash').innerHTML = "/";		
+}
+
+// set Loading Screen Options after all tracks have been requested
+function setLoadingScreenInterim(){
+	document.getElementById('currentTrack').innerHTML = "";
+	document.getElementById('loading-div-trackText').innerHTML = "";
+	document.getElementById('loading-div-backslash').innerHTML = "";	
+	if(getParam() == "en"){
+		document.getElementById('amountTracks').innerHTML = "Processing Data...";
+	}
+	else{
+		document.getElementById('amountTracks').innerHTML = "Verarbeite Daten...";
+	}
+}
+
+// animation of loading div when requesting data
+function animiere() {
+	var maximum = parseInt(document.getElementById('amountTracks').innerHTML);
+	var current = parseInt(document.getElementById('currentTrack').innerHTML);
+	var ladebalken = document.getElementById("ladebalken");
+	var laenge = parseInt(ladebalken.style.width);
+	var progress = 250/maximum;
+
+	if (laenge < 250-progress) {
+		document.getElementById('currentTrack').innerHTML = current+1;
+		if(parseInt(document.getElementById('currentTrack').innerHTML) == maximum){
+			ladebalken.style.width = "250px";	
+			setLoadingScreenInterim();
+		}
+		else{
+			ladebalken.style.width = laenge + progress + "px";	
+		}
+	}
+	showProgressAnimation();
 }
