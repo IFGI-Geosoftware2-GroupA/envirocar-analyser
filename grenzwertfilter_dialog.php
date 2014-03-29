@@ -1,3 +1,14 @@
+<?php
+if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
+	include 'php/translation_en.php';
+	$other_lang = 'de';
+} else {
+	include 'php/translation_de.php';
+	$lang = 'de';
+	$other_lang = 'en';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,7 +18,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Grenzwertfilter</title>
+		<title>Filter</title>    
 		<meta name="description" content="">
 		<meta name="author" content="Axel">
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
@@ -225,7 +236,7 @@
 	</head>
 
 	<body style="height: 400px; width: 600px;">
-		<h1 align="center">Grenzwert-Filter</h1>
+		<h1 align="center"><?php echo $limit_filter; ?></h1>
 		
 		<!-- Table with the links to switch between the phenomenons which can be filtered -->
 		<table width="600px" align="center">
@@ -242,7 +253,7 @@
 		<!-- Container containing the Speed filter -->
 		<div id="speed-div" style="margin: auto; width: 500px;">
 			<p>
-				<label for="amount">Geschwindigkeit:</label>
+				<label for="amount"><?php echo $speed; ?>:</label>
 				<input type="text" disabled="" id="amount-speed" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-speed"> </p>
@@ -260,7 +271,7 @@
 		<!-- Container containing the Consumption filter -->
 		<div id="consumption-div" style="margin: auto; width: 500px;">
 			<p>
-				<label for="amount">Verbrauch:</label>
+				<label for="amount"><?php echo $consumption; ?>:</label>
 				<input type="text" disabled=""  id="amount-consumption" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-consumption"> </p>
@@ -278,7 +289,7 @@
 		<!-- Container containing the Engine Load filter -->
 		<div id="engineLoad-div" style="margin: auto; width: 500px;">
 			<p>
-				<label for="amount">Motorlast:</label>
+				<label for="amount"><?php echo $engine_load; ?>:</label>
 				<input type="text" disabled="" id="amount-engineLoad" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-engineLoad"> </p>
@@ -296,7 +307,7 @@
 		<!-- Container containing the Rpm filter -->
 		<div id="rpm-div" style="margin: auto; width: 500px;">
 			<p>
-				<label for="amount">Umdrehungen:</label>
+				<label for="amount"><?php echo $rpm; ?>:</label>
 				<input type="text" disabled="" id="amount-rpm" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-rpm"> </p>
