@@ -105,12 +105,12 @@
 	                by clicking on the arrow field or by leaving the left mouse button clicked on the map and 
 	                moving the mouse. <br><br>  </p>
 	                <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
-	                <p> You can zoom in and out either by using the scroll wheel of the mouse (except 
-	                for Internet Explorer), clicking on the plus and minus symbol of the zoom scale or by simply clicking 
+	                <p> You can zoom in and out either by: <br> - Using the scroll wheel of the mouse (except 
+	                for Internet Explorer) <br> - Clicking on the plus and minus symbol of the zoom scale <br> - Clicking 
 	                on the zoom scale itself. <br><br> <br><br>  </p>
 	                <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-	                <p> By clicking on the fields 'Karte', 'Hybrid' and 'OSM' you can choose between 
-	                a vector map, a hybrid of a satellite image and street vectors and a map of OpenStreetMaps. </p>";
+	                <p> By clicking on the fields 'Karte', 'Hybrid' and 'OSM' you can choose between: 
+	                <br> - A vector map <br> - A hybrid of a satellite image and street vectors <br> - A map of OpenStreetMaps. </p>";
 	
 	$help_getdata ="
 					<h1>Help</h1> <br>
@@ -118,15 +118,18 @@
 					<h2>Call Up Data</h2>
 					<br>
 					<img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> If you want to analyse data of a certain time interval 
-	                you need to click in the 'From:' and the 'To:' and then on the corresponding days (by clicking on the top left or 
-	                right corner of the calendar window you can go back and forth in time). <br><br>
-	                Optionally, you can select an area
-	                within NRW in addition either by clicking on 'Select space segment' to select a segment with a bounding box, whose 
-	                size can be varied by pulling its edges with the left mouse button pushed. Or you can click on 'Street
-	                Selection' and set several points in the map with the left mouse button to select all street segments 
-	                between those points. In 'Tracks' you can choose particular paths driven by a car. <br><br>
-	                Finally, you click on 'Get Data' to get the data for that time period and possibly that area.  </p>";
+		            <p> If you want to analyse data of a certain time interval you need to click on the 
+		            'From:' and the 'To:' field and then on the corresponding days. By clicking on the top left or 
+	                right corner of the calendar window you can go back and forth in time. <br><br>
+	                You can select an certain area within North Rhine-Westphalia by clicking on 'Select space segment' to select a segment with a 
+	                bounding box. Its size can be varied by pulling its edges with the left mouse button pushed. Alternatively, you can click on 'Street
+	                Selection' and set several points on streets with the left mouse button to select all street segments 
+	                between those points. <br><br> In 'Tracks' you can choose particular paths driven by a car. <br>  </p>
+	                <img src='img/help/cars.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+					<p> <br> In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model 
+					by clicking on each of them. <br> In 'Selected Car Models' you can deselect car models in the same way. <br><br>  </p>
+					All four criteria are combinable. Finally, you click on 'Get Data'.";
+					
 	            
 	$help_interpolation = "
 					<h1>Help</h1> <br>
@@ -134,17 +137,17 @@
 					<h2>Interpolation</h2>
 					<br>
 					<img src='img/help/analysis.jpg' width='75' height='35' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Now, to analyse the data, you click on the analyse mode field. After that the interpolation button for 
+		            <p> Now, to analyse the selected data, click on the analyse mode field. After that the interpolation button for 
 	                interpolating the data appears at the top and a table on the right side of the web page. 
 	                If you pull the mouse over the field 'Display' you can choose if you would like to see the data in a table, 
 	                chart or chart and table. <br><br>  </p>
 	                For the table, phenomena can be added and deleted as columns by putting ticks in the boxes and pushing 'Refresh'. <br><br>
-	                <img src='img/help/kästchen.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
+	                <img src='img/help/boxes.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
 	                <p> For the charts, phenomena can be added and deleted by selecting and deselecting, too. By letting the left mouse button clicked and 
 	                pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming. <br><br> </p>
 	                <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 	                <p> By clicking on the interpolation button, the values for CO2, consumption, and speed get interpolated. After that, a drop-down 
-	                menu appears with which you can choose which result shall be displayed for you.  </p>";
+	                menu appears with which you can choose which of those results shall be displayed for you.  </p>";
 					
 	    $help_aggregation2 = "
 					<h1>Help</h1> <br>
@@ -160,9 +163,6 @@
 					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2>Filter</h2>
 					<br>
-					<img src='img/help/cars.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-					<p> <br/> In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model 
-					by clicking on each of them. In 'Selected Car Models' you can deselect car models in the same way. <br><br>  </p>
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p>After you clicked on the field 'Analysis Mode' you can use the filter for limits to choose a phenomenon 
 		            (Consumption, CO2, Speed, Engine Load, Revolut./Minute) and set a limit with the slider bar by yourself. 
