@@ -182,7 +182,8 @@
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Um die von Ihnen ausgewählten Daten nun zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. Nach dem Klicken auf das 
 		            Aggregationsfeld erscheinen Durchschnitt, Minimum, Maximum, und Standardfehler. Diese werden sowohl
-		            in Form eines Graphen, als auch in Tabellenform dargestellt. </p>";    
+		            in Form eines Graphen, als auch in Tabellenform dargestellt. Durch klicken in die Legende rechts von der Grafik kann ein einzelnes 
+		            Phänomen zur Aggregation ausgewählt werden. </p>";    
 		            
     $help_filter2 = "
 					<h1>Hilfe</h1> <br>

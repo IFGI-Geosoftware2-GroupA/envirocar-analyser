@@ -176,7 +176,8 @@
 					<br>
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> To aggregate the selected data, click first on the analyse mode field. By clicking on the field 'Aggregation' you 
-		            get minimum, maximum, mean, and standard error. Those will be displayed as chart and as table.  </p>";    
+		            get minimum, maximum, mean, and standard error. <br> Those will be displayed as chart and as table. A single phenomenon for the aggregation
+		            can be selected by clicking on the legend right from the chart.  </p>";    
 		            
         $help_filter2 = "
 					<h1>Help</h1> <br>
