@@ -416,19 +416,18 @@ function buildInfoWindow(marker, map, measurements) {
 	// Setting Content of Infowindow
 	try {
 		var content = '<div style="font-size:14px;text-align:center">' + '<b>' + "ID: " + measurements.id + '</br> ' + measurements.timestamp + '</br></br>';
-		// Add Sensor Data of the measurement
-		content += "Sensorinformationen:" + '</br>' + "SensorId: " + '</b>' + measurements.sensors.id + '</br>' + '<b>' + "Fahrzeug: " + '</b>' + measurements.sensors.manufacturer + ": " + measurements.sensors.model + " (";
-		if (measurements.sensors.fuelType == "gasoline") {
-			content += "Benzin" + ")" + '</br></br>' + '<b>' + "Messwerte: " + '</br></b>';
-		} else if (measurements.sensors.fuelType == "diesel") {
-			content += "Diesel" + ")" + '</br></br>' + '<b>' + "Messwerte: " + '</br></b>';
-		} else {
-			content += measurements.sensors.fuelType + ")" + '</br></br>' + '<b>' + "Messwerte: " + '</br></b>';
-		}
-
-		// Add Phenomenons and values to the infoWindow
-		
-		for ( i = 0; i < measurements.phenomenons.length; i++) {
+		// Add Sensor Data of the measurement in german and english
+		var l = getParam('lang');
+		if(l == "en"){
+			content += "Sensorinformation:" + '</br>' + "SensorId: " + '</b>' + measurements.sensors.id + '</br>' + '<b>' + "Vehicle: " + '</b>' + measurements.sensors.manufacturer + ": " + measurements.sensors.model + " (";
+			if (measurements.sensors.fuelType == "gasoline") {
+				content += "gasoline" + ")" + '</br></br>' + '<b>' + "Values: " + '</br></b>';
+			} else if (measurements.sensors.fuelType == "diesel") {
+				content += "diesel" + ")" + '</br></br>' + '<b>' + "Values: " + '</br></b>';
+			} else {
+				content += measurements.sensors.fuelType + ")" + '</br></br>' + '<b>' + "Messwerte: " + '</br></b>';
+			}
+			for ( i = 0; i < measurements.phenomenons.length; i++) {
 
 				if (measurements.getPhenomenons()[i].name == "Consumption") {
 					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
@@ -441,9 +440,32 @@ function buildInfoWindow(marker, map, measurements) {
 				} else if (measurements.getPhenomenons()[i].name == "Rpm") {
 					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
 				}
-		
-		}
-		
+			}	
+		} else {
+			content += "Sensorinformationen:" + '</br>' + "SensorId: " + '</b>' + measurements.sensors.id + '</br>' + '<b>' + "Fahrzeug: " + '</b>' + measurements.sensors.manufacturer + ": " + measurements.sensors.model + " (";
+			if (measurements.sensors.fuelType == "gasoline") {
+				content += "Benzin" + ")" + '</br></br>' + '<b>' + "Messwerte: " + '</br></b>';
+			} else if (measurements.sensors.fuelType == "diesel") {
+				content += "Diesel" + ")" + '</br></br>' + '<b>' + "Messwerte: " + '</br></b>';
+			} else {
+				content += measurements.sensors.fuelType + ")" + '</br></br>' + '<b>' + "Messwerte: " + '</br></b>';
+			}
+			// Add Phenomenons and values to the infoWindow
+			for ( i = 0; i < measurements.phenomenons.length; i++) {
+
+				if (measurements.getPhenomenons()[i].name == "Consumption") {
+					content += '<b>' + 'Verbrauch' + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "CO2") {
+					content += '<b>' + measurements.phenomenons[i].name + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "Speed") {
+					content += '<b>' + 'Geschwindigkeit' + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "Engine Load") {
+					content += '<b>' + 'Motorlast' + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				} else if (measurements.getPhenomenons()[i].name == "Rpm") {
+					content += '<b>' + 'Motordrehzahl' + '</b> (' + measurements.phenomenons[i].unit + ')' + ": " + Number((measurements.values[i]).toFixed(6)) + '</br>';
+				}
+			}
+		}		
 		content = content + '</div>';
 
 		// Open the InfoWindow when a marker is clicked and
@@ -458,7 +480,7 @@ function buildInfoWindow(marker, map, measurements) {
 			});
 		});
 	} catch(e) {
-		alert(e);
+		alert(e.message);
 	}
 }
 
@@ -727,18 +749,33 @@ function interpolate() {
 			for(var i=0;i<measurements[0].phenomenons.length;i++){
 				if(measurements[0].phenomenons[i].name == "Speed"){
 					speedmarkers = interpolatePhen("Speed");
-					alert("Speed interpolated");
+					var l = getParam('lang');
+					if(l == "en"){
+						alert("Speed interpolation completed");
+					} else {
+						alert("Geschwindigkeit interpoliert")
+					}
 				}
 				else if(measurements[0].phenomenons[i].name == "CO2"){
 					co2markers = interpolatePhen("CO2");
-					alert("CO2 interpolated");
+					var l = getParam('lang');
+					if(l == "en"){
+						alert("CO2 interpolation completed");
+					} else {
+						alert("CO2 interpoliert")
+					}
 				}
 				else if(measurements[0].phenomenons[i].name == "Consumption"){
 					consumptionmarkers = interpolatePhen("Consumption");
-					alert("consumption interpolated");
+					var l = getParam('lang');
+					if(l == "en"){
+						alert("Consumption interpolation completed");
+					} else {
+						alert("Verbrauch interpoliert")
+					}
 				}
 			}
-			alert("Interpolation succeeded. showIdwSpeed(), showIdwConsumption(), showIdwCo2(), clearIdwDisplay() will show the results.");
+			// alert("Interpolation succeeded. showIdwSpeed(), showIdwConsumption(), showIdwCo2(), clearIdwDisplay() will show the results.");
 			document.getElementById("clearidw").style.display = "block";
 			document.getElementById("idwid").style.display = "block";
 			
