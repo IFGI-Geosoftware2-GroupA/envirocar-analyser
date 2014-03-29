@@ -137,7 +137,7 @@
 					<h2>Interpolation</h2>
 					<br>
 					<img src='img/help/analysis.jpg' width='75' height='35' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Now, to analyse the selected data, click on the analyse mode field. After that the interpolation button for 
+		            <p> To interpolate the selected data, click on the analyse mode field. After that the interpolation button for 
 	                interpolating the data appears at the top and a table on the right side of the web page. 
 	                If you pull the mouse over the field 'Display' you can choose if you would like to see the data in a table, 
 	                chart or chart and table. <br><br>  </p>
@@ -155,7 +155,7 @@
 					<h2>Aggregation</h2>
 					<br>
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> After you clicked on the field 'Analysis Mode' you can aggregate the data with clicking on 'Aggregation' to 
+		            <p> To aggregate the selected data, click first on the analyse mode field. By clicking on the field 'Aggregation' you 
 		            get minimum, maximum, mean, and standard error. Those will be displayed as chart and as table.  </p>";    
 		            
         $help_filter2 = "
@@ -164,9 +164,9 @@
 					<h2>Filter</h2>
 					<br>
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p>After you clicked on the field 'Analysis Mode' you can use the filter for limits to choose a phenomenon 
-		            (Consumption, CO2, Speed, Engine Load, Revolut./Minute) and set a limit with the slider bar by yourself. 
-		            This way you can see which measurements are over and which are below the set limit. The info window will 
+		            <p>After you clicked on the field 'Analysis Mode' you can click on 'Filter'. Subsequently, a small window will open. Then you can 
+		            use its filter for limits to choose a phenomenon (Consumption, CO2, Speed, Engine Load, Revolut./Minute) and set a limit with the 
+		            slider bar by yourself. This way you can see which measurements are over and which are below the set limit. The info window will 
 		            show some typical limits as valuation help.  </p>";       
                  
 					         

@@ -158,7 +158,7 @@
 					<h2>Interpolation</h2>
 					<br>
 		            <img src='img/help/analyse.jpg' width='75' height='35' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Um die von Ihnen ausgewählten Daten nun zu Analysieren, 
+		            <p> Um die von Ihnen ausgewählten Daten nun zu interpolieren, 
 		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint oben der Interpolationsknopf zum 
 		            Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
 		            der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
@@ -180,8 +180,8 @@
 					<h2>Aggregation</h2>
 					<br>
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
-		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten. Diese werden sowohl
+		            <p> Um die von Ihnen ausgewählten Daten nun zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. Nach dem Klicken auf das 
+		            Aggregationsfeld erscheinen Durchschnitt, Minimum, Maximum, und Standardfehler. Diese werden sowohl
 		            in Form eines Graphen, als auch in Tabellenform dargestellt. </p>";    
 		            
     $help_filter2 = "
@@ -192,7 +192,7 @@
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
 		            (Verbrauch, CO2, Geschwindigkeit, Motorlast, Umdrehungen) auswählen und selbst mit Hilfe des Schiebereglers 
-		            Grenzwerte festlegen, um somit zu sehen welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
+		            Grenzwerte festlegen. <br> So können Sie sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
 		            Einschätzungshilfe werden im Info-Fenster einige typische Grenzwerte angezeigt. </p>";       
                  
 	$id = "ID";
