@@ -1,6 +1,13 @@
-/* A SmartInfoWindow is like an info window, but it displays
+/* 
+ * Sourcecode from: https://code.google.com/p/gmaps-samples-v3/source/browse/trunk/smartinfowindow/?r=225 
+ * by pamela.fox 
+ * added some changes concerning closure behaviour and offset values for displaying windows.
+ * 
+ * A SmartInfoWindow is like an info window, but it displays
  * under the marker, opens quicker, and has flexible styling.
  * @param {Object} opts Passes configuration options.
+ * 
+ * Edited by: Thiemo Gaertner
  */
 function SmartInfoWindow(opts) {
   google.maps.OverlayView.call(this);
