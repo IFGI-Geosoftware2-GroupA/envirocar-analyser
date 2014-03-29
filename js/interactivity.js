@@ -192,8 +192,12 @@ function getScrollXY() {
 	}
 	return [scrOfX, scrOfY];
 }
+/**
+ * Enables or disables the street selection mode
+ * Checks wether selection is already active or not
+ * Author: Thiemo Gaertner
+ */
 
-// Enable or disable the street selection mode
 function streetMode() {
 	if (map.getMapTypeId() == "OSM") {
 		var l = getParam('lang');

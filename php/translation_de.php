@@ -136,24 +136,29 @@
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Daten abrufen</h2>
 					<br>
-		            <img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Möchten Sie Daten für eine bestimmte Zeit 
-		            analysieren, so wählen Sie zunächst unter 'Von:' und 'Bis:' das Zeitintervall 
-		            aus, in dem Sie auf die entsprechende Tage klicken (durch Klicken in die obere linke 
-		            oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden). <br><br>
-		            Danach können Sie optional noch ein Gebiet innerhalb NRWs auswählen, indem 
-		            Sie entweder auf 'Raumauswahl' klicken, um mit einer Bounding Box, deren Größe man 
-		            durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. <br><br>
-		            Zum Schluss klicken Sie auf 'Daten abrufen', um die Daten dieser Zeit sowie ggf. dieses Raumes 
-		            angezeigt zu bekommen. </p>";
+		            analysieren, so wählen Sie unter 'Von:' und 'Bis:' das Zeitintervall 
+		            aus, in dem Sie auf die entsprechende Tage klicken. Durch Klicken in die obere linke 
+		            oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden. <br><br>
+		            Um nach Daten für ein Gebiet zu filtern, klicken Sie auf 'Raumauswahl', um mit einer Bounding Box, deren Größe 
+		            man durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. <br><br>
+		            Alternativ können Sie auf 'Straßenauswahl' klicken, um dann mit linker Maustaste Punkte auf Straßen 
+		            zu setzen und so die Daten aller Straßensegmente zwischen diesen Punkten zu bekommen. <br><br>
+		            Wenn Sie nur die Daten einer bestimmten Fahrt haben möchten, können Sie diese unter 'Tracks' auswählen. <br>
+		            <img src='img/help/autos.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+					<p> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
+		            Doppelpfeile alle Modelle auswählen oder gezielt nur einzelne. Ebenso können Sie auch Automodelle 
+		            auf die gleiche Weise wieder abwählen. </p>  <br>
+		            <p> Diese vier Kriterien sind miteinander kombinierbar. Zum Schluss klicken Sie auf 'Daten abrufen'. </p>";
 	            
 	$help_interpolation = "
 					<h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Interpolation</h2>
 					<br>
-		            <img src='img/help/analysis.jpg' width='75' height='35' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Um die Daten nun zu Analysieren, 
+		            <img src='img/help/analyse.jpg' width='75' height='35' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <p> Um die von Ihnen ausgewählten Daten nun zu interpolieren, 
 		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint oben der Interpolationsknopf zum 
 		            Interpolieren der Daten sowie weiter unten das Feld 'Anzeige' und die Tabelle. Fährt man mit 
 		            der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
@@ -161,13 +166,13 @@
 		            Bei der Tabelle können Phänomene in Form von  
 		            Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
 		            'Aktualisieren' entfernt und hinzugefügt werden. <br><br>
-		            <img src='img/help/kästchen.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <img src='img/help/kaestchen.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Bei dem Graph können ebenfalls Phänomene an der rechten Seite durch an- und abwählen hinzugefügt bzw. entfernt werden.
-		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomed werden und durch
+		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomed werden und dies durch
 		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>  </p>
 		            <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Durch drücken des Interpolationsknopfes werden die Werte für CO2, Verbrauch und Geschwindigkeit interpoliert. 
-		            Daraufhin erscheint ein Drop-down-Menü, bei dem Sie auswählen können, welches Resultat Ihnen angezeigt werden soll. </p>";   
+		            Daraufhin erscheint ein Drop-down-Menü, bei dem Sie auswählen können, welches dieser Resultate angezeigt werden soll. </p>";   
 		            
     $help_aggregation2 = "
 					<h1>Hilfe</h1> <br>
@@ -175,23 +180,20 @@
 					<h2>Aggregation</h2>
 					<br>
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie die Daten auch mit dem Aggregationsfeld
-		            aggregieren, um so Durchschnitt, Minimum, Maximum, und Standardfehler zu erhalten. Diese werden sowohl
-		            in Form eines Graphen, als auch in Tabellenform dargestellt. </p>";    
+		            <p> Um die von Ihnen ausgewählten Daten nun zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. Nach dem Klicken auf das 
+		            Aggregationsfeld erscheinen Durchschnitt, Minimum, Maximum, und Standardfehler. Diese werden sowohl
+		            in Form eines Graphen, als auch in Tabellenform dargestellt. Durch klicken in die Legende rechts von der Grafik kann ein einzelnes 
+		            Phänomen zur Aggregation ausgewählt werden. </p>";    
 		            
     $help_filter2 = "
 					<h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
-					<br>
-					<img src='img/help/cars.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-					<p> <br/> Unter 'Mögliche Automodelle' können Sie entweder durch Klicken auf die 
-		            Doppelpfeile alle Modelle auswählen oder gezielt nur einzelne. Ebenso können Sie auch Automodelle 
-		            auf die gleiche Weise wieder abwählen. </p>  <br><br>  
+					<br>  
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
 		            (Verbrauch, CO2, Geschwindigkeit, Motorlast, Umdrehungen) auswählen und selbst mit Hilfe des Schiebereglers 
-		            Grenzwerte festlegen, um somit zu sehen welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
+		            Grenzwerte festlegen. <br> So können Sie sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
 		            Einschätzungshilfe werden im Info-Fenster einige typische Grenzwerte angezeigt. </p>";       
                  
 	$id = "ID";
