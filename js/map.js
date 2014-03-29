@@ -810,7 +810,12 @@ function showIdwSpeed() {
 			}
 		}
 		else if(typeof(speedmarkers)== "undefined"){
-			alert("Probably no Speed Data available.")
+			var l = getParam('lang')
+			if(l == "en"){
+				alert("Probably no Speed Data available.")
+			} else {
+				alert("Keine Geschwindigkeitsdaten vorhanden.")
+			}
 		}
 	} catch(e) {
 		alert("Probably no Speed Data available. This is the error message: " + e.message);
@@ -839,7 +844,12 @@ function showIdwCo2() {
 			}
 		}
 		else if(typeof(co2markers)== "undefined"){
-			alert("Probably no CO2 Data available.")
+			var l = getParam('lang')
+			if(l == "en"){
+				alert("Probably no CO2 Data available.")
+			} else {
+				alert("Keine CO2 Daten vorhanden.")
+			}
 		}
 	} catch(e) {
 		alert("Probably no CO2 Data available. This is the error message: " + e.message);
@@ -869,7 +879,12 @@ function showIdwConsumption() {
 			}
 		}
 		else if(typeof(consumptionmarkers)== "undefined"){
-			alert("Probably no Consumption Data available.")
+			var l = getParam('lang')
+			if(l == "en"){
+				alert("Probably no Consumption Data available.")
+			} else {
+				alert("Keine Verbrauchsdaten vorhanden.")
+			}
 		}
 	} catch(e) {
 		alert("Probably no Consumption Data available. This is the error message: " + e.message);
@@ -1014,7 +1029,7 @@ function interpolatePhen(idwkey) {
 				});
 				// Create a info window for the marker to see the specific value
 				// bound to the marker
-				buildSmallInfoWindow(idwmarker, map, interpolatedValues);
+				buildSmallInfoWindow(idwmarker, map, interpolatedValues, idwkey);
 
 				idwmarkers.push(idwmarker);
 			}
@@ -1080,8 +1095,22 @@ function numSort(a, b) {
 /**
  * Creates a small infoWindow for a marker to display the interpolated value 
  */
-function buildSmallInfoWindow(idwmarker, map, interpolatedValues) {
-	var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + interpolatedValues + '</div>' + '</div>';
+function buildSmallInfoWindow(idwmarker, map, interpolatedValues, idwkey) {
+	var l = getParam('lang');
+					if(l == "en"){
+						var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + idwkey + ': ' + Number((interpolatedValues).toFixed(2)) + '</div>' + '</div>';
+					} else {
+						if(idwkey == "Speed"){
+							var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + 'Geschwindigkeit: ' + Number((interpolatedValues).toFixed(2)) + '</div>' + '</div>';
+						}
+						if(idwkey == "Consumption"){
+							var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + 'Verbrauch: ' + Number((interpolatedValues).toFixed(2)) + '</div>' + '</div>';
+						}
+						if(idwkey == "CO2"){
+							var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + 'CO2: ' + Number((interpolatedValues).toFixed(2)) + '</div>' + '</div>';
+						}
+					}
+	
 	var infowindow = new google.maps.InfoWindow({
 		content : contentString
 	});
