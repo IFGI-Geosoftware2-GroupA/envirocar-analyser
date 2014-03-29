@@ -222,7 +222,9 @@ function applyAllFilter(){
 	}
 	redrawData(true, false, true,true,false);
 	analyserMeasurements = measurements.slice();
-	measurements = measurementsTemp.slice();
+	setTimeout(function(){
+		measurements = measurementsTemp.slice();
+	}, 100);
 }
 
 // check if a track is selected or if all tracks shall be displayed
@@ -343,7 +345,7 @@ function showMarkers(query) {
 	try {
 		// measurements = query.getData();
 		// Set timeout to wait for the map to be loaded
-		// setTimeout(function() {
+		setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
 				// Create marker for each measurement
 				var marker = new google.maps.Marker({
@@ -368,7 +370,7 @@ function showMarkers(query) {
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
 			}
-		// }, 3000);
+		}, 50);
 	} catch(e) {
 		alert(e.message);
 	}

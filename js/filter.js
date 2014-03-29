@@ -485,12 +485,8 @@ function getDateTimeBBox() {
 		
 		var inputUrl = dateTimeBBoxUrl;
 		
-		measurements = query.getMeasurements(inputUrl);
-		
-		analyserMeasurements = measurements.slice();
-		hideProgressAnimation();
-		redrawData(true,true,true,true,true);
-		
+		query.getMeasurements(inputUrl);
+				
 	// check if the user wants to perform a temporal filtering	
 	} else if (startDate != '' && endDate != '' && rectangleActive == false) {
 		// calling getDT() in order to get the URL string for the temporal filter
@@ -500,11 +496,8 @@ function getDateTimeBBox() {
 		
 		var inputUrl = dateTimeUrl;
 		
-		measurements = query.getMeasurements(inputUrl);
+		query.getMeasurements(inputUrl);
 		
-		analyserMeasurements = measurements.slice();
-		hideProgressAnimation();
-		redrawData(true,true,true,true,true);
 		
 	// check if the user wants to perform a spatial filtering
 	} else if (startDate == '' && endDate == '' && rectangleActive == true) {
@@ -524,11 +517,8 @@ function getDateTimeBBox() {
 		
 		var inputUrl = BBUrl;
 		
-		measurements = query.getMeasurements(inputUrl);
+		query.getMeasurements(inputUrl);
 		
-		analyserMeasurements = measurements.slice();
-		hideProgressAnimation();
-		redrawData(true,true,true,true,true);
 	} else if (startDate == '' && endDate == '' && rectangleActive == false) {
 		hideProgressAnimation();
 		// Ignore missing filter when app is started
