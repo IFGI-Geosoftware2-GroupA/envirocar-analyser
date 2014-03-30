@@ -423,7 +423,10 @@ function popupwindow(url, title, w, h) {
 
 // open the popup window with the filter selection
 function limitFilter() {
-	fenster1 = popupwindow("grenzwertfilter_dialog.php", "Grenzwert-Filter", 630, 430);
+	if(getParam('lang') == 'en')	fenster1 = popupwindow("grenzwertfilter_dialog.php?lang=en", "Grenzwert-Filter", 630, 430);
+	else fenster1 = popupwindow("grenzwertfilter_dialog.php", "Grenzwert-Filter", 630, 430);
+	
+	fenster1.focus();
 }
 
 // set Loading Screen Options when starting to request data
@@ -440,7 +443,7 @@ function setLoadingScreenInterim(){
 	document.getElementById('currentTrack').innerHTML = "";
 	document.getElementById('loading-div-trackText').innerHTML = "";
 	document.getElementById('loading-div-backslash').innerHTML = "";	
-	if(getParam() == "en"){
+	if(getParam('lang') == "en"){
 		document.getElementById('amountTracks').innerHTML = "Processing Data...";
 	}
 	else{

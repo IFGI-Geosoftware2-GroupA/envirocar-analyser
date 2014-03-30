@@ -70,6 +70,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	<script src="js/chart.js"></script>
 	<script src="js/map.js"></script>
 	<script src="js/aggregation.js"></script>
+	<script src="js/ajax.js"></script>
 	<script src="js/table.js"></script>
 	<script src="js/filter.js"></script>
 	

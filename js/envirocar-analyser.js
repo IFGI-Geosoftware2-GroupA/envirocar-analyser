@@ -785,12 +785,17 @@ Query.prototype.getMeasurements = function(inputUrl) {
 		// the JSON file can now be entered
 		tracksJsonObj = jQuery.parseJSON(tracksJson);
 		
+		// set Values of the Loading Screen
 		setLoadingScreenValues(tracksJsonObj.tracks.length);
+		
+		// sort Tracks into Array
 		for(var x = 0; x < tracksJsonObj.tracks.length; x++){
 			toDoArray.push(tracksJsonObj.tracks[x].id);				
 		}
+		// start Ajax Request to query Measurements of the Tracks from the server
 		getTrackInformation();
 		
+		// reset Settings of the Limit Filter
 		limitFilterSettings[0] = "reset";
 		// return result;	
 		

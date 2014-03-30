@@ -67,14 +67,14 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		<script type="text/javascript">
 			// variables to save the limits chosen
 			var speedMin = 0;
-			var speedMax = 120;
-			var engineLoadMin = 10;
-			var engineLoadMax = 20;
+			var speedMax = 130;
+			var engineLoadMin = 0;
+			var engineLoadMax = 100;
 			var consumptionMin = 6;
 			var consumptionMax = 10;
-			var co2Min = 110;
-			var co2Max = 150;
-			var rpmMin = 1000;
+			var co2Min = 5;
+			var co2Max = 50;
+			var rpmMin = 0;
 			var rpmMax = 4000;
 			// function to change the values when using the slider
 			function setValue(phen,value){
@@ -221,7 +221,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				$("#slider-range-co2").slider({
 					range : true,
 					min : 0,
-					max : 400,
+					max : 100,
 					values : [co2Min, co2Max],
 					slide : function(event, ui) {
 						$("#amount-co2").val(ui.values[0] + " g/h - " + ui.values[1] + " g/h");
@@ -241,10 +241,10 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		<!-- Table with the links to switch between the phenomenons which can be filtered -->
 		<table width="600px" align="center">
 			<tr>
-				<td class="t_element"><a id="speed" href="#">Geschwindigkeit</a></td>
-				<td class="t_element"><a id="consumption" href="#">Verbrauch</a></td>
-				<td class="t_element"><a id="engineLoad" href="#">Motorlast</a></td>
-				<td class="t_element"><a id="rpm" href="#">Umdrehungen</a></td>
+				<td class="t_element"><a id="speed" href="#"><?php echo $speed; ?></a></td>
+				<td class="t_element"><a id="consumption" href="#"><?php echo $consumption; ?></a></td>
+				<td class="t_element"><a id="engineLoad" href="#"><?php echo $engine_load; ?></a></td>
+				<td class="t_element"><a id="rpm" href="#"><?php echo $rpm; ?></a></td>
 				<td class="t_element"><a id="co2" href="#">CO2</a></td>
 			</tr>
 		</table>
@@ -258,7 +258,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</p>
 			<p id="slider-range-speed"> </p>
 			<div class="infobox">
-				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				<b>Info: </b> Innerorts gilt in Deutschland eine Richtgeschwindigkeit von 50 km/h. Außerhalb geschlossener Ortschaften gilt eine Geschwindigkeitsbeschränkung von 100 km/h. Auf Autobahnen liegt die Richtgeschwindigkeit bei 130 km/h.
 			</div>
 			<table>
 				<tr>
@@ -276,7 +276,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</p>
 			<p id="slider-range-consumption"> </p>
 			<div class="infobox">
-				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+				<b>Info: </b> In Deutschland gilt ein Verbrauch von 6 - 10 Liter pro 100 gefahrener Kilometer als normal. Weitere Information zu einzenlnen Automodellen finden Sie hier: <a href="http://www.autoverbrauch.at/ireds-124318.html" target="blank">www.autoverbrauch.at</a>
 			</div>
 			<table>
 				<tr>
@@ -293,9 +293,6 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<input type="text" disabled="" id="amount-engineLoad" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-engineLoad"> </p>
-			<div class="infobox">
-				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-			</div>
 			<table>
 				<tr>
 					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Motorlast filtern" onclick="window.opener.applyLimitFilter('Engine Load', engineLoadMin, engineLoadMax)" /></td>
@@ -311,9 +308,6 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<input type="text" disabled="" id="amount-rpm" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-rpm"> </p>
-			<div class="infobox">
-				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-			</div>
 			<table>
 				<tr>
 					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Umdrehungen filtern" onclick="window.opener.applyLimitFilter('Rpm', rpmMin, rpmMax)" /></td>
@@ -329,9 +323,6 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<input type="text" disabled="" id="amount-co2" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-co2"> </p>
-			<div class="infobox">
-				<b>Info: </b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-			</div>
 			<table>
 				<tr>
 					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="CO2 filtern" onclick="window.opener.applyLimitFilter('CO2', co2Min, co2Max)" /></td>

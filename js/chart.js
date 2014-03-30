@@ -12,7 +12,7 @@ var activeChart = 'line';
 // global function to set the chart needed
 function setChart(type, json){
 	if(type == 'line'){
-		if(getParam() == 'en')
+		if(getParam('lang') == 'en')
 			lineChart = new LineChart('en');
 		else
 			lineChart = new LineChart('de');
@@ -21,7 +21,7 @@ function setChart(type, json){
 		activeChart = 'line';
 	}
 	else if(type == 'bar'){
-		if(getParam() == 'en')
+		if(getParam('lang') == 'en')
 			barChart = new BarChart('en');
 		else
 			barChart = new BarChart('de');
