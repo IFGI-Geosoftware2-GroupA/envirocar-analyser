@@ -262,8 +262,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</div>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_speed; ?> onclick="window.opener.applyLimitFilter('Speed', speedMin, speedMax)" /></td>
-					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="<?php echo $filter_by_speed; ?>" onclick="window.opener.applyLimitFilter('Speed', speedMin, speedMax)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="<?php echo $reset_filter; ?>" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
 		</div>
@@ -280,8 +280,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</div>
 			<table>
 				<tr>
-					<td style="width: 30%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_consumption; ?> onclick="window.opener.applyLimitFilter('Consumption', consumptionMin, consumptionMax)" /></td>
-					<td style="width: 30%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+					<td style="width: 30%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="<?php echo $filter_by_consumption; ?>" onclick="window.opener.applyLimitFilter('Consumption', consumptionMin, consumptionMax)" /></td>
+					<td style="width: 30%;"><input align="center" class="confirm-button" type="button" value="<?php echo $reset_filter; ?>" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
 		</div>
@@ -295,8 +295,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<p id="slider-range-engineLoad"> </p>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_engine_load; ?> onclick="window.opener.applyLimitFilter('Engine Load', engineLoadMin, engineLoadMax)" /></td>
-					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="<?php echo $filter_by_engine_load; ?>" onclick="window.opener.applyLimitFilter('Engine Load', engineLoadMin, engineLoadMax)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="<?php echo $reset_filter; ?>" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
 		</div>
@@ -310,8 +310,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<p id="slider-range-rpm"> </p>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_rpm; ?> onclick="window.opener.applyLimitFilter('Rpm', rpmMin, rpmMax)" /></td>
-					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="<?php echo $filter_by_rpm; ?>" onclick="window.opener.applyLimitFilter('Rpm', rpmMin, rpmMax)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="<?php echo $reset_filter; ?>" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
 		</div>
@@ -325,8 +325,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<p id="slider-range-co2"> </p>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_CO2; ?> onclick="window.opener.applyLimitFilter('CO2', co2Min, co2Max)" /></td>
-					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="<?php echo $filter_by_CO2; ?>" onclick="window.opener.applyLimitFilter('CO2', co2Min, co2Max)" /></td>
+					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="<?php echo $reset_filter; ?>" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>		
 		</div>

@@ -278,7 +278,7 @@
 	
 	$chartAndTable = "Graph und Tabelle";
 	
-	$filter_label = "Filter";
+	$filter_label = "Grenzwert-Filter";
 	
 	$aggregation_label = "Aggregation";
 	
@@ -288,7 +288,7 @@
 	
 	$limit_filter = "Grenzwert-Filter";
 	
-	$filter_speed = "Geschwindigkeit filtern";
+	$filter_by_speed = "Geschwindigkeit filtern";
 	
 	$reset_filter = "Filter zurücksetzen";
 	
