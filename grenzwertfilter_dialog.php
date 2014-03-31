@@ -18,7 +18,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Filter</title>    
+		<title><?php echo $limit_filter; ?></title>    
 		<meta name="description" content="">
 		<meta name="author" content="Axel">
 		<script src="js/lib/jquery-2.0.3.min.js"></script>
@@ -258,11 +258,11 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</p>
 			<p id="slider-range-speed"> </p>
 			<div class="infobox">
-				<b>Info: </b> Innerorts gilt in Deutschland eine Richtgeschwindigkeit von 50 km/h. Außerhalb geschlossener Ortschaften gilt eine Geschwindigkeitsbeschränkung von 100 km/h. Auf Autobahnen liegt die Richtgeschwindigkeit bei 130 km/h.
+				<?php echo $speed_info; ?>
 			</div>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Geschwindigkeit filtern" onclick="window.opener.applyLimitFilter('Speed', speedMin, speedMax)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_speed; ?> onclick="window.opener.applyLimitFilter('Speed', speedMin, speedMax)" /></td>
 					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
@@ -276,11 +276,11 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</p>
 			<p id="slider-range-consumption"> </p>
 			<div class="infobox">
-				<b>Info: </b> In Deutschland gilt ein Verbrauch von 6 - 10 Liter pro 100 gefahrener Kilometer als normal. Weitere Information zu einzenlnen Automodellen finden Sie hier: <a href="http://www.autoverbrauch.at/ireds-124318.html" target="blank">www.autoverbrauch.at</a>
+				<?php echo $consumption_info; ?>
 			</div>
 			<table>
 				<tr>
-					<td style="width: 30%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Verbrauch filtern" onclick="window.opener.applyLimitFilter('Consumption', consumptionMin, consumptionMax)" /></td>
+					<td style="width: 30%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_consumption; ?> onclick="window.opener.applyLimitFilter('Consumption', consumptionMin, consumptionMax)" /></td>
 					<td style="width: 30%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
@@ -295,7 +295,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<p id="slider-range-engineLoad"> </p>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Motorlast filtern" onclick="window.opener.applyLimitFilter('Engine Load', engineLoadMin, engineLoadMax)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_engine_load; ?> onclick="window.opener.applyLimitFilter('Engine Load', engineLoadMin, engineLoadMax)" /></td>
 					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
@@ -310,7 +310,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<p id="slider-range-rpm"> </p>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="Umdrehungen filtern" onclick="window.opener.applyLimitFilter('Rpm', rpmMin, rpmMax)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_rpm; ?> onclick="window.opener.applyLimitFilter('Rpm', rpmMin, rpmMax)" /></td>
 					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>
@@ -325,7 +325,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<p id="slider-range-co2"> </p>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="CO2 filtern" onclick="window.opener.applyLimitFilter('CO2', co2Min, co2Max)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value=<?php echo $filter_by_CO2; ?> onclick="window.opener.applyLimitFilter('CO2', co2Min, co2Max)" /></td>
 					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="Filter zurücksetzen" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>		
