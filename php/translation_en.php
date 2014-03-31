@@ -186,7 +186,7 @@
 					<br>
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p>After you clicked on the field 'Analysis Mode' you can click on 'Filter'. Subsequently, a small window will open. Then you can 
-		            use its filter for limits to choose a phenomenon (Consumption, CO2, Speed, Engine Load, Revolut./Minute) and set a limit with the 
+		            use its filter for limits to choose a phenomenon (Speed, Consumption, Engine Load, Revolutions/Minute, CO2) and set a limit with the 
 		            slider bar by yourself. This way you can see which measurements are over and which are below the set limit. The info window will 
 		            show some typical limits as valuation help.  </p>";       
                  
@@ -225,7 +225,7 @@
 	
 	// $maf = "MAF";
 	
-	$rpm = "Revolut./Minute";
+	$rpm = "Revolutions/Minute";
 	
 	// $throttle_position = "Throttle Position";
 	
@@ -285,7 +285,7 @@
 	
 	$filter_by_speed = "Filter by Speed";
 	
-	$reset_filter = "Filter Reset";
+	$reset_filter = "Filter reset";
 	
 	$speed_info = "<b>Info: </b> In Germany inside a built-up area the speed limit is 50km/h. Outside a built-up area the speed limit is 100km/h. 
 	               On motorways the advisory speed limit is 130km/h.";

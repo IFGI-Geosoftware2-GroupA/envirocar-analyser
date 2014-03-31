@@ -245,7 +245,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<td class="t_element"><a id="consumption" href="#"><?php echo $consumption; ?></a></td>
 				<td class="t_element"><a id="engineLoad" href="#"><?php echo $engine_load; ?></a></td>
 				<td class="t_element"><a id="rpm" href="#"><?php echo $rpm; ?></a></td>
-				<td class="t_element"><a id="co2" href="#">CO2</a></td>
+				<td class="t_element"><a id="co2" href="#">CO2/h</a></td>
 			</tr>
 		</table>
 		
@@ -316,16 +316,16 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</table>
 		</div>
 		
-		<!-- Container containing the CO2 filter -->
+		<!-- Container containing the CO2/h filter -->
 		<div id="co2-div" style="margin: auto; width: 500px;">
 			<p>
-				<label for="amount-co2">CO2:</label>
+				<label for="amount-co2">CO2/h:</label>
 				<input type="text" disabled="" id="amount-co2" style="border:0; background-color: #FFFFFF; color:#f6931f; font-weight:bold;">
 			</p>
 			<p id="slider-range-co2"> </p>
 			<table>
 				<tr>
-					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="<?php echo $filter_by_CO2; ?>" onclick="window.opener.applyLimitFilter('CO2', co2Min, co2Max)" /></td>
+					<td style="width: 40%; margin-right: 20px;"><input align="center" class="confirm-button" type="button" value="<?php echo $filter_by_CO2; ?>" onclick="window.opener.applyLimitFilter('CO2/h', co2Min, co2Max)" /></td>
 					<td style="width: 40%;"><input align="center" class="confirm-button" type="button" value="<?php echo $reset_filter; ?>" onclick="window.opener.applyLimitFilter('reset',0,0)" /></td>
 				</tr>
 			</table>		

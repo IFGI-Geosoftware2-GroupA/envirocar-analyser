@@ -171,7 +171,7 @@
 		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomed werden und dies durch
 		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>  </p>
 		            <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Durch drücken des Interpolationsknopfes werden die Werte für CO2, Verbrauch und Geschwindigkeit interpoliert. 
+		            <p> Durch drücken des Interpolationsknopfes werden die Werte für CO2/h, Verbrauch und Geschwindigkeit interpoliert. 
 		            Daraufhin erscheint ein Drop-down-Menü, bei dem Sie auswählen können, welches dieser Resultate angezeigt werden soll. </p>";   
 		            
     $help_aggregation2 = "
@@ -192,7 +192,7 @@
 					<br>  
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
-		            (Verbrauch, CO2, Geschwindigkeit, Motorlast, Umdrehungen) auswählen und selbst mit Hilfe des Schiebereglers 
+		            (Geschwindigkeit, Verbrauch, Motorlast, Umdrehungen/min, CO2/h) auswählen und selbst mit Hilfe des Schiebereglers 
 		            Grenzwerte festlegen. <br> So können Sie sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
 		            Einschätzungshilfe werden im Info-Fenster einige typische Grenzwerte angezeigt. </p>";       
                  
@@ -200,7 +200,7 @@
 	
 	$consumption = "Verbrauch";
 	
-	$co2 = "CO2";
+	$co2 = "CO2/h";
 	
 	$co2_emission = "CO2-Emission";
 	
@@ -230,7 +230,7 @@
 
 	// $maf = "LMM";
 
-	$rpm = "Umdreh./Minute";
+	$rpm = "Umdrehungen/min";
 	
 	// $throttle_position = "Throttle-Position";
 
@@ -264,7 +264,7 @@
 	
 	$selectIDW = "Auswählen";
 	
-	$selectIDWco2 = "CO2";
+	$selectIDWco2 = "CO2/h";
 	
 	$selectIDWconsumption = "Verbrauch";
 	
@@ -305,9 +305,9 @@
 	
 	$filter_by_engine_load = "Motorlast filtern";
 	
-	$filter_by_rpm = "Umdrehungen filtern";
+	$filter_by_rpm = "Umdrehungen/min filtern";
 	
-	$filter_by_CO2 = "CO2 filtern";
+	$filter_by_CO2 = "CO2/h filtern";
 	
 	
 	
