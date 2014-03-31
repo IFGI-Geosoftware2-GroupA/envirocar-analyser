@@ -14,8 +14,8 @@ var hyphen = "-";
 var literalT = "T";
 var literalZ = "Z";
 var comma = ",";
-var BBoxPrefix = "&bbox=";
 var doublePoint = ":";
+var BBoxPrefix = "&bbox=";
 var rectangleActive = false;	// Global variable which contains the boolean if a the rectangle is active or not
 
 // Variable to check if this is the first request
@@ -336,7 +336,8 @@ function setRectangleNonActive() {
 }
 
 /**
- * getDT() This method is a modification of the getDateTime() method. It gets the values from the date-from and date-to element. These values are used for building the string in order to start a temporal query. 
+ * getDT() This method is a modification of the getDateTime() method. It gets the values from the date-from and date-to element. 
+ * These values are used for building the string in order to start a temporal query. 
  * It only builds the URL for the temporal filtering.
  * 
  * @return requestUrlTemporal This method returns the requestUrlTemporal for a temporal query.
@@ -364,7 +365,8 @@ function getDT() {
 	
 		
 		// Getting the literals from the date-from box and start building the first part of the string
-		// If used this unusual way to get the date and time because the functions contributed by the jQuery framework not worked properly for me
+		// If used this unusual way to get the date and time because the functions contributed by the 
+		// jQuery framework not worked properly for me
 		
 		// storing the literals for the start year
 		var year = startDate.charAt(6);
@@ -460,7 +462,8 @@ function getBB() {
 }
 
 /**
- * getDateTimeBBox() This function is called by clicking on the "Daten abrufen / Select Time" button. First this function will check what type of filtering the user wants to use (solved by using a if-clause).
+ * getDateTimeBBox() This function is called by clicking on the "Daten abrufen / Get Data" button. First this function will check 
+ * what type of filtering the user wants to use (solved by using a if-clause).
  * Afterwards it will call the getDT() and getBB() methods in order to create a string for the temporal-,spatial- or temporal-spatial- filter. 
  * 
  * @return dateTimeUrl, BBUrl, dateTimeBBoxUrl strings containing the URL which is used to query the envirocar API
@@ -481,10 +484,12 @@ function getDateTimeBBox() {
 		// creating the URL for the query
 		var dateTimeBBoxUrl = dateTimeUrl + BBoxPrefix + BBoxString;
 		
+		// creating a new query object
 		query = new Query();
 		
 		var inputUrl = dateTimeBBoxUrl;
 		
+		// the request url is passed to the query object and a measurement object will be built
 		query.getMeasurements(inputUrl);
 				
 	// check if the user wants to perform a temporal filtering	
@@ -492,10 +497,12 @@ function getDateTimeBBox() {
 		// calling getDT() in order to get the URL string for the temporal filter
 		var dateTimeUrl = getDT();
 		
+		// creating a new query object
 		query = new Query();
 		
 		var inputUrl = dateTimeUrl;
 		
+		// the request url is passed to the query object and a measurement object will be built
 		query.getMeasurements(inputUrl);
 		
 		
@@ -511,12 +518,15 @@ function getDateTimeBBox() {
 		// calling getBB() in order to get the bounding box coordiantes
 		var BBoxString = getBB();
 		
+		// building the request url
 		var BBUrl = baseUrlBBox + BBoxString;
 		
+		//creating a new query object
 		query = new Query();
 		
 		var inputUrl = BBUrl;
 		
+		// the request url is passed to the query object and a measurement object will be built
 		query.getMeasurements(inputUrl);
 		
 	} else if (startDate == '' && endDate == '' && rectangleActive == false) {
@@ -550,7 +560,7 @@ function getLatestTracks() {
 		$.ajax({
 			'async': false,
 			// only requesting tracks within North-Rhine-Westfalia
-			'url': "https://envirocar.org/api/dev/tracks?bbox=5.472512722,49.200289241,10.4920501709,52.7186795024",
+			'url': "https://envirocar.org/api/stable/tracks?bbox=5.472512722,49.200289241,10.4920501709,52.7186795024",
 			'dataType': "json",
 			// If request succeeded the callback function stores the requested JSON to var = json 
 			'success': function (data) {json = data;},
