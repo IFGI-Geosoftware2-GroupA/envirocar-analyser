@@ -444,6 +444,11 @@ function BarChart(language) {
 		},
 		yAxis : {
 		},
+		tooltip : {//displays information of the points when hovering over them
+			formatter : function() {
+				return '<b>' + this.x + '</b><br />' + this.y;
+			}
+		},
 		legend : {
 			layout : 'vertical',
 			align : 'right',

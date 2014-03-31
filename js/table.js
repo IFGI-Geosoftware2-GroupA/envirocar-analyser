@@ -95,40 +95,46 @@ function createAggregationTable(json){
 				case 0: 
 					if(l == "en") temp = "Mean";
 					else temp = "Durchschnitt";
-					text1 = json[0]['CO2']['Mean'];
-					text2 = json[1]['Consumption']['Mean'];
-					text3 = json[2]['Engine Load']['Mean'];
-					text4 = json[3]['Rpm']['Mean'];
-					text5 = json[4]['Speed']['Mean'];
+					text1 = Number(json[0]['CO2']['Mean']).toFixed(2);
+					text2 = Number(json[1]['Consumption']['Mean']).toFixed(2);
+					text3 = Number(json[2]['Engine Load']['Mean']).toFixed(2);
+					text4 = Number(json[3]['Rpm']['Mean']).toFixed(0);
+					text5 = Number(json[4]['Speed']['Mean']).toFixed(2);
 					break;
 				case 1: 
 					if(l == "en") temp = "Standard Error";
 					else temp = "Standardfehler";
-					text1 = json[0]['CO2']['Standard Error'];
-					text2 = json[1]['Consumption']['Standard Error'];
-					text3 = json[2]['Engine Load']['Standard Error'];
-					text4 = json[3]['Rpm']['Standard Error'];
-					text5 = json[4]['Speed']['Standard Error'];
+					text1 = Number(json[0]['CO2']['Standard Error']).toFixed(2);
+					text2 = Number(json[1]['Consumption']['Standard Error']).toFixed(2);
+					text3 = Number(json[2]['Engine Load']['Standard Error']).toFixed(2);
+					text4 = Number(json[3]['Rpm']['Standard Error']).toFixed(0);
+					text5 = Number(json[4]['Speed']['Standard Error']).toFixed(2);
 					break;
 				case 2: 
 					if(l == "en") temp = "Minimum";
 					else temp = "Minimum";
-					text1 = json[0]['CO2']['Min'];
-					text2 = json[1]['Consumption']['Min'];
-					text3 = json[2]['Engine Load']['Min'];
-					text4 = json[3]['Rpm']['Min'];
-					text5 = json[4]['Speed']['Min'];
+					text1 = Number(json[0]['CO2']['Min']).toFixed(2);
+					text2 = Number(json[1]['Consumption']['Min']).toFixed(2);
+					text3 = Number(json[2]['Engine Load']['Min']).toFixed(2);
+					text4 = Number(json[3]['Rpm']['Min']).toFixed(0);
+					text5 = Number(json[4]['Speed']['Min']).toFixed(2);
 					break;
 				case 3: 
 					if(l == "en") temp = "Maximum";
 					else temp = "Maximum";
-					text1 = json[0]['CO2']['Max'];
-					text2 = json[1]['Consumption']['Max'];
-					text3 = json[2]['Engine Load']['Max'];
-					text4 = json[3]['Rpm']['Max'];
-					text5 = json[4]['Speed']['Max'];
+					text1 = Number(json[0]['CO2']['Max']).toFixed(2);
+					text2 = Number(json[1]['Consumption']['Max']).toFixed(2);
+					text3 = Number(json[2]['Engine Load']['Max']).toFixed(2);
+					text4 = Number(json[3]['Rpm']['Max']).toFixed(0);
+					text5 = Number(json[4]['Speed']['Max']).toFixed(2);
 					break;
 			}
+			if(text1 == "NaN") text1 = "No Data";
+			if(text2 == "NaN") text2 = "No Data";
+			if(text3 == "NaN") text3 = "No Data";
+			if(text4 == "NaN") text4 = "No Data";
+			if(text5 == "NaN") text5 = "No Data";
+			
 			currentText0 = document.createTextNode(temp);
 
 			//Consumption-Column
@@ -203,7 +209,7 @@ function createTable() {
 		for ( i = 0, j = 0; i < measurements.length; i++) {
 			for ( j = 0; j < measurements[i].phenomenons.length; j++) {
 				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-					consumption.push((Number(measurements[i].getValues()[j]).toFixed(3)));
+					consumption.push((Number(measurements[i].getValues()[j]).toFixed(2)));
 				} else if (measurements[i].getPhenomenons()[j].name == "CO2") {
 					co2.push((Number(measurements[i].getValues()[j]).toFixed(2)));
 				} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
