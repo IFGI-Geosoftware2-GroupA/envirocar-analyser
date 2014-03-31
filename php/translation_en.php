@@ -287,17 +287,19 @@
 	
 	$reset_filter = "Filter Reset";
 	
-	$speed_info = "<b>Info: </b> In Germany inside a built-up area the speed limit is 50km/h. Outside a built-up area the speed limit is 100km/h. On motorways the advisory speed limit is 130km/h.";
+	$speed_info = "<b>Info: </b> In Germany inside a built-up area the speed limit is 50km/h. Outside a built-up area the speed limit is 100km/h. 
+	               On motorways the advisory speed limit is 130km/h.";
 	
 	$filter_by_speed = "Filter by speed";
 	
-	$consumption_info = "A consumption of 6 - 10 litres of fuel per 100km  driven is considered normal in Germany. Click here for more information on particular car models: <a href='http://www.autoverbrauch.at/ireds-124318.html' target='blank'>www.autoverbrauch.at</a>'";
+	$consumption_info = "A consumption of 6 - 10 litres of fuel per 100km  driven is considered normal in Germany. Click here for more information 
+	                     on particular car models: <a href='http://www.autoverbrauch.at/ireds-124318.html' target='blank'>www.autoverbrauch.at</a>";
 	
-	$filter_by_consumption = "Filter by consump.";
+	$filter_by_consumption = "Filter by consumption";
 	
 	$filter_by_engine_load = "Filter by engine load";
 	
-	$filter_by_rpm = "Filter by res./min";
+	$filter_by_rpm = "Filter by revol./min";
 	
 	$filter_by_CO2 = "Filter by CO2";
 	

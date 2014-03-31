@@ -299,7 +299,7 @@
     
     $consumption_info = "<b>Info: </b> In Deutschland gilt ein Verbrauch von 6 - 10 Liter pro 100 gefahrener Kilometer als normal. 
                          Weitere Information zu einzelnen Automodellen finden Sie hier: <a href='http://www.autoverbrauch.at/ireds-124318.html' 
-                         target='blank'>www.autoverbrauch.at</a>'";
+                         target='blank'>www.autoverbrauch.at</a>";
 	
 	$filter_by_consumption = "Verbrauch filtern";
 	
