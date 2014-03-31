@@ -353,7 +353,7 @@ function toggleTerms() {
 	toggleAnalyserPanel('terms');
 }
 
-// Load car models into Dual Listbox
+// Load car models into Dual Listbox and contains a clearArray function
 function loadCarModels() {
 	this.cars = new Array();
 	var k = 0;
@@ -378,7 +378,6 @@ function loadCarModels() {
 			if ($.inArray(measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model, this.cars) < 0) {
 				this.cars[k] = measurements[i].sensors.manufacturer + ' ' + measurements[i].sensors.model;
 				duallistbox_carmodels.append('<option value="' + this.cars[k] + '" selected>' + this.cars[k] + '</option>');
-				console.log(this.cars[k]);
 				k++;
 			}
 		}

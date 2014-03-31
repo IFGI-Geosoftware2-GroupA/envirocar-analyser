@@ -610,19 +610,12 @@ Query.prototype.getData = function() {
  * Get the measurements from an URL and parse the JSON file into a Measurement array
  */
 Query.prototype.getMeasurements = function(inputUrl) {
-	// Create a temporal URL
-	// var queryURL = this.url + "measurements";
-	// if (this.filter != null) {
-		// queryURL += this.filter.createUrlValue();
-	// }
-	// alert(inputUrl);
 	
 	if(inputUrl == undefined) {
 		showProgressAnimation();
 		// calling the getLatestTracks() function in order to get the URL String for querying the lastest measured 24 hours
 		latestTracks = getLatestTracks();
 		
-		console.log(latestTracks);
 		// getting the last measured 24 hours
 		var json = (function () {
 			var json = null;
