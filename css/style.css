@@ -146,11 +146,80 @@ body {
 	margin-left: 2em;
 }
 
-#analysisInterpolation {
-	
-	margin-left: 1.5em;
+#analyser-dropdown {
+	position: relative;
+	top: 2.5em;
+	left: 1em;
+	font-size: 10px;
+	margin : 0;
+	z-index: 49;
+	width: 100px;
+	text-decoration: none;
+	/*margin-left: 1em;*/
+	display : none;
+}
+
+#analyser-dropdown ul {
+	list-style-type: none;
+	width: 100px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.analyser-dropdown-topmenu a:hover, a:focus {
+	color: #1D83C3;
+	text-decoration: none;
+}
+
+.analyser-dropdown-topmenu a {
+	float: left;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.analyser-dropdown-topmenu ul {
 	display: none;
-	
+}
+
+.analyser-dropdown-topmenu a, .analyser-dropdown-submenu a {
+	padding: 5px 5px;
+	border: 1px solid #000;
+	border-collapse: collapse;
+	color: #000;
+	font-weight: bold;
+	font-size: large;
+	text-decoration: none;
+	background-color: #FFF;
+	margin: 0;
+
+}
+
+.analyser-dropdown-submenu a {
+	padding: 5px;
+	font-size: large;
+	text-align: left;
+	width: 200px;
+	position: relative;
+	text-decoration: none;
+}
+
+.analyser-dropdown-submenu a:hover {
+	background-color: #1D83C3 !important;
+	color: #fff;
+	text-decoration: none;
+}
+
+.analyser-dropdown-topmenu:hover ul {
+	display: block;
+	z-index: 49;
+}
+
+#analysisInterpolation {
+	position: relative;
+	top: 4.5em;
+	left: -3em;
+	display: none;
 }
 
 #analysisInterpolation-label {
@@ -373,6 +442,9 @@ body {
 /********************************************************************
 	2.2 enviroCar analyser view dropdown styles
 ********************************************************************/
+
+
+
 
 #analyser-switcher {
 	font-size: 10px;

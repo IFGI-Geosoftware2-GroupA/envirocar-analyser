@@ -200,21 +200,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				</form> 
 			</div>
 			
-			<div id="analysisInterpolation">
-				<label id="analysisInterpolation-label" for="analysisInterpolation-label"><?php echo $interpolation_label; ?></label>
-				<br/><br/>
-				<a href="#" id="interpolationBtn" onclick="interpolate();" title="Start Interpolation"><img src="img/interpolationIcon.png" width="48px" height="48px" alt="Interpolation"></a>
-				<br><br>
-				<select id="idwid" onchange="IDWSelection()">
- 					<option value="select"><?php echo $selectIDW; ?></option>
- 					<option value="co2"><?php echo $selectIDWco2; ?></option>
- 					<option value="consumption"><?php echo $selectIDWconsumption; ?></option>
-  					<option value="speed"><?php echo $selectIDWspeed; ?></option>
-  				</select>
-  				<input type="button" id="clearidw" name"clearidw" class="spaceButton" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
-			</div>
 			
-			<div id="aggregation">
+			<!-- <div id="aggregation">
 				<label id="aggregation-label" for="aggregation-label"><?php echo $aggregation_label; ?></label>
 				<br/><br/>
 				<a href="#" id="aggregationBtn" onclick="startAggregation();" title="Aggregation"><img src="img/aggregationIcon.png" width="48px" height="48px" alt="Aggreation"></a>
@@ -224,12 +211,56 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<label id="limitFilter-label" for="limitFilter-label"><?php echo $filter_label; ?></label>
 				<br/><br/>
 				<a href="#" id="filterBtn" onclick="limitFilter()" title="Limit Filter"><img src="img/limitFilterIcon.png" width="48px" height="48px" alt="Limit Filter"></a>
-			</div>
+			</div> !-->
 			
 			<div id="analysis-mode" >
 				<label id="analysis-mode-label" for="analysis-mode"><?php echo $analysis_mode_label; ?></label>
 				<br/>
 				<input type="button" class="left" name="analyseModeBtn" id="analyseModeBtn" 	value="<?php echo $off ?>" onClick="changeMode();">
+			</div>
+			
+			<div id="analyser-dropdown">
+				<ul>
+					<li class="analyser-dropdown-topmenu">
+						<a href="#">Funktionen</a>
+						<ul>
+							<li class="analyser-dropdown-submenu">
+								<a id="" href="#"  onclick="interpolate();" title="Start Interpolation">
+									<img src="img/interpolationIcon.png" width="48px" height="48px" alt="Interpolation">
+									<?php echo $interpolation_label; ?>
+								</a>
+							</li>
+							<li class="analyser-dropdown-submenu">
+								<a href="#" onclick="startAggregation();" title="Aggregation">
+									<img src="img/aggregationIcon.png" width="48px" height="48px" alt="Aggreation">
+									<?php echo $aggregation_label; ?>
+								</a>
+							</li>
+							<li class="analyser-dropdown-submenu">
+								<a href="#" onclick="limitFilter()" title="Limit Filter">
+									<img src="img/limitFilterIcon.png" width="48px" height="48px" alt="Limit Filter">
+									<?php echo $filter_label; ?>
+								</a>
+							</li>
+							<li class="analyser-dropdown-submenu">
+								<a href="#" id="enviroFilterButton" onclick="displayCoSpeedRatioMarkers()" title="Umweltfilter">
+									<img src="img/enviroFilter.png" width="48px" height="48px" alt="Enviro Filter">
+									Umweltfilter
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>	
+			</div>
+			
+			<div id="analysisInterpolation">
+				<select id="idwid" onchange="IDWSelection()">
+ 					<option value="select"><?php echo $selectIDW; ?></option>
+ 					<option value="co2"><?php echo $selectIDWco2; ?></option>
+ 					<option value="consumption"><?php echo $selectIDWconsumption; ?></option>
+  					<option value="speed"><?php echo $selectIDWspeed; ?></option>
+  				</select>
+  				<input type="button" id="clearidw" name"clearidw" class="spaceButton" onClick="clearIdwDisplay()" value="<?php echo $ClearIDW; ?>">
 			</div>
 			
 			<!-- Contains the Dropdown Menu with the View Selection -->
