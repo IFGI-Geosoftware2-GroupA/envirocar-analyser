@@ -138,11 +138,11 @@ function redrawData(marker, cars, chart, table, tracks) {
 		showMarkers();	
 	}
 	if(cars){
-		// if no car Models Objects exists one is created
+		// if no car Models Objects exists, a new one is created
 		if(carModelsExists == false){
 			carModels = new loadCarModels();
 			carModelsExists = true;
-		// if a Object exists the array and the duallistbox should be cleared	
+		// if a object exists the array and the duallistbox should be cleared	
 		}else{
 			duallistbox_carmodels.empty();
 			carModels.clearArray();

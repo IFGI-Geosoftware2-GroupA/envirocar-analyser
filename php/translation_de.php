@@ -278,7 +278,7 @@
 	
 	$chartAndTable = "Graph und Tabelle";
 	
-	$filter_label = "Filter";
+	$filter_label = "Grenzwert-Filter";
 	
 	$aggregation_label = "Aggregation";
 	
@@ -288,8 +288,27 @@
 	
 	$limit_filter = "Grenzwert-Filter";
 	
-	$filter_speed = "Geschwindigkeit filtern";
+	$filter_by_speed = "Geschwindigkeit filtern";
 	
 	$reset_filter = "Filter zurücksetzen";
+	
+	$speed_info = "<b>Info: </b> Innerorts gilt in Deutschland eine Höchstgeschwindigkeit von 50 km/h. Außerhalb geschlossener Ortschaften 
+	               gilt eine Geschwindigkeitsbeschränkung von 100 km/h. Auf Autobahnen liegt die Richtgeschwindigkeit bei 130 km/h.";
+	              
+    $filter_by_speed = "Geschwindigkeit filtern";
+    
+    $consumption_info = "<b>Info: </b> In Deutschland gilt ein Verbrauch von 6 - 10 Liter pro 100 gefahrener Kilometer als normal. 
+                         Weitere Information zu einzelnen Automodellen finden Sie hier: <a href='http://www.autoverbrauch.at/ireds-124318.html' 
+                         target='blank'>www.autoverbrauch.at</a>";
+	
+	$filter_by_consumption = "Verbrauch filtern";
+	
+	$filter_by_engine_load = "Motorlast filtern";
+	
+	$filter_by_rpm = "Umdrehungen filtern";
+	
+	$filter_by_CO2 = "CO2 filtern";
+	
+	
 	
 ?>
