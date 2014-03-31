@@ -204,6 +204,7 @@ function getDateTime() {
 			+ "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
 		});
 	}
+	console.log("getDateTime() return: " + requestUrlTemporal);
 	return requestUrlTemporal;
 }
 /**
@@ -251,11 +252,11 @@ function getBBox() {
 			return json;
 		})();
 		
-		// stores the returned object in the variable jsonBBoxTracks.
-		var jsonBBoxTracks = json;
+		// stores the returned object in the variable requestUrlSpatial.
+		var requestUrlSpatial = json;
 		
 		// Loops through the requested JSON File and gets with the use of the trackID the additional information for all specified tracks	
-		$.each(jsonBBoxTracks.tracks, function (key, value) {
+		$.each(requestUrlSpatial.tracks, function (key, value) {
 			trackUrl = envirocarTrackUrl.concat(value.id);
 			
 			var json = (function () {
@@ -316,7 +317,8 @@ function getBBox() {
 			// + "ConstructionYear: " + jsonTrackDataObj.properties.sensor.properties.constructionYear);
 		});
 	
-		// return jsonBBoxTracks;	
+		console.log("getBBox() return: " + requestUrlSpatial);
+		return requestUrlSpatial;	
 }
 
 /**
@@ -429,6 +431,7 @@ function getDT() {
 		var requestUrlTemporal = baseUrlEndDateYearMonthDay.concat(endHour, endHour1, doublePoint, endMinute, endMinute1, doublePoint, seconds,literalZ);
 		//alert(requestUrlTemporal) should be https://envirocar.org/api/stable/tracks?during=YYYY-MM-DDTHH:MM:SSZ,YYYY-MM-DDTHH:MM:SSZ
 		
+		console.log("getDT() return" + requestUrlTemporal);
 		return requestUrlTemporal;
 	}
 }
@@ -456,7 +459,7 @@ function getBB() {
 	var coordBBox = pointSouthWestY + comma + pointSouthWestX + comma +pointNorthEastY + comma + pointNorthEastX;
 	// alert(coordBBox) should look like https://envirocar.org/api/dev/tracks?bbox=7.559052,51.915829,7.684022,51.993903
 
-	
+	console.log("getBB return " + coordBBox);
 	return coordBBox;
 	
 }
@@ -488,7 +491,7 @@ function getDateTimeBBox() {
 		query = new Query();
 		
 		var inputUrl = dateTimeBBoxUrl;
-		
+		console.log(inputUrl);
 		// the request url is passed to the query object and a measurement object will be built
 		query.getMeasurements(inputUrl);
 				
@@ -501,7 +504,7 @@ function getDateTimeBBox() {
 		query = new Query();
 		
 		var inputUrl = dateTimeUrl;
-		
+		console.log(inputUrl);		
 		// the request url is passed to the query object and a measurement object will be built
 		query.getMeasurements(inputUrl);
 		
@@ -525,7 +528,7 @@ function getDateTimeBBox() {
 		query = new Query();
 		
 		var inputUrl = BBUrl;
-		
+		console.log(inputUrl);		
 		// the request url is passed to the query object and a measurement object will be built
 		query.getMeasurements(inputUrl);
 		
