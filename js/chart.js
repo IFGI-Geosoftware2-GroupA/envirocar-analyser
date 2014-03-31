@@ -54,6 +54,7 @@ function LineChart(language) {
 		// },
 		xAxis : {
 			id : 'x-Axis',
+			type: 'datetime',
 			labels : {
 				formatter : function() {
 					return Highcharts.dateFormat('%H:%M:%S', this.value);

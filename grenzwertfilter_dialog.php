@@ -76,6 +76,33 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			var co2Max = 50;
 			var rpmMin = 0;
 			var rpmMax = 4000;
+			
+			// if there is already a filter set, set the values to this filter settings
+			if(window.opener.limitFilterSettings[0] != 'reset'){
+				switch(window.opener.limitFilterSettings[0]){
+					case 'Speed' :
+						speedMin = window.opener.limitFilterSettings[1];
+						speedMax = window.opener.limitFilterSettings[2];
+						break;
+					case 'CO2' :
+						co2Min = window.opener.limitFilterSettings[1];
+						co2Max = window.opener.limitFilterSettings[2];
+						break;
+					case 'Consumption' :
+						consumptionMin = window.opener.limitFilterSettings[1];
+						consumptionMax = window.opener.limitFilterSettings[2];
+						break;
+					case 'Engine Load' :
+						engineLodaMin = window.opener.limitFilterSettings[1];
+						engineLoadMax = window.opener.limitFilterSettings[2];
+						break;
+					case 'Rpm' :
+						rpmMin = window.opener.limitFilterSettings[1];
+						rpmMax = window.opener.limitFilterSettings[2];
+						break;
+				}
+			}
+			
 			// function to change the values when using the slider
 			function setValue(phen,value){
 				switch(phen){

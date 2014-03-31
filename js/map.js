@@ -156,6 +156,7 @@ function redrawData(marker, cars, chart, table, tracks) {
 		initTable();
 		tablestyle();	
 	}
+	checkCoSpeedValuesAvailability();
 }
 
 // Delete all the markers on the map
@@ -389,7 +390,7 @@ function showMarkersClassified(){
 					if(!markerAdded){
 						var marker = new google.maps.Marker({
 							position : measurements[i].getPoint(),
-							icon : 'img/circle_green.png'
+							icon : 'img/circle_darkGreen.png'
 						});
 						markerAdded = true;
 						marker.id = '' + measurements[i].getId() + '';
@@ -418,6 +419,34 @@ function showMarkersClassified(){
 	}	
 }
 
+// check if the values needed for the Enviro Filter are available
+function checkCoSpeedValuesAvailability(){
+	var usableValues = 0;
+	var co2 = false;
+	var speed = false;
+	for(var x = 0; x < measurements.length; x++){
+		co2 = false;
+		speed = false;
+		// check if speed and co2 value are available for this measurement
+		for (var j = 0 ; j < measurements[x].phenomenons.length ; j++) {		
+			if (measurements[x].getPhenomenons()[j].name === "Speed") speed = true;		
+			if (measurements[x].getPhenomenons()[j].name === "CO2") co2 = true;						
+		}
+		if(co2 && speed) usableValues++;	
+	}
+	// if there are enough measurements enable enviroFilter	
+	if(usableValues == measurements.length){
+		document.getElementById('enviroFilterButton').onclick = function () {	displayCoSpeedRatioMarkers();	return false;	};
+		console.log("Enviro Filter Enabled");
+	}
+	// if the amount of measurements is too small or uneven, disable enviro filter
+	else{
+		if(getParam('lang') == 'en') document.getElementById('enviroFilterButton').onclick = function () {	alert('Unable to perform request. There is an uneven number of Co2 and Speed measurements for the current selection of measurements.');	return false;	};	
+		else document.getElementById('enviroFilterButton').onclick = function () {	alert('Derzeit nicht möglich. Für die von Ihnen getroffene Auswahl an Messpunkten stimmt die Anzahl der Geschwindigkeits-Messungen, nicht mit der Anzahl der Co2-Messungen überein.');	return false;	};
+		console.log("Enviro Filter disabled");
+	}
+}
+
 // shows the measurements classified by their co2 emission in relation to the speed measured
 // measurements which do not provide co2 and speed values are displayed as usual
 function displayCoSpeedRatioMarkers(){
@@ -434,6 +463,8 @@ function displayCoSpeedRatioMarkers(){
 		clearOverlays();
 		
 		// Set timeout to wait for the map to be loaded
+		var chartSeries = new Array();
+		var drawChart = true;
 		setTimeout(function() {
 			for (var i = 0; i < measurements.length; i++) {
 				var speedTemp;
@@ -455,6 +486,8 @@ function displayCoSpeedRatioMarkers(){
 					});	
 					marker.id = '' + measurements[i].getId() + '';
 					markers.push(marker);	
+					// if there are values missing, the chart will not be drawn
+					drawChart = false;
 				}
 				else{
 					// set speed minimum to 1
@@ -471,6 +504,7 @@ function displayCoSpeedRatioMarkers(){
 						});	
 						marker.id = '' + measurements[i].getId() + '';
 						markers.push(marker);	
+						chartSeries.push({x: measurements[i].getTimestamp(), y: parseFloat(ratio.toFixed(2)), name: measurements[i].getId() + '', id: 'EnviroFilter' +  measurements[i].getId(), color : '#FF0000'});
 					}
 					else if(ratio > 3 && ratio <= 6){
 						var marker = new google.maps.Marker({
@@ -479,6 +513,7 @@ function displayCoSpeedRatioMarkers(){
 						});	
 						marker.id = '' + measurements[i].getId() + '';
 						markers.push(marker);	
+						chartSeries.push({x: measurements[i].getTimestamp(), y: parseFloat(ratio.toFixed(2)), name: measurements[i].getId() + '', id: 'EnviroFilter' +  measurements[i].getId(), color : '#FFFF00'});
 					}
 					else{
 						var marker = new google.maps.Marker({
@@ -487,6 +522,7 @@ function displayCoSpeedRatioMarkers(){
 						});	
 						marker.id = '' + measurements[i].getId() + '';
 						markers.push(marker);	
+						chartSeries.push({x: measurements[i].getTimestamp(), y: parseFloat(ratio.toFixed(2)), name: measurements[i].getId() + '', id: 'EnviroFilter' +  measurements[i].getId(), color : '#00FF00'});
 					}
 					createListenerForMarkers(markers[i]);
 					markersBounds.extend(measurements[i].getPoint());
@@ -505,6 +541,16 @@ function displayCoSpeedRatioMarkers(){
 				maxZoom : maxZoomLevelForClusterer
 			};
 			mc = new MarkerClusterer(map, markers, mcOptions);
+			
+			// create Chart if there are no values missing
+			if(drawChart){
+				chartSeries.sort(lineChart.compare);
+				if(getParam('land') == 'en') lineChart.addSeries('Enviro Filter', true, 'EnviroFilter', chartSeries);
+				else lineChart.addSeries('Umwelt Filter', true, 'EnviroFilter', chartSeries);	
+			}
+			
+			// reset measurements
+			measurements = measurementsTemp.slice();
 			// Only change the bounds when measurements have been collected
 			if (measurements.length > 0) {
 				map.fitBounds(markersBounds);
