@@ -114,7 +114,7 @@
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Daten abrufen</h2>
 					<br>
-		            <img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Möchten Sie Daten für eine bestimmte Zeit 
 		            analysieren, so wählen Sie unter 'Von:' und 'Bis:' das Zeitintervall 
@@ -137,20 +137,14 @@
 					<br>
 		            <img src='img/help/analyse.jpg' width='75' height='40' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <img src='img/help/analyse_aus.jpg' width='75' height='60' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Um die von Ihnen ausgewählten Daten nun zu interpolieren, 
-		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint ein Drop-down-Menü, in dem Sie 'Interpolation' auswählen können. 
-		            Falls Sie für die Interpolation statt der Daten der Bounding Box nur Daten einiger Straßensegmente auswählen möchten, 
+		            <p> Um die von Ihnen ausgewählten Daten zu interpolieren, 
+		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint das Drop-down-Menü 'Funktionen', in dem Sie 'Interpolation' auswählen können. 
+		            <br><br> Falls Sie für die Interpolation statt der Daten der Bounding Box nur Daten einiger Straßensegmente auswählen möchten, 
 		            können Sie auf 'Straßenauswahl' klicken. Danach können Sie mit linker Maustaste Punkte auf die Straßen 
 		            setzen, um so die Daten aller Straßensegmente zwischen diesen Punkten zu bekommen. <br><br> 
-		            Direkt unter dem Interpolationsknopf befindet sich das Feld 
-		            'Anzeige' und die Tabelle. Fährt man mit der Maus über das Feld 'Anzeige', so kann zwischen der Darstellung als Tabelle, 
-		            Graph oder Graph und Tabelle gewählt werden.<br><br> </p>
-		            Bei der Tabelle können Phänomene in Form von  
-		            Spalten durch Setzen und Entfernen der Haken in den Kästchen und Drücken von 
-		            'Aktualisieren' entfernt und hinzugefügt werden. <br><br>
 		            <img src='img/help/legende.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Bei dem Graphen können Phänomene durch Klicken in dessen Legende ausgewählt werden.
-		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomed werden und dies durch
+		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomt werden und dies durch
 		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>  </p>
 		            <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Durch drücken des Interpolationsknopfes werden die Werte für CO2, Verbrauch und Geschwindigkeit interpoliert. 
@@ -162,10 +156,11 @@
 					<h2>Aggregation</h2>
 					<br>
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Um die von Ihnen ausgewählten Daten nun zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. Nach dem Klicken auf das 
-		            Aggregationsfeld erscheinen Durchschnitt, Minimum, Maximum, und Standardfehler. Diese werden sowohl
-		            in Form eines Graphen, als auch in Tabellenform dargestellt. Durch klicken in die Legende rechts von der Grafik kann ein einzelnes 
-		            Phänomen zur Aggregation ausgewählt werden. Zur Kennzeichnung zu hoher/niedriger Werte wird das Minimum vom Maximum abgezogen. 
+		            <p> Um die von Ihnen ausgewählten Daten zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint das Drop-down-Menü 
+		            'Funktionen', in dem Sie 'Aggregation' auswählen können. <br> <br> Nach der Aggregation erscheinen Durchschnitt, Minimum, Maximum, und 
+		            Standardfehler. Diese werden sowohl
+		            in Form eines Graphen, als auch in Tabellenform dargestellt. Durch Klicken in die Legende rechts von der Grafik kann ein einzelnes 
+		            Phänomen zur Aggregation ausgewählt werden. <br><br> Zur Kennzeichnung zu hoher/niedriger Werte wird das Minimum vom Maximum abgezogen. 
 		            Dann werden die 25% über und 25% unter dem Mittelwert als grüne Punkte dargestellt. Die Werte darüber bis zum Maximum und darunter 
 		            bis zum Minimum werden gelb gekennzeichnet. Alle Werte, die noch höher als das Maximum bzw. niedriger als das Minimum liegen, 
 		            werden als rote Punkte dargestellt. </p>";    
@@ -176,7 +171,8 @@
 					<h2>Filter</h2>
 					<br>  
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Nachdem Sie auf das Feld 'Analyse-Modus' geklickt haben, können Sie mit dem Filter für Grenzwerte ein Phänomen 
+		            <p> Um die von Ihnen ausgewählten Daten nach Grenzwerten zu filtern, klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint 
+		            das Drop-down-Menü 'Funktionen', in dem Sie 'Grenzwert-Filter' auswählen können. <br><br> Mit dem Grenzwert-Filter können Sie ein Phänomen 
 		            (Geschwindigkeit, Verbrauch, Motorlast, Umdrehungen/min, CO2) auswählen und selbst mit Hilfe des Schiebereglers 
 		            Grenzwerte festlegen. <br> So können Sie sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
 		            Einschätzungshilfe werden im Info-Fenster typische Grenzwerte für Geschwindigkeit und Verbrauch angezeigt. </p>";     
@@ -187,9 +183,11 @@
 					<h2>Filter</h2>
 					<br>  
 					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-					<p>Nach Drücken auf 'Umweltanalyse' wird der CO2-Ausstoß im Verhältnis zur zurückgelegten Strecke (in km) errechnet. 
+					<p>Um die von Ihnen ausgewählten Daten nach CO2-Ausstoß zu analysieren, klicken Sie auf das Feld 'Analyse-Modus'. 
+					Danach erscheint das Drop-down-Menü 'Funktionen', in dem Sie 'Umweltfilter' auswählen können. <br><br> 
+					Bei der Umweltanalyse wird der CO2-Ausstoß im Verhältnis zur zurückgelegten Strecke (in km) errechnet. 
 					Die sich daraus ergebenden Marker werden grün (nicht mehr als 95g CO2/km, dem EU-Neuwagengrenzwert ab 2015), gelb (über 95g bis 
-					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. Die Werte werden in Tabelle und Graphen 
+					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. <br><br> Die Werte werden in Tabelle und Graphen 
 					angezeigt. Dazu muss zu jeder dargestellten Messung CO2-Wert und Geschwindigkeitswert vorhanden sein.</p>";  
                  
 	$speed_info = "
