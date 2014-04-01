@@ -452,7 +452,7 @@ function checkCoSpeedValuesAvailability(){
 function displayCoSpeedRatioMarkers(){
 	try {
 		var measurementsTemp = measurements.slice();
-		var ratioarray = [];
+
 		if(trackSelectionActive()){
 			focusTrack();	
 		}
@@ -494,7 +494,6 @@ function displayCoSpeedRatioMarkers(){
 					if(speedTemp == 0) speedTemp += 1;
 					// calculate ratio
 					ratio = speedTemp / co2Temp;
-					ratioarray.push(ratio);
 					
 					// display the measurements as green, red or yellow star
 					if(ratio <= 3){
@@ -529,12 +528,12 @@ function displayCoSpeedRatioMarkers(){
 	
 					// Create infowindow for marker[i]/measurement[i]
 					buildInfoWindow(markers[i], map, measurements[i]);
-					//ratiocolumn(ratio);
+					
 				}
 									
 			}
 			
-			ratiocolumn(ratioarray);
+			ratiocolumn();
 
 			var mcOptions = {
 				gridSize : 50,
