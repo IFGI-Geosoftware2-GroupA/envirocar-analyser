@@ -137,7 +137,8 @@
 					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2>Call Up Data</h2>
 					<br>
-					<img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+					<img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+					<img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> If you want to analyse data of a certain time interval you need to click on the 
 		            'From:' and the 'To:' field and then on the corresponding days. By clicking on the top left or 
 	                right corner of the calendar window you can go back and forth in time. <br><br>
@@ -156,13 +157,14 @@
 					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2>Interpolation</h2>
 					<br>
-					<img src='img/help/analysis.jpg' width='75' height='35' align='left' vspace='10' hspace='5' alt='Text?'>
+					<img src='img/help/analysis.jpg' width='75' height='40' align='left' vspace='10' hspace='5' alt='Text?'>
+					<img src='img/help/analysis_off.jpg' width='75' height='60' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> To interpolate the selected data, click on the analyse mode field. After that the interpolation button for 
 	                interpolating the data appears at the top and a table on the right side of the web page. 
 	                If you pull the mouse over the field 'Display' you can choose if you would like to see the data in a table, 
 	                chart or chart and table. <br><br>  </p>
 	                For the table, phenomena can be added and deleted as columns by putting ticks in the boxes and pushing 'Refresh'. <br><br>
-	                <img src='img/help/boxes.jpg' width='75' height='21' align='left' vspace='10' hspace='5' alt='Text?'>
+	                <img src='img/help/legend.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
 	                <p> For the charts, phenomena can be added and deleted by selecting and deselecting, too. By letting the left mouse button clicked and 
 	                pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming. <br><br> </p>
 	                <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
