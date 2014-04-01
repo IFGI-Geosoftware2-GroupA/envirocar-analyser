@@ -130,7 +130,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		<div id="header-nav" >
 			<div class="logo">
 				<a href="./index.php" title="Homepage">
-					<img id="logo" alt="enivroCar analyser logo" width="150px" src="img/enviroCarAnalyser.png">
+					<img id="logo" alt="enivroCar analyser logo" width="75px" src="img/enviroCarAnalyser.png">
 				</a>
 			</div>
 			
