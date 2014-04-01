@@ -137,7 +137,7 @@
 					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2>Call Up Data</h2>
 					<br>
-					<img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+					<img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 					<img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> If you want to analyse data of a certain time interval you need to click on the 
 		            'From:' and the 'To:' field and then on the corresponding days. By clicking on the top left or 
