@@ -314,8 +314,8 @@ function toggleAnalyserPanel(id) {
 		// First hide the analyser content
 		document.getElementById('analysisInterpolation').style.display = "none";
 		document.getElementById('analyser-dropdown').style.display = "none";
-		document.getElementById('limit-filter').style.display = "none";
-		document.getElementById('aggregation').style.display = "none";
+		// document.getElementById('limit-filter').style.display = "none";
+		// document.getElementById('aggregation').style.display = "none";
 		document.getElementById('analyser-switcher').style.display = "none";
 		document.getElementById('analyser-chart').style.display = "none";
 		document.getElementById('analyser-table').style.display = "none";
