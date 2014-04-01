@@ -1120,11 +1120,11 @@ function showIdwConsumption() {
 			}
 		}
 		else if(typeof(consumptionmarkers)== "undefined"){
-			var l = getParam('lang')
+			var l = getParam('lang');
 			if(l == "en"){
-				alert("Probably no Consumption Data available.")
+				alert("Probably no Consumption Data available.");
 			} else {
-				alert("Keine Verbrauchsdaten vorhanden.")
+				alert("Keine Verbrauchsdaten vorhanden.");
 			}
 		}
 	} catch(e) {
