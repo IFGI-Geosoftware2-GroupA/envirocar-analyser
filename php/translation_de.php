@@ -209,7 +209,7 @@
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
 					<br>  
-					<p>Nach drücken auf 'Umweltanalyse' wird der CO2-Ausstoß in Verhältnis zu zurückgelegter Strecke (in Kilometern) gesetzt. 
+					<p>Nach Drücken auf 'Umweltanalyse' wird der CO2-Ausstoß im Verhältnis zur zurückgelegten Strecke (in km) errechnet. 
 					Die sich daraus ergebenden Marker werden grün (nicht mehr als 95g CO2/km, dem EU-Neuwagengrenzwert ab 2015), gelb (über 95g bis 
 					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. Die Werte werden in Tabelle und Graphen 
 					angezeigt. Dazu muss zu jeder dargestellten Messung CO2-Wert und Geschwindigkeitswert vorhanden sein.</p>";  
