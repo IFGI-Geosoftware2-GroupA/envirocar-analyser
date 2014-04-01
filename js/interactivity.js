@@ -44,9 +44,10 @@ function changeMode() {
 		$("#analyser-panel").hide();
 
 		document.getElementById('analysisInterpolation').style.display = "none";
-		document.getElementById('limit-filter').style.display = "none";
-		document.getElementById('aggregation').style.display = "none";
+		// document.getElementById('limit-filter').style.display = "none";
+		// document.getElementById('aggregation').style.display = "none";
 		document.getElementById("analyser-switcher").style.display = "none";
+		document.getElementById('analyser-dropdown').style.display = "none";
 		
 		analyserStarted = false;
 	} else {
@@ -65,8 +66,9 @@ function changeMode() {
 		$("#dualView").click();
 
 		document.getElementById('analysisInterpolation').style.display = "block";
-		document.getElementById('limit-filter').style.display = "block";
-		document.getElementById('aggregation').style.display = "block";
+		// document.getElementById('limit-filter').style.display = "block";
+		// document.getElementById('aggregation').style.display = "block";
+		document.getElementById('analyser-dropdown').style.display = "block";
 
 		document.getElementById("clearidw").style.display = "none";
 		document.getElementById("idwid").style.display = "none";
@@ -311,6 +313,7 @@ function toggleAnalyserPanel(id) {
 		
 		// First hide the analyser content
 		document.getElementById('analysisInterpolation').style.display = "none";
+		document.getElementById('analyser-dropdown').style.display = "none";
 		document.getElementById('limit-filter').style.display = "none";
 		document.getElementById('aggregation').style.display = "none";
 		document.getElementById('analyser-switcher').style.display = "none";

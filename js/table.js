@@ -241,6 +241,7 @@ function createTable() {
 		}
 		//Creating the Headrow of the Table
 		headrow = document.createElement("tr");
+		headrow.setAttribute("id", "headid");
 
 		headcell0 = document.createElement("th");
 		headcell0.setAttribute("id", "idrow");
@@ -249,6 +250,7 @@ function createTable() {
 		headcell3 = document.createElement("th");
 		headcell4 = document.createElement("th");
 		headcell5 = document.createElement("th");
+		headcell6 = document.createElement("th");
 
 		var l = getParam('lang');
 		if (l == "en") {
@@ -259,6 +261,7 @@ function createTable() {
 			headtext3 = document.createTextNode("Speed (km/h)");
 			headtext4 = document.createTextNode("Engine Load (%)");
 			headtext5 = document.createTextNode("Revolut./Minute (u/min)");
+			headtext6 = document.createTextNode("Ratio");
 		} else {
 
 			headtext0 = document.createTextNode("ID");
@@ -267,6 +270,7 @@ function createTable() {
 			headtext3 = document.createTextNode("Geschwindigkeit (km/h)");
 			headtext4 = document.createTextNode("Motorlast (%)");
 			headtext5 = document.createTextNode("Umdrehungen (u/min)");
+			headtext6 = document.createTextNode("Ratio");
 		}
 
 		headcell0.appendChild(headtext0);
@@ -275,6 +279,7 @@ function createTable() {
 		headcell3.appendChild(headtext3);
 		headcell4.appendChild(headtext4);
 		headcell5.appendChild(headtext5);
+		headcell6.appendChild(headtext6);
 
 		headrow.appendChild(headcell0);
 		headrow.appendChild(headcell1);
@@ -282,8 +287,11 @@ function createTable() {
 		headrow.appendChild(headcell3);
 		headrow.appendChild(headcell4);
 		headrow.appendChild(headcell5);
+		headrow.appendChild(headcell6);
 
 		mytablehead.appendChild(headrow);
+		
+		$('#analyser-table td:nth-child(7), #analyser-table th:nth-child(7)').hide();
 
 		for (var i = 0; i < measurements.length; i++) {
 
@@ -361,6 +369,26 @@ function deleteRows(value) {
 
 	var index = value;
 	document.getElementById("tableID").deleteRow(index);
+}
+
+function ratiocolumn(ratioarray){
+
+	// append column to the HTML table
+    var tbl = document.getElementById('tableID'); 
+        
+    // open loop for each row and append cell
+    for (i = 1; i < tbl.rows.length+1; i++) {
+        createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), ratioarray[i]);
+    }
+
+}
+
+// create DIV element and append to the table cell
+function createCell(cell, text) {
+    var div = document.createElement('div'), // create DIV element
+        txt = document.createTextNode(text); // create text node
+    	div.appendChild(txt);                    // append text node to the DIV
+    	cell.appendChild(div);                   // append DIV to the table cell
 }
 
 /**
