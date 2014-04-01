@@ -330,6 +330,16 @@ body {
 
 }
 
+#analyser-help-environment {
+	padding: 1.5em;
+	height: 75%;
+	width: 49.9%;
+	overflow:auto;
+	bottom: 1.5em;
+	margin-top: -4em;
+
+}
+
 #analyser-contact{
 	padding: 1.5em;
 	height: 75%;

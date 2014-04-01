@@ -244,7 +244,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							</li>
 							<li class="analyser-dropdown-submenu">
 								<a href="#" id="enviroFilterButton" onclick="displayCoSpeedRatioMarkers()" title="Umweltfilter">
-									<img src="img/enviroFilter.png" width="48px" height="48px" alt="Enviro Filter">
+									<img src="img/enviroFilter.png" id="enviroFilterImage" width="48px" height="48px" alt="Enviro Filter">
 									<?php echo $environment_label; ?>
 								</a>
 							</li>
@@ -339,6 +339,9 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							 <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
 							 <input type="checkbox" name="motorlast" checked> <?php echo $engine_load; ?>
 							 <input type="checkbox" name="umdrehungen" checked> <?php echo $rpm; ?>
+							 <span id="co2prokmid" style="display:none">
+							 	<input type="checkbox" name="co2prokm" checked> <?php echo $co2perkm; ?>
+							 </span>
 							 <input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">
 						   </p>
 					</form>
