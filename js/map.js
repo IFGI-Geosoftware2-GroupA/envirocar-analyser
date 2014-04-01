@@ -986,7 +986,7 @@ function interpolate() {
 					if(l == "en"){
 						alert("Speed interpolation completed");
 					} else {
-						alert("Geschwindigkeit interpoliert")
+						alert("Geschwindigkeit interpoliert");
 					}
 				}
 				else if(measurements[0].phenomenons[i].name == "CO2"){
@@ -995,7 +995,7 @@ function interpolate() {
 					if(l == "en"){
 						alert("CO2 interpolation completed");
 					} else {
-						alert("CO2 interpoliert")
+						alert("CO2 interpoliert");
 					}
 				}
 				else if(measurements[0].phenomenons[i].name == "Consumption"){
@@ -1004,7 +1004,7 @@ function interpolate() {
 					if(l == "en"){
 						alert("Consumption interpolation completed");
 					} else {
-						alert("Verbrauch interpoliert")
+						alert("Verbrauch interpoliert");
 					}
 				}
 			}
@@ -1051,11 +1051,11 @@ function showIdwSpeed() {
 			}
 		}
 		else if(typeof(speedmarkers)== "undefined"){
-			var l = getParam('lang')
+			var l = getParam('lang');
 			if(l == "en"){
-				alert("Probably no Speed Data available.")
+				alert("Probably no Speed Data available.");
 			} else {
-				alert("Keine Geschwindigkeitsdaten vorhanden.")
+				alert("Keine Geschwindigkeitsdaten vorhanden.");
 			}
 		}
 	} catch(e) {
@@ -1085,11 +1085,11 @@ function showIdwCo2() {
 			}
 		}
 		else if(typeof(co2markers)== "undefined"){
-			var l = getParam('lang')
+			var l = getParam('lang');
 			if(l == "en"){
-				alert("Probably no CO2 Data available.")
+				alert("Probably no CO2 Data available.");
 			} else {
-				alert("Keine CO2 Daten vorhanden.")
+				alert("Keine CO2 Daten vorhanden.");
 			}
 		}
 	} catch(e) {
