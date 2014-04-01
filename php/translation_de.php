@@ -72,35 +72,12 @@
 					  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 					  THE SOFTWARE.";
 	
-    $on = "An";
-	
-	$off = "Aus";
-    
-    $logoLabel = "Exploration und Visualisierung";
-	
-	$from = "Von:";
-	
-	$to = "Bis:";
-	
-	$getData = "Daten abrufen";
-	
-	$selectSpace = "Raumauswahl";
-	
-	$display = "Tracks anzeigen";
-	
-	$track = "Track-ID:";
-	
-	$phenomenon = "Phänomen:";
-	
-	$selectStreet = "Straßenauswahl";
-	
-	$streets_on = "Straßenauswahl An";
-	
-	$streets_off = "Straßenauswahl Aus";
-	
-	$analysis_mode_label = "Analyse-Modus";
 	
     $help = "Hilfe";
+    
+    $help_aggregation = "Aggregation";
+	
+	$help_filter = "Filter";
     
     $help_content = "<h1>Hilfe</h1> <br>
     				<a href='#analyser-help-mapview' id='maphelp'>Kartenausschnitt</a><br>
@@ -205,15 +182,25 @@
 		            Einschätzungshilfe werden im Info-Fenster typische Grenzwerte für Geschwindigkeit und Verbrauch angezeigt. </p>";     
 		            
     $help_environment = "
-                   <h1>Hilfe</h1> <br>
+                    <h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
 					<br>  
-					<p>Nach drücken auf 'Umweltanalyse' wird der CO2-Ausstoß in Verhältnis zu zurückgelegter Strecke (in Kilometern) gesetzt. 
+					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
+					<p>Nach Drücken auf 'Umweltanalyse' wird der CO2-Ausstoß im Verhältnis zur zurückgelegten Strecke (in km) errechnet. 
 					Die sich daraus ergebenden Marker werden grün (nicht mehr als 95g CO2/km, dem EU-Neuwagengrenzwert ab 2015), gelb (über 95g bis 
 					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. Die Werte werden in Tabelle und Graphen 
 					angezeigt. Dazu muss zu jeder dargestellten Messung CO2-Wert und Geschwindigkeitswert vorhanden sein.</p>";  
                  
+	$speed_info = "
+	                <b>Info: </b> Innerorts gilt in Deutschland eine Höchstgeschwindigkeit von 50 km/h. Außerhalb geschlossener Ortschaften 
+	                gilt eine Geschwindigkeitsbeschränkung von 100 km/h. Auf Autobahnen liegt die Richtgeschwindigkeit bei 130 km/h.";
+	
+	$consumption_info = "
+	                <b>Info: </b> In Deutschland gilt ein Verbrauch von 6 - 10 Liter pro 100 gefahrener Kilometer als normal. 
+                    Weitere Information zu einzelnen Automodellen finden Sie hier: <a href='http://www.autoverbrauch.at/ireds-124318.html' 
+                    target='blank'>www.autoverbrauch.at</a>";
+	
 	$id = "ID";
 	
 	$consumption = "Verbrauch";
@@ -268,6 +255,34 @@
 	
 	// $stft_1 = "Kurzzeitkraftstofftrimm 1";
 	
+	    $on = "An";
+	
+	$off = "Aus";
+    
+    $logoLabel = "Exploration und Visualisierung";
+	
+	$from = "Von:";
+	
+	$to = "Bis:";
+	
+	$getData = "Daten abrufen";
+	
+	$selectSpace = "Raumauswahl";
+	
+	$display = "Tracks anzeigen";
+	
+	$track = "Track-ID:";
+	
+	$phenomenon = "Phänomen:";
+	
+	$selectStreet = "Straßenauswahl";
+	
+	$streets_on = "Straßenauswahl An";
+	
+	$streets_off = "Straßenauswahl Aus";
+	
+	$analysis_mode_label = "Analyse-Modus";
+	
 	$mapSearch = "Suche nach St&auml;dten";
 	
 	$refresh = "Aktualisieren";
@@ -300,25 +315,14 @@
 	
 	$aggregation_label = "Aggregation";
 	
-	$help_aggregation = "Aggregation";
-	
-	$help_filter = "Filter";
-	
 	$limit_filter = "Grenzwert-Filter";
 	
 	$filter_by_speed = "Geschwindigkeit filtern";
 	
 	$reset_filter = "Filter zurücksetzen";
-	
-	$speed_info = "<b>Info: </b> Innerorts gilt in Deutschland eine Höchstgeschwindigkeit von 50 km/h. Außerhalb geschlossener Ortschaften 
-	               gilt eine Geschwindigkeitsbeschränkung von 100 km/h. Auf Autobahnen liegt die Richtgeschwindigkeit bei 130 km/h.";
-	              
+	             
     $filter_by_speed = "Geschwindigkeit filtern";
     
-    $consumption_info = "<b>Info: </b> In Deutschland gilt ein Verbrauch von 6 - 10 Liter pro 100 gefahrener Kilometer als normal. 
-                         Weitere Information zu einzelnen Automodellen finden Sie hier: <a href='http://www.autoverbrauch.at/ireds-124318.html' 
-                         target='blank'>www.autoverbrauch.at</a>";
-	
 	$filter_by_consumption = "Verbrauch filtern";
 	
 	$filter_by_engine_load = "Motorlast filtern";
@@ -332,6 +336,5 @@
 	$functions = "Funktionen";
 	
 	$co2perkm = "CO2 pro Kilometer";
-	
-	
+		
 ?>
