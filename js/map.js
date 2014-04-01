@@ -1008,7 +1008,34 @@ function interpolate() {
 					}
 				}
 			}
-			// alert("Interpolation succeeded. showIdwSpeed(), showIdwConsumption(), showIdwCo2(), clearIdwDisplay() will show the results.");
+			
+			if (typeof(speedmarkers)== "undefined") {
+				var l = getParam('lang');
+				if(l == "en"){
+					alert("Probably no Speed Data available.");
+				} else {
+					alert("Keine Geschwindigkeitsdaten vorhanden.");
+				}
+			}
+			
+			if (typeof(co2markers)== "undefined") {
+				var l = getParam('lang');
+				if(l == "en"){
+					alert("Probably no CO2 Data available.");
+				} else {
+					alert("Keine CO2 Daten vorhanden.");
+				}
+			}
+			
+			if (typeof(consumptionmarkers)== "undefined") {
+				var l = getParam('lang');
+				if(l == "en"){
+					alert("Probably no Consumption Data available.");
+				} else {
+					alert("Keine Verbrauchsdaten vorhanden.");
+				}
+			}
+			
 			document.getElementById("clearidw").style.display = "block";
 			document.getElementById("idwid").style.display = "block";
 			
