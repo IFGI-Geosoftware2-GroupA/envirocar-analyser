@@ -45,7 +45,7 @@ function sendTrackRequest(url, param, trackId) {
 
 // function to get Track information from server
 function getTrackInformation(){
-	animiere();
+	animationStep();
 	// function is called up as long as there are still tracks to process
 	if(toDoArray.length > 0){
 		var tid = toDoArray[0];

@@ -451,7 +451,7 @@ function setLoadingScreenInterim(){
 }
 
 // animation of loading div when requesting data
-function animiere() {
+function animationStep() {
 	var maximum = parseInt(document.getElementById('amountTracks').innerHTML);
 	var current = parseInt(document.getElementById('currentTrack').innerHTML);
 	var ladebalken = document.getElementById("ladebalken");
