@@ -61,7 +61,7 @@ body {
 #header-nav .logo {
 	-webkit-flex: logo;
 	flex: logo;
-	width: 12%;
+	width: 6%;
 	margin: 1em 0 0 0.5em;
 }
 

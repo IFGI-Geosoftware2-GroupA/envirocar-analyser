@@ -130,7 +130,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		<div id="header-nav" >
 			<div class="logo">
 				<a href="./index.php" title="Homepage">
-					<img id="logo" alt="enivroCar analyser logo" width="150px" src="img/enviroCarAnalyser.png">
+					<img id="logo" alt="enivroCar analyser logo" width="75px" src="img/enviroCarAnalyser.png">
 				</a>
 			</div>
 			
@@ -333,16 +333,15 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<div id="analyser-table" class="top">
 					<form id="analyser-table-checkbox" name="checkbox">
 						   <p>
-							 <input type="checkbox" name="id" checked> <?php echo $id; ?>
-							 <input type="checkbox" name="verbrauch" checked> <?php echo $consumption; ?>
-							 <input type="checkbox" name="co2" checked> <?php echo $co2; ?>
-							 <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
-							 <input type="checkbox" name="motorlast" checked> <?php echo $engine_load; ?>
-							 <input type="checkbox" name="umdrehungen" checked> <?php echo $rpm; ?>
+							 <input type="checkbox" name="id" onchange="refreshTable();" checked> <?php echo $id; ?>
+							 <input type="checkbox" name="verbrauch" onchange="refreshTable();" checked> <?php echo $consumption; ?>
+							 <input type="checkbox" name="co2" onchange="refreshTable();" checked> <?php echo $co2; ?>
+							 <input type="checkbox" name="geschwindigkeit" onchange="refreshTable();" checked> <?php echo $speed; ?>
+							 <input type="checkbox" name="motorlast" onchange="refreshTable();" checked> <?php echo $engine_load; ?>
+							 <input type="checkbox" name="umdrehungen" onchange="refreshTable();" checked> <?php echo $rpm; ?>
 							 <span id="co2prokmid" style="display:none">
-							 	<input type="checkbox" name="co2prokm" checked> <?php echo $co2perkm; ?>
+							 	<input type="checkbox" name="co2prokm" onchange="refreshTable();" checked> <?php echo $co2perkm; ?>
 							 </span>
-							 <input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">
 						   </p>
 					</form>
 					<script type="text/javascript">
