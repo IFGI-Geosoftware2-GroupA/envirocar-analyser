@@ -339,6 +339,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							 <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
 							 <input type="checkbox" name="motorlast" checked> <?php echo $engine_load; ?>
 							 <input type="checkbox" name="umdrehungen" checked> <?php echo $rpm; ?>
+							 <input type="checkbox" name="co2prokm" style="display:none" checked> <?php echo $co2perkm; ?>
 							 <input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">
 						   </p>
 					</form>
