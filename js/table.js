@@ -384,7 +384,7 @@ function deleteRows(value) {
 
 function ratiocolumn(){
 	$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').show();
-	document.getElementByName("co2prokm").style.display ="block";
+	document.getElementById("co2prokmid").style.display ="block";
 }
 
 // create DIV element and append to the table cell
@@ -493,6 +493,13 @@ function refreshTable() {
 
 	} else {
 		$('#analyser-table td:nth-child(6),#analyser-table th:nth-child(6)').hide();
+	}
+	
+	if (document.checkbox.co2prokm.checked == true) {
+		$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').show();
+
+	} else {
+		$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').hide();
 	}
 
 }
