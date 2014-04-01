@@ -110,7 +110,8 @@
     				<a href='#analyser-help-getdata' id='getdatahelp'>Call Up Data</a><br>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
     				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
-    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a>
+    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a><br>
+    				<a href='#analyser-help-filter' id='environmenthelp'>Environment Analysis</a>
     				";
 	
 	$help_mapview = "
@@ -125,9 +126,8 @@
 	                by clicking on the arrow field or by leaving the left mouse button clicked on the map and 
 	                moving the mouse. <br><br>  </p>
 	                <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
-	                <p> You can zoom in and out either by: <br> - Using the scroll wheel of the mouse (except 
-	                for Internet Explorer) <br> - Clicking on the plus and minus symbol of the zoom scale <br> - Clicking 
-	                on the zoom scale itself. <br><br> <br><br>  </p>
+	                <p> You can zoom in and out either by: <br> - Using the scroll wheel of the mouse <br> - Clicking on the plus and minus 
+	                symbol of the zoom scale <br> - Clicking on the zoom scale itself. <br><br> <br><br>  </p>
 	                <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
 	                <p> By clicking on the fields 'Karte', 'Hybrid' and 'OSM' you can choose between: 
 	                <br> - A vector map <br> - A hybrid of a satellite image and street vectors <br> - A map of OpenStreetMaps. </p>";
@@ -304,5 +304,11 @@
 	$filter_by_rpm = "Filter by revol./min";
 	
 	$filter_by_CO2 = "Filter by CO2";
+	
+	$environment = "Environment Filter";
+	
+	$functions = "Functions";
+	
+	$co2perkm = "CO2 per kilometre";
 	
 ?>

@@ -222,7 +222,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<div id="analyser-dropdown">
 				<ul>
 					<li class="analyser-dropdown-topmenu">
-						<a href="#">Funktionen</a>
+						<a href="#"><?php echo $functions; ?></a>
 						<ul>
 							<li class="analyser-dropdown-submenu">
 								<a id="" href="#"  onclick="interpolate();" title="Start Interpolation">
@@ -245,7 +245,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							<li class="analyser-dropdown-submenu">
 								<a href="#" id="enviroFilterButton" onclick="displayCoSpeedRatioMarkers()" title="Umweltfilter">
 									<img src="img/enviroFilter.png" id="enviroFilterImage" width="48px" height="48px" alt="Enviro Filter">
-									Umweltfilter
+									<?php echo $environment_label; ?>
 								</a>
 							</li>
 						</ul>
@@ -339,6 +339,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							 <input type="checkbox" name="geschwindigkeit" checked> <?php echo $speed; ?>
 							 <input type="checkbox" name="motorlast" checked> <?php echo $engine_load; ?>
 							 <input type="checkbox" name="umdrehungen" checked> <?php echo $rpm; ?>
+							 <input type="checkbox" name="co2prokm" style="display:none" checked> <?php echo $co2perkm; ?>
 							 <input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">
 						   </p>
 					</form>
@@ -383,6 +384,10 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<div id="analyser-terms" class="top blue" style="display: none">
 					<?php echo $terms_content; ?>
 				</div>
+				
+				<div id="analyser-help-environment" class="top blue" style="display: none">
+					<?php echo $help_environment; ?>
+				</div>
 			</div>
 			
 			<script>
@@ -414,13 +419,19 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 						$("#analyser-help").hide(200);			
 					});
 					
+					$("#environmenthelp").click(function() {
+						$("#analyser-help-environment").show(200);
+						$("#analyser-help").hide(200);			
+					});
+					
 					$(".back").click(function() {
 						$("#analyser-help").show(200);	
 						$("#analyser-help-mapview").hide(200);
 						$("#analyser-help-getdata").hide(200);
 						$("#analyser-help-interpolation").hide(200);
 						$("#analyser-help-aggregation").hide(200);
-						$("#analyser-help-filter").hide(200);		
+						$("#analyser-help-filter").hide(200);
+						$("#analyser-help-environment").hide(200);		
 					});
 				});
 			</script>

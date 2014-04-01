@@ -107,7 +107,8 @@
     				<a href='#analyser-help-getdata' id='getdatahelp'>Daten abrufen</a><br>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
     				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
-    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a>
+    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a><br>
+    				<a href='#analyser-help-filter' id='environmenthelp'>Umweltanalyse</a>
     				";
 	
 	$help_mapview = "
@@ -122,7 +123,7 @@
 		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
 		            Kartenausschnitt ausgewählt werden. <br><br>  </p>
 		            <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
-		            <p> Durch Benutzung des Scrollrades der Maus (ausgenommen Internet Explorer), 
+		            <p> Durch Benutzung des Scrollrades der Maus, 
 		            durch Klicken auf das Plus- und das Minussymbol der Zoomskala oder durch Klicken auf selbige, 
 		            kann hinein und herausgezoomt werden. <br><br> <br><br>  </p>
 		            <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
@@ -203,12 +204,15 @@
 		            Grenzwerte festlegen. <br> So können Sie sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
 		            Einschätzungshilfe werden im Info-Fenster typische Grenzwerte für Geschwindigkeit und Verbrauch angezeigt. </p>";     
 		            
-    $environment = "
+    $help_environment = "
                    <h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Filter</h2>
 					<br>  
-					<p>Nach drücken auf 'Umweltanalyse werden Geschwindigkeit und Co2-Ausstoß in Verhältnis gesetzt und farblich dargestellt.'</p>";  
+					<p>Nach drücken auf 'Umweltanalyse' wird der CO2-Ausstoß in Verhältnis zu zurückgelegter Strecke (in Kilometern) gesetzt. 
+					Die sich daraus ergebenden Marker werden grün (nicht mehr als 95g CO2/km, dem EU-Neuwagengrenzwert ab 2015), gelb (über 95g bis 
+					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. Die Werte werden in Tabelle und Graphen 
+					angezeigt. Dazu muss zu jeder dargestellten Messung CO2-Wert und Geschwindigkeitswert vorhanden sein.</p>";  
                  
 	$id = "ID";
 	
@@ -323,6 +327,11 @@
 	
 	$filter_by_CO2 = "CO2 filtern";
 	
+	$environment = "Umweltanalyse";
+	
+	$functions = "Funktionen";
+	
+	$co2perkm = "CO2 pro Kilometer";
 	
 	
 ?>

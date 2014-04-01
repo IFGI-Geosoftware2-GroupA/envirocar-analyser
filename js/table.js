@@ -242,6 +242,9 @@ function createTable() {
 			if (rpm[i] == undefined) {
 				rpm[i] = '-';
 			}
+			if (ratio[i] == "Infinity") {
+				ratio[i] = '0';
+			}
 		}
 		//Creating the Headrow of the Table
 		headrow = document.createElement("tr");
@@ -330,6 +333,7 @@ function createTable() {
 			//RPM-Column
 			currentText5 = document.createTextNode(rpm[i]);
 			
+			//CO2_per_Kilometre-Column
 			currentText6 = document.createTextNode(ratio[i]);
 			
 			currentCell0.appendChild(currentText0);
@@ -380,16 +384,7 @@ function deleteRows(value) {
 
 function ratiocolumn(){
 	$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').show();
-	/*document.getElementById("ratioid").style.display = "block";
-	
-	// append column to the HTML table
-    var tbl = document.getElementById('tableID'); 
-        
-    // open loop for each row and append cell
-    for (i = 1; i < tbl.rows.length+1; i++) {
-        createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), ratioarray[i]);
-    }
-*/
+	document.getElementByName("co2prokm").style.display ="block";
 }
 
 // create DIV element and append to the table cell
