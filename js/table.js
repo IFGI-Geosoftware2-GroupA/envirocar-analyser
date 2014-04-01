@@ -9,6 +9,7 @@ function initTable() {
 
 	node = document.getElementById("analyser-table");
 	node.appendChild(createTable());
+	$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').hide();
 }
 
 // Initialize special table for Aggregation Results
@@ -204,6 +205,7 @@ function createTable() {
 		//maf = Array();
 		engineload = new Array();
 		rpm = new Array();
+		ratio = new Array();
 
 		//Put Phenomenons in Arrays
 		for ( i = 0, j = 0; i < measurements.length; i++) {
@@ -220,6 +222,8 @@ function createTable() {
 					rpm.push((Number(measurements[i].getValues()[j]).toFixed(0)));
 				}
 			}
+		
+			ratio.push((Number((co2[i]/speed[i]).toFixed(2))*1000));
 			
 			// If values are not measured,
 			// this will make sure that there is a value entered in the corresponding arrays
@@ -241,7 +245,6 @@ function createTable() {
 		}
 		//Creating the Headrow of the Table
 		headrow = document.createElement("tr");
-		headrow.setAttribute("id", "headid");
 
 		headcell0 = document.createElement("th");
 		headcell0.setAttribute("id", "idrow");
@@ -261,7 +264,7 @@ function createTable() {
 			headtext3 = document.createTextNode("Speed (km/h)");
 			headtext4 = document.createTextNode("Engine Load (%)");
 			headtext5 = document.createTextNode("Revolut./Minute (u/min)");
-			headtext6 = document.createTextNode("Ratio");
+			headtext6 = document.createTextNode("CO2 per Kilometre (g/km)");
 		} else {
 
 			headtext0 = document.createTextNode("ID");
@@ -270,7 +273,7 @@ function createTable() {
 			headtext3 = document.createTextNode("Geschwindigkeit (km/h)");
 			headtext4 = document.createTextNode("Motorlast (%)");
 			headtext5 = document.createTextNode("Umdrehungen (u/min)");
-			headtext6 = document.createTextNode("Ratio");
+			headtext6 = document.createTextNode("CO2 pro Kilometer (g/km)");
 		}
 
 		headcell0.appendChild(headtext0);
@@ -291,7 +294,6 @@ function createTable() {
 
 		mytablehead.appendChild(headrow);
 		
-		$('#analyser-table td:nth-child(7), #analyser-table th:nth-child(7)').hide();
 
 		for (var i = 0; i < measurements.length; i++) {
 
@@ -308,6 +310,7 @@ function createTable() {
 			currentCell3 = document.createElement("td");
 			currentCell4 = document.createElement("td");
 			currentCell5 = document.createElement("td");
+			currentCell6 = document.createElement("td");
 
 			//ID-Column
 			currentText0 = document.createTextNode(measurements[i].getId());
@@ -326,13 +329,16 @@ function createTable() {
 
 			//RPM-Column
 			currentText5 = document.createTextNode(rpm[i]);
-
+			
+			currentText6 = document.createTextNode(ratio[i]);
+			
 			currentCell0.appendChild(currentText0);
 			currentCell1.appendChild(currentText1);
 			currentCell2.appendChild(currentText2);
 			currentCell3.appendChild(currentText3);
 			currentCell4.appendChild(currentText4);
 			currentCell5.appendChild(currentText5);
+			currentCell6.appendChild(currentText6);
 
 			currentRow.appendChild(currentCell0);
 			currentRow.appendChild(currentCell1);
@@ -340,6 +346,7 @@ function createTable() {
 			currentRow.appendChild(currentCell3);
 			currentRow.appendChild(currentCell4);
 			currentRow.appendChild(currentCell5);
+			currentRow.appendChild(currentCell6);
 
 			mytablebody.appendChild(currentRow);
 		}
@@ -347,7 +354,7 @@ function createTable() {
 		myTable.appendChild(mytablehead);
 		myTable.appendChild(mytablebody);
 		myTable.setAttribute("border", 1);
-
+		
 		return myTable;
 
 	} catch(e) {
@@ -371,8 +378,10 @@ function deleteRows(value) {
 	document.getElementById("tableID").deleteRow(index);
 }
 
-function ratiocolumn(ratioarray){
-
+function ratiocolumn(){
+	$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').show();
+	/*document.getElementById("ratioid").style.display = "block";
+	
 	// append column to the HTML table
     var tbl = document.getElementById('tableID'); 
         
@@ -380,7 +389,7 @@ function ratiocolumn(ratioarray){
     for (i = 1; i < tbl.rows.length+1; i++) {
         createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), ratioarray[i]);
     }
-
+*/
 }
 
 // create DIV element and append to the table cell

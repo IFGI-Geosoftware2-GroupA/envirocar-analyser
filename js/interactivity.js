@@ -43,10 +43,9 @@ function changeMode() {
 		resizeMap();
 		$("#analyser-panel").hide();
 
+		document.getElementById('streetSelectionBtn').style.display = "none";
 		document.getElementById('analysisInterpolation').style.display = "none";
-		// document.getElementById('limit-filter').style.display = "none";
-		// document.getElementById('aggregation').style.display = "none";
-		document.getElementById("analyser-switcher").style.display = "none";
+		document.getElementById('analyser-switcher').style.display = "none";
 		document.getElementById('analyser-dropdown').style.display = "none";
 		
 		analyserStarted = false;
@@ -65,9 +64,8 @@ function changeMode() {
 		$("#analyser-panel").show(200);
 		$("#dualView").click();
 
+		document.getElementById('streetSelectionBtn').style.display = "block";
 		document.getElementById('analysisInterpolation').style.display = "block";
-		// document.getElementById('limit-filter').style.display = "block";
-		// document.getElementById('aggregation').style.display = "block";
 		document.getElementById('analyser-dropdown').style.display = "block";
 
 		document.getElementById("clearidw").style.display = "none";
@@ -312,10 +310,9 @@ function toggleAnalyserPanel(id) {
 		document.getElementById('analyseModeBtn').style.background = "#fff";
 		
 		// First hide the analyser content
+		document.getElementById('streetSelectionBtn').style.display = "none";
 		document.getElementById('analysisInterpolation').style.display = "none";
 		document.getElementById('analyser-dropdown').style.display = "none";
-		// document.getElementById('limit-filter').style.display = "none";
-		// document.getElementById('aggregation').style.display = "none";
 		document.getElementById('analyser-switcher').style.display = "none";
 		document.getElementById('analyser-chart').style.display = "none";
 		document.getElementById('analyser-table').style.display = "none";

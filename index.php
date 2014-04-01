@@ -142,7 +142,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<br>
 				<div id="streetSelection">
 					<input type="button" name="streetSelection" id="streetSelectionBtn" class="left spaceButton"
-					value="<?php echo $selectStreet ?>" onClick="streetMode();">
+					value="<?php echo $selectStreet ?>" onClick="streetMode();" style="display: none;">
 				</div>
 				<br>
 				<div id="trackSelection">
