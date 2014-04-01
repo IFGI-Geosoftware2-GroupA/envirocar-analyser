@@ -94,8 +94,9 @@
 					<h2>Kartenausschnitt</h2>
 	                <br>
 	                <img src='img/help/suchenVerschieben.jpg' width='190' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		         	<p> Beim Öffnen der Webseite wird automatisch auf den Ort mit den jüngsten 24 Stunden an Daten gezoomt. Durch Eingabe eines 
-		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu einer anderen Stadt gezoomt. 
+		         	<p> Beim Öffnen der Webseite wrden automatisch die Daten der letzten gemessenen 24 Stunden angezeigt und die Karte wird dementsprechend 
+		         	zentriert. Durch Eingabe eines 
+		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu diesem gezoomt. 
 		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
 		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
 		            Kartenausschnitt ausgewählt werden. <br><br>  </p>
