@@ -436,6 +436,7 @@ function checkCoSpeedValuesAvailability(){
 	}
 	// if there are enough measurements enable enviroFilter	
 	if(usableValues == measurements.length){
+		document.getElementById('enviroFilterImage').src = "img/enviroFilter.png";
 		document.getElementById('enviroFilterButton').onclick = function () {	displayCoSpeedRatioMarkers();	return false;	};
 		console.log("Enviro Filter Enabled");
 	}
@@ -443,6 +444,7 @@ function checkCoSpeedValuesAvailability(){
 	else{
 		if(getParam('lang') == 'en') document.getElementById('enviroFilterButton').onclick = function () {	alert('Unable to perform request. There is an uneven number of Co2 and Speed measurements for the current selection of measurements.');	return false;	};	
 		else document.getElementById('enviroFilterButton').onclick = function () {	alert('Derzeit nicht möglich. Für die von Ihnen getroffene Auswahl an Messpunkten stimmt die Anzahl der Geschwindigkeits-Messungen, nicht mit der Anzahl der Co2-Messungen überein.');	return false;	};
+		document.getElementById('enviroFilterImage').src = "img/enviroFilterBW.png";
 		console.log("Enviro Filter disabled");
 	}
 }
@@ -452,7 +454,7 @@ function checkCoSpeedValuesAvailability(){
 function displayCoSpeedRatioMarkers(){
 	try {
 		var measurementsTemp = measurements.slice();
-
+		var ratioarray = [];
 		if(trackSelectionActive()){
 			focusTrack();	
 		}
@@ -491,12 +493,15 @@ function displayCoSpeedRatioMarkers(){
 				}
 				else{
 					// set speed minimum to 1
-					if(speedTemp == 0) speedTemp += 1;
+					if(speedTemp == 0) ratio = 0;
 					// calculate ratio
-					ratio = speedTemp / co2Temp;
+					else{
+						ratio = co2Temp / speedTemp * 1000;
+						ratioarray.push(ratio);						
+					}
 					
 					// display the measurements as green, red or yellow star
-					if(ratio <= 3){
+					if(ratio > 130){
 						var marker = new google.maps.Marker({
 							position : measurements[i].getPoint(),
 							icon : 'img/star_red.png'
@@ -505,7 +510,7 @@ function displayCoSpeedRatioMarkers(){
 						markers.push(marker);	
 						chartSeries.push({x: measurements[i].getTimestamp(), y: parseFloat(ratio.toFixed(2)), name: measurements[i].getId() + '', id: 'EnviroFilter' +  measurements[i].getId(), color : '#FF0000'});
 					}
-					else if(ratio > 3 && ratio <= 6){
+					else if(ratio <= 130  && ratio > 95){
 						var marker = new google.maps.Marker({
 							position : measurements[i].getPoint(),
 							icon : 'img/star_yellow.png'
@@ -523,17 +528,18 @@ function displayCoSpeedRatioMarkers(){
 						markers.push(marker);	
 						chartSeries.push({x: measurements[i].getTimestamp(), y: parseFloat(ratio.toFixed(2)), name: measurements[i].getId() + '', id: 'EnviroFilter' +  measurements[i].getId(), color : '#00FF00'});
 					}
+					console.log(ratio);
 					createListenerForMarkers(markers[i]);
 					markersBounds.extend(measurements[i].getPoint());
 	
 					// Create infowindow for marker[i]/measurement[i]
 					buildInfoWindow(markers[i], map, measurements[i]);
-					
+					//ratiocolumn(ratio);
 				}
 									
 			}
 			
-			ratiocolumn();
+			ratiocolumn(ratioarray);
 
 			var mcOptions = {
 				gridSize : 50,
@@ -544,8 +550,8 @@ function displayCoSpeedRatioMarkers(){
 			// create Chart if there are no values missing
 			if(drawChart){
 				chartSeries.sort(lineChart.compare);
-				if(getParam('land') == 'en') lineChart.addSeries('Enviro Filter', true, 'EnviroFilter', chartSeries);
-				else lineChart.addSeries('Umwelt Filter', true, 'EnviroFilter', chartSeries);	
+				if(getParam('land') == 'en') lineChart.addSeries('CO2 pro Kilometer(g/km)', true, 'EnviroFilter', chartSeries);
+				else lineChart.addSeries('CO2 per Kilometer(g/h)', true, 'EnviroFilter', chartSeries);	
 			}
 			
 			// reset measurements
@@ -931,6 +937,9 @@ function showSize(event){
  * Applies the filter to the measurement array
  */
 function interpolate() {
+	
+	// clear markers of former interpolations
+	clearIdwDisplay();
 	// var query = new Query('measurements');
 	// measurements = query.getData();
 	// Check wether bounding box is activated or not and trim the polyexport so that only measurements

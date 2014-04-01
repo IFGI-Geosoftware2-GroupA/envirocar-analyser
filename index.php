@@ -244,7 +244,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							</li>
 							<li class="analyser-dropdown-submenu">
 								<a href="#" id="enviroFilterButton" onclick="displayCoSpeedRatioMarkers()" title="Umweltfilter">
-									<img src="img/enviroFilter.png" width="48px" height="48px" alt="Enviro Filter">
+									<img src="img/enviroFilter.png" id="enviroFilterImage" width="48px" height="48px" alt="Enviro Filter">
 									<?php echo $environment_label; ?>
 								</a>
 							</li>
