@@ -120,9 +120,10 @@
 					<h2>Map Section</h2>
 	                <br>
 	                <img src='img/help/suchenVerschieben.jpg' width='190' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		         	<p> While opening the web page the map will automatically zoom to Münster. You can choose another 
-	                location in North Rhine-Westphalia by entering its name in the search field. Only locations 
-	                within North Rhine-Westphalia can be selected. You can choose a different map section either 
+		         	<p> After opening the web page the data of the lastly measured 24 hours will be displayed and for that the map will 
+		         	automatically be adjusted. You can choose another 
+	                location in North Rhine-Westphalia by entering its name in the search field and the map will automatically zoom to this place. 
+	                Only locations within North Rhine-Westphalia can be selected. You can choose a different map section either 
 	                by clicking on the arrow field or by leaving the left mouse button clicked on the map and 
 	                moving the mouse. <br><br>  </p>
 	                <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
@@ -141,15 +142,26 @@
 					<img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> If you want to analyse data of a certain time interval you need to click on the 
 		            'From:' and the 'To:' field and then on the corresponding days. By clicking on the top left or 
-	                right corner of the calendar window you can go back and forth in time. <br><br>
+	                right corner of the calendar window you can go back and forth in time. Additionally, you can also add a time by using the 
+	                calendar's slider bars.  <br><br>
 	                You can select an certain area within North Rhine-Westphalia by clicking on 'Select space segment' to select a segment with a 
-	                bounding box. Its size can be varied by pulling its edges with the left mouse button pushed. Alternatively, you can click on 'Street
-	                Selection' and set several points on streets with the left mouse button to select all street segments 
-	                between those points. <br><br> In 'Tracks' you can choose particular paths driven by a car. <br>  </p>
-	                <img src='img/help/cars.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-					<p> <br> In 'Possible Car Models' you can select all car models by clicking on the double arrows or select single model 
-					by clicking on each of them. <br> In 'Selected Car Models' you can deselect car models in the same way. <br><br>  </p>
-					All four criteria are combinable. Finally, you click on 'Get Data'.";
+	                bounding box. Its size can be varied by pulling its edges with the left mouse button pushed. If the bounding box colours red if it 
+	                becomes too large. <br>  
+					Finally, you click on 'Get Data'.  <br><br>  </p>";
+					
+	$help_selection = "
+	                <h1>Help</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Selection</h2>
+					<br>
+					<img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+					<img src='img/help/cars.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+	                If you only want the data of a particular track after you selected the data, you can select this track in the field 'Tracks'.
+	                In 'Possible Car Models' you can deselect all car models by clicking on the double arrow or a particular car model by clicking on it.
+	                You can select the car models again by the same way. Afterwards, the data will be refreshed. 
+	                <p> A single phenomenon for the aggregation can be selected by clicking on the legend right from the chart. By letting the left mouse button clicked and 
+	                pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming. <br><br> </p>
+	                ";
 					
 	            
 	$help_interpolation = "
@@ -159,17 +171,12 @@
 					<br>
 					<img src='img/help/analysis.jpg' width='75' height='40' align='left' vspace='10' hspace='5' alt='Text?'>
 					<img src='img/help/analysis_off.jpg' width='75' height='60' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> To interpolate the selected data, click on the analyse mode field. After that the interpolation button for 
-	                interpolating the data appears at the top and a table on the right side of the web page. 
+					<img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <p> To interpolate the selected data, click on the analyse mode field. After that the drop-down menu 'Functions' will appear in which
+		            you can select 'Interpolation'. <br><br> If you only want to interpolate the data of some street segments you can click on 'Select Street 
+		            Segments'. Subsequently, you can click with your left mouse button on the streets to get the data between these points only. 
 	                If you pull the mouse over the field 'Display' you can choose if you would like to see the data in a table, 
-	                chart or chart and table. <br><br>  </p>
-	                For the table, phenomena can be added and deleted as columns by putting ticks in the boxes and pushing 'Refresh'. <br><br>
-	                <img src='img/help/legend.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
-	                <p> For the charts, phenomena can be added and deleted by selecting and deselecting, too. By letting the left mouse button clicked and 
-	                pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming. <br><br> </p>
-	                <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-	                <p> By clicking on the interpolation button, the values for CO2, consumption, and speed get interpolated. After that, a drop-down 
-	                menu appears with which you can choose which of those results shall be displayed for you.  </p>";
+	                chart or chart and table. <br><br>  </p>";
 					
 	    $help_aggregation2 = "
 					<h1>Help</h1> <br>
@@ -177,20 +184,37 @@
 					<h2>Aggregation</h2>
 					<br>
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> To aggregate the selected data, click first on the analyse mode field. By clicking on the field 'Aggregation' you 
-		            get minimum, maximum, mean, and standard error. <br> Those will be displayed as chart and as table. A single phenomenon for the aggregation
-		            can be selected by clicking on the legend right from the chart.  </p>";    
+		            <p> To aggregate the selected data, click first on the field 'Analyse Mode'. After that, the drop-down menu 'Functions' 
+	                appears in which you can select 'Aggregation'. The Aggregation will show you minimum, maximum, mean, and standard error. <br> 
+	                Those will be displayed as chart and as table. A single phenomenon for the 
+		            aggregation can be selected by clicking on the legend right from the chart.<br><br>  For the identification of to high/low values 
+		            the minimum will be substracted from the maximum. Then, all values 25% over and 25% under the average will be displayed in green. 
+		            The values above till the maximum und below till the minimum will be displayed in yellow. All values above the maximum and below 
+		            the minimum will be displayed in red. </p>";    
 		            
         $help_filter2 = "
 					<h1>Help</h1> <br>
 					<a href='#analyser-help' class='back'>Back</a><br>
-					<h2>Filter</h2>
+					<h2>Limit Filter</h2>
 					<br>
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p>After you clicked on the field 'Analysis Mode' you can click on 'Filter'. Subsequently, a small window will open. Then you can 
+		            <p>To filter the selected data by limits, click first on the field 'Analyse Mode'. After that, the drop-down menu 'Functions' 
+	                appears in which you can select 'Limit Filter'. Subsequently, a small window will open. Then you can 
 		            use its filter for limits to choose a phenomenon (Speed, Consumption, Engine Load, Revolutions/Minute, CO2) and set a limit with the 
 		            slider bar by yourself. This way you can see which measurements are over and which are below the set limit. The info window will 
-		            show some typical limits as valuation help.  </p>";       
+		            show some typical limits for speed and consumption as valuation help.  </p>";   
+		            
+	    $help_environment = "
+	                <h1>Hilfe</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2Environment Analysis</h2>
+					<br>  
+					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
+	                To analyse the selected data for CO2 consumption click first on the field 'Analysis Mode'. After that, the drop-down menu 'Functions' 
+	                appears in which you can select 'Environment Analysis'. <br><br> The Environment Analysis calculates the ratio of CO2 emission and distance 
+	                travelled (in km). The resulting markers will be displayed in green (not more than 95g CO2/km, the EU-limit for new cars for 2015), 
+	                yellow (over 95g till 130 g CO2/km, the EU-limit for new cars for 2020) or red (over 130g CO2/km). <br><br> The values will be displayed in 
+	                the table and chart if there is a CO2 value and speed value for every marker.";  
                  
 					         
 	$id = "ID";

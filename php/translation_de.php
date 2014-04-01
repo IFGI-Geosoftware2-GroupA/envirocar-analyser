@@ -82,11 +82,11 @@
     $help_content = "<h1>Hilfe</h1> <br>
     				<a href='#analyser-help-mapview' id='maphelp'>Kartenausschnitt</a><br>
     				<a href='#analyser-help-getdata' id='getdatahelp'>Daten abrufen</a><br>
+    				<a href='#analyser-help-selection' id='environmenthelp'>Selektion</a>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
     				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
     				<a href='#analyser-help-filter' id='filterhelp'>Filter</a><br>
-    				<a href='#analyser-help-filter' id='environmenthelp'>Umweltanalyse</a>
-    				";
+    				<a href='#analyser-help-environment' id='environmenthelp'>Umweltanalyse</a>";
 	
 	$help_mapview = "
 					<h1>Hilfe</h1> <br>
@@ -94,8 +94,8 @@
 					<h2>Kartenausschnitt</h2>
 	                <br>
 	                <img src='img/help/suchenVerschieben.jpg' width='190' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		         	<p> Beim Öffnen der Webseite wrden automatisch die Daten der letzten gemessenen 24 Stunden angezeigt und die Karte wird dementsprechend 
-		         	zentriert. Durch Eingabe eines 
+		         	<p> Beim Öffnen der Webseite werden automatisch die Daten der letzten gemessenen 24 Stunden angezeigt und die Karte wird 
+		         	dementsprechend zentriert. Durch Eingabe eines 
 		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu diesem gezoomt. 
 		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
 		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
@@ -119,17 +119,29 @@
 		            <img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Möchten Sie Daten für eine bestimmte Zeit 
 		            analysieren, so wählen Sie unter 'Von:' und 'Bis:' das Zeitintervall 
-		            aus, in dem Sie auf die entsprechende Tage klicken und ggf. zusätzlich mit Hilfe der Schieberegler noch die Zeit wählen. Durch 
-		            Klicken in die obere linke oder rechte Ecke des Kalenderfensters kann in der Zeit zurück- oder vorgegangen werden. <br><br>
+		            aus, in dem Sie auf die entsprechende Tage klicken.  Durch Klicken in die obere linke oder rechte Ecke des Kalenderfensters kann 
+		            in der Zeit zurück- oder vorgegangen werden. Zusätzlich können Sie noch mit Hilfe der Schieberegler die genaue Zeit wählen. <br><br>
 		            Um nach Daten für ein Gebiet zu filtern, klicken Sie auf 'Raumauswahl', um mit einer Bounding Box, deren Größe 
 		            man durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. Wird die Bounding Box zu groß, färbt sie 
 		            sich rot. <br>
-		            Zum Schluss klicken Sie auf 'Daten abrufen'.  <br><br>  
-		            Wenn Sie anschließend nur die Daten einer bestimmten Fahrt haben möchten, können Sie diese unter 'Tracks' auswählen. <br>
+		            Zum Schluss klicken Sie auf 'Daten abrufen'.  <br><br>  </p>";
+		            
+    $help_selection ="
+                    <h1>Hilfe</h1> <br>
+					<a href='#analyser-help' class='back'>Zurück</a><br>
+					<h2>Selektion</h2>
+					<br>
+					<img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+                    Wenn Sie nach dem Abrufen der Daten nur die Daten einer bestimmten Fahrt haben möchten, können Sie diese unter 'Tracks' auswählen. <br>
 		            <img src='img/help/autos.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 					<p> Unter 'Mögliche Automodelle' können Sie dann noch entweder durch Klicken auf die 
 		            Doppelpfeile alle Automodelle abwählen oder auch gezielt nur einzelne durch Anklicken abwählen. Ebenso können Sie auch Automodelle 
-		            auf die gleiche Weise wieder auswählen. Die Daten werden anschließend neu geladen.</p>  <br>";
+		            auf die gleiche Weise wieder auswählen. Die Daten werden anschließend neu geladen.</p>  <br><br>
+		            <img src='img/help/legende.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <p> Beim Graphen zu den Phänomenen können diese durch Klicken in die Graph-Legende einzeln ausgewählt werden.
+		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomt werden und dies durch
+		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>  </p>
+		             </p>";
 	            
 	$help_interpolation = "
 					<h1>Hilfe</h1> <br>
@@ -138,18 +150,12 @@
 					<br>
 		            <img src='img/help/analyse.jpg' width='75' height='40' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <img src='img/help/analyse_aus.jpg' width='75' height='60' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Um die von Ihnen ausgewählten Daten zu interpolieren, 
 		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint das Drop-down-Menü 'Funktionen', in dem Sie 'Interpolation' auswählen können. 
 		            <br><br> Falls Sie für die Interpolation statt der Daten der Bounding Box nur Daten einiger Straßensegmente auswählen möchten, 
 		            können Sie auf 'Straßenauswahl' klicken. Danach können Sie mit linker Maustaste Punkte auf die Straßen 
-		            setzen, um so die Daten aller Straßensegmente zwischen diesen Punkten zu bekommen. <br><br> 
-		            <img src='img/help/legende.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Bei dem Graphen können Phänomene durch Klicken in dessen Legende ausgewählt werden.
-		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomt werden und dies durch
-		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>  </p>
-		            <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Durch drücken des Interpolationsknopfes werden die Werte für CO2, Verbrauch und Geschwindigkeit interpoliert. 
-		            Daraufhin erscheint ein Drop-down-Menü, bei dem Sie auswählen können, welches dieser Resultate angezeigt werden soll. </p>";   
+		            setzen, um so die Daten aller Straßensegmente zwischen diesen Punkten zu bekommen.  </p>";   
 		            
     $help_aggregation2 = "
 					<h1>Hilfe</h1> <br>
@@ -181,11 +187,11 @@
     $help_environment = "
                     <h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
-					<h2>Filter</h2>
+					<h2>Umweltanalyse</h2>
 					<br>  
 					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 					<p>Um die von Ihnen ausgewählten Daten nach CO2-Ausstoß zu analysieren, klicken Sie auf das Feld 'Analyse-Modus'. 
-					Danach erscheint das Drop-down-Menü 'Funktionen', in dem Sie 'Umweltfilter' auswählen können. <br><br> 
+					Danach erscheint das Drop-down-Menü 'Funktionen', in dem Sie 'Umweltanalyse' auswählen können. <br><br> 
 					Bei der Umweltanalyse wird der CO2-Ausstoß im Verhältnis zur zurückgelegten Strecke (in km) errechnet. 
 					Die sich daraus ergebenden Marker werden grün (nicht mehr als 95g CO2/km, dem EU-Neuwagengrenzwert ab 2015), gelb (über 95g bis 
 					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. <br><br> Die Werte werden in Tabelle und Graphen 
