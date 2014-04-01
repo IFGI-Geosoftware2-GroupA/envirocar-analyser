@@ -342,7 +342,6 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							 <span id="co2prokmid" style="display:none">
 							 	<input type="checkbox" name="co2prokm" onchange="refreshTable();" checked> <?php echo $co2perkm; ?>
 							 </span>
-							 <!--<input id="refreshBtn" type="button" onclick="refreshTable();" value="<?php echo $refresh; ?>">-->
 						   </p>
 					</form>
 					<script type="text/javascript">
