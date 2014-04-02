@@ -163,7 +163,9 @@
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Um die von Ihnen ausgewählten Daten nun zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. 
 					Nun erscheint ein Button 'Funktionen'. Bei betätigen dieses Buttons erscheint ein Drop-Down-Menü, in dem Sie 'Aggregation' auswählen können.
-					Bei Auswahl der Aggregation werden ihre Daten aggregiert und die Ergebnisse in der Tabelle und dem Graph dargestellt.<br>
+					Die Berechnungen werden serverseitig mit PHP durchgeführt. Die Ergebnisse werden, nach Abschluss der Berechnungen, im JSON Format wieder an den Client zurückgegeben. 
+					Die benötigte Zeit bis zur Darstellung der Ergebnisse ist dabei abhängig vom Umfang der selektierten Daten und der Auslastung des Servers. 
+					Anschließend werden die Ergebnisse in Graph und Tabelle dargestellt.<br>
 					<br>Durch einen Klick auf das in der Legende gelisteten Phänomen kann dies aus- oder abgewählt werden. Sie können innerhalb des Graphen zoomen, 
 					indem sie per Linksklick eine Box erstellen. Es wird nun auf die Werte innerhalb der Box gezoomt. Mit einem Klick auf 'Reset zoom' wird wieder
 					der komplette Graph angezeigt.<br>
