@@ -128,7 +128,7 @@ body {
 	width: 100%;
 }
 #trackSelectionList {
-	width: 130px;
+	width: 120px;
 }
 
 #streetSelection {
@@ -707,7 +707,7 @@ body {
 	border: 1px solid #92C049;
 	font-weight: bold;
 	height: 25px;
-	width: 130px;
+	width: 100%;
 }
 
 .spaceButton:hover {

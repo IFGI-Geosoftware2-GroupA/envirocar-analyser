@@ -16,6 +16,9 @@ var toggled = false;
 var analyserStarted = false;
 var lastContent = '';
 
+// datetimepicker variable
+var dateChange = false;
+
 // Screen resolution
 //alert("Höhe: " + wHeight + "Breite: " + wWidth);
 
@@ -139,19 +142,32 @@ $(function() {
 		showWeek : false,
 		dateFormat : "dd-mm-yy",
 		onClose : function(selectedDate) {
+			if (dateChange == true){
+		        return;
+		    } else {
+		        dateChange = true;
+		    }
 			$("#date-from").datepicker("option", "maxDate", selectedDate);
 			$("#date-from").datepicker("hide");
+			
+			dateChange = true;
 		},
 		beforeShow : function(selectedDate) {
-			if ($("#date-from").val() != ''){
-				var min = $("#date-from").datepicker("getDate");
-				$("#date-to").datepicker("option", "minDate", min);
-			}
+			if (dateChange == true){
+		        return;
+		    }else{
+		        dateChange = true;
+		    }    
+				
+			var min = $("#date-from").datepicker("getDate");
+			$("#date-to").datepicker("option", "minDate", min);
+				
 			$("#date-to").datepicker("option", "maxDate", "+0");
-			
+			dateChange = true;
 		}
 	});
 });
+
 
 /**
  * Window functions (height, width, scroll position)
