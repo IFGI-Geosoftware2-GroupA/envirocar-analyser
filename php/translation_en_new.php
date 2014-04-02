@@ -138,7 +138,7 @@
 					<br>
 					<img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> If the user wants to analyze data for a certain time, the user can determine a time interval by clicking on 
-		            'From' and 'To'. By clicking in a field in the date box, a calendar opens where you can select the date and time. 
+		            'From' and 'To'. By clicking in a field in the date box, a calendar opens where you can select the date and time. <br>
 		            <img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            By pressing the 'Get Data' button, all tracks within the time interval are visualized.<br><br><br><br>
 	                To select a certain region of space, the user has to click on 'Select space segment'. Now a bounding box is appearing, which can be dragged to the 
