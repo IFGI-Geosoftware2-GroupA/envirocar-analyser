@@ -218,8 +218,8 @@
 					<br>* green marker: The value is between the 25% - and 75% quartile of the selected limits. </p>";   
 		            
 	    $help_environment = "
-	                <h1>Hilfe</h1> <br>
-					<a href='#analyser-help' class='back'>Zurück</a><br>
+	                <h1>Help</h1> <br>
+					<a href='#analyser-help' class='back'>Back</a><br>
 					<h2Environmental Analysis</h2>
 					<br>  
 					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
