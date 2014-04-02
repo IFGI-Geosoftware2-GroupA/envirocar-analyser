@@ -451,7 +451,7 @@ function limitFilter() {
 
 // set Loading Screen Options when starting to request data
 function setLoadingScreenValues(max){
-	ladebalken.style.width = "0px";
+	loadingBar.style.width = "0px";
 	document.getElementById('amountTracks').innerHTML = max;
 	document.getElementById('currentTrack').innerHTML = "0";
 	document.getElementById('loading-div-trackText').innerHTML = "Tracks";
@@ -475,19 +475,18 @@ function setLoadingScreenInterim(){
 function animationStep() {
 	var maximum = parseInt(document.getElementById('amountTracks').innerHTML);
 	var current = parseInt(document.getElementById('currentTrack').innerHTML);
-	var ladebalken = document.getElementById("ladebalken");
-	var laenge = parseInt(ladebalken.style.width);
+	var loadingBar = document.getElementById("loadingBar");
+	var length = parseInt(loadingBar.style.width);
 	var progress = 250/maximum;
 
-	if (laenge < 250-progress) {
+	if (length < 250-progress) {
 		document.getElementById('currentTrack').innerHTML = current+1;
 		if(parseInt(document.getElementById('currentTrack').innerHTML) == maximum){
-			ladebalken.style.width = "250px";	
+			loadingBar.style.width = "250px";	
 			setLoadingScreenInterim();
 		}
 		else{
-			ladebalken.style.width = laenge + progress + "px";	
+			loadingBar.style.width = length + progress + "px";	
 		}
 	}
-	showProgressAnimation();
 }

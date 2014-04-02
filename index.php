@@ -1,11 +1,11 @@
 <?php
 if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
-	include 'php/translation_en.php';
+	include 'php/translation_en_new.php';
 	$other_lang = 'de';
 } else {
 	// uncomment to load revised help
-	// include 'php/translation_de_new.php';
-	include 'php/translation_de.php';
+	include 'php/translation_de_new.php';
+	// include 'php/translation_de.php';
 	$lang = 'de';
 	$other_lang = 'en';
 }
@@ -344,10 +344,10 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							 <input type="checkbox" name="co2" onchange="refreshTable();" checked> <?php echo $co2; ?>
 							 <input type="checkbox" name="geschwindigkeit" onchange="refreshTable();" checked> <?php echo $speed; ?>
 							 <input type="checkbox" name="motorlast" onchange="refreshTable();" checked> <?php echo $engine_load; ?>
-							 <input type="checkbox" name="umdrehungen" onchange="refreshTable();" checked> <?php echo $rpm; ?>
-							 <span id="co2prokmid" style="display:none">
-							 	<input type="checkbox" name="co2prokm" onchange="refreshTable();" checked> <?php echo $co2perkm; ?>
-							 </span>
+							 <input type="checkbox" name="umdrehungen" onchange="refreshTable();"checked> <?php echo $rpm; ?>
+							 <div id="co2prokmid" style="display:none">
+							 	<input type="checkbox" id="co2prokm" name="co2prokm" onchange="refreshTable();"> <?php echo $co2perkm; ?>
+							 </div>
 						   </p>
 					</form>
 					<script type="text/javascript">
@@ -463,7 +463,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<div id="loading-div-background" >
 			    <div id="loading-div">
 			      <div style="width: 250px;">
-					<span id="ladebalken" style="position: absolute; left: 25px; top: 100px; width: 0px; display: block; background: green; border: 1px solid black; height: 30px;">
+					<span id="loadingBar" style="position: absolute; left: 25px; top: 100px; width: 0px; display: block; background: green; border: 1px solid black; height: 30px;">
 					</span>
 					<span style="position: absolute; left: 25px; top: 100px; text-align: center; width: 250px; border: 1px solid black; height: 30px;">
 						<span id="loading-div-trackText">Tracks:</span> 

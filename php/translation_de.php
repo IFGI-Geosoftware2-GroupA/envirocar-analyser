@@ -118,11 +118,11 @@
 					<h2>Daten abrufen</h2>
 					<br>
 		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Möchten Sie Daten für eine bestimmte Zeit 
 		            analysieren, so wählen Sie unter 'Von:' und 'Bis:' das Zeitintervall 
 		            aus, in dem Sie auf die entsprechende Tage klicken.  Durch Klicken in die obere linke oder rechte Ecke des Kalenderfensters kann 
 		            in der Zeit zurück- oder vorgegangen werden. Zusätzlich können Sie noch mit Hilfe der Schieberegler die genaue Zeit wählen. <br><br>
+		            <img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            Um nach Daten für ein Gebiet zu filtern, klicken Sie auf 'Raumauswahl', um mit einer Bounding Box, deren Größe 
 		            man durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. Wird die Bounding Box zu groß, färbt sie 
 		            sich rot. <br>

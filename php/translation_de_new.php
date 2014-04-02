@@ -113,14 +113,16 @@
 					<h2>Daten abrufen</h2>
 					<br>
 		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Möchten Sie Daten für eine bestimmte Zeit analysieren, so können Sie unter 'Von:' und 'Bis:' das Zeitintervall bestimmen. Durch einen Klick in
-					ein Feld der Datumsbox, öffnet sich ein Kalendar in dem sie das Datum und die Uhrzeit auswählen können. Durch die Betätigung des
-					'Daten abrufen' Buttons werden alle Datensätze, die in dem von ihnen definierten Zeitintervall liegen, visualisiert. <br><br>
+					ein Feld der Datumsbox, öffnet sich ein Kalendar in dem sie das Datum und die Uhrzeit auswählen können. 
+					<img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+					Durch die Betätigung des
+					'Daten abrufen' Buttons werden alle Datensätze, die in dem von ihnen definierten Zeitintervall liegen, visualisiert. <br><br><br>
+					
 		            Möchten Sie einen bestimmten Raumausschnitt auswählen, so klicken Sie auf 'Raumauswahl'. Jetzt erscheint eine Bounding Box, die sie auf das von
 					ihnen gewünschte Gebiet ziehen können. Die Größe der Bounding Box kann flexibel verändert werden. Allerdings müssen Sie darauf achten, dass die
 					Bounding Box grün gefärbt ist, nur so ist eine Abfrage möglich. Ist die Bounding Box allerdings rot gefärbt, ist keine Abfrage möglich, da die
-					Abfrage der Daten möglicherweise zu rechenintensiv ist. Dies wiederrum könnte die Erfahrung mit unserer Website beeinträchtigen.
+					Abfrage der Daten möglicherweise zu rechenintensiv ist. Dies wiederrum könnte die Erfahrung mit unserer Website beeinträchtigen. <br><br>
 					Durch die Betätigung des 'Daten abrufen' Buttons werden alle Datensätze, die in dem von ihnen definierten Raumausschnitt liegen, visualisiert.<br>
 		            <br>Möchten Sie Daten zu einem bestimmtem Raumausschnitt während eines bestimmten Zeitintervalls haben, so können sie einfach die oben genannten Schritte
 					miteinander kombinieren.<br> 
@@ -162,7 +164,9 @@
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Um die von Ihnen ausgewählten Daten nun zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. 
 					Nun erscheint ein Button 'Funktionen'. Bei betätigen dieses Buttons erscheint ein Drop-Down-Menü, in dem Sie 'Aggregation' auswählen können.
-					Bei Auswahl der Aggregation werden ihre Daten aggregiert und die Ergebnisse in der Tabelle und dem Graph dargestellt.<br>
+					Die Berechnungen werden serverseitig mit PHP durchgeführt. Die Ergebnisse werden, nach Abschluss der Berechnungen, im JSON Format wieder an den Client zurückgegeben. 
+					Die benötigte Zeit bis zur Darstellung der Ergebnisse ist dabei abhängig vom Umfang der selektierten Daten und der Auslastung des Servers. 
+					Anschließend werden die Ergebnisse in Graph und Tabelle dargestellt.<br>
 					<br>Durch einen Klick auf das in der Legende gelisteten Phänomen kann dies aus- oder abgewählt werden. Sie können innerhalb des Graphen zoomen, 
 					indem sie per Linksklick eine Box erstellen. Es wird nun auf die Werte innerhalb der Box gezoomt. Mit einem Klick auf 'Reset zoom' wird wieder
 					der komplette Graph angezeigt.<br>
