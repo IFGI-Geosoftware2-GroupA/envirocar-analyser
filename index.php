@@ -3,6 +3,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	include 'php/translation_en.php';
 	$other_lang = 'de';
 } else {
+	// uncomment to load revised help
+	// include 'php/translation_de_new.php';
 	include 'php/translation_de.php';
 	$lang = 'de';
 	$other_lang = 'en';
@@ -42,7 +44,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 	<!-- Google Maps API v3.14 -->
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&language=<?php echo $lang; ?>&libraries=geometry,places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.14&key=AIzaSyAmIbYf9N82UMsx0t2-CUCNmQLhG9asRlA&sensor=true&language=
+	<?php echo $lang; ?>&libraries=geometry,places"></script>
 	
 	<!-- MarkerClusterer -->
 	<script src="js/lib/markerclusterer.js"></script>
@@ -365,6 +368,14 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<?php echo $help_getdata; ?>
 				</div>
 				
+				<div id="analyser-help-selection" class="top blue" style="display: none">
+					<?php echo $help_selection; ?>
+				</div>
+				
+				<div id="analyser-help-filter" class="top blue" style="display: none">
+					<?php echo $help_filter2; ?>
+				</div>
+				
 				<div id="analyser-help-interpolation" class="top blue" style="display: none">
 					<?php echo $help_interpolation; ?>
 				</div>
@@ -373,8 +384,8 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<?php echo $help_aggregation2; ?>
 				</div>
 				
-				<div id="analyser-help-filter" class="top blue" style="display: none">
-					<?php echo $help_filter2; ?>
+				<div id="analyser-help-environment" class="top blue" style="display: none">
+					<?php echo $help_environment; ?>
 				</div>
 				
 				<div id="analyser-contact" class="top blue" style="display: none">
@@ -388,10 +399,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 				<div id="analyser-terms" class="top blue" style="display: none">
 					<?php echo $terms_content; ?>
 				</div>
-				
-				<div id="analyser-help-environment" class="top blue" style="display: none">
-					<?php echo $help_environment; ?>
-				</div>
+			
 			</div>
 			
 			<script>
@@ -405,6 +413,11 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					
 					$("#getdatahelp").click(function() {
 						$("#analyser-help-getdata").show(200);
+						$("#analyser-help").hide(200);			
+					});
+					
+					$("#selectionhelp").click(function() {
+						$("#analyser-help-selection").show(200);
 						$("#analyser-help").hide(200);			
 					});
 					
@@ -431,6 +444,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					$(".back").click(function() {
 						$("#analyser-help").show(200);	
 						$("#analyser-help-mapview").hide(200);
+						$("#analyser-help-selection").hide(200);
 						$("#analyser-help-getdata").hide(200);
 						$("#analyser-help-interpolation").hide(200);
 						$("#analyser-help-aggregation").hide(200);

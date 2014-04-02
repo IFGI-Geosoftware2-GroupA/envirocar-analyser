@@ -273,6 +273,7 @@ function toggleAnalyserPanel(id) {
 	document.getElementById('analyser-help-interpolation').style.display = 'none';
 	document.getElementById('analyser-help-aggregation').style.display = 'none';
 	document.getElementById('analyser-help-filter').style.display = 'none';
+	document.getElementById('analyser-help-environment').style.display = 'none';
 	
 	document.getElementById('map-container').style.width = '50%';
 	resizeMap();

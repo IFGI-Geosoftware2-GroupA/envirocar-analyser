@@ -24,8 +24,6 @@
 	$imprint = "Impressum";
 	$imprint_content = "<h1>Impressum</h1>
 	                    <br/>
-	                    <img src='img/enviroCarAnalyser.png' width='200px' align='center' vspace='5' hspace='5' alt='enviroCarAnalyserLogo'>
-	                    <br/><br/>
 	                    Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
 	                    Plattform enviroCar. Das envirocar analyser Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
 	                    Genauigkeit oder Vollständigkeit der auf dieser Webseite dargestellten Inhalte, es sei denn der Fehler sei unter 
@@ -84,11 +82,11 @@
     $help_content = "<h1>Hilfe</h1> <br>
     				<a href='#analyser-help-mapview' id='maphelp'>Kartenausschnitt</a><br>
     				<a href='#analyser-help-getdata' id='getdatahelp'>Daten abrufen</a><br>
-    				<a href='#analyser-help-selection' id='selectionhelp'>Selektion</a><br>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
     				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
     				<a href='#analyser-help-filter' id='filterhelp'>Filter</a><br>
-    				<a href='#analyser-help-environment' id='environmenthelp'>Umweltanalyse</a>";
+    				<a href='#analyser-help-filter' id='environmenthelp'>Umweltanalyse</a>
+    				";
 	
 	$help_mapview = "
 					<h1>Hilfe</h1> <br>
@@ -96,20 +94,17 @@
 					<h2>Kartenausschnitt</h2>
 	                <br>
 	                <img src='img/help/suchenVerschieben.jpg' width='190' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		         	<p> Beim Öffnen der Webseite werden automatisch die Daten der letzten gemessenen 24 Stunden angezeigt und die Karte wird 
-		         	dementsprechend zentriert. Durch Eingabe eines 
-		            anderen Ortes in NRW in das Suchfeld der Karte, wird zu diesem gezoomt. 
-		            Es können nur Orte innerhalb NRWs ausgewählt werden. Entweder durch Klicken des 
-		            Feldes mit den Pfeilen oder durch gedrückte linke Maustaste kann ein anderer 
-		            Kartenausschnitt ausgewählt werden. <br><br>  </p>
+		         	<p> Beim Öffnen der Webseite werden automatisch die 24 zuletzt gemessenen Stunden angezeigt und die Karte wird dementsprechent zentriert.
+					Wenn der Nutzer nach einem beliebigen Ort in NRW suchen möchte, kann er dies über das Suchfeld mit Hilfe der Google Places API tun. Nach dem
+					Bestätigen seiner Auswahl wird die Karte auf die Auswahl des Nutzers zentriert. Hierbei können nur Orte innerhalb NRWs ausgewählt werden. 
+					Mit Hilfe der gängigen Mausinteraktionen kann der Nutzer den Kartenausschnitt beliebig, innerhalb der Grenzen von NRW, verschieben. Zu den
+					gängigen Maus- und Tastaturinteraktionen gehört das Panning per Maus und den Pfeiltasten. <br><br>  </p>
 		            <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
-		            <p> Durch Benutzung des Scrollrades der Maus, 
-		            durch Klicken auf das Plus- und das Minussymbol der Zoomskala oder durch Klicken auf selbige, 
-		            kann hinein und herausgezoomt werden. <br><br> <br><br>  </p>
+		            <p> Durch Benutzung des Scrollrades oder durch Klicken 
+					auf das Plus- und das Minussymbol der Zoomskala, kann hinein und herausgezoomt werden. <br><br> <br><br>  </p>
 		            <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		            <p> Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen der 
-		            reinen Vektorkarte von Google Maps, dem Hybrid aus Satellitenfoto und Straßenvektoren von Google Maps und einer 
-		            OpenStreepMap-Karte gewählt werden. 
+		            <p> Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen der reinen Vektorkarte von Google Maps, dem Hybrid aus Satellitenfoto und Straßenvektoren von Google Maps und einer 
+					OpenStreepMap-Karte gewählt werden. 
 		            <br/> </p>";
 	
 	$help_getdata ="
@@ -119,31 +114,20 @@
 					<br>
 		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Möchten Sie Daten für eine bestimmte Zeit 
-		            analysieren, so wählen Sie unter 'Von:' und 'Bis:' das Zeitintervall 
-		            aus, in dem Sie auf die entsprechende Tage klicken.  Durch Klicken in die obere linke oder rechte Ecke des Kalenderfensters kann 
-		            in der Zeit zurück- oder vorgegangen werden. Zusätzlich können Sie noch mit Hilfe der Schieberegler die genaue Zeit wählen. <br><br>
-		            Um nach Daten für ein Gebiet zu filtern, klicken Sie auf 'Raumauswahl', um mit einer Bounding Box, deren Größe 
-		            man durch Ziehen des Randes beliebig verändern kann, einen Raumausschnitt auszuwählen. Wird die Bounding Box zu groß, färbt sie 
-		            sich rot. <br>
-		            Zum Schluss klicken Sie auf 'Daten abrufen'.  <br><br>  </p>";
-		            
-    $help_selection ="
-                    <h1>Hilfe</h1> <br>
-					<a href='#analyser-help' class='back'>Zurück</a><br>
-					<h2>Selektion</h2>
-					<br>
-					<img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-                    Wenn Sie nach dem Abrufen der Daten nur die Daten einer bestimmten Fahrt haben möchten, können Sie diese unter 'Tracks' auswählen. <br>
+		            <p> Möchten Sie Daten für eine bestimmte Zeit analysieren, so können Sie unter 'Von:' und 'Bis:' das Zeitintervall bestimmen. Durch einen Klick in
+					ein Feld der Datumsbox, öffnet sich ein Kalendar in dem sie das Datum und die Uhrzeit auswählen können. Durch die Betätigung des
+					'Daten abrufen' Buttons werden alle Datensätze, die in dem von ihnen definierten Zeitintervall liegen, visualisiert. <br><br>
+		            Möchten Sie einen bestimmten Raumausschnitt auswählen, so klicken Sie auf 'Raumauswahl'. Jetzt erscheint eine Bounding Box, die sie auf das von
+					ihnen gewünschte Gebiet ziehen können. Die Größe der Bounding Box kann flexibel verändert werden. Allerdings müssen Sie darauf achten, dass die
+					Bounding Box grün gefärbt ist, nur so ist eine Abfrage möglich. Ist die Bounding Box allerdings rot gefärbt, ist keine Abfrage möglich, da die
+					Abfrage der Daten möglicherweise zu rechenintensiv ist. Dies wiederrum könnte die Erfahrung mit unserer Website beeinträchtigen.
+					Durch die Betätigung des 'Daten abrufen' Buttons werden alle Datensätze, die in dem von ihnen definierten Raumausschnitt liegen, visualisiert.<br>
+		            <br>Möchten Sie Daten zu einem bestimmtem Raumausschnitt während eines bestimmten Zeitintervalls haben, so können sie einfach die oben genannten Schritte
+					miteinander kombinieren.<br> 
+		            <br>Wenn Sie anschließend nur die Daten einer bestimmten Fahrt haben möchten, können Sie diese unter 'Tracks' auswählen.<br>
 		            <img src='img/help/autos.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-					<p> Unter 'Mögliche Automodelle' können Sie dann noch entweder durch Klicken auf die 
-		            Doppelpfeile alle Automodelle abwählen oder auch gezielt nur einzelne durch Anklicken abwählen. Ebenso können Sie auch Automodelle 
-		            auf die gleiche Weise wieder auswählen. Die Daten werden anschließend neu geladen.</p>  <br><br>
-		            <img src='img/help/legende.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Beim Graphen zu den Phänomenen können diese durch Klicken in die Graph-Legende einzeln ausgewählt werden.
-		            Durch halten der linken Maustaste und aufziehen eines Rechtecks kann innerhalb des Graphs gezoomt werden und dies durch
-		            den daraufhin erscheinenden Knopf wieder rückgängig gemacht werden. <br><br>  </p>
-		             </p>";
+					<p> Unter 'Mögliche Automodelle' können Sie dann entweder durch Klicken auf die Doppelpfeile alle Automodelle abwählen oder auch gezielt nur 
+					einzelne durch Anklicken abwählen. Ebenso können Sie auch Automodelle auf die gleiche Weise wieder auswählen. Die Daten werden anschließend neu geladen.</p>  <br>";
 	            
 	$help_interpolation = "
 					<h1>Hilfe</h1> <br>
@@ -152,12 +136,23 @@
 					<br>
 		            <img src='img/help/analyse.jpg' width='75' height='40' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <img src='img/help/analyse_aus.jpg' width='75' height='60' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <p> Um die von Ihnen ausgewählten Daten nun zu interpolieren, klicken Sie auf das Feld 'Analyse-Modus'. 
+					Nun erscheint ein Button 'Funktionen'. Bei Betätigen dieses Buttons erscheint ein Drop-Down-Menü, in dem Sie 'Interpolation' auswählen können. 
+					Sie können für die Interpolation drei verschiedene Arten wählen:<br>
+					<br>* Datenauswahl per Bounding Box: Legen sie die Bounding Box über den gewünschten Raumausschnitt.<br>
+					* Datenauswahl per TrackID: Wählen sie im Drop-Down-Menü 'Tracks' den von ihnen gewünschten Track aus.<br>
+					* Datenauswahl per Straßenauswahl: Klicken sie den Button 'Straßensegmente'. Nun können sie Straßensegmente auswählen, die anschließend markiert werden.<br>
+		            <br>Haben sie eine der 3 verschiedenen Arten der Datenauswahl gewählt, können sie mit einem Klick auf 'Interpolation' die Interpolation starten.
+					Die interpolierten Ergebnisse können nun per Auswahl aus dem Drop-Down-Menü 'Messwert auswählen' ausgewählt und visualisiert werden.<br><br>
+		            <img src='img/help/legende.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <p> Durch einen Klick auf eines in der Legende gelisteten Phänomene kann jenes aus- oder abgewählt werden. Sie können innerhalb des Graphen zoomen, 
+					indem sie per Linksklick eine Box erstellen. Es wird nun auf die Werte innerhalb der Box gezoomt. Mit einem Klick auf 'Reset zoom' wird wieder
+					der komplette Graph angezeigt.<br>
+					<br>Durch Setzen und Entfernen der Haken und einem Klick auf 'Aktualisieren', wird die Tabelle aktualisiert und es werden nur noch die von ihnen 
+					ausgewählten Phänomene angezeigt.<br>  </p>
 		            <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Um die von Ihnen ausgewählten Daten zu interpolieren, 
-		            klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint das Drop-down-Menü 'Funktionen', in dem Sie 'Interpolation' auswählen können. 
-		            <br><br> Falls Sie für die Interpolation statt der Daten der Bounding Box nur Daten einiger Straßensegmente auswählen möchten, 
-		            können Sie auf 'Straßenauswahl' klicken. Danach können Sie mit linker Maustaste Punkte auf die Straßen 
-		            setzen, um so die Daten aller Straßensegmente zwischen diesen Punkten zu bekommen.  </p>";   
+		            <p> Haben sie eine der 3 verschiedenen Arten der Datenauswahl gewählt, können sie mit einem Klick auf 'Interpolation' die Interpolation starten.
+					Die interpolierten Ergebnisse können nun per Auswahl aus dem Drop-Down-Menü 'Messwert auswählen' ausgewählt und visualisiert werden. </p>";   
 		            
     $help_aggregation2 = "
 					<h1>Hilfe</h1> <br>
@@ -165,14 +160,14 @@
 					<h2>Aggregation</h2>
 					<br>
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Um die von Ihnen ausgewählten Daten zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint das Drop-down-Menü 
-		            'Funktionen', in dem Sie 'Aggregation' auswählen können. <br> <br> Nach der Aggregation erscheinen Durchschnitt, Minimum, Maximum, und 
-		            Standardfehler. Diese werden sowohl
-		            in Form eines Graphen, als auch in Tabellenform dargestellt. Durch Klicken in die Legende rechts von der Grafik kann ein einzelnes 
-		            Phänomen zur Aggregation ausgewählt werden. <br><br> Zur Kennzeichnung zu hoher/niedriger Werte wird das Minimum vom Maximum abgezogen. 
-		            Dann werden die 25% über und 25% unter dem Mittelwert als grüne Punkte dargestellt. Die Werte darüber bis zum Maximum und darunter 
-		            bis zum Minimum werden gelb gekennzeichnet. Alle Werte, die noch höher als das Maximum bzw. niedriger als das Minimum liegen, 
-		            werden als rote Punkte dargestellt. </p>";    
+		            <p> Um die von Ihnen ausgewählten Daten nun zu aggregieren, klicken Sie auf das Feld 'Analyse-Modus'. 
+					Nun erscheint ein Button 'Funktionen'. Bei betätigen dieses Buttons erscheint ein Drop-Down-Menü, in dem Sie 'Aggregation' auswählen können.
+					Bei Auswahl der Aggregation werden ihre Daten aggregiert und die Ergebnisse in der Tabelle und dem Graph dargestellt.<br>
+					<br>Durch einen Klick auf das in der Legende gelisteten Phänomen kann dies aus- oder abgewählt werden. Sie können innerhalb des Graphen zoomen, 
+					indem sie per Linksklick eine Box erstellen. Es wird nun auf die Werte innerhalb der Box gezoomt. Mit einem Klick auf 'Reset zoom' wird wieder
+					der komplette Graph angezeigt.<br>
+					<br>Durch Setzen und Entfernen der Haken und einem Klick auf 'Aktualisieren', wird die Tabelle aktualisiert und es werden nur noch die von ihnen 
+					ausgewählten Phänomene angezeigt.<br></p>";    
 		            
     $help_filter2 = "
 					<h1>Hilfe</h1> <br>
@@ -180,24 +175,28 @@
 					<h2>Filter</h2>
 					<br>  
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> Um die von Ihnen ausgewählten Daten nach Grenzwerten zu filtern, klicken Sie auf das Feld 'Analyse-Modus'. Danach erscheint 
-		            das Drop-down-Menü 'Funktionen', in dem Sie 'Grenzwert-Filter' auswählen können. <br><br> Mit dem Grenzwert-Filter können Sie ein Phänomen 
-		            (Geschwindigkeit, Verbrauch, Motorlast, Umdrehungen/min, CO2) auswählen und selbst mit Hilfe des Schiebereglers 
-		            Grenzwerte festlegen. <br> So können Sie sehen, welche Messwerte über und welche unter dem festgelegten Grenzwert liegen. Als 
-		            Einschätzungshilfe werden im Info-Fenster typische Grenzwerte für Geschwindigkeit und Verbrauch angezeigt. </p>";     
+		            <p> Wenn sie nach Grenzwerten filtern möchten, müssen sie in den 'Analyse-Modus' wechseln.
+					Nun erscheint ein Button 'Funktionen'. Bei betätigen dieses Buttons erscheint ein Drop-Down-Menü, in dem Sie 'Grenzwertfilter' auswählen können.
+					Es erscheint ein neues Fenster in dem sie das gewünschte Phänomenen auswählen können und die von ihnen gewünschten Grenzwerte festlegen können.
+					In der orange gefärbten Box werden Informationen zu den jeweiligen Phänomenen angezeigt. 
+					<br>Zum Beispiel: 'Die Richtgeschwindigkeit auf deutschen Autobahnen beträgt 130 km/h.'
+					<br>Bei Bestätigung ihrer Auswahl werden die Marker der Messwerte, die auf ihre Auswahl zutreffen, dementsprechend eingefärbt.<br>
+					<br>* Rote Marker: Der Wert liegt außerhalb der gewählten Grenzen.<br>
+					* Gelbe Marker: Der Wert liegt innerhalb des 25%- oder 75% Quartil der gewählten Grenzen.<br>
+					* Grüne Marker: Der Wert liegt zwischen dem 25%- und 75% Quartil der gewählten Grenzen.<br> </p>";     
 		            
     $help_environment = "
                     <h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
-					<h2>Umweltanalyse</h2>
+					<h2>Filter</h2>
 					<br>  
 					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-					<p>Um die von Ihnen ausgewählten Daten nach CO2-Ausstoß zu analysieren, klicken Sie auf das Feld 'Analyse-Modus'. 
-					Danach erscheint das Drop-down-Menü 'Funktionen', in dem Sie 'Umweltanalyse' auswählen können. <br><br> 
-					Bei der Umweltanalyse wird der CO2-Ausstoß im Verhältnis zur zurückgelegten Strecke (in km) errechnet. 
+					<p>Wenn sie die Umweltanalyse starten möchten, müssen sie in den 'Analyse-Modus' wechseln.
+					Nun erscheint ein Button 'Funktionen'. Bei betätigen dieses Buttons erscheint ein Drop-Down-Menü, in dem Sie 'Umweltanalyse' auswählen können.
+					Nach drücken auf 'Umweltanalyse' wird der CO2-Ausstoß in Verhältnis zu zurückgelegter Strecke (in Kilometern) gesetzt. 
 					Die sich daraus ergebenden Marker werden grün (nicht mehr als 95g CO2/km, dem EU-Neuwagengrenzwert ab 2015), gelb (über 95g bis 
-					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. <br><br> Die Werte werden in Tabelle und Graphen 
-					angezeigt. Dazu muss zu jeder dargestellten Messung CO2-Wert und Geschwindigkeitswert vorhanden sein.</p>";  
+					130g CO2/km, dem EU-Neuwagengrenzwert ab 2020) oder rot (über 130g CO2/km) dargestellt. Die Werte werden in Tabelle und Graphen 
+					angezeigt. Dazu muss zu jede dargestellte Messung einen CO2-Wert und einen Geschwindigkeitswert beinhalten.</p>";  
                  
 	$speed_info = "
 	                <b>Info: </b> Innerorts gilt in Deutschland eine Höchstgeschwindigkeit von 50 km/h. Außerhalb geschlossener Ortschaften 
@@ -302,7 +301,7 @@
 	
 	$ClearIDW = "Löschen";
 	
-	$selectIDW = "Auswählen";
+	$selectIDW = "Messwerte auswählen";
 	
 	$selectIDWco2 = "CO2";
 	

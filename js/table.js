@@ -202,7 +202,6 @@ function createTable() {
 		consumption = new Array();
 		co2 = new Array();
 		speed = new Array();
-		//maf = Array();
 		engineload = new Array();
 		rpm = new Array();
 		ratio = new Array();
@@ -210,19 +209,26 @@ function createTable() {
 		//Put Phenomenons in Arrays
 		for ( i = 0, j = 0; i < measurements.length; i++) {
 			for ( j = 0; j < measurements[i].phenomenons.length; j++) {
+				
 				if (measurements[i].getPhenomenons()[j].name == "Consumption") {
 					consumption.push((Number(measurements[i].getValues()[j]).toFixed(2)));
+					
 				} else if (measurements[i].getPhenomenons()[j].name == "CO2") {
 					co2.push((Number(measurements[i].getValues()[j]).toFixed(2)));
+					
 				} else if (measurements[i].getPhenomenons()[j].name == "Speed") {
 					speed.push((Number(measurements[i].getValues()[j]).toFixed(2)));
+					
 				} else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
 					engineload.push((Number(measurements[i].getValues()[j]).toFixed(2)));
+					
 				} else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
 					rpm.push((Number(measurements[i].getValues()[j]).toFixed(0)));
 				}
 			}
-		
+			
+			//The ratio array will be filled with the values of the Divison of CO2 and Speed 
+			//which will be multiplie with the factor 1000 to get the unit g/km
 			ratio.push((Number((co2[i]/speed[i]).toFixed(2))*1000));
 			
 			// If values are not measured,
@@ -305,7 +311,6 @@ function createTable() {
 			var id = document.createAttribute("id");
 			id.nodeValue = measurements[i].getId();
 			currentRow.setAttributeNode(id);
-			// currentRow.onclick = openMarkerInfoWindow(id.nodeValue);
 
 			currentCell0 = document.createElement("td");
 			currentCell1 = document.createElement("td");
@@ -366,6 +371,9 @@ function createTable() {
 	}
 }
 
+/**
+ * Delete the entire table out of the DOM
+ */
 function deleteTable() {
 	var tbl = document.getElementById("tableID");
 	tbl.parentNode.removeChild(tbl);
@@ -376,23 +384,31 @@ function deleteTable() {
 	}
 }
 
+/**
+ * Delete the rows of the table with a specific index
+ */
 function deleteRows(value) {
 
 	var index = value;
 	document.getElementById("tableID").deleteRow(index);
 }
 
+/**
+ * Show the column with the co2 per kilometre values
+ */
 function ratiocolumn(){
 	$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').show();
 	document.getElementById("co2prokmid").style.display ="block";
 }
 
-// create DIV element and append to the table cell
+/**
+ * create DIV element and append to the table cell
+ */
 function createCell(cell, text) {
-    var div = document.createElement('div'), // create DIV element
-        txt = document.createTextNode(text); // create text node
-    	div.appendChild(txt);                    // append text node to the DIV
-    	cell.appendChild(div);                   // append DIV to the table cell
+    var div = document.createElement('div'), 
+        txt = document.createTextNode(text); 
+    	div.appendChild(txt);                    
+    	cell.appendChild(div);                   
 }
 
 /**
