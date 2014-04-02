@@ -25,6 +25,8 @@
 	$imprint_content = "
 	                    <h1>Impressum</h1>
 	                    <br/>
+	                    <img src='img/enviroCarAnalyser.png' width='200px' align='center' vspace='5' hspace='5' alt='enviroCarAnalyserLogo'>
+	                    <br/><br/>
 	                    envirocar-analyser is a web page for displaying and analyzing the environmental data of the 
 	                    community platform envirocar. The envirocar analyser development team does not take any 
 	                    responsibility for the currentness, accuracy, and completeness of the contents displayed 

@@ -140,11 +140,15 @@ $(function() {
 		dateFormat : "dd-mm-yy",
 		onClose : function(selectedDate) {
 			$("#date-from").datepicker("option", "maxDate", selectedDate);
+			$("#date-from").datepicker("hide");
 		},
 		beforeShow : function(selectedDate) {
-			var min = $("#date-from").datepicker("getDate");
-			$("#date-to").datepicker("option", "minDate", min);
+			if ($("#date-from").val() != ''){
+				var min = $("#date-from").datepicker("getDate");
+				$("#date-to").datepicker("option", "minDate", min);
+			}
 			$("#date-to").datepicker("option", "maxDate", "+0");
+			
 		}
 	});
 });

@@ -130,7 +130,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 		<div id="header-nav" >
 			<div class="logo">
 				<a href="./index.php" title="Homepage">
-					<img id="logo" alt="enivroCar analyser logo" width="75px" src="img/enviroCarAnalyser.png">
+					<img id="logo" alt="enivroCar analyser logo" width="100%" src="img/enviroCarAnalyser.png">
 				</a>
 			</div>
 			
@@ -222,7 +222,10 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<div id="analyser-dropdown">
 				<ul>
 					<li class="analyser-dropdown-topmenu">
-						<a href="#"><?php echo $functions; ?></a>
+						<a href="#">
+							<img src="img/functions.png" width="32px" height="32px" alt="Functions">
+							<?php echo $functions; ?>
+						</a>
 						<ul>
 							<li class="analyser-dropdown-submenu">
 								<a id="" href="#"  onclick="interpolate();" title="Start Interpolation">
@@ -284,7 +287,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</div>
 			
 			<div id="helpButton" >
-				<a href="#" onclick="toggleHelp();" title="Hilfe"><img src="img/help.png" width="48px" height="48px" alt="Hilfe"></a>
+				<a href="#" onclick="toggleHelp();" title="Hilfe"><img src="img/helpIcon.png" width="48px" height="48px" alt="Hilfe"></a>
 			</div>
 			
 		</div> <!-- end div header-nav -->	
