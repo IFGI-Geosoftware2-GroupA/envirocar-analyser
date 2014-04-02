@@ -140,7 +140,7 @@
 		            <p> If the user wants to analyze data for a certain time, the user can determine a time interval by clicking on 
 		            'From' and 'To'. By clicking in a field in the date box, a calendar opens where you can select the date and time. By pressing the 'Get Data' button, 
 		            all tracks within the time interval are visualized.<br><br>
-		            <img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'> <br><br><br><br><br>
+		            <img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 	                To select a certain region of space, the user has to click on 'Select space segment'. Now a bounding box is appearing, which can be dragged to the 
 	                desired area. The size of the bounding box can be flexibly changed. However, you must make sure that the bounding box is colored green. A query is 
 	                only possible if the bounding box is green. If the bounding box is colored red, no query is possible because the query of the data may be too 
