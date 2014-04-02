@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
-	include 'php/translation_en.php';
+	include 'php/translation_en_new.php';
 	$other_lang = 'de';
 } else {
 	// uncomment to load revised help
