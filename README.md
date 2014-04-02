@@ -1,4 +1,4 @@
-envirocar-analyser
+enviroCar analyser
 ==================
 
 _(:gb: English version below)_
