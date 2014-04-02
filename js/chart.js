@@ -45,13 +45,6 @@ function LineChart(language) {
 			zoomType : 'xy',
 			reflow: true
 		},
-		// title : {
-			// x : -20
-		// },
-		// subtitle : {
-			// x : -20,
-			// y : 30
-		// },
 		xAxis : {
 			id : 'x-Axis',
 			type: 'datetime',
@@ -317,7 +310,7 @@ LineChart.prototype.createChartFromMeasurement = function(measurement){
 		if(viewMode == "dual")	lineChart.getChart().setSize($("#map").width(), $("#map").height() / 3);
 };
 
-//determine the color of the chart points if a classification is made
+//determine the color of the chart points if a classification is necessary(only if limit filter is active)
 LineChart.prototype.setColorByClassification = function(value, phenomenon){
 	if(phenomenon == limitFilterSettings[0]){
 		var tolerance = (limitFilterSettings[2] - limitFilterSettings[1]) * 1/4;
@@ -327,89 +320,6 @@ LineChart.prototype.setColorByClassification = function(value, phenomenon){
 	}
 	else{
 		return null;
-	}
-};
-
-
-// creates a LineChart from a track json
-// VDOP,PDOP and GDOP are not visible in default
-// NOTE: This is just a test function, to show a sample chart
-LineChart.prototype.createChartFromTrack = function() {
-	// Arrays to save the Phenomenon Values
-	var speedA = new Array();
-	var consumptionA = new Array();
-	var engineLoadA = new Array();
-	var rpmA = new Array();
-	var co2A = new Array();
-	
-	var chart = this;
-	
-	var query = new Query('measurements');
-	measurements = query.getData();
-	loadCarModels();
-	//query data from server and sort phenomenon values to the corresponding arrays
-	for (i=0, j=0; i< measurements.length; i++) {
-		var d = measurements[i].getTimestamp();
-		var utc = Date.UTC(d.getYear(), d.getMonth(), d.getDay(), d.getHours(), d.getMinutes(), d.getSeconds());
-		var measurementId = measurements[i].getId() + '';
-		for (j=0;j<measurements[i].phenomenons.length;j++) {
-			
-			if (measurements[i].getPhenomenons()[j].name == "Consumption") {
-				consumptionA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(5)), name: measurementId, id: 'Consumption' +  measurementId});	
-			} 
-			
-			else if (measurements[i].getPhenomenons()[j].name == "CO2") {
-				co2A.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'CO2' +  measurementId});
-			} 
-			
-			else if (measurements[i].getPhenomenons()[j].name == "Speed") {
-				speedA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Speed' +  measurementId});	
-			} 
-			
-			else if (measurements[i].getPhenomenons()[j].name == "Engine Load") {
-				engineLoadA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'EngineLoad' +  measurementId});	
-			}
-			
-			else if (measurements[i].getPhenomenons()[j].name == "Rpm") {
-				rpmA.push({x: utc, y: parseFloat(measurements[i].getValues()[j].toFixed(2)), name: measurementId, id: 'Rpm' +  measurementId});			
-			}
-		}
-	}
-	speedA.sort(chart.compare);
-	consumptionA.sort(chart.compare);
-	co2A.sort(chart.compare);
-	engineLoadA.sort(chart.compare);
-	rpmA.sort(chart.compare);
-	// display labels in chosen language
-	if(chart.getLanguage() == 'de'){
-		chart.setTitle('Messungen');
-		chart.setAxisTitle('x', 'Zeit');
-		chart.setAxisTitle('y', 'Werte');
-		if(speedA.length > 0)			chart.addSeries('Geschwindigkeit(km/h)', true, 'Speed', speedA);
-		if(consumptionA.length > 0)		chart.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
-		if(co2A.length > 0)				chart.addSeries('CO2(g/h)', true, 'CO2', co2A);
-		if(engineLoadA.length > 0)		chart.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
-		if(rpmA.length > 0)				chart.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);	
-	}
-	else if(chart.getLanguage() == 'en'){
-		chart.setTitle('Measurements');
-		chart.setAxisTitle('x', 'Time');
-		chart.setAxisTitle('y', 'Values');
-		if(speedA.length > 0)			chart.addSeries('Speed(km/h)', true, 'Speed', speedA);
-		if(consumptionA.length > 0)		chart.addSeries('Consumption(l/h)', true, 'Consumption', consumptionA);
-		if(co2A.length > 0)				chart.addSeries('CO2(g/h)', true, 'CO2', co2A);
-		if(engineLoadA.length > 0)		chart.addSeries('Engine Load(%)', true, 'EngineLoad', engineLoadA);
-		if(rpmA.length > 0)				chart.addSeries('Revolutions(u/min)', true, 'Rpm', rpmA);	
-	}	
-	else{
-		chart.setTitle('Messungen');
-		chart.setAxisTitle('x', 'Zeit');
-		chart.setAxisTitle('y', 'Werte');
-		if(speedA.length > 0)			chart.addSeries('Geschwindigkeit(km/h)', true, 'Speed', speedA);
-		if(consumptionA.length > 0)		chart.addSeries('Verbrauch(l/h)', true, 'Consumption', consumptionA);
-		if(co2A.length > 0)				chart.addSeries('CO2(g/h)', true, 'CO2', co2A);
-		if(engineLoadA.length > 0)		chart.addSeries('Motorlast(%)', true, 'EngineLoad', engineLoadA);
-		if(rpmA.length > 0)				chart.addSeries('Umdrehungen(u/min)', true, 'Rpm', rpmA);		
 	}
 };
 
@@ -423,7 +333,7 @@ LineChart.prototype.createChartFromTrack = function() {
 
 // Constructor
 function BarChart(language) {
-	// default line chart options for time related data
+	// default bar chart options for aggregation results
 	this.options = {
 		chart : {
 			renderTo : 'analyser-chart',
@@ -508,7 +418,7 @@ BarChart.prototype.createChartFromAggregation = function(json){
 	var rpm = new Array();
 	var engineLoad = new Array();
 	
-	//sort the values to the arrays
+	//sort the values to the arrays, if phenomenon exists
 	if(json[0]['CO2']['Mean'] != 'No Data'){
 		co2.push(parseFloat(json[0]['CO2']['Mean'].toFixed(2)));
 		co2.push(parseFloat(json[0]['CO2']['Standard Error'].toFixed(2)));
@@ -544,7 +454,7 @@ BarChart.prototype.createChartFromAggregation = function(json){
 		speed.push(parseFloat(json[4]['Speed']['Max'].toFixed(2)));	
 	}
 	
-	//add information in the language selected
+	//add information and series in the language selected
 	if(this.getLanguage() == 'en'){
 		this.setTitle('Aggregation Results');
 		this.setAxisTitle('y', 'Values');
