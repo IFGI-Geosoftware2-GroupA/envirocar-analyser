@@ -84,7 +84,7 @@
     				<a href='#analyser-help-getdata' id='getdatahelp'>Daten abrufen</a><br>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
     				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
-    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a><br>
+    				<a href='#analyser-help-filter' id='filterhelp'>Grenzwert-Filter</a><br>
     				<a href='#analyser-help-filter' id='environmenthelp'>Umweltanalyse</a>
     				";
 	
@@ -114,9 +114,9 @@
 					<br>
 		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Möchten Sie Daten für eine bestimmte Zeit analysieren, so können Sie unter 'Von:' und 'Bis:' das Zeitintervall bestimmen. Durch einen Klick in
-					ein Feld der Datumsbox, öffnet sich ein Kalendar in dem sie das Datum und die Uhrzeit auswählen können. 
-					<img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-					Durch die Betätigung des 'Daten abrufen' Buttons werden alle Datensätze, die in dem von ihnen definierten Zeitintervall liegen, visualisiert. <br><br><br>
+					ein Feld der Datumsbox, öffnet sich ein Kalendar in dem sie das Datum und die Uhrzeit auswählen können. Durch die Betätigung des 'Daten abrufen' 
+					Buttons werden alle Datensätze, die in dem von ihnen definierten Zeitintervall liegen, visualisiert.
+					<img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'> <br><br><br><br><br>
 					Möchten Sie einen bestimmten Raumausschnitt auswählen, so klicken Sie auf 'Raumauswahl'. Jetzt erscheint eine Bounding Box, die sie auf das von
 					ihnen gewünschte Gebiet ziehen können. Die Größe der Bounding Box kann flexibel verändert werden. Allerdings müssen Sie darauf achten, dass die
 					Bounding Box grün gefärbt ist, nur so ist eine Abfrage möglich. Ist die Bounding Box allerdings rot gefärbt, ist keine Abfrage möglich, da die
@@ -140,16 +140,18 @@
 		            <p> Um die von Ihnen ausgewählten Daten nun zu interpolieren, klicken Sie auf das Feld 'Analyse-Modus'. 
 					Nun erscheint ein Button 'Funktionen'. Bei Betätigen dieses Buttons erscheint ein Drop-Down-Menü, in dem Sie 'Interpolation' auswählen können. 
 					Sie können für die Interpolation drei verschiedene Arten wählen:<br>
-					<br>* Datenauswahl per Bounding Box: Legen sie die Bounding Box über den gewünschten Raumausschnitt.<br>
-					* Datenauswahl per TrackID: Wählen sie im Drop-Down-Menü 'Tracks' den von ihnen gewünschten Track aus.<br>
-					* Datenauswahl per Straßenauswahl: Klicken sie den Button 'Straßensegmente'. Nun können sie Straßensegmente auswählen, die anschließend markiert werden.<br>
+					<ul>
+					    <li> Datenauswahl per Bounding Box: Legen sie die Bounding Box über den gewünschten Raumausschnitt.</li>
+					    <li> Datenauswahl per TrackID: Wählen sie im Drop-Down-Menü 'Tracks' den von ihnen gewünschten Track aus.</li>
+					    <li> Datenauswahl per Straßenauswahl: Klicken sie den Button 'Straßensegmente'. Nun können sie Straßensegmente auswählen, die anschließend markiert werden.</li>
+					</ul>
 		            <br>Haben sie eine der 3 verschiedenen Arten der Datenauswahl gewählt, können sie mit einem Klick auf 'Interpolation' die Interpolation starten.
 					Die interpolierten Ergebnisse können nun per Auswahl aus dem Drop-Down-Menü 'Messwert auswählen' ausgewählt und visualisiert werden.<br><br>
 		            <img src='img/help/legende.jpg' width='120' height='31' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Durch einen Klick auf eines in der Legende gelisteten Phänomene kann jenes aus- oder abgewählt werden. Sie können innerhalb des Graphen zoomen, 
 					indem sie per Linksklick eine Box erstellen. Es wird nun auf die Werte innerhalb der Box gezoomt. Mit einem Klick auf 'Reset zoom' wird wieder
-					der komplette Graph angezeigt.<br>
-					<br>Durch Setzen und Entfernen der Haken und einem Klick auf 'Aktualisieren', wird die Tabelle aktualisiert und es werden nur noch die von ihnen 
+					der komplette Graph angezeigt.<br><br>
+					Durch Setzen und Entfernen der Haken und einem Klick auf 'Aktualisieren', wird die Tabelle aktualisiert und es werden nur noch die von ihnen 
 					ausgewählten Phänomene angezeigt.<br>  </p>
 		            <img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Haben sie eine der 3 verschiedenen Arten der Datenauswahl gewählt, können sie mit einem Klick auf 'Interpolation' die Interpolation starten.
@@ -175,7 +177,7 @@
     $help_filter2 = "
 					<h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
-					<h2>Filter</h2>
+					<h2>Grenzwert-Filter</h2>
 					<br>  
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> Wenn sie nach Grenzwerten filtern möchten, müssen sie in den 'Analyse-Modus' wechseln.
@@ -184,14 +186,16 @@
 					In der orange gefärbten Box werden Informationen zu den jeweiligen Phänomenen angezeigt. 
 					<br>Zum Beispiel: 'Die Richtgeschwindigkeit auf deutschen Autobahnen beträgt 130 km/h.'
 					<br>Bei Bestätigung ihrer Auswahl werden die Marker der Messwerte, die auf ihre Auswahl zutreffen, dementsprechend eingefärbt.<br>
-					<br>* Rote Marker: Der Wert liegt außerhalb der gewählten Grenzen.<br>
-					* Gelbe Marker: Der Wert liegt innerhalb des 25%- oder 75% Quartil der gewählten Grenzen.<br>
-					* Grüne Marker: Der Wert liegt zwischen dem 25%- und 75% Quartil der gewählten Grenzen.<br> </p>";     
+				    <ul>
+				        <li> Rote Marker: Der Wert liegt außerhalb der gewählten Grenzen.<br>
+					    <li> Gelbe Marker: Der Wert liegt innerhalb des 25%- oder 75% Quartil der gewählten Grenzen.<br>
+					    <li> Grüne Marker: Der Wert liegt zwischen dem 25%- und 75% Quartil der gewählten Grenzen.<br> </p>     
+		            </ul>";
 		            
     $help_environment = "
                     <h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
-					<h2>Filter</h2>
+					<h2>Umweltanalyse</h2>
 					<br>  
 					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 					<p>Wenn sie die Umweltanalyse starten möchten, müssen sie in den 'Analyse-Modus' wechseln.

@@ -107,10 +107,10 @@
 	                 
 	$help_content = "<h1>Help</h1> <br>
     				<a href='#analyser-help-mapview' id='maphelp'>Map Section</a><br>
-    				<a href='#analyser-help-getdata' id='getdatahelp'>Call Up Data</a><br>
+    				<a href='#analyser-help-getdata' id='getdatahelp'>Get Data</a><br>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
     				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
-    				<a href='#analyser-help-filter' id='filterhelp'>Filter</a><br>
+    				<a href='#analyser-help-filter' id='filterhelp'>Limit Filter</a><br>
     				<a href='#analyser-help-filter' id='environmenthelp'>Environmental Analysis</a>
     				";
 	
@@ -134,13 +134,13 @@
 	$help_getdata ="
 					<h1>Help</h1> <br>
 					<a href='#analyser-help' class='back'>Back</a><br>
-					<h2>Call Up Data</h2>
+					<h2>Get Data</h2>
 					<br>
 					<img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> If the user wants to analyze data for a certain time, the user can determine a time interval by clicking on 
-		            'From' and 'To'. By clicking in a field in the date box, a calendar opens where you can select the date and time. 
-		            <img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-		            By pressing the 'Get Data' button, all tracks within the time interval are visualized.<br><br><br><br>
+		            'From' and 'To'. By clicking in a field in the date box, a calendar opens where you can select the date and time. By pressing the 'Get Data' button, 
+		            all tracks within the time interval are visualized.<br><br>
+		            <img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'> <br><br><br><br><br>
 	                To select a certain region of space, the user has to click on 'Select space segment'. Now a bounding box is appearing, which can be dragged to the 
 	                desired area. The size of the bounding box can be flexibly changed. However, you must make sure that the bounding box is colored green. A query is 
 	                only possible if the bounding box is green. If the bounding box is colored red, no query is possible because the query of the data may be too 
@@ -177,11 +177,13 @@
 					<img src='img/help/analysis_off.jpg' width='75' height='60' align='left' vspace='10' hspace='5' alt='Text?'>
 					<img src='img/help/interpolationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> In order to interpolate the data the user has selected now, click on the field 'Analysis Mode'. 
-					Now a button 'Functions' appears. When you press this button, a drop-down-menu, where you can select 'Interpolation', is displayed.<br>
+					Now a button 'Functions' appears. When you press this button, a drop-down-menu, where you can select 'Interpolation', is displayed.<br><br>
 					You can choose three different types of interpolation:<br>  
-					<br>* Data selection by Bounding Box: Drag the bounding box over the desired area of space.<br>
-					* Data selection via TrackID: Select the track from the drop-down menu 'tracks'.<br>
-					* Data selection by street segment: Click the button 'Street Selection'. Now you can select the street segments which are subsequently labeled.<br>
+					<ul>
+					   <li> Data selection by Bounding Box: Drag the bounding box over the desired area of space.<br>
+					   <li> Data selection via TrackID: Select the track from the drop-down menu 'tracks'.<br>
+					   <li> Data selection by street segment: Click the button 'Street Selection'. Now you can select the street segments which are subsequently labeled.<br>
+					</ul>
 					
 					<br>If the user has chosen one of the three different types of data selection, the user clicks 'interpolation' which starts the interpolation. 
 					The interpolated results can now be viewed by selecting the measurement type from the drop-down menu 'Select'. <br>
@@ -200,7 +202,8 @@
 		            <p> In order to aggregate the data you have selected now, click on the field 'Analysis Mode'. 
 					Now a button 'Functions' appears. When pressing this button, a drop-down-menu is displayed where you can select 'Aggregation'. 
 					The calculations are performed server sided with PHP. When the calculations are completed, the Data is returned to the client in JSON format. 
-					The time required for the presentation of the results depends on the scope of the data selected and the server load. The results are then displayed in the graph and the chart.<br>
+					The time required for the presentation of the results depends on the scope of the data selected and the server load. The results are then displayed 
+					in the graph and the chart.<br>
 		            <br>By placing or removing the hook and click 'Refresh', the table is updated and there are only the user selected phenomena displayed.<br>
 		            <br>By clicking on one phenomena listed in the legend, it can be selected or deselected. You can zoom in by creating a box by left clicking. 
 					It will now be zoomed to the values ​​within the box. By clicking on 'Reset zoom' the entire graph is displayed again.
@@ -218,9 +221,11 @@
 					<br>The orange colored box displays information about the respective phenomena.<br>
 					<br>For example: 'The recommended speed limit on German motorways is 130 km/h'<br>
 					<br>By confirming the selection the markers will be colored according to the user specified limits.<br>
-					<br>* red marker: The value lies outside the selected limits.
-					<br>* yellow marker: The value is within the 25% - or 75% quartile of the selected limits.
-					<br>* green marker: The value is between the 25% - and 75% quartile of the selected limits. </p>";   
+					<ul>
+					   <li>red marker: The value lies outside the selected limits.
+					   <li>yellow marker: The value is within the 25% - or 75% quartile of the selected limits.
+					   <li>green marker: The value is between the 25% - and 75% quartile of the selected limits. 
+					</ul></p>";   
 		            
 	    $help_environment = "
 	                <h1>Help</h1> <br>
