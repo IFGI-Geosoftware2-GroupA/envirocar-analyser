@@ -38,6 +38,7 @@ function displayAggregationResults() {
 		if (req.responseText == 'JSON File Validation Failed') {
 			alert("Aggregation failed. JSON File is malformed!");
 		} else {
+			// display aggregation results
 			setChart('bar', req.responseText);
 			initAggregationTable(req.responseText);
 			tablestyle();

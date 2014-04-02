@@ -81,7 +81,7 @@ function createAggregationTable(json){
 		
 		var temp, text1, text2, text3, text4, text5;
 		for(var i = 0; i < 4; i++){
-			//Creating the rest of the Table
+			//	Create Columns for Mean, Standard Error, Min and Max
 			currentRow = document.createElement("tr");
 
 			currentCell0 = document.createElement("th");

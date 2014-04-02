@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
-	include 'php/translation_en.php';
+	include 'php/translation_en_new.php';
 	$other_lang = 'de';
 } else {
 	// uncomment to load revised help
@@ -463,7 +463,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			<div id="loading-div-background" >
 			    <div id="loading-div">
 			      <div style="width: 250px;">
-					<span id="ladebalken" style="position: absolute; left: 25px; top: 100px; width: 0px; display: block; background: green; border: 1px solid black; height: 30px;">
+					<span id="loadingBar" style="position: absolute; left: 25px; top: 100px; width: 0px; display: block; background: green; border: 1px solid black; height: 30px;">
 					</span>
 					<span style="position: absolute; left: 25px; top: 100px; text-align: center; width: 250px; border: 1px solid black; height: 30px;">
 						<span id="loading-div-trackText">Tracks:</span> 
