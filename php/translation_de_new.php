@@ -112,11 +112,11 @@
 					<a href='#analyser-help' class='back'>Zurück</a><br>
 					<h2>Daten abrufen</h2>
 					<br>
-		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <img src='img/help/daten.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Daten'>
 		            <p> Möchten Sie Daten für eine bestimmte Zeit analysieren, so können Sie unter 'Von:' und 'Bis:' das Zeitintervall bestimmen. Durch einen Klick in
 					ein Feld der Datumsbox, öffnet sich ein Kalendar in dem sie das Datum und die Uhrzeit auswählen können. Durch die Betätigung des 'Daten abrufen' 
-					Buttons werden alle Datensätze, die in dem von ihnen definierten Zeitintervall liegen, visualisiert.
-					<img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'> <br>
+					Buttons werden alle Datensätze, die in dem von ihnen definierten Zeitintervall liegen, visualisiert. <br>
+					<img src='img/help/kalender.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Kalender'>
 					<p>Möchten Sie einen bestimmten Raumausschnitt auswählen, so klicken Sie auf 'Raumauswahl'. Jetzt erscheint eine Bounding Box, die sie auf das von
 					ihnen gewünschte Gebiet ziehen können. Die Größe der Bounding Box kann flexibel verändert werden. Allerdings müssen Sie darauf achten, dass die
 					Bounding Box grün gefärbt ist, nur so ist eine Abfrage möglich. Ist die Bounding Box allerdings rot gefärbt, ist keine Abfrage möglich, da die
@@ -125,7 +125,7 @@
 		            <br>Möchten Sie Daten zu einem bestimmtem Raumausschnitt während eines bestimmten Zeitintervalls haben, so können sie einfach die oben genannten Schritte
 					miteinander kombinieren. </p> <br> 
 		            <br>Wenn Sie anschließend nur die Daten einer bestimmten Fahrt haben möchten, können Sie diese unter 'Tracks' auswählen.<br>
-		            <img src='img/help/autos.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
+		            <img src='img/help/autos.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Autoauswahl'>
 					<p> Unter 'Mögliche Automodelle' können Sie dann entweder durch Klicken auf die Doppelpfeile alle Automodelle abwählen oder auch gezielt nur 
 					einzelne durch Anklicken abwählen. Ebenso können Sie auch Automodelle auf die gleiche Weise wieder auswählen. Die Daten werden anschließend neu geladen.</p>  
 					<br>";

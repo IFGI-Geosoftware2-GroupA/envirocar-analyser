@@ -20,7 +20,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 	Remove this if you use the .htaccess -->
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 		
-	<title>envirocar-analyser</title>
+	<title>enviroCar analyser</title>
 	<meta name="description" content="Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten" />
 	<meta name="author" content="Marius Runde, Daniel Sawatzky, Jens Balmert" />
 	
@@ -302,7 +302,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<!-- the map will be displayed here -->
 				</div>
 				<script type="text/javascript">
-					// display the simple example
+					// display measurements
 					var q = new Query('measurements');
 					measurements = q.getData();
 					analyserMeasurements = measurements.slice();
@@ -328,14 +328,11 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 			</div>
 			
 			<div id="analyser-panel">
-
+				
 				<div id="analyser-chart" class="top">
-					<script type="text/javascript">
-						// setChart('line');
-					</script>	
-					
+					<!-- the analyser chart will be generated in this div -->
 				</div>
-		
+				
 				<div id="analyser-table" class="top">
 					<form id="analyser-table-checkbox" name="checkbox">
 						   <p>
@@ -350,10 +347,7 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							 </div>
 						   </p>
 					</form>
-					<script type="text/javascript">
-						// initTable();
-						// tablestyle();
-					</script>
+					<!-- the analyser table will be generated in this div -->
 				</div>
 				
 				<div id="analyser-help" class="top blue" style="display: none">

@@ -184,7 +184,7 @@ body {
 
 .analyser-dropdown-topmenu a, .analyser-dropdown-submenu a {
 	padding: 5px 5px;
-	border: 1px solid #000;
+	border: 1px solid #888888;
 	border-collapse: collapse;
 	color: #000;
 	font-weight: bold;
@@ -501,7 +501,7 @@ body {
 
 .analyser-switcher-topmenu a, .analyser-switcher-submenu a {
 	padding: 5px 5px;
-	border: 1px solid #000;
+	border: 1px solid #888888;
 	border-collapse: collapse;
 	color: #000;
 	font-weight: bold;

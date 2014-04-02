@@ -147,7 +147,9 @@
 	                computationally intensive. This in turn could affect the experience with our site. 
 					By pressing the 'Get Data' button, all the records which are in the region of space defined by the user, is visualized. <br>  
 					<br>Would you like to have data for a certain region of space during a specific time interval, so the user can simply combine the steps above with 
-					each other.<br> <br> If the user wants to have only the data of a particular track, he can select the specific track by opening the drop-down-menu 'tracks'. 
+					each other.<br> <br> 
+					<img src='img/help/cars.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Car Selection'> <br>
+					If the user wants to have only the data of a particular track, he can select the specific track by opening the drop-down-menu 'tracks'. 
 					Using the duallistbox 'Possible Car Models' the user can then either deselect all by clicking on the double arrows or select individual car models 
 					by clicking on them. Likewise, you can also deselect car models in the same way again. The data are then reloaded.
 					<br>
