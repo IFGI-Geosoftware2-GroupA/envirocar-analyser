@@ -82,7 +82,7 @@
     $help_content = "<h1>Hilfe</h1> <br>
     				<a href='#analyser-help-mapview' id='maphelp'>Kartenausschnitt</a><br>
     				<a href='#analyser-help-getdata' id='getdatahelp'>Daten abrufen</a><br>
-    				<a href='#analyser-help-selection' id='environmenthelp'>Selektion</a>
+    				<a href='#analyser-help-selection' id='selectionhelp'>Selektion</a><br>
     				<a href='#analyser-help-interpolation' id='interpolationhelp'>Interpolation</a><br>
     				<a href='#analyser-help-aggregation' id='aggregationhelp'>Aggregation</a><br>
     				<a href='#analyser-help-filter' id='filterhelp'>Filter</a><br>

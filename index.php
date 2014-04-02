@@ -369,6 +369,10 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 					<?php echo $help_selection; ?>
 				</div>
 				
+				<div id="analyser-help-filter" class="top blue" style="display: none">
+					<?php echo $help_filter2; ?>
+				</div>
+				
 				<div id="analyser-help-interpolation" class="top blue" style="display: none">
 					<?php echo $help_interpolation; ?>
 				</div>
@@ -433,7 +437,6 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 						$("#analyser-help-environment").show(200);
 						$("#analyser-help").hide(200);			
 					});
-					
 					
 					$(".back").click(function() {
 						$("#analyser-help").show(200);	
