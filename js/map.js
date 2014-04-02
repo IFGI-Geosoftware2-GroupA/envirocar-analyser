@@ -492,7 +492,7 @@ function displayCoSpeedRatioMarkers(){
 					drawChart = false;
 				}
 				else{
-					// set speed minimum to 1
+					// set ratio to 0 if vehicle is not moving
 					if(speedTemp == 0) ratio = 0;
 					// calculate ratio
 					else{
@@ -528,13 +528,11 @@ function displayCoSpeedRatioMarkers(){
 						markers.push(marker);	
 						chartSeries.push({x: measurements[i].getTimestamp(), y: parseFloat(ratio.toFixed(2)), name: measurements[i].getId() + '', id: 'EnviroFilter' +  measurements[i].getId(), color : '#00FF00'});
 					}
-					console.log(ratio);
 					createListenerForMarkers(markers[i]);
 					markersBounds.extend(measurements[i].getPoint());
 	
 					// Create infowindow for marker[i]/measurement[i]
 					buildInfoWindow(markers[i], map, measurements[i]);
-					//ratiocolumn(ratio);
 				}
 									
 			}
