@@ -195,7 +195,8 @@
 					<img src='img/help/aggregationIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 		            <p> In order to aggregate the data you have selected now, click on the field 'Analysis Mode'. 
 					Now a button 'Functions' appears. When pressing this button, a drop-down-menu is displayed where you can select 'Aggregation'. 
-					When the aggregation is started the data will be aggregated and the results are displayed in the table and the graph.<br>
+					The calculations are performed server sided with PHP. When the calculations are completed, the Data is returned to the client in JSON format. 
+					The time required for the presentation of the results depends on the scope of the data selected and the server load. The results are then displayed in the graph and the chart.<br>
 		            <br>By placing or removing the hook and click 'Refresh', the table is updated and there are only the user selected phenomena displayed.<br>
 		            <br>By clicking on one phenomena listed in the legend, it can be selected or deselected. You can zoom in by creating a box by left clicking. 
 					It will now be zoomed to the values ​​within the box. By clicking on 'Reset zoom' the entire graph is displayed again.
