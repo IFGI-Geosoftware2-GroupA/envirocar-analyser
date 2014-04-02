@@ -343,7 +343,7 @@
 	
 	$filter_by_CO2 = "Filter by CO2";
 	
-	$environment_label = "Environment Analyses";
+	$environment_label = "Environmental Analysis";
 	
 	$functions = "Functions";
 	
