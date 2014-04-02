@@ -25,13 +25,13 @@
 	$imprint_content = "
 	                    <h1>Impressum</h1>
 	                    <br/>
-	                    envirocar-analyser is a web page for displaying and analyzing the environmental data of the 
-	                    community platform envirocar. The envirocar analyser development team does not take any 
+	                    enviroCar analyser is a web page for displaying and analyzing the environmental data of the 
+	                    community platform enviroCar. The enviroCar analyser development team does not take any 
 	                    responsibility for the currentness, accuracy, and completeness of the contents displayed 
 	                    on this web page, unless the mistake was made on purpose or due to gross negligence. 
-	                    The envirocar analyser development team is responsible for mistakes of the displaying and
+	                    The enviroCar analyser development team is responsible for mistakes of the displaying and
 	                    for the user interface. Owner of the data and therefore owner of the rights of the data is
-	                    envirocar.
+	                    enviroCar.
 	                    <br />
 	                    <br />
 	                    Operators of the web page:
@@ -120,15 +120,16 @@
 					<h2>Map Section</h2>
 	                <br>
 	                <img src='img/help/suchenVerschieben.jpg' width='190' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		         	<p> When you open the website, the last measured 24 hours are automatically displayed and the map is centered to the last measurements. 
-					If the user wants to search for a place in North-Rhine-Westphalia, you can use the search box using the Google Places API. 
-					After confirming the selection, the map is centered on the choice of the user. It is only possible to search for places located in North-Rhine-Westphalia.<br><br>  </p>
+		         	<p> When you open the website, the last measured 24 hours are automatically displayed and the map gets centered to the last measurements. 
+					If the user wants to search for a place in North-Rhine-Westphalia, the user can use the search field using the Google Places API. 
+					After confirming the selection, the map gets centered on the choice of the user. It is only possible to search for places located in 
+					North-Rhine-Westphalia.<br><br>  </p>
 	                <img src='img/help/zoom.jpg' width='18' height='100' align='left' vspace='5' hspace='5' alt='Text?'>
-	                <p> Using standard mouse interaction, the user can pan the map arbitrarily within the limits of North-Rhine-Westphalia.
+	                <p> Using standard mouse interaction, the user can pan the map in all directions within the limits of North-Rhine-Westphalia.
 					By using the scroll wheel or by clicking on the plus and the minus symbol of the zoom scale, the user is able to zoom in or out. <br><br> <br><br>  </p>
 	                <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-	                <p> Clicking the selection fields 'map', 'hybrid' and 'OSM', the user can chose between the pure vector map of Google Maps, the hybrid satellite photo and road 
-					vectors of Google Maps or a OpenStreepMap map. </p>";
+	                <p> Clicking the selection fields 'map', 'hybrid' and 'OSM', the user can chose between the pure vector map of Google Maps, the hybrid satellite 
+	                photo and road vectors of Google Maps or a OpenStreepMap map. </p>";
 	
 	$help_getdata ="
 					<h1>Help</h1> <br>
@@ -136,18 +137,19 @@
 					<h2>Call Up Data</h2>
 					<br>
 					<img src='img/help/data.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p> If the user wants to analyze data for a certain time, so the user can determine a time interval by clicking on 
+		            <p> If the user wants to analyze data for a certain time, the user can determine a time interval by clicking on 
 		            'From' and 'To'. By clicking in a field in the date box, a calendar opens where you can select the date and time. 
 		            <img src='img/help/calendar.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
-		            By actuating the 'Get Data' button, all tracks within the time interval are visualized.<br><br><br><br>
-	                To select a certain region of space, the user has to click on 'Select space segment'. Now a bounding box is appearing, which can be dragged to the desired area. 
-					The size of the bounding box can be flexibly changed. However, you must make sure that the bounding box is colored green. A query is only possible if the bounding box is green.´
-					If the bounding box is colored red, no query is possible because the query of the data may be too computationally intensive. This in turn could affect the experience with our site. 
+		            By pressing the 'Get Data' button, all tracks within the time interval are visualized.<br><br><br><br>
+	                To select a certain region of space, the user has to click on 'Select space segment'. Now a bounding box is appearing, which can be dragged to the 
+	                desired area. The size of the bounding box can be flexibly changed. However, you must make sure that the bounding box is colored green. A query is 
+	                only possible if the bounding box is green. If the bounding box is colored red, no query is possible because the query of the data may be too 
+	                computationally intensive. This in turn could affect the experience with our site. 
 					By pressing the 'Get Data' button, all the records which are in the region of space defined by the user, is visualized. <br>  
-					<br>Would you like to have data for a certain region of space during a specific time interval, so the user can simply combine the steps above with each other.<br>
-					<br> If the user wants to have only the data of a particular track, he can select the specific track by opening the drop-down-menu 'tracks'. 
+					<br>Would you like to have data for a certain region of space during a specific time interval, so the user can simply combine the steps above with 
+					each other.<br> <br> If the user wants to have only the data of a particular track, he can select the specific track by opening the drop-down-menu 'tracks'. 
 					Using the duallistbox 'Possible Car Models' the user can then either deselect all by clicking on the double arrows or select individual car models 
-					by clicking on them. Likewise, you can also deselect car models in the same way again. The data is then reloaded.
+					by clicking on them. Likewise, you can also deselect car models in the same way again. The data are then reloaded.
 					<br>
 					Finally, you click on 'Get Data'.  <br><br>  </p>";
 					
@@ -161,7 +163,7 @@
 	                If you only want the data of a particular track after you selected the data, you can select this track in the field 'Tracks'.
 	                In 'Possible Car Models' you can deselect all car models by clicking on the double arrow or a particular car model by clicking on it.
 	                You can select the car models again by the same way. Afterwards, the data will be refreshed. 
-	                <p> A single phenomenon for the aggregation can be selected by clicking on the legend right from the chart. By letting the left mouse button clicked and 
+	                <p> A single phenomenon for the aggregation can be selected by clicking on the legend to the right of the chart. By letting the left mouse button clicked and 
 	                pulling the appearing rectangle you can also zoom in the chart. While doing so, a button appears for canceling the zooming. <br><br> </p>
 	                ";
 					
@@ -181,10 +183,11 @@
 					* Data selection via TrackID: Select the track from the drop-down menu 'tracks'.<br>
 					* Data selection by street segment: Click the button 'Street Selection'. Now you can select the street segments which are subsequently labeled.<br>
 					
-					<br>If the user has chosen one of the three different types of data selection, the user click 'interpolation' which starts the interpolation. 
+					<br>If the user has chosen one of the three different types of data selection, the user clicks 'interpolation' which starts the interpolation. 
 					The interpolated results can now be viewed by selecting the measurement type from the drop-down menu 'Select'. <br>
-					<br>Directly under the button 'Interpolation' there is a button 'Display'. When pressing this button the user can chose between the representation as a table, graph or graph and table.<br>
-					<br>By placing or removing the hook and click 'Refresh', the table is updated and there are only the user selected phenomena displayed.<br>
+					<br>Directly under the button 'Interpolation' there is a button 'Display'. When pressing this button the user 
+					can chose between the representation as a table, graph or graph and table.<br>
+					<br>By placing or removing the hook and clicking 'Refresh', the table is updated and there are only the user selected phenomena displayed.<br>
 					<br>By clicking on one phenomena listed in the legend, it can be selected or deselected. You can zoom in by creating a box by left clicking. 
 					It will now be zoomed to the values ​​within the box. By clicking on 'Reset zoom' the entire graph is displayed again.</p>";
 					
@@ -208,7 +211,8 @@
 					<h2>Limit Filter</h2>
 					<br>
 		            <img src='img/help/limitFilterIcon.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
-		            <p>If the user wants to filter any limits, the 'Analysis Mode' must be enabled. Now the user can click on the 'Functions' button. When pressing this button a drop-down-menu is displayed where you can select 'limit filter'. 
+		            <p>If the user wants to filter any limits, the 'Analysis Mode' must be enabled. Now the user can click on the 
+		            'Functions' button. When pressing this button a drop-down-menu is displayed where you can select 'limit filter'. 
 					A new window will open where the user can select the desired phenomena and is able to chose the desired phenomena and limits.<br>
 					<br>The orange colored box displays information about the respective phenomena.<br>
 					<br>For example: 'The recommended speed limit on German motorways is 130 km/h'<br>

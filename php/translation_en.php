@@ -27,13 +27,13 @@
 	                    <br/>
 	                    <img src='img/enviroCarAnalyser.png' width='200px' align='center' vspace='5' hspace='5' alt='enviroCarAnalyserLogo'>
 	                    <br/><br/>
-	                    envirocar-analyser is a web page for displaying and analyzing the environmental data of the 
-	                    community platform envirocar. The envirocar analyser development team does not take any 
+	                    enviroCar analyser is a web page for displaying and analyzing the environmental data of the 
+	                    community platform enviroCar. The enviroCar analyser development team does not take any 
 	                    responsibility for the currentness, accuracy, and completeness of the contents displayed 
 	                    on this web page, unless the mistake was made on purpose or due to gross negligence. 
-	                    The envirocar analyser development team is responsible for mistakes of the displaying and
+	                    The enviroCar analyser development team is responsible for mistakes of the displaying and
 	                    for the user interface. Owner of the data and therefore owner of the rights of the data is
-	                    envirocar.
+	                    enviroCar.
 	                    <br />
 	                    <br />
 	                    Operators of the web page:

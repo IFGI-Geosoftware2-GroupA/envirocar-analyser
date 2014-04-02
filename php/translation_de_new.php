@@ -24,11 +24,11 @@
 	$imprint = "Impressum";
 	$imprint_content = "<h1>Impressum</h1>
 	                    <br/>
-	                    Bei envirocar-analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
-	                    Plattform enviroCar. Das envirocar analyser Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
+	                    Bei enviroCar analyser handelt es sich um eine Webseite zur Darstellung und Analyse der Umweltdaten der Community 
+	                    Plattform enviroCar. Das enviroCar analyser Entwickler-Team übernimmt keinerlei Verantwortung für Aktualität, 
 	                    Genauigkeit oder Vollständigkeit der auf dieser Webseite dargestellten Inhalte, es sei denn der Fehler sei unter 
 	                    Absicht oder aufgrund grober Fahrlässigkeit entstanden. Für Fehler bei der Darstellung oder der 
-	                    Benutzerschnittstelle ist das envirocar analyser Entwickler-Team verantwortlich. Besitzer der Daten und somit 
+	                    Benutzerschnittstelle ist das enviroCar analyser Entwickler-Team verantwortlich. Besitzer der Daten und somit 
 	                    Besitzer der Rechte der Daten ist enviroCar.
 	                    <br />
 	                    <br />
@@ -103,8 +103,8 @@
 		            <p> Durch Benutzung des Scrollrades oder durch Klicken 
 					auf das Plus- und das Minussymbol der Zoomskala, kann hinein und herausgezoomt werden. <br><br> <br><br>  </p>
 		            <img src='img/help/karte.jpg' width='130' height='31' align='left' vspace='5' hspace='5' alt='Text?'>
-		            <p> Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen der reinen Vektorkarte von Google Maps, dem Hybrid aus Satellitenfoto und Straßenvektoren von Google Maps und einer 
-					OpenStreepMap-Karte gewählt werden. 
+		            <p> Durch Klicken auf die Wahlfelder 'Karte', 'Hybrid' und 'OSM' kann zwischen der reinen Vektorkarte von Google Maps, dem Hybrid aus Satellitenfoto und 
+		            Straßenvektoren von Google Maps und einer OpenStreepMap-Karte gewählt werden. 
 		            <br/> </p>";
 	
 	$help_getdata ="
@@ -127,7 +127,8 @@
 		            <br>Wenn Sie anschließend nur die Daten einer bestimmten Fahrt haben möchten, können Sie diese unter 'Tracks' auswählen.<br>
 		            <img src='img/help/autos.jpg' width='200' height='80' align='left' vspace='10' hspace='5' alt='Text?'>
 					<p> Unter 'Mögliche Automodelle' können Sie dann entweder durch Klicken auf die Doppelpfeile alle Automodelle abwählen oder auch gezielt nur 
-					einzelne durch Anklicken abwählen. Ebenso können Sie auch Automodelle auf die gleiche Weise wieder auswählen. Die Daten werden anschließend neu geladen.</p>  <br>";
+					einzelne durch Anklicken abwählen. Ebenso können Sie auch Automodelle auf die gleiche Weise wieder auswählen. Die Daten werden anschließend neu geladen.</p>  
+					<br>";
 	            
 	$help_interpolation = "
 					<h1>Hilfe</h1> <br>
