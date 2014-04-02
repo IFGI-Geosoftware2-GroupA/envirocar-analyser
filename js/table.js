@@ -399,6 +399,7 @@ function deleteRows(value) {
 function ratiocolumn(){
 	$('#analyser-table td:nth-child(7),#analyser-table th:nth-child(7)').show();
 	document.getElementById("co2prokmid").style.display ="block";
+	document.getElementById("co2prokm").checked = true;
 }
 
 /**

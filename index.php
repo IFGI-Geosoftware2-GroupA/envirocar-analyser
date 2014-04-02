@@ -344,10 +344,10 @@ if (isset($_GET['lang']) && $_GET['lang'] == 'en') {
 							 <input type="checkbox" name="co2" onchange="refreshTable();" checked> <?php echo $co2; ?>
 							 <input type="checkbox" name="geschwindigkeit" onchange="refreshTable();" checked> <?php echo $speed; ?>
 							 <input type="checkbox" name="motorlast" onchange="refreshTable();" checked> <?php echo $engine_load; ?>
-							 <input type="checkbox" name="umdrehungen" onchange="refreshTable();" checked> <?php echo $rpm; ?>
-							 <span id="co2prokmid" style="display:none">
-							 	<input type="checkbox" name="co2prokm" onchange="refreshTable();" checked> <?php echo $co2perkm; ?>
-							 </span>
+							 <input type="checkbox" name="umdrehungen" onchange="refreshTable();"checked> <?php echo $rpm; ?>
+							 <div id="co2prokmid" style="display:none">
+							 	<input type="checkbox" id="co2prokm" name="co2prokm" onchange="refreshTable();"> <?php echo $co2perkm; ?>
+							 </div>
 						   </p>
 					</form>
 					<script type="text/javascript">
