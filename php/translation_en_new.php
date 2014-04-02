@@ -220,7 +220,7 @@
 	    $help_environment = "
 	                <h1>Hilfe</h1> <br>
 					<a href='#analyser-help' class='back'>Zurück</a><br>
-					<h2Environment Analysis</h2>
+					<h2Environmental Analysis</h2>
 					<br>  
 					<img src='img/help/enviroFilter.png' width='75' height='75' align='left' vspace='10' hspace='5' alt='Text?'>
 	                If the user wants to start the environmental analysis, the 'Analysis Mode' has to be turned on. 
