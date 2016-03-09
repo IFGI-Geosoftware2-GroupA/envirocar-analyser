@@ -5,9 +5,7 @@ _(:gb: English version below)_
 
 Internet Applikation zur Exploration und Visualisierung von raum-zeitvarianten Fahrzeug-Messdaten
 
-:exclamation:
-[Zur Applikation](http://giv-geosoft2a.uni-muenster.de/)
-:exclamation:
+![Screenshot](img/envirocarAnalyser.png)
 
 Wir verwenden dabei die [Google Maps API V3 :earth_africa:](https://developers.google.com/maps/?hl=de) und [jQuery](http://jquery.com/) als externe Libraries.
 
